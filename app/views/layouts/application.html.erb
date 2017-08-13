@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>TseklisRails2</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Tseklis-rails" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+
+    
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'partials/navbar' %>    
+    
+		<div class="row">
+			<div class="small-12 medium-offset-1 medium-10 columns">
+				<%= yield %>		
+			</div>
+		</div>
+
   </body>
 </html>

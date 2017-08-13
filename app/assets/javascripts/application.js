@@ -10,6 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
-//= require turbolinks
-//= require_tree .
+//= require cable
+//= require foundation
+
+//= require pickadate/picker 
+//= require pickadate/picker.date 
+//= require pickadate/picker.time 
+
+$(document).ready( function(){ 
+	$(document).foundation(); 
+});
+
