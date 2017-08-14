@@ -1,0 +1,11 @@
+<div class="row top-margin">
+	<div class="small-12 medium-5 columns">
+		<h2 class=""> <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h2>
+		<%= @user.profile.position %> <br/>
+		<%= @user.email %><br/>
+	</div>
+	<div class="small-12 medium-offset-3 medium-2 columns">
+		<div class="space"></div>
+		<%= link_to "Edit Profile", edit_user_registration_path, class: "button primary" %>
+	</div>
+</div>

@@ -19,7 +19,7 @@
       <%= render 'partials/landing_page' %>
     <% end %>
 
-    <%= render 'partials/navbar' %>    
+    <%= render 'partials/navbar' %>
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "callout  #{key}" %>
     <% end %>

@@ -29,17 +29,18 @@ select {
   margin-right: 0;
 }
 
+.no-margin {
+	margin: 0;
+}
+
+.top-margin {
+	margin-top: 1rem;
+}
+
 .padding {
 	padding: 1rem;
 }
 
-.black-bg {
-	background: black;
-}
-
-.white-bg {
-	background: white;
-}
 
 .vertical-max {
 	max-height: 100vh;
@@ -64,8 +65,8 @@ select {
 	border-radius: 2rem;
 }
 
-.error-font-size {
-	font-size: 1rem;
+.small-font-size {
+	font-size: 0.8rem;
 }
 
 .callout.small.notice {
@@ -154,4 +155,17 @@ select {
 
 .shadow {
 	box-shadow: 0px 2px 2px LightGrey;
+}
+
+// BG Colors
+.black-bg {
+	background: black;
+}
+
+.white-bg {
+	background: white;
+}
+
+.graymax-bg {
+	background: #fafafa;
 }

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+    <div class="m-well align-middle">
+      <h2>Create a Company</h2>
+
+      <%= form_for :company, @company do |f| %>
+        <div class="field">
+          <%= t.label :name, "Company Name" %>
+           <%= t.collection_select :name, Company.all, :id, :name, {:class => '.select2'} %>
+        </div>
+        
+
+
+        <%= f.fields_for :profile, resource.build_profile do |t| %>
+          <div class="field">
+            <%= t.label :first_name %>
+            <%= t.text_field :first_name, autofocus: true %>
+          </div>
+          <% end %>
+
+        <div class="actions">
+          <%= f.submit "Sign up", class: 'button primary' %>
+        </div>
+
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

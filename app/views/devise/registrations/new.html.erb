@@ -7,7 +7,7 @@
       <%= devise_error_messages! %>
 
 
-        <%= f.fields_for :profile, @profile do |t| %>
+        <%= f.fields_for :profile, resource.build_profile do |t| %>
           <div class="field">
             <%= t.label :first_name %>
             <%= t.text_field :first_name, autofocus: true %>

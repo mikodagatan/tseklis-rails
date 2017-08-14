@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   	resource :profile
   end
   
+  resources :profiles do
+  	resource :leave_requests
+  	resource :leave_reviews
+  end 
 	get 'about' => 'pages#about'
 	root 'pages#home'
 end
