@@ -8,4 +8,6 @@ has_one	 :address, as: :addressable
 has_one  :company_leave_setting
 has_many :leave_types
 
+accepts_nested_attributes_for :employments, :address
+
 end

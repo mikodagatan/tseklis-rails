@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   	resource :leave_requests
   	resource :leave_reviews
   end 
+
+  resources :companies
+  
 	get 'about' => 'pages#about'
 	root 'pages#home'
 end
