@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813201029) do
+ActiveRecord::Schema.define(version: 20170813210505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20170813201029) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+    t.integer "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_leave_settings", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "leave_month_expiration"
+    t.integer "leave_month_start"
+    t.boolean "prorate_accrual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "employments", force: :cascade do |t|
@@ -45,12 +57,54 @@ ActiveRecord::Schema.define(version: 20170813201029) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "leave_requests", force: :cascade do |t|
+    t.string "leave_title"
+    t.string "leave_type"
+    t.text "leave_description"
+    t.date "leave_start_date"
+    t.date "leave_end_date"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leave_reviews", force: :cascade do |t|
+    t.integer "leave_request_id"
+    t.boolean "leave_allow"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leave_type_amounts", force: :cascade do |t|
+    t.integer "leave_type_amount"
+    t.integer "leave_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leave_types", force: :cascade do |t|
+    t.string "leave_type"
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
     t.string "first_name"
     t.string "last_name"
     t.string "position"
     t.string "contact_email"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "user_role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

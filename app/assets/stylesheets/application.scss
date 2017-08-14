@@ -17,9 +17,14 @@
  */
 
 @import 'foundation_and_overrides';
+@import 'font-awesome';
+
 
 @import 'pickadate/default';
 @import 'pickadate/default.date';
 @import 'pickadate/default.time';
 
+@import 'select2';
+
 @import 'custom';
+@import 'default_fonts';

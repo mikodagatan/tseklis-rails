@@ -20,6 +20,10 @@
     <% end %>
 
     <%= render 'partials/navbar' %>    
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "callout  #{key}" %>
+    <% end %>
+
     
 		<div class="row">
 			<div class="small-12 medium-offset-1 medium-10 columns">

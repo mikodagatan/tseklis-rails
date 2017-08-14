@@ -1,13 +1,28 @@
 <div data-sticky-container>
-  <div class="top-bar sticky" data-sticky data-margin-top='0' data-top-anchor="landing:bottom">
+  
+  <% if user_signed_in? %>
+    <div class="top-bar sticky" data-sticky data-margin-top='0' >
+  <% elsif current_page?(root_path) %>
+    <div class="top-bar sticky" data-sticky data-margin-top='0' data-top-anchor="landing:bottom">
+  <% else %>
+    <div class="top-bar sticky" data-sticky data-margin-top='0' >
+  <% end %>
+
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text"><%= link_to "Tseklis", root_path  %></li>
+      </ul>
     </div>
     <div class="top-bar-right">
 
-      <ul class="menu">
+      <ul class="dropdown menu">
+        <% if current_user %>
 
+          <li><%= link_to "Sign Out", destroy_user_session_path, class: 'button warning' %> </li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %></li>
+          <li><%= link_to "Sign In", new_user_session_path, class: 'button primary' %></li>
+        <% end %>
       </ul>
     </div>
   </div>

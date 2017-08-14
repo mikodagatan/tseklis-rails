@@ -19,6 +19,8 @@
 //= require pickadate/picker.date 
 //= require pickadate/picker.time 
 
+//= require select2
+
 //= require globals
 
 $(document).ready( function(){ 
