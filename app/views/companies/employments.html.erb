@@ -1,0 +1,18 @@
+        <%= f.fields_for :employments, @employment do |employment| %>
+
+          <div class="field">
+            <%= employment.label :start_date, "Employee's Start Date in the Company" %>
+            <%= employment.text_field :start_date, class: "datepicker", placeholder: "Click Here"%>
+          </div>
+
+          <div class="field">
+            <%= employment.label :end_date, "Employee's Start Date in the Company" %>
+            <%= employment.text_field :end_date, class: "datepicker", placeholder: "Click Here"%>
+          </div>
+
+          <%= employment.hidden_field :salary, value: '100000' %>
+          <%= employment.hidden_field :user_id, value: @user.id %>
+          <%= employment.hidden_field :company_id, value: @user.id %>
+
+
+        <% end %>

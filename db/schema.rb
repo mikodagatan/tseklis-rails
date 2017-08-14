@@ -16,18 +16,14 @@ ActiveRecord::Schema.define(version: 20170813210505) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "name"
     t.string "first_line"
     t.string "second_line"
     t.string "city_town"
     t.string "province"
     t.string "country"
     t.integer "zip_code"
-    t.string "addressable_type"
-    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -79,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170813210505) do
   create_table "leave_type_amounts", force: :cascade do |t|
     t.integer "leave_type_amount"
     t.integer "leave_type_id"
+    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,7 +90,6 @@ ActiveRecord::Schema.define(version: 20170813210505) do
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "position"
     t.string "contact_email"
     t.integer "user_id"
     t.datetime "created_at", null: false

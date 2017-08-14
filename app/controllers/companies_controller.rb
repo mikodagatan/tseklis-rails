@@ -3,7 +3,6 @@ class CompaniesController < ApplicationController
 	def new
 		@user = User.find(current_user.id)
 		@company = Company.new
-		@employment = @company.employments.build
 		@address = @company.build_address
 	end
 
@@ -25,13 +24,7 @@ class CompaniesController < ApplicationController
 	private
 
 	def company_params
-	  params.require(:company).permit(:name, 
-																  	employments_attributes: 
-																  			[:start_date,
-																  			:end_date,
-																  			:salary, 
-																  			:user_id, 
-																  			:company_id],
+	  params.require(:company).permit(:name, :plan_id,
 																  	address_attributes:
 																	  		[:name,
 																  			:first_line,
@@ -40,7 +33,7 @@ class CompaniesController < ApplicationController
 																	  		:province,
 																	  		:country,
 																	  		:zip_code,
-																	  		:addresable_type,
+																	  		:addressable_type,
 																	  		:addressable_id])
 	end
 end

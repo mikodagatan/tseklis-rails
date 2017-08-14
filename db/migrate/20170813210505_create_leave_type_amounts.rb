@@ -5,6 +5,8 @@ class CreateLeaveTypeAmounts < ActiveRecord::Migration[5.1]
 
     	t.integer				:leave_type_id
 
+    	t.integer				:company_id
+
     	t.timestamps
     end
   end
