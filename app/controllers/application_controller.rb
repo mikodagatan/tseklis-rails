@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-    def configure_permitted_parameters
+  def configure_permitted_parameters
    				
 
     attrs = [:name, 
@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
             :current_password,
             profile_attributes: [:id, 
                               :first_name, 
-                              :last_name, 
-                              :position]]
+                              :last_name]]
     devise_parameter_sanitizer.permit :sign_up, keys:attrs
     devise_parameter_sanitizer.permit :account_update, keys: attrs
   end
+
 end

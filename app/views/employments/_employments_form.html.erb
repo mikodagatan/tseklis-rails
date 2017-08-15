@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+    <div class="m-well align-middle">
+			
+			<%= form_for :employments, as: @employment do |f| %>
+				<div class="field">
+					<%= f.label :start_date %>
+					<%= f.text_field :start_date, class: "datepicker start" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :end_date %>
+					<%= f.text_field :end_date, class: "datepicker end" %>
+				</div>
+
+				<div class="field">
+				<%= f.label :company_id, "Company" %>
+				<%= f.collection_select(:company_id, Company.all, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
+				<div class="small-font-size">If you can't find your company. You can can create one.</div>
+				</div>
+
+				<div class="space2"></div>
+
+				<%= f.submit 'Update', class: "button primary" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>

@@ -1,15 +1,21 @@
 $(document).ready(function(){
-	$('.datepicker').pickadate({
+	$('.datepicker.start').pickadate({
 		format: 'mm/dd/yyyy',
 		selectMonths: true,
 		selectYears: 60,
-		max: true,
+		max: true
+	});
+
+	$('.datepicker.end').pickadate({
+		format: 'mm/dd/yyyy',
+		selectMonths: true,
+		selectYears: 10,
+		max: true
 	});
 
 
-	$('.select2').select2({
 
-	});
+	$('.select-select').select2();
 
 	// password edit form
 	$('#password-edit-form').hide();

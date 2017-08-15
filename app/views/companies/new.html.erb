@@ -16,14 +16,19 @@
           <%= f.label :name, "Company Name" %>
           <%= f.text_field :name %>
         </div>
-        <%= f.hidden_field :plan_id, value: "1" %>
 
-        <%= f.fields_for :address, @address do |address| %>
+        <%= f.fields_for :employments, @employment do |employment| %>
 
           <div class="field">
-            <%= address.label :name %>
-            <%= address.text_field :name %>
+            <%= employment.label :start_date, "Employee's Start Date in the Company" %>
+            <%= employment.text_field :start_date, class: "datepicker", placeholder: "Click Here"%>
           </div>
+
+          <%= employment.hidden_field :user_id, value: current_user.id %>
+
+        <% end %>
+
+        <%= f.fields_for :address, @address do |address| %>
 
           <div class="field">
             <%= address.label :first_line %>
@@ -54,9 +59,6 @@
             <%= address.label :zip_code, "Zip Code" %>
             <%= address.text_field :zip_code %>
           </div>
-
-          <%= address.hidden_field :addressable_type, value: '1' %>
-          <%= address.hidden_field :addressable_id, value: @user.id %>
         <% end %>
 
         <div class="actions">

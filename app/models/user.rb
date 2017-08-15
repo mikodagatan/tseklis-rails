@@ -4,9 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-has_one :profile
-has_one :address, as: :addressable
+	has_one :profile
+	has_many :employments
+	has_many :companies, through: :employments
 
-accepts_nested_attributes_for :profile, reject_if: :all_blank
+	accepts_nested_attributes_for :profile, reject_if: :all_blank
+
+	def employed?(company=nil)
+		if company == nil
+			employments.present?
+		else
+			companies.include?(company)
+		end
+	end
 
 end

@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170813210505) do
     t.string "province"
     t.string "country"
     t.integer "zip_code"
+    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170813210505) do
   create_table "employments", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.string "position"
     t.integer "salary"
     t.integer "company_id"
     t.integer "user_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170813210505) do
     t.string "first_name"
     t.string "last_name"
     t.string "contact_email"
+    t.boolean "fired"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

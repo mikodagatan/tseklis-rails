@@ -7,14 +7,13 @@ Rails.application.routes.draw do
 
 
   resources :users do
-  	resource :profile
+  	resource :profile 
+  	resource :employments
   end
-  
-  resources :profiles do
-  	resource :leave_requests
-  	resource :leave_reviews
-  end 
 
+  resource :leave_requests
+  resource :leave_reviews
+  
   resources :companies
   
 	get 'about' => 'pages#about'

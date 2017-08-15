@@ -7,6 +7,8 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.string 	:last_name
       t.string 	:contact_email
 
+      t.boolean :fired
+      
       t.integer :user_id
       
       t.timestamps
