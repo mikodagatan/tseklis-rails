@@ -4,9 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-	has_one :profile
+	has_one  :profile
+	has_one  :user_role, through: :employments
 	has_many :employments
 	has_many :companies, through: :employments
+	has_many :leave_requests
 
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
 

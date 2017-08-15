@@ -2,8 +2,8 @@
 
 <% if user_signed_in? %>
 
-		<%= link_to "Create a Company", new_company_url %>
-		<%= link_to "Connect to a Company", edit_user_employments_url(current_user) %>
+		<%= link_to "Create a Company", new_company_url(current_user) %>
+		<%= link_to "Connect to a Company", new_user_employment_url(current_user) %>
 
 	<% if current_user.employed? %>
 	<% else %>

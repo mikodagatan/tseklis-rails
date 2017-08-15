@@ -1,11 +1,37 @@
 <div class="row top-margin">
 	<div class="small-12 medium-5 columns">
 		<h2 class=""> <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h2>
-		<%= @user.profile.position %> <br/>
+		<%# @user.profile.position %> <br/>
 		<%= @user.email %><br/>
 	</div>
 	<div class="small-12 medium-offset-3 medium-2 columns">
 		<div class="space"></div>
 		<%= link_to "Edit Profile", edit_user_registration_path, class: "button primary" %>
+	</div>
+</div>
+
+<div class="space4"></div>
+
+<div class="row" id="employments">
+	<div class="column">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Employment Date</th>
+					<th>Company</th>
+					<th colspan="1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--
+					Below code will look for a partial: views/employments/_employment.html.erb
+				-->
+				<%# render @employments %>
+
+				<% @employments.each do |employment| %>
+					<%= render 'employments/employment', employment: employment %>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>

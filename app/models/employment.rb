@@ -1,4 +1,5 @@
 class Employment < ApplicationRecord
-belongs_to :user
-belongs_to :company
+	belongs_to :employment
+
+	has_one :user, through: :employment
 end

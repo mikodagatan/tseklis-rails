@@ -7,12 +7,11 @@ Rails.application.routes.draw do
 
 
   resources :users do
-  	resource :profile 
-  	resource :employments
+  	resource :profile
+  	resources :employments
   end
 
-  resource :leave_requests
-  resource :leave_reviews
+  resources :leave_requests 
   
   resources :companies
   
