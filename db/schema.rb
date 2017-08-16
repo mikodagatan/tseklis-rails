@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170813210505) do
     t.text "leave_description"
     t.date "leave_start_date"
     t.date "leave_end_date"
+    t.integer "leave_type_id"
     t.integer "employment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

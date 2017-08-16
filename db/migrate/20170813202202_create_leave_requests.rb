@@ -5,6 +5,7 @@ class CreateLeaveRequests < ActiveRecord::Migration[5.1]
     	t.text 		:leave_description
     	t.date 		:leave_start_date
     	t.date 		:leave_end_date
+        t.integer   :leave_type_id
  
     	t.integer   :employment_id
 

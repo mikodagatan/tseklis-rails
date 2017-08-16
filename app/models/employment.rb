@@ -1,5 +1,7 @@
 class Employment < ApplicationRecord
-	belongs_to :employment
+	belongs_to :company
+	belongs_to :user
 
-	has_one :user, through: :employment
+	has_many :leave_requests
+
 end

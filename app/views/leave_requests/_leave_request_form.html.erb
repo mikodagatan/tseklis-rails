@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+    <div class="m-well align-middle">
+			
+			<%= form_for @leave_request, url: url, method: method  do |f| %>
+				
+				<div class="field">
+					<%= f.label :leave_title %>
+					<%= f.text_field :leave_title %>
+				</div>
+
+				<div class="field">
+					<%= f.label :leave_description %>
+					<%= f.text_area :leave_description %>
+				</div>				
+
+				<div class="field">
+					<%= f.label :leave_start_date %>
+					<%= f.text_field :leave_end_date, class: "datepicker start" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :leave_end_date %>
+					<%= f.text_field :leave_end_date, class: "datepicker start" %>
+				</div>
+
+				<div class="field">
+					<%= f.label :leave_type_id, "Type of Leave" %>
+					<%= f.collection_select(:leave_type_id, Company.all, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
+				</div>
+
+				<div class="space2"></div>
+
+				<%= f.submit 'Update', class: "button primary" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>

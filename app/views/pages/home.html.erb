@@ -4,6 +4,8 @@
 
 		<%= link_to "Create a Company", new_company_url(current_user) %>
 		<%= link_to "Connect to a Company", new_user_employment_url(current_user) %>
+		<%= link_to "Create a Leave Request",
+			new_user_employment_leave_request_url(current_user, @employment.id)%>
 
 	<% if current_user.employed? %>
 	<% else %>

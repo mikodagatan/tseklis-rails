@@ -8,7 +8,7 @@ class User < ApplicationRecord
 	has_one  :user_role, through: :employments
 	has_many :employments
 	has_many :companies, through: :employments
-	has_many :leave_requests
+	has_many :leave_requests, through: :employments
 
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
 

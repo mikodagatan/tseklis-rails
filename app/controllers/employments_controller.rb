@@ -4,6 +4,7 @@ class EmploymentsController < ApplicationController
   before_action :set_user_and_employment, only: [:edit, :update]
 
   def new
+    @employment = @user.employments.find_by_id( params[:id] )
   	@employment = @user.employments.build
   end
 
@@ -35,7 +36,8 @@ class EmploymentsController < ApplicationController
 
   def set_user_and_employment
   	@user = current_user
-  	@employment = @user.employments.find_by_id(params[:id])
+  	@employments = @user.employments
+    @employment = @user.employment.find_by_id( params[:id] )
   end
 
   def employment_params

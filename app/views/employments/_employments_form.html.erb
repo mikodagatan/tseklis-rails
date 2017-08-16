@@ -11,7 +11,9 @@
 				<div class="field">
 				<%= f.label :company_id, "Company" %>
 				<%= f.collection_select(:company_id, Company.all, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
-				<div class="small-font-size">If you can't find your company. You can can create one.</div>
+					<div class="small-font-size">
+						If you can't find your company. You can can create one.
+					</div>
 				</div>
 
 				<div class="space2"></div>

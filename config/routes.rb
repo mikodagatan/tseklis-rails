@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
   resources :users do
   	resource :profile
-  	resources :employments
+  	resources :employments do
+      resources :leave_requests
+    end
   end
 
-  resources :leave_requests 
+ 
   
   resources :companies
   

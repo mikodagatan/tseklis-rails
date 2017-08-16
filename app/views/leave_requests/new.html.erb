@@ -1,7 +1,9 @@
-<div class="row">
-  <div class="small-12 medium-6">
-		<%= form_for @leave_request do |t| %>
-			
-		<% end %>
-	</div>
+<div class="space5"></div>
+
+<div class="text-center">
+	<h2>Create Leave Request</h2>	
 </div>
+
+<div class="space5"></div>
+
+<%= render 'leave_request_form', url: user_employment_leave_requests_url(current_user, @employment), method: :post %>

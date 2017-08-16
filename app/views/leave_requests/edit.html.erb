@@ -1,0 +1,10 @@
+<div class="space5"></div>
+
+<div class="text-center">
+	<h2>Edit Leave Request</h2>
+	<h2>#{@leave_request.name}</h2>
+</div>
+
+<div class="space5"></div>
+
+<%= render 'leave_request_form', url: user_employment_leave_requests_url(current_user, @employment, @leave_request), method: :patch %>

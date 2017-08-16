@@ -12,26 +12,6 @@
 
 <div class="space4"></div>
 
-<div class="row" id="employments">
-	<div class="column">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Employment Date</th>
-					<th>Company</th>
-					<th colspan="1"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!--
-					Below code will look for a partial: views/employments/_employment.html.erb
-				-->
-				<%# render @employments %>
+<%= render 'employments_table' %>
 
-				<% @employments.each do |employment| %>
-					<%= render 'employments/employment', employment: employment %>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-</div>
+<%= render 'leave_requests_table' %>
