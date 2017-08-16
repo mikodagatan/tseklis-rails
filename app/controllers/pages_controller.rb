@@ -12,9 +12,11 @@ end
 private
 
 def set_up
-	@user = current_user
-	@employment = @user.employments.last
-	@employments = @user.employments
+	if user_signed_in?
+		@user = current_user
+		@employment = @user.employments.last
+		@employments = @user.employments
+	end
 end
 
 

@@ -1,19 +1,18 @@
 $(document).ready(function(){
-	$('.datepicker.start').pickadate({
+
+	$('.datepickerstart').pickadate({
 		format: 'mm/dd/yyyy',
 		selectMonths: true,
 		selectYears: 60,
-		max: true
-	});
+		max: true,
+		});
 
-	$('.datepicker.end').pickadate({
+	$('.datepickerend').pickadate({
 		format: 'mm/dd/yyyy',
 		selectMonths: true,
-		selectYears: 10,
-		max: true
+		selectYears: 5,
+		min: true
 	});
-
-
 
 	$('.select-select').select2();
 

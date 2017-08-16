@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20170813210505) do
   end
 
   create_table "employments", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.date "employment_start_date"
+    t.date "employment_end_date"
     t.integer "salary"
     t.integer "company_id"
     t.integer "user_id"

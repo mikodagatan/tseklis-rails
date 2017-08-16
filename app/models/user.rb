@@ -20,4 +20,12 @@ class User < ApplicationRecord
 		end
 	end
 
+	def have_leave_request?(leave_request=nil)
+		if leave_request == nil
+			leave_requests.present?
+		else
+			leave_requests.include?(leave_request)
+		end
+	end
+
 end

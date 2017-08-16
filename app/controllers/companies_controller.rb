@@ -25,21 +25,22 @@ class CompaniesController < ApplicationController
 	private
 
 	def company_params
-	  params.require(:company).permit(:name, 
-																  	employments_attributes: 
-																  			[:id,
-																  			:start_date,
-																  			:end_date,
-																  			:user_id, 
-																  			:company_id],
-																  	address_attributes:
-																	  		[:id,
-																	  		:first_line,
-																	  		:second_line,
-																	  		:city_town,
-																	  		:province,
-																	  		:country,
-																	  		:zip_code,
-																	  		:company_id])
+	  params.require(:company).permit(
+	  							:name, 
+							  	employments_attributes: 
+							  			[:id,
+							  			:employment_start_date,
+							  			:employment_end_date,
+							  			:user_id, 
+							  			:company_id],
+							  	address_attributes:
+								  		[:id,
+								  		:first_line,
+								  		:second_line,
+								  		:city_town,
+								  		:province,
+								  		:country,
+								  		:zip_code,
+								  		:company_id])
 	end
 end

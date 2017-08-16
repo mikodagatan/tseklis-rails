@@ -1,6 +1,10 @@
 <tr>
 	<td><%= leave_request.leave_title %></td>
 	<td><%= leave_request.leave_start_date %></td>
+	<td><%= leave_request.leave_end_date %></td>
+	<td><%= leave_request.leave_type_id %></td>
+	<td><%= leave_request.leave_type_id %></td>
+
 	<td>
 		<%= link_to 'Edit', edit_user_employment_leave_request_url(current_user, employment, leave_request), class: 'button' %>
 	</td>
