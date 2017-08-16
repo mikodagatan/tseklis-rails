@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20170813210505) do
 
   create_table "user_roles", force: :cascade do |t|
     t.string "user_role"
-    t.integer "employment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
