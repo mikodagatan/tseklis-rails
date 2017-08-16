@@ -14,7 +14,6 @@ $(document).ready(function(){
 		min: true
 	});
 
-
 	$('.select-select').select2();
 
 	// password edit form
