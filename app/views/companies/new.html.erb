@@ -1,7 +1,8 @@
 <div class="space5"></div>
 
 <div class="row text-center">
-  <h2>Create a Company</h2>
+  <h2>Create a Company</h2> <br />
+  <p class="small-font-size">In creating a company. You'll be assigned as an HR officer in the website.</p>
 </div>
 
 <div class="space5"></div>
@@ -26,6 +27,11 @@
 
           <%= employment.hidden_field :user_id, value: current_user.id %>
 
+          <% if user_role_id = @administrator.id %>
+          <% else %>
+            <%= employment.hidden_field :user_role_id, value: @hr_officer.id %>
+          <% end %>
+        
         <% end %>
 
         <%= f.fields_for :address, @address do |address| %>

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :user_roles
+
   def configure_permitted_parameters
    				
 
@@ -18,4 +20,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: attrs
   end
 
+  def user_roles
+    @administrator = UserRole.find(1)
+    @hr_officer = UserRole.find(2)
+    @employee = UserRole.find(3)
+  end
 end

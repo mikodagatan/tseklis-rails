@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
 
+	before_action :set_up [only: :edit, :update, :show]
+
 	def new
 		@user = User.find(current_user.id)
 		@company = Company.new
@@ -20,6 +22,16 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit
+	end
+
+	def update
+		if @company.update_attributes(company_params)
+	    flash[:success] = "Company Updated!"
+	    redirect_to company_path( params[:user_id] )
+	  else
+	  	flash[:failure] = "Error in Update!"
+	    render action: :edit
+	  end
 	end
 
 	private
@@ -43,4 +55,13 @@ class CompaniesController < ApplicationController
 								  		:zip_code,
 								  		:company_id])
 	end
+
+	def set_up
+		@user = current_user
+		@users = User.all
+		@company = Company.find_by_id(params[:id])
+		@employments = @company.employments
+		@address = @company.address
+	end
 end
+
