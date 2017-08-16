@@ -1,3 +1,3 @@
 class UserRole < ApplicationRecord
-belongs_to :employment
+has_many :employments
 end

@@ -8,6 +8,7 @@ class CreateEmployments < ActiveRecord::Migration[5.1]
 
     t.integer			:company_id
     t.integer			:user_id
+    t.integer           :user_role_id
     t.integer     :leave_request_id
     t.integer     :user_role_id
 

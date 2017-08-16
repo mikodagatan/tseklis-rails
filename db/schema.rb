@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20170813210505) do
     t.integer "salary"
     t.integer "company_id"
     t.integer "user_id"
-    t.integer "leave_request_id"
     t.integer "user_role_id"
+    t.integer "leave_request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170813210505) do
 
   create_table "user_roles", force: :cascade do |t|
     t.string "user_role"
+    t.integer "employment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
