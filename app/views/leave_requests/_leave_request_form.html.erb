@@ -16,12 +16,12 @@
 
 				<div class="field">
 					<%= f.label :leave_start_date %>
-					<%= f.text_field :leave_end_date, class: "datepickerstart" %>
+					<%= f.date_field :leave_start_date, id: "start", class: "datepickerstart" %>
 				</div>
 
 				<div class="field">
 					<%= f.label :leave_end_date %>
-					<%= f.text_field :leave_end_date, class: "datepickerend" %>
+					<%= f.date_field :leave_end_date, id: "end",class: "datepickerend" %>
 				</div>
 
 				<div class="field">

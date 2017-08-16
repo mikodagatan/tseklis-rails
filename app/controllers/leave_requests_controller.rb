@@ -9,10 +9,10 @@ class LeaveRequestsController < ApplicationController
 	def create
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @employment.save
-	    flash[:success] = "Leave Request Updated!"
+	    flash[:success] = "Leave Request Created!"
 	    redirect_to user_path( params[:user_id] )
 	  else
-	  	flash[:failure] = "Error in Update!"
+	  	flash[:failure] = "Cannot create Leave Request!"
 	    render action: :new
 	  end
 	end
