@@ -31,6 +31,11 @@
             <%= employment.date_field :employment_start_date, class: "datepickerstart", placeholder: "Click Here"%>
           </div>
 
+          <div class="field">
+            <%= employment.label :salary %>
+            <%= employment.text_field :salary %>
+          </div>
+
           <%= employment.hidden_field :user_id, value: current_user.id %>
 
           <%= employment.hidden_field :role_id, value: @hr_officer.id %>

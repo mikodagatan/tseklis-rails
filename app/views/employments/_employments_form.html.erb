@@ -3,10 +3,6 @@
     <div class="m-well align-middle">
 			
 			<%= form_for @employment, url: url, method: method  do |f| %>
-				<div class="field">
-					<%= f.label :employment_start_date, "Start Date" %>
-					<%= f.text_field :employment_start_date, class: "datepickerstart" %>
-				</div>
 
 				<div class="field">
 				<%= f.label :company_id, "Company" %>
@@ -14,6 +10,17 @@
 					<div class="small-font-size">
 						If you can't find your company. You can can create one.
 					</div>
+				</div>
+
+				<div class="field">
+					<%= f.label :employment_start_date, "Start Date" %>
+					<%= f.text_field :employment_start_date, class: "datepickerstart" %>
+				</div>
+
+				
+				<div class="field">
+					<%= f.label :salary %>
+					<%= f.text_field :salary %>
 				</div>
 
 				<div class="space"></div>
