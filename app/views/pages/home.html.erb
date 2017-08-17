@@ -2,8 +2,12 @@
 
 <% if user_signed_in? %>
 
+	<% unless current_user.companies.present? %>
+
 		<%= link_to "Create a Company", new_company_url(current_user) %> <br/>
-		<%= link_to "Connect to a Company", new_user_employment_url(current_user) %> <br />
+	<% end %>
+	
+	<%= link_to "Connect to a Company", new_user_employment_url(current_user) %> <br />
 	
 
 	<% if current_user.employed? %>
