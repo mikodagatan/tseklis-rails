@@ -28,6 +28,9 @@
 					<% end %>
 				<% end %>
 
+				<% if (@employment.role_id = nil) && (current_user.id = @employee.user.id) %>
+					<%= f.hidden_field :role_id, value: "2" %>
+				<% end %>
 
 				<%= f.submit 'Update', class: "button primary" %>
 			<% end %>
