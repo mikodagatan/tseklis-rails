@@ -30,7 +30,8 @@ $(document).ready(function(){
 	 	$('#show-password-settings').show();
 	 	$('#hide-password-settings').hide();
 
-	 	// HR Request form
+	 	// Request to make HR
+	 	
 	 	
 
 	 });
