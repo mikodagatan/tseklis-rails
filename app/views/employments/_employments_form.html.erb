@@ -18,17 +18,16 @@
 
 				<div class="space2"></div>
 				
-				<% if @employment.role_id = @hr_officer.id %>
+				<% if (@employment = nil) && (@employment.role_id = @hr_officer.id) %>
 					<%= form_for @employment, url: url, method: method do |t| %>
 						<%= t.hidden_field :role_id, value: "1" %>
 
 						<%= t.submit 'Make HR Officer', class: "button warning" %>
 
-
 					<% end %>
 				<% end %>
 
-				<% if (@employment.role_id = nil) && (current_user.id = @employee.user.id) %>
+				<% if (@employment = nil) && (current_user.id = @employee.user.id) %>
 					<%= f.hidden_field :role_id, value: "2" %>
 				<% end %>
 
