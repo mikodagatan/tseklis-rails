@@ -31,11 +31,12 @@ class ApplicationController < ActionController::Base
   def current_user_set
     if user_signed_in?
       @current_user = current_user
-      @current_companies = @current_user.companies
-      @current_company = @current_companies.find_by_id( params[:id] )
 
       if @current_user.employments.exists?
         @current_employments = @current_user.employments
+        @current_employment = @current_employments.find_by(company_id: params[:id])
+        @current_companies = @current_user.companies
+        @current_company = @current_companies.find_by_id( params[:id])
       end
     end
   end
