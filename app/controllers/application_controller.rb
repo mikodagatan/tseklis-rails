@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :roles
+  before_action :current_user_set
 
   protected
 
@@ -27,5 +28,11 @@ class ApplicationController < ActionController::Base
     @employee = Role.find(2)
   end
 
-
+  def current_user_set
+    @c_user = current_user
+    if @c_user.employments.exists?
+      @c_employments = @c_user.employments
+      
+    end
+  end  
 end
