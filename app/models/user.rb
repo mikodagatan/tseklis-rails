@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 	has_one  :profile
-	has_one  :user_role, through: :employments
+	has_many :role, through: :employments
 	has_many :employments
 	has_many :companies, through: :employments
 	has_many :leave_requests, through: :employments

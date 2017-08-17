@@ -37,11 +37,11 @@ class EmploymentsController < ApplicationController
   def set_user_and_employment
   	@user = current_user
   	@employments = @user.employments
-    @employment = @user.employment.find_by_id( params[:id] )
+    @employment = @user.employments.find_by_id( params[:id] )
   end
 
   def employment_params
-  	params.require(:employment).permit(:employment_start_date, :employment_end_date, :salary, :company_id, :user_id, :user_role_id)
+  	params.require(:employment).permit(:employment_start_date, :employment_end_date, :salary, :company_id, :user_id, :role_id)
   end
 
   def only_current_user
