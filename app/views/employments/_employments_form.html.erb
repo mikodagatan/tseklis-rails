@@ -16,19 +16,18 @@
 					</div>
 				</div>
 
-				<div class="space2"></div>
+				<div class="space"></div>
 				
-				<% if (@employment = nil) && (@employment.role_id = @hr_officer.id) %>
+				<% if :post %>
+						<%= f.hidden_field :role_id, value: "2" %>
+				<% elsif :patch && (@employment.role_id = @hr_officer.id) %>
 					<%= form_for @employment, url: url, method: method do |t| %>
 						<%= t.hidden_field :role_id, value: "1" %>
 
-						<%= t.submit 'Make HR Officer', class: "button warning" %>
-
+						<%= t.submit 'Make HR Officer', class: "button warning margin-none" %>
+						<div class="small-font-size">Pressing this will not save your other inputs.</div>
+						<div class="space"></div>
 					<% end %>
-				<% end %>
-
-				<% if (@employment = nil) && (current_user.id = @employee.user.id) %>
-					<%= f.hidden_field :role_id, value: "2" %>
 				<% end %>
 
 				<%= f.submit 'Update', class: "button primary" %>

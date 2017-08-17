@@ -18,10 +18,13 @@
 				<!--
 					Below code will look for a partial: views/employments/_employment.html.erb
 				-->
-				<%# render @employments %>			
+				<%# render @employments %>
+				<% if @leave.requests.nil? %>
+				<% else %>
 					<% @leave_requests.each do |leave_request| %>
 						<%= render 'leave_requests/leave_request', leave_request: leave_request, employment: @employment %>
 					<% end %>
+				<%
 			</tbody>
 		</table>
 	</div>
