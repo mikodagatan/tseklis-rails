@@ -1,3 +1,20 @@
-<% Company.all.each do |company| %>
-	<%= company.name %>
-<% end %> 
+<div class="space2"></div>
+<div class="row">
+	<div class="columns">
+		<h1>Companies</h1>
+	</div>
+</div>
+
+<div class="space2"></div>
+
+<div class="row">
+	<div class="columns">
+		<% Company.all.each do |company| %>
+			<div class="row m-well <%= cycle('', 'white-bg') %>">
+				<h4 ><%= link_to company.name, company_url(company.id) %> </h4>
+			</div>
+		<% end %> 
+	</div>
+	
+</div>
+
