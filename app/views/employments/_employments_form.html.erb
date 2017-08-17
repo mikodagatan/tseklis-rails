@@ -18,12 +18,16 @@
 
 				<div class="space2"></div>
 				
-				<%= form_for @employment, url: url, method: method do |t| %>
-					<%= t.hidden_field :role_id, value: "1" %>
+				<% if @employment.role_id = @hr_officer.id %>
+					<%= form_for @employment, url: url, method: method do |t| %>
+						<%= t.hidden_field :role_id, value: "1" %>
 
-					<%= t.submit 'Make HR', class: "button warning" %>
+						<%= t.submit 'Make HR', class: "button warning" %>
 
+
+					<% end %>
 				<% end %>
+
 
 				<%= f.submit 'Update', class: "button primary" %>
 			<% end %>
