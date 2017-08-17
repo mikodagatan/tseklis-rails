@@ -1,6 +1,9 @@
 class CompaniesController < ApplicationController
 
-	before_action :set_up [only: :edit, :update, :show]
+	before_action :set_up, only: [ :edit, :update, :show]
+
+	def index
+	end
 
 	def new
 		@user = User.find(current_user.id)

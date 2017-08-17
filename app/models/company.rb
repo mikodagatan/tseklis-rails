@@ -11,4 +11,5 @@ has_many :leave_types
 
 accepts_nested_attributes_for :employments, :address
 
+
 end

@@ -1,4 +1,4 @@
-<h4>Employments</h4>
+<h4>Companies</h4>
 <div class="space1"></div>
 
 <div class="row" id="employments">
@@ -18,7 +18,7 @@
 				<%# render @employments %>
 				
 				<% @employments.each do |employment| %>
-					<%= render 'employments/employment', employment: employment %>
+					<%= render 'employments/employment', employment: employment, company: @company %>
 				<% end %>
 			</tbody>
 		</table>

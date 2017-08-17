@@ -19,6 +19,7 @@ $(document).ready(function(){
 	// password edit form
 	$('#password-edit-form').hide();
 	$('#hide-password-settings').hide();
+
 	$('#show-password-settings').click(function() {
    	$('#password-edit-form').show();
    	$('#show-password-settings').hide();
@@ -28,6 +29,10 @@ $(document).ready(function(){
 	 	$('#password-edit-form').hide();
 	 	$('#show-password-settings').show();
 	 	$('#hide-password-settings').hide();
+
+	 	// HR Request form
+	 	
+
 	 });
 
 });

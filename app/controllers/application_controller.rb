@@ -25,4 +25,5 @@ class ApplicationController < ActionController::Base
     @hr_officer = UserRole.find(2)
     @employee = UserRole.find(3)
   end
+
 end
