@@ -1,7 +1,10 @@
 <tr>
 	<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
 	<td><%= employment.employment_start_date %></td>
+	<td><%= employment.salary %></td>
+
 	<td>
+
 		<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
 	</td>
 </tr>

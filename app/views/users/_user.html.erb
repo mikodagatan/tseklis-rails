@@ -2,10 +2,19 @@
 	<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
 	<td><%= employment.employment_start_date %></td>
 	<td><%= employment.employment_end_date %></td>
+	<td>
+		<% if @current_company.nil? %>
+			-
+		<% else %>
+			<%= employment.salary %>
+		<% end %>			
+	</td>
 	<td><%= Role.find(employment.role_id).name %></td>
 	<td>
-		<% if (employment.role_id = @hr_officer.id) || (current_user.id = @employment.user_id) %>
-			<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
+		<% if @current_employments.find_by(company_id: params[:id]).present? %>
+			<% unless @current_employments.find_by(company_id: params[:id]).role_id = @hr_officer.id  %>
+				<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
+			<% end %>
 		<% end %>
 	</td>
 </tr>
