@@ -4,6 +4,8 @@
 	<td><%= employment.employment_end_date %></td>
 	<td><%= Role.find(employment.role_id).name %></td>
 	<td>
-		<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
+		<% if (employment.role_id = @hr_officer.id) || (current_user.id = @employment.user_id) %>
+			<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
+		<% end %>
 	</td>
 </tr>
