@@ -1,11 +1,13 @@
 <div class="row">
 	<div class="columns">
-		<%= @company.name %>
-		<%= @address.first_line -%>
-		<%= @address.second_line -%>
-		<%= @address.city_town -%>
-		<%= @address.province -%>
-		<%= @address.country -%>
-		<%= @address.zip_code -%>
+		<h1><%= @company.name %></h1>
+		<p> 
+			<%= @address.first_line -%>,
+			<%= @address.second_line -%>
+			<%= @address.city_town -%>,
+			<%= @address.province -%>,
+			<%= @address.country -%>
+			<%= @address.zip_code -%>
+		</p>
 	</div>
 </div>

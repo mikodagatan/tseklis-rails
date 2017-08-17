@@ -1,0 +1,28 @@
+<h4>Companies</h4>
+<div class="space1"></div>
+
+<div class="row" id="users">
+	<div class="column">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Role</th>
+					<th colspan="1"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--
+					Below code will look for a partial: views/employments/_employment.html.erb
+				-->
+				<%# render @employments %>
+				
+				<% @users.each do |user| %>
+					<%= render 'employments/employment', user: user, company: @company %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
