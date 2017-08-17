@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :roles
   before_action :current_user_set
+  before_action :current_user_company_set, only: [:companies_controller]
 
   protected
 
@@ -30,9 +31,14 @@ class ApplicationController < ActionController::Base
 
   def current_user_set
     @c_user = current_user
-    if @c_user.employments.exists?
-      @c_employments = @c_user.employments
-      
+    @current_companies = @current_user.companies
+
+    if @current_user.employments.exists?
+      @current_employments = @current_user.employments
     end
-  end  
+  end
+
+  def current_user_company_set
+    @current_company = @current_companies.find( params[:id] )
+  end
 end

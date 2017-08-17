@@ -5,16 +5,20 @@
 				<h1><%= @company.name %></h1>
 				<% if (@address.first_line = "") %>
 				<% else %>
-				<p> 
-					<%= @address.first_line -%>,
-					<%= @address.second_line -%>
-					<%= @address.city_town -%>,
-					<%= @address.province -%>,
-					<%= @address.country -%>
-					<%= @address.zip_code -%>
-				</p>
+					<p> 
+						<%= @address.first_line -%>,
+						<%= @address.second_line -%>
+						<%= @address.city_town -%>,
+						<%= @address.province -%>,
+						<%= @address.country -%>
+						<%= @address.zip_code -%>
+					</p>
 				<% end %>
-				<% if current_user.employment.company
+				<% @current_companies.each do |t| %>
+					<% if t.id = params[:id] %>
+					Hello
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 
