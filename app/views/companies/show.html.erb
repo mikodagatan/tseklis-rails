@@ -1,6 +1,8 @@
 <div class="row">
 	<div class="columns">
+		<div class="space2"></div>
 		<h1><%= @company.name %></h1>
+		<div class="space"></div>
 		<p> 
 			<%= @address.first_line -%>,
 			<%= @address.second_line -%>
@@ -9,5 +11,10 @@
 			<%= @address.country -%>
 			<%= @address.zip_code -%>
 		</p>
+
+		<div class="space2"></div>
+
+		<%= render "users_table" %>
+
 	</div>
 </div>

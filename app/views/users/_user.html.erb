@@ -1,0 +1,9 @@
+<tr>
+	<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
+	<td><%= employment.employment_start_date %></td>
+	<td><%= employment.employment_end_date %></td>
+	<td><%= UserRole.find_by_id(employment.user_role_id) %></td>
+	<td>
+		<%= link_to 'Edit', edit_user_employment_url(current_user, employment), class: 'button' %>
+	</td>
+</tr>

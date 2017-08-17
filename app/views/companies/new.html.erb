@@ -27,10 +27,7 @@
 
           <%= employment.hidden_field :user_id, value: current_user.id %>
 
-          <% if user_role_id = @administrator.id %>
-          <% else %>
-            <%= employment.hidden_field :user_role_id, value: @hr_officer.id %>
-          <% end %>
+          <%= employment.hidden_field :user_role_id, value: @hr_officer.id %>
         
         <% end %>
 

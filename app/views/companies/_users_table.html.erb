@@ -19,8 +19,8 @@
 				-->
 				<%# render @employments %>
 				
-				<% @users.each do |user| %>
-					<%= render 'employments/employment', user: user, company: @company %>
+				<% @company.employments.each do |employment| %>
+					<%= render 'users/user', employment: employment, user: employment.user %>
 				<% end %>
 			</tbody>
 		</table>

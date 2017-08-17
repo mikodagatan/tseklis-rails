@@ -47,7 +47,8 @@ class CompaniesController < ApplicationController
 							  			:employment_start_date,
 							  			:employment_end_date,
 							  			:user_id, 
-							  			:company_id],
+							  			:company_id,
+							  			:user_role_id],
 							  	address_attributes:
 								  		[:id,
 								  		:first_line,
