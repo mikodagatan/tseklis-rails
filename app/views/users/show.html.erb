@@ -13,13 +13,13 @@
 
 <div class="space4"></div>
 
-<% if current_user.employed? %>
+<% if @user.employed? %>
 	<%= render 'employments_table' %>
-<% end %>
 
 <div class="space2"></div>
 
-<% if @leave_requests.nil? %>
-<% else %>
-	<%= render 'leave_requests_table' %>
+	<% if @employments.exists? %>
+		<%= render 'leave_requests_table' %>
+	<% end %>
+
 <% end %>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @employments = @user.employments
     @employment = @user.employments.last
 
-    if current_user.employed?
+    if @employments.exists?
       @leave_requests = @employment.leave_requests
     end
   end

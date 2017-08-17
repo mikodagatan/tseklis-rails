@@ -1,9 +1,17 @@
 <div class="row">
+  <div class="columns text-center">
+    <div class="space5"></div>
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="space5">
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
   <div class="small-12 medium-offset-3 medium-6">
     <div class="m-well align-middle">
     
-      <h2>Edit <%= resource_name.to_s.humanize %></h2>
-      <br />
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %>
@@ -19,10 +27,7 @@
         <div id="show-password-settings" class="button warning">Show Password Settings</div>
         <div id="hide-password-settings" class="button warning">Hide Password Settings</div> 
         <div id="password-edit-form">
-          <div class="field">
-            <%= f.label :current_password %> <p class="small-font-size">(We need your current password to confirm your changes)</p>
-            <%= f.password_field :current_password, autocomplete: "off" %>
-          </div>
+ 
 
 
           <div class="field">
@@ -51,10 +56,11 @@
               <%= t.text_field :last_name, autofocus: true %>
             </div>
 
-             <div class="field">
-              <%= t.label :position %>
-              <%= t.text_field :position, autofocus: true %>
-            </div>
+          <div class="field">
+            <%= f.label :current_password %> <p class="small-font-size">(We need your current password to confirm your changes)</p>
+            <%= f.password_field :current_password, autocomplete: "off" %>
+          </div>
+
           <% end %>
 
         <div class="actions">
