@@ -1,84 +1,88 @@
 
+<%= form_for @company, method: :post do |f| %>
+
+
 
 <div class="row text-center align-middle form-header">
-  
+
   <div class="columns">
     <h2>Create a Company</h2> <br />
     <p class="small-font-size">In creating a company. You'll be assigned as an HR officer in the website.</p>
   </div>
 
 </div>
+  <%= show_error_message(@company) %>
 
+  
 
-
-<div class="row">
-  <div class="small-12 medium-offset-3 medium-6">
-    <div class="m-well align-middle">
-      
-
-      <%= form_for @company, method: :post do |f| %>
-        <div class="field">
-          <%= f.label :name, "Company Name" %>
-          <%= f.text_field :name %>
-        </div>
-
-        <%= f.fields_for :employments, @employment do |employment| %>
-
-          <div class="field">
-            <%= employment.label :employment_start_date, "Start Date in the Company" %>
-            <%= employment.date_field :employment_start_date, class: "datepickerstart", placeholder: "Click Here"%>
-          </div>
-
-          <div class="field">
-            <%= employment.label :salary %>
-            <%= employment.text_field :salary %>
-          </div>
-
-          <%= employment.hidden_field :user_id, value: current_user.id %>
-
-          <%= employment.hidden_field :role_id, value: @hr_officer.id %>
+  <div class="row">
+    <div class="small-12 medium-offset-3 medium-6">
+      <div class="m-well align-middle">
         
-        <% end %>
-
-        <%= f.fields_for :address, @address do |address| %>
 
           <div class="field">
-            <%= address.label :first_line %>
-            <%= address.text_field :first_line %>
+            <%= f.label :name, "Company Name" %>
+            <%= f.text_field :name %>
           </div>
 
-          <div class="field">
-            <%= address.label :second_line %>
-            <%= address.text_field :second_line %>
+          <%= f.fields_for :employments, @employment do |employment| %>
+
+            <div class="field">
+              <%= employment.label :employment_start_date, "Start Date in the Company" %>
+              <%= employment.date_field :employment_start_date, class: "datepickerstart", placeholder: "Click Here"%>
+            </div>
+
+            <div class="field">
+              <%= employment.label :salary %>
+              <%= employment.text_field :salary %>
+            </div>
+
+            <%= employment.hidden_field :user_id, value: current_user.id %>
+
+            <%= employment.hidden_field :role_id, value: @hr_officer.id %>
+          
+          <% end %>
+
+          <%= f.fields_for :address, @address do |address| %>
+
+            <div class="field">
+              <%= address.label :first_line %>
+              <%= address.text_field :first_line %>
+            </div>
+
+            <div class="field">
+              <%= address.label :second_line %>
+              <%= address.text_field :second_line %>
+            </div>
+
+            <div class="field">
+              <%= address.label :city_town, "City/Town" %>
+              <%= address.text_field :city_town %>
+            </div>
+
+            <div class="field">
+              <%= address.label :province %>
+              <%= address.text_field :province %>
+            </div>
+
+            <div class="field">
+              <%= address.label :country %>
+              <%= address.text_field :country %>
+            </div>
+
+            <div class="field">
+              <%= address.label :zip_code, "Zip Code" %>
+              <%= address.text_field :zip_code %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Create", class: 'button primary' %>
           </div>
 
-          <div class="field">
-            <%= address.label :city_town, "City/Town" %>
-            <%= address.text_field :city_town %>
-          </div>
-
-          <div class="field">
-            <%= address.label :province %>
-            <%= address.text_field :province %>
-          </div>
-
-          <div class="field">
-            <%= address.label :country %>
-            <%= address.text_field :country %>
-          </div>
-
-          <div class="field">
-            <%= address.label :zip_code, "Zip Code" %>
-            <%= address.text_field :zip_code %>
-          </div>
-        <% end %>
-
-        <div class="actions">
-          <%= f.submit "Create", class: 'button primary' %>
-        </div>
-
-      <% end %>
-
+      </div>
     </div>
   </div>
-</div>
+
+<% end %>
+

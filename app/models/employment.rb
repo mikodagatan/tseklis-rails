@@ -4,11 +4,18 @@ class Employment < ApplicationRecord
 
 	has_many :leave_requests
 
-	validates :employment_start_date, presence: true
-	validates :employment_end_date, presence: true
-	validates :salary, presence: true
-	validates :user_id, presence: true
-	validates :company_id, presence: true
-	validates :role_id, presence: true
+	validates :employment_start_date, 
+				:presence => true 
+				#{ message: "Please enter the start date of your employment." }
+	validates :employment_end_date, 
+				:presence => true #{ message: "Please enter the employee's end date of the employment." }
+	validates :salary, 
+				:presence => true # { message: "To fully use this website, you will need to share your salary." }
+	validates :user_id, 
+				:presence => true # { message: "No User ID entered"}
+	validates :company_id, 
+				:presence => true #{ message: "No Company ID entered" }
+	validates :role_id, 
+				:presence => true #{ message: "No Role ID entered" }
 
 end

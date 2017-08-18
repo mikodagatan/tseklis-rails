@@ -12,13 +12,5 @@ class ApplicationRecord < ActiveRecord::Base
   def is_employee?
   	self.role_id == @employee.id 
   end
-
-  def show_error_message
-  	if self.errors.any?
-  		self.errors.full_messages.each do |message| 
-  			message
-  		end
-  	end
-  end
-
+  
 end
