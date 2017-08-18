@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+    
+			
+		<%= form_for @leave_request, url: url, method: method  do |f| %>
+
+			<%= show_error_message(@employment) %>
+			
+			<div class="m-well align-middle">
+				<div class="field">
+					<%= f.label :title %>
+					<%= f.text_field :title %>
+				</div>
+
+				</div>
+
+				<div class="space2"></div>
+
+				<%= f.submit 'Update', class: "button primary" %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -7,9 +7,9 @@ has_many :users, through: :employments
 has_one	 :address
 
 has_one  :company_leave_setting
-has_many :leave_types
+has_many :leave_types, dependent: :destroy
 
-accepts_nested_attributes_for :employments, :address
+accepts_nested_attributes_for :employments, :address, :leave_types,:company_leave_setting
 
 validates :name, presence: true
 

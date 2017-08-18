@@ -44,7 +44,14 @@ class EmploymentsController < ApplicationController
   end
 
   def employment_params
-  	params.require(:employment).permit(:start_date, :end_date, :salary, :company_id, :user_id, :role_id)
+  	params.require(:employment).permit(
+            :id,
+            :start_date, 
+            :end_date, 
+            :salary, 
+            :company_id, 
+            :user_id, 
+            :role_id)
   end
 
   def only_current_user

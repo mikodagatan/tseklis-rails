@@ -1,0 +1,9 @@
+<%= t.label :name %>
+<%= t.text_field :name %>
+  
+  <%= t.fields_for :leave_type_amount, @leave_type_amount do |leave_type_amount| %>
+
+    <%= leave_type_amount.label :amount %>
+    <%= leave_type_amount.text_field :amount %>
+
+ 	<% end %>

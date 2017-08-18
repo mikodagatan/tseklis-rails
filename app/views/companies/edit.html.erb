@@ -1,0 +1,90 @@
+
+<%= form_for @company, url: company_path(@company.id), method: :patch do |f| %>
+
+<div class="row text-center align-middle form-header">
+
+  <div class="columns">
+    <h3>Edit</h3> <br />
+    <h2><%= @company.name %></h2>
+  </div>
+
+</div>
+
+  <%= show_error_message(@company) %>
+
+  
+
+  <div class="row">
+    <div class="small-12 medium-offset-3 medium-6">
+      <div class="m-well align-middle">
+        
+
+          <div class="field">
+            <%= f.label :name, "Company Name" %>
+            <%= f.text_field :name %>
+          </div>
+
+          <div id="show-address-settings" class="button warning">Show Address Settings </div>
+          <div id="hide-address-settings" class="button warning">Hide Address Settings </div>
+
+          <div id="address-edit-form">
+
+            <%= f.fields_for :address, @address do |address| %>
+
+              <div class="field">
+                <%= address.label :first_line %>
+                <%= address.text_field :first_line %>
+              </div>
+
+              <div class="field">
+                <%= address.label :second_line %>
+                <%= address.text_field :second_line %>
+              </div>
+
+              <div class="field">
+                <%= address.label :city_town, "City/Town" %>
+                <%= address.text_field :city_town %>
+              </div>
+
+              <div class="field">
+                <%= address.label :province %>
+                <%= address.text_field :province %>
+              </div>
+
+              <div class="field">
+                <%= address.label :country %>
+                <%= address.text_field :country %>
+              </div>
+
+              <div class="field">
+                <%= address.label :zip_code, "Zip Code" %>
+                <%= address.text_field :zip_code %>
+              </div>
+             
+            <% end %>
+          </div>
+          
+          <div id="show-leave-type-settings" class="button warning">Show Leave Type Settings </div>
+          <div id="hide-leave-type-settings" class="button warning">Hide Leave Type Settings </div>
+
+          <div id="leave-type-edit-form">
+
+            <%= f.fields_for :leave_types, @leave_types.build do |leave_type| %>
+              <%= leave_type.label :name %>
+              <%= leave_type.text_field :name %>
+              <%= leave_type.label :amount %>
+              <%= leave_type.text_field :amount %>
+            <% end %>
+
+          </div>
+          <div class="actions">
+            <%= f.submit "Update", class: 'button primary' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>
+

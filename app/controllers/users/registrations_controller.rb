@@ -6,6 +6,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 	def edit
 		super
+		@user = current_user
+		@profile = @user.profile
 	end
 
 	def update

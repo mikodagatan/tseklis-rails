@@ -73,16 +73,9 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "leave_type_amounts", force: :cascade do |t|
-    t.integer "amount"
-    t.integer "leave_type_id"
-    t.integer "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "leave_types", force: :cascade do |t|
     t.string "name"
+    t.integer "amount"
     t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

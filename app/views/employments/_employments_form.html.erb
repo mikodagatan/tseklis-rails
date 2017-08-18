@@ -28,9 +28,9 @@
 
 					<div class="space"></div>
 					
-					<% if :post %>
+					<% if :post && @employment.nil? %>
 							<%= f.hidden_field :role_id, value: "2" %>
-					<% elsif :patch && (@employment.role_id = @hr_officer.id) %>
+					<% elsif :post && (@employment.role_id == @hr_officer.id) %>
 						<%= form_for @employment, url: url, method: method do |t| %>
 							<%= t.hidden_field :role_id, value: "1" %>
 

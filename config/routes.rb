@@ -12,10 +12,10 @@ Rails.application.routes.draw do
       resources :leave_requests
     end
   end
-
- 
   
-  resources :companies
+  resources :companies do
+    resources :leave_types
+  end
   
 	get 'about' => 'pages#about'
 	root 'pages#home'

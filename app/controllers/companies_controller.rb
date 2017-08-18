@@ -24,12 +24,13 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit
+
 	end
 
 	def update
 		if @company.update_attributes(company_params)
 	    flash[:success] = "Company Updated!"
-	    redirect_to company_path( params[:user_id] )
+	    redirect_to company_path( params[:id] )
 	  else
 	  	flash[:failure] = "Error in Update!"
 	    render action: :edit
@@ -40,6 +41,7 @@ class CompaniesController < ApplicationController
 
 	def company_params
 	  params.require(:company).permit(
+	  							:id,
 	  							:name, 
 							  	employments_attributes: 
 							  			[:id,
@@ -57,7 +59,13 @@ class CompaniesController < ApplicationController
 								  		:province,
 								  		:country,
 								  		:zip_code,
-								  		:company_id])
+								  		:company_id],
+								  leave_types_attributes: 
+								  		[:id,
+								  		:name,
+								  		:company_id,
+								  		:amount]
+								  )
 	end
 
 	def set_up
@@ -66,6 +74,7 @@ class CompaniesController < ApplicationController
 		@company = Company.find_by_id(params[:id])
 		@employments = @company.employments
 		@address = @company.address
+		@leave_types = @company.leave_types
 	end
 
 end

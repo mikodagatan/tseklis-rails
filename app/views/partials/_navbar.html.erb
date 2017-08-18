@@ -18,6 +18,8 @@
       <ul class="dropdown menu">
         <% if current_user %>
           <% if current_user.employed? %>
+            <% if current_user.companies.exists? %>
+            <% end %>
             <li><%= link_to "Company", companies_path %><li>
           <% end %>
           <li><%= link_to "Visit the community", users_path %></li>
