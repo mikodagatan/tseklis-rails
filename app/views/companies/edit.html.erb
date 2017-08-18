@@ -26,6 +26,8 @@
 
           <div id="show-address-settings" class="button warning">Show Address Settings </div>
           <div id="hide-address-settings" class="button warning">Hide Address Settings </div>
+          <div id="show-leave-type-settings" class="button warning">Show Leave Type Settings </div>
+          <div id="hide-leave-type-settings" class="button warning">Hide Leave Type Settings </div>
 
           <div id="address-edit-form">
 
@@ -64,17 +66,12 @@
             <% end %>
           </div>
           
-          <div id="show-leave-type-settings" class="button warning">Show Leave Type Settings </div>
-          <div id="hide-leave-type-settings" class="button warning">Hide Leave Type Settings </div>
+
 
           <div id="leave-type-edit-form">
+          
+          <%= render 'leave_type_fields', input: f %>
 
-            <%= f.fields_for :leave_types, @leave_types.build do |leave_type| %>
-              <%= leave_type.label :name %>
-              <%= leave_type.text_field :name %>
-              <%= leave_type.label :amount %>
-              <%= leave_type.text_field :amount %>
-            <% end %>
 
           </div>
           <div class="actions">

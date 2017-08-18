@@ -43,12 +43,7 @@ class LeaveRequestsController < ApplicationController
 		params.require(:leave_type).permit(
 					:id,
 					:name,
-					:company_id
-					leave_type_amount_attributes: {
-								:id,
-								:amount,
-								:company_id
-					})
-	end
+  		    :amount,
+          :company_id)
 
 end

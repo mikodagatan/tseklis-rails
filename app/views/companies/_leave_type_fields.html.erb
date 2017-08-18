@@ -1,9 +1,15 @@
-<%= t.label :name %>
-<%= t.text_field :name %>
-  
-  <%= t.fields_for :leave_type_amount, @leave_type_amount do |leave_type_amount| %>
+<%= input.fields_for :leave_types do |leave_type| %>
+  <div class="field">
+	  <%= leave_type.label :name %>
+	  <%= leave_type.text_field :name %>
 
-    <%= leave_type_amount.label :amount %>
-    <%= leave_type_amount.text_field :amount %>
+   </div>
 
- 	<% end %>
+  <div class="field">
+	  <%= leave_type.label :amount %>
+	  <%= leave_type.text_field :amount %>
+	  <%= leave_type.check_box :_destroy, class: "small-font-size" %>
+	  <%= leave_type.label :_destroy, "Remove Leave Type", class: "small-font-size" %>
+  </div>
+  <div class="space"></div>
+<% end %>

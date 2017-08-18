@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+    t.boolean "inactive", default: false
     t.integer "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.date "start_date"
     t.date "end_date"
     t.integer "salary"
+    t.boolean "inactive", default: false
     t.integer "company_id"
     t.integer "user_id"
     t.integer "role_id"
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.string "name"
     t.integer "amount"
     t.integer "company_id"
+    t.boolean "inactive", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.string "first_name"
     t.string "last_name"
     t.string "contact_email"
-    t.boolean "fired"
+    t.boolean "inactive", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.boolean "inactive", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

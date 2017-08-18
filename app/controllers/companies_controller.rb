@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
 
 	before_action :set_up, only: [ :edit, :update, :show]
+	after_action :destroy_leave_type_blank, only: [:update ]
 
 	def index
 	end
@@ -24,7 +25,9 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit
-
+		1.times do 
+			leave_type = @leave_types.build
+		end
 	end
 
 	def update
@@ -77,5 +80,12 @@ class CompaniesController < ApplicationController
 		@leave_types = @company.leave_types
 	end
 
+	def destroy_leave_type_blank
+		leave_types = @leave_types
+		leave_types.each do |leave_types_array|
+			leave_type = leave_types_array
+			LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
+		end
+	end
 end
 

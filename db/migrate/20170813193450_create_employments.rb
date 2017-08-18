@@ -6,6 +6,8 @@ class CreateEmployments < ActiveRecord::Migration[5.1]
 
     t.integer			:salary
 
+    t.boolean           :inactive, default: false 
+
     t.integer			:company_id
     t.integer			:user_id
     t.integer           :role_id   

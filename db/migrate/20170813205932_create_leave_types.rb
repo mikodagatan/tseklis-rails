@@ -6,6 +6,8 @@ class CreateLeaveTypes < ActiveRecord::Migration[5.1]
 
     	t.integer			:company_id
 
+    	t.boolean			:inactive, default: false
+
     	t.timestamps
     end
   end
