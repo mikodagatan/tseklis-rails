@@ -11,8 +11,4 @@ class Employment < ApplicationRecord
 				:user_id, 
 				:role_id,
 				presence: true 
-	validates :end_date, 
-				:company_id, 
-				presence: true, 
-				unless: :skip_validation
 end

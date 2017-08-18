@@ -13,7 +13,6 @@ class CompaniesController < ApplicationController
 	end
 
 	def create
-		:skip_validation = true
 		@user = User.find(current_user.id)
 		@company = Company.new(company_params)
 		if @company.save
