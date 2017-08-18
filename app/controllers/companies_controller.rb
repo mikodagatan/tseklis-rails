@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
 	  							:name, 
 							  	employments_attributes: 
 							  			[:id,
-							  			:employment_start_date,
+							  			:start_date,
 							  			:salary,
 							  			:user_id, 
 							  			:company_id,

@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20170817073956) do
   end
 
   create_table "employments", force: :cascade do |t|
-    t.date "employment_start_date"
-    t.date "employment_end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.integer "salary"
     t.integer "company_id"
     t.integer "user_id"
@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(version: 20170817073956) do
   end
 
   create_table "leave_requests", force: :cascade do |t|
-    t.string "leave_title"
-    t.text "leave_description"
-    t.date "leave_start_date"
-    t.date "leave_end_date"
+    t.string "title"
+    t.text "description"
+    t.date "start_date"
+    t.date "end_date"
     t.integer "leave_type_id"
     t.integer "employment_id"
     t.datetime "created_at", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
   end
 
   create_table "leave_type_amounts", force: :cascade do |t|
-    t.integer "leave_type_amount"
+    t.integer "amount"
     t.integer "leave_type_id"
     t.integer "company_id"
     t.datetime "created_at", null: false
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
   end
 
   create_table "leave_types", force: :cascade do |t|
-    t.string "leave_type"
+    t.string "name"
     t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

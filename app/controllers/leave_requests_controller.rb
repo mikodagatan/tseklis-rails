@@ -40,10 +40,10 @@ class LeaveRequestsController < ApplicationController
 
 		def leave_request_params
 			params.require(:leave_request).permit(
-				:leave_title,
-				:leave_description,
-				:leave_start_date,
-				:leave_end_date,
+				:title,
+				:description,
+				:start_date,
+				:end_date,
 				:leave_type_id,
 				:employment_id)
 		end

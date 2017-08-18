@@ -1,7 +1,7 @@
 <tr>
 	<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
-	<td><%= employment.employment_start_date %></td>
-	<td><%= employment.employment_end_date %></td>
+	<td><%= employment.start_date %></td>
+	<td><%= employment.end_date %></td>
 	<td>
 		<% if @current_employment.present? %>
 			<% if @current_employment.role_id == @hr_officer.id %>

@@ -1,7 +1,7 @@
 <tr>
 	<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
-	<td><%= employment.employment_start_date %></td>
-		<td><%= employment.employment_end_date %></td>
+	<td><%= employment.start_date %></td>
+		<td><%= employment.end_date %></td>
 	<td><%= employment.salary %></td>
 	<td><%= Role.find(employment.role_id).name %></td>
 
