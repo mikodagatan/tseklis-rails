@@ -4,18 +4,15 @@ class Employment < ApplicationRecord
 
 	has_many :leave_requests
 
-	validates :start_date, 
-				:presence => true 
-				#{ message: "Please enter the start date of your employment." }
-	validates :end_date, 
-				:presence => true #{ message: "Please enter the employee's end date of the employment." }
-	validates :salary, 
-				:presence => true # { message: "To fully use this website, you will need to share your salary." }
-	validates :user_id, 
-				:presence => true # { message: "No User ID entered"}
-	validates :company_id, 
-				:presence => true #{ message: "No Company ID entered" }
-	validates :role_id, 
-				:presence => true #{ message: "No Role ID entered" }
+	attr_accessor :skip_validation
 
+	validates :start_date, 
+				:salary, 
+				:user_id, 
+				:role_id,
+				presence: true 
+	validates :end_date, 
+				:company_id, 
+				presence: true, 
+				unless: :skip_validation
 end

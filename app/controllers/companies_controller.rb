@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def create
+		:skip_validation = true
 		@user = User.find(current_user.id)
 		@company = Company.new(company_params)
 		if @company.save
@@ -44,6 +45,7 @@ class CompaniesController < ApplicationController
 							  	employments_attributes: 
 							  			[:id,
 							  			:start_date,
+							  			:end_date,
 							  			:salary,
 							  			:user_id, 
 							  			:company_id,
