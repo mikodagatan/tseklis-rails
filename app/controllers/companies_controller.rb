@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
 			flash[:success] = "Company Created"
 			redirect_to root_path
 		else
-			flash[:alert] = "Company Creation failed"
+			flash[:alert] = "Company Creation failed #{@company.show_error_message}"
 			render action: :new
 		end
 	end
