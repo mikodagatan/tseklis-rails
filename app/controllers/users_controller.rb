@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.find( params[:id] )
 
 
-    if @employments.present?
+    if @user.employments.present?
       @employments = @user.employments
       @employment = @user.employments.find(params[:id])
       @company = @employment.company
