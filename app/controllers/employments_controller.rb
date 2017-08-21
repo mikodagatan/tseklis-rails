@@ -1,6 +1,6 @@
 class EmploymentsController < ApplicationController
 	before_action :authenticate_user!
-  before_action :only_current_user
+  # before_action :only_current_user
   before_action :set_user_and_employment, only: [:edit, :update]
 
   def new
@@ -35,7 +35,7 @@ class EmploymentsController < ApplicationController
   private
 
   def set_user_and_employment
-  	@user = current_user
+  	@user = User.find(params[:id])
   	@employments = @user.employments
     @employment = @user.employments.find_by_id( params[:id] )
     # @hr_officer = Role.find(1)
@@ -54,9 +54,9 @@ class EmploymentsController < ApplicationController
             :role_id)
   end
 
-  def only_current_user
-    @user = User.find( params[:user_id] )
-    redirect_to(root_url) unless @user == current_user
-  end
+  # def only_current_user
+  #   @user = User.find( params[:user_id] )
+  #   redirect_to(root_url) unless @user == current_user
+  # end
 
 end
