@@ -21,6 +21,15 @@
 						<%= f.text_field :start_date, class: "datepickerstart" %>
 					</div>
 
+					<% unless @employment.id.nil? %>
+						<% if (@current_employment.role_id = @hr_officer.id) && (@current_company_id = @employment.company_id)%>
+							<div class="field">
+								<%= f.label :end_date, "End Date" %>
+								<%= f.text_field :end_date, class: "datepickerstart" %>
+							</div>
+						<% end %>
+					<% end %>
+
 					
 					<div class="field">
 						<%= f.label :salary %>
@@ -28,17 +37,18 @@
 					</div>
 
 					<div class="space"></div>
-					
-					<% if :patch && (@current_employment.role_id == @hr_officer.id) && current_user.id.to_i != params[:user_id].to_i %>
-						<%= form_for @employment, url: url, method: method do |t| %>
-							<%= t.hidden_field :role_id, value: "1" %>
+					<% unless @employment.id.nil? %>
+						<% if :edit && (@current_employment.role_id == @hr_officer.id) && current_user.id.to_i != params[:user_id].to_i %>
+							<%= form_for @employment, url: url, method: method do |t| %>
+								<%= t.hidden_field :role_id, value: "1" %>
 
-							<%= t.submit 'Make HR Officer', class: "button warning margin-none" %>
-							<div class="small-font-size">Pressing this will not save your other inputs.</div>
-							<div class="space"></div>
+								<%= t.submit 'Make HR Officer', class: "button warning margin-none" %>
+								<div class="small-font-size">Pressing this will not save your other inputs.</div>
+								<div class="space"></div>
+							<% end %>
+						<% else %>
+								<%= f.hidden_field :role_id, value: "2" %>
 						<% end %>
-					<% else %>
-							<%= f.hidden_field :role_id, value: "2" %>
 					<% end %>
 
 					<%= f.submit 'Update', class: "button primary" %>
