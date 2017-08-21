@@ -33,9 +33,9 @@ class CompaniesController < ApplicationController
 	def update
 		if @company.update_attributes(company_params)
 	    flash[:success] = "Company Updated!"
-	    redirect_to company_path( params[:id] )
+	    redirect_to edit_company_url( params[:id] )
 	  else
-	  	flash[:failure] = "Error in Update!"
+	  	# flash[:failure] = "Error in Update!"
 	    render action: :edit
 	  end
 	end
@@ -67,7 +67,14 @@ class CompaniesController < ApplicationController
 								  		[:id,
 								  		:name,
 								  		:company_id,
-								  		:amount]
+								  		:amount,
+								  		:_destroy],
+								  company_leave_setting_attributes:
+								  		[:id,
+								  		:company_id,
+								  		:leave_month_expiration,
+								  		:leave_month_start,
+								  		:prorate_accrual]
 								  )
 	end
 

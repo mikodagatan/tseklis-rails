@@ -14,7 +14,7 @@ class LeaveRequestsController < ApplicationController
 	    flash[:success] = "Leave Request Created!"
 	    redirect_to user_path( params[:user_id] )
 	  else
-	  	flash[:alert] = "Cannot create Leave Request!"
+	  	# flash[:alert] = "Cannot create Leave Request!"
 	    render action: :new
 	  end
 	end
@@ -27,7 +27,7 @@ class LeaveRequestsController < ApplicationController
 	    flash[:success] = "Employment Updated!"
 	    redirect_to user_path( params[:user_id] )
 	  else
-	  	flash[:alert] = "Error in Update!"
+	  	# flash[:alert] = "Error in Update!"
 	    render action: :edit
 	  end
 	end

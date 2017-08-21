@@ -15,7 +15,7 @@ class EmploymentsController < ApplicationController
 	    flash[:success] = "Employment Updated!"
 	    redirect_to user_path( params[:user_id] )
 	  else
-	  	flash[:failure] = "Error in Update!"
+	  	# flash[:failure] = "Error in Update!"
 	    render action: :new
 	  end
   end
@@ -28,7 +28,7 @@ class EmploymentsController < ApplicationController
 	    flash[:success] = "Employment Updated!"
 	    redirect_to user_path( params[:user_id] )
 	  else
-	  	flash[:failure] = "Error in Update!"
+	  	# flash[:failure] = "Error in Update!"
 	    render action: :edit
 	  end
 	end

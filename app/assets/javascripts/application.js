@@ -21,6 +21,8 @@
 
 //= require select2
 
+//= require nested_form_fields
+
 //= require globals
 
 $(document).ready( function(){ 

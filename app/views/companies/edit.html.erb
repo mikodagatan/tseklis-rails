@@ -1,6 +1,7 @@
 
 <%= form_for @company, url: company_path(@company.id), method: :patch do |f| %>
 
+
 <div class="row text-center align-middle form-header">
 
   <div class="columns">
@@ -11,7 +12,6 @@
 </div>
 
   <%= show_error_message(@company) %>
-
   
 
   <div class="row">
@@ -24,11 +24,11 @@
             <%= f.text_field :name %>
           </div>
           <div class="row">
-            <div class="columns" style= "padding-right:0">
+            <div class="columns" style= "padding-right:0.25rem;"">
               <div id="show-address-settings" class="button warning horizontal-max">Show Address Settings </div>
               <div id="hide-address-settings" class="button warning horizontal-max">Hide Address Settings </div>
             </div>
-            <div class="columns" style= "padding-left:0">
+            <div class="columns" style= "padding-left:0.25rem;">
               <div id="show-leave-type-settings" class="button warning horizontal-max">Show Leave Type Settings </div>
               <div id="hide-leave-type-settings" class="button warning horizontal-max">Hide Leave Type Settings </div> <br />
             </div>

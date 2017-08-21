@@ -1,18 +1,33 @@
-<%= input.fields_for :leave_types do |leave_type| %>
+<h5>Leave Types</h5> <br />
 
-	<h5>Leave Types</h5> <br />
+<%= input.nested_fields_for :leave_types do |leave_type| %>
 
-  <div class="field">
-	  <%= leave_type.label :name %>
-	  <%= leave_type.text_field :name, placeholder: "Enter Leave Type" %>
+	<div class="row">
+		<div class="columns" style="padding-right: 0.25rem;">
+		 	<%= leave_type.label :name %>
+	  	<%= leave_type.text_field :name,  placeholder: "Enter Leave Type" %>
+		</div>
+		<div class="columns" style="padding-left:0.25rem;">
+		  <%= leave_type.label :amount %>
+	  	<%= leave_type.number_field :amount, placeholder: "# of leaves per Month" %>
+		</div>
+	</div>
 
-  </div>
+	<div class="row">
+		<div class="columns">
+		  <%# leave_type.remove_nested_fields_link 'Delete', class: "small-font-size"%>
+	  	<%= leave_type.check_box :_destroy %>
+	  	<%= leave_type.label :_destroy, "Remove", class: "small-font-size" %>
+		</div>
+	</div>
 
-  <div class="field">
-	  <%= leave_type.label :amount %>
-	  <%= leave_type.number_field :amount, placeholder: "Amount of leaves per Monthz" %>
-	  <%= leave_type.check_box :_destroy, class: "small-font-size" %>
-	  <%= leave_type.label :_destroy, "Remove Leave Type", class: "small-font-size" %>
-  </div>
   <div class="space"></div>
 <% end %>
+
+<div class="space"></div>
+<div class="row">
+	<div class="columns text-center">
+		<%= input.add_nested_fields_link :leave_types, "Add a leave Type", class: "button warning"%>
+	</div>
+
+</div>

@@ -9,7 +9,11 @@ class Company < ApplicationRecord
 	has_one  :company_leave_setting
 	has_many :leave_types, dependent: :destroy
 
-	accepts_nested_attributes_for :employments, :address, :leave_types,:company_leave_setting
+	accepts_nested_attributes_for :employments, :address, 
+		:leave_types,
+		:company_leave_setting, 
+		reject_if: lambda { |a| a[:name].blank? },
+		allow_destroy: true
 
 	validates :name, presence: true
 

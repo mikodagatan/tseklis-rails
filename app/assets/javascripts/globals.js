@@ -89,4 +89,6 @@ $(document).ready(function(){
 	 	$('#show-company-leave-settings').show();
 	 	$('#hide-company-leave-settings').hide();
 	 });
+
+
 });
