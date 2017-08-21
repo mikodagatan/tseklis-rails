@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
   create_table "employments", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.integer "salary"
+    t.decimal "salary"
     t.boolean "inactive", default: false
     t.integer "company_id"
     t.integer "user_id"

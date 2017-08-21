@@ -4,8 +4,8 @@
 	<td><%= employment.end_date %></td>
 	<td>
 		<% if @current_employment.present? %>
-			<% if @current_employment.role_id == @hr_officer.id %>
-				<%= employment.salary %>
+			<% if (@current_employment.role_id == @hr_officer.id) && (employment.company_id.to_i == @current_employment.company_id.to_i) %>
+				<%= number_with_delimiter(employment.salary) %>
 			<% else %>
 				-
 			<% end %>

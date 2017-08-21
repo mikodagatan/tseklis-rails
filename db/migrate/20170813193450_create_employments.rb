@@ -4,7 +4,7 @@ class CreateEmployments < ActiveRecord::Migration[5.1]
     t.date				:start_date
     t.date 				:end_date
 
-    t.integer			:salary
+    t.decimal			:salary
 
     t.boolean           :inactive, default: false 
 

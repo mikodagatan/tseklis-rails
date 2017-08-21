@@ -11,5 +11,5 @@ class Employment < ApplicationRecord
 				:role_id,
 				presence: true 
 
-	validates :salary, presence: true,numericality: { only_integer: true, greater_than: 0 }
+	validates :salary, presence: true,numericality: {greater_than: 0 }
 end
