@@ -14,6 +14,7 @@
 							If you can't find your company. You can can create one.
 						</div>
 					</div>
+					<div class="space"></div>
 
 					<div class="field">
 						<%= f.label :start_date, "Start Date" %>
@@ -28,9 +29,7 @@
 
 					<div class="space"></div>
 					
-					<% if :post %>
-							<%= f.hidden_field :role_id, value: "2" %>
-					<% elsif :patch && (@employment.role_id == @hr_officer.id) %>
+					<% if :patch && (@current_employment.role_id == @hr_officer.id) && current_user.id.to_i != params[:user_id].to_i %>
 						<%= form_for @employment, url: url, method: method do |t| %>
 							<%= t.hidden_field :role_id, value: "1" %>
 
@@ -38,6 +37,8 @@
 							<div class="small-font-size">Pressing this will not save your other inputs.</div>
 							<div class="space"></div>
 						<% end %>
+					<% else %>
+							<%= f.hidden_field :role_id, value: "2" %>
 					<% end %>
 
 					<%= f.submit 'Update', class: "button primary" %>
