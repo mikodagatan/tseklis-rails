@@ -1,9 +1,14 @@
-<div class="space5"></div>
+<div class="row text-center align-middle form-header">
 
-<div class="text-center">
-	<h2>New Employment</h2>	
+  <div class="columns">
+
+		<h2>New Employment</h2>
+
+	</div>
 </div>
 
-<div class="space5"></div>
-
-<%= render 'employments_form', url: user_employments_path(current_user), method: :post %>
+<div class="row">
+	<div class="columns">
+		<%= render 'employments_form', url: user_employments_path(current_user), method: :post %>
+	</div>
+</div>

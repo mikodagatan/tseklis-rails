@@ -1,9 +1,15 @@
-<div class="space5"></div>
+<div class="row text-center align-middle form-header">
 
-<div class="text-center">
-	<h2>Employment Edit</h2>	
+  <div class="columns">
+
+		<h2>Employment Edit</h2>	
+	</div>
+
 </div>
 
-<div class="space5"></div>
+<div class="row">
+	<div class="columns">
+		<%= render 'employments_form', url: user_employment_path(@user, @employment), method: :patch %>
+	</div>
+</div>
 
-<%= render 'employments_form', url: user_employment_path(@user, @employment), method: :patch %>

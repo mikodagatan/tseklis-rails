@@ -1,9 +1,9 @@
 <tr>
 	<td><%= leave_request.title %></td>
+	<td><%= @leave_types.find(leave_request.leave_type_id).name %></td>
 	<td><%= leave_request.start_date %></td>
 	<td><%= leave_request.end_date %></td>
-	<td><%= leave_request.leave_type_id %></td>
-	<td><%= leave_request.leave_type_id %></td>
+
 
 	<td>
 		<%= link_to 'Edit', edit_user_employment_leave_request_url(current_user, employment, leave_request), class: 'button' %>

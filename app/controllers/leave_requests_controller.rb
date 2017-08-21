@@ -32,10 +32,12 @@ class LeaveRequestsController < ApplicationController
 
 	private
 		def set_up
-			@user = current_user
+			@user = User.find(params[:user_id])
 	  	@employments = @user.employments
-			@employment = @user.employments.last
+			@employment = @user.employments.find(params[:employment_id])
+			@company = @employment.company
 	  	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
+	  	@leave_types = @company.leave_types
 		end
 
 		def leave_request_params
