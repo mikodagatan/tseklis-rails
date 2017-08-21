@@ -1,13 +1,16 @@
 <%= input.fields_for :leave_types do |leave_type| %>
+
+	<h5>Leave Types</h5> <br />
+
   <div class="field">
 	  <%= leave_type.label :name %>
-	  <%= leave_type.text_field :name %>
+	  <%= leave_type.text_field :name, placeholder: "Enter Leave Type" %>
 
    </div>
 
   <div class="field">
 	  <%= leave_type.label :amount %>
-	  <%= leave_type.text_field :amount %>
+	  <%= leave_type.number_field :amount, placeholder: "Amount of leaves per Monthz" %>
 	  <%= leave_type.check_box :_destroy, class: "small-font-size" %>
 	  <%= leave_type.label :_destroy, "Remove Leave Type", class: "small-font-size" %>
   </div>

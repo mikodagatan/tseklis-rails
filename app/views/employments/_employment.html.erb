@@ -5,7 +5,7 @@
 	<td><%= number_with_delimiter(employment.salary) %></td>
 	<td>
 	<% if @current_employment.present? %>
-		<% if (@current_employment.role_id == @hr_officer.id) && (@user.to_i == @current_user.id.to_i) %>
+		<% if (@current_employment.role_id == @hr_officer.id) && (@user.id.to_i == @current_user.id.to_i) %>
 			<%= Role.find(employment.role_id).name %>
 		<% end %>
 	<% end %>

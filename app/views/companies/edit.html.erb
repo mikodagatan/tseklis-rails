@@ -23,57 +23,37 @@
             <%= f.label :name, "Company Name" %>
             <%= f.text_field :name %>
           </div>
+          <div class="row">
+            <div class="columns" style= "padding-right:0">
+              <div id="show-address-settings" class="button warning horizontal-max">Show Address Settings </div>
+              <div id="hide-address-settings" class="button warning horizontal-max">Hide Address Settings </div>
+            </div>
+            <div class="columns" style= "padding-left:0">
+              <div id="show-leave-type-settings" class="button warning horizontal-max">Show Leave Type Settings </div>
+              <div id="hide-leave-type-settings" class="button warning horizontal-max">Hide Leave Type Settings </div> <br />
+            </div>
+          </div>
 
-          <div id="show-address-settings" class="button warning">Show Address Settings </div>
-          <div id="hide-address-settings" class="button warning">Hide Address Settings </div>
-          <div id="show-leave-type-settings" class="button warning">Show Leave Type Settings </div>
-          <div id="hide-leave-type-settings" class="button warning">Hide Leave Type Settings </div>
+          <div id="show-company-leave-settings" class="button success horizontal-max">Show Company Leave Settings</div>
+          <div id="hide-company-leave-settings" class="button success horizontal-max">Hide Company Leave Settings</div> 
+
+          <div class="space"></div>
+      
 
           <div id="address-edit-form">
-
-            <%= f.fields_for :address, @address do |address| %>
-
-              <div class="field">
-                <%= address.label :first_line %>
-                <%= address.text_field :first_line %>
-              </div>
-
-              <div class="field">
-                <%= address.label :second_line %>
-                <%= address.text_field :second_line %>
-              </div>
-
-              <div class="field">
-                <%= address.label :city_town, "City/Town" %>
-                <%= address.text_field :city_town %>
-              </div>
-
-              <div class="field">
-                <%= address.label :province %>
-                <%= address.text_field :province %>
-              </div>
-
-              <div class="field">
-                <%= address.label :country %>
-                <%= address.text_field :country %>
-              </div>
-
-              <div class="field">
-                <%= address.label :zip_code, "Zip Code" %>
-                <%= address.text_field :zip_code %>
-              </div>
-             
-            <% end %>
+            <%= render 'address_fields', input: f %> <br />
           </div>
           
-
 
           <div id="leave-type-edit-form">
           
-          <%= render 'leave_type_fields', input: f %>
-
-
+            <%= render 'leave_type_fields', input: f %> <br />
           </div>
+
+          <div id="company-leave-settings-edit-form">
+            <%= render 'company_leave_settings_fields', input: f %> <br />
+          </div>
+
           <div class="actions">
             <%= f.submit "Update", class: 'button primary' %>
           </div>

@@ -1,0 +1,22 @@
+<%= input.fields_for :company_company_leave_settings do |company_leave_settings| %>
+
+	<h5>Company Leave Settings</h5> <br />
+
+  <div class="field">
+	  <%= company_leave_settings.label :leave_month_expiration %>
+	  <%= company_leave_settings.number_field :leave_month_expiration, placeholder: "Leaves expire after a specified # of Months" %>
+
+   </div>
+
+  <div class="field">
+	  <%= company_leave_settings.label :leave_month_start %>
+	  <%= company_leave_settings.number_field :leave_month_start, placeholder: "# of Months after the Employee's start date" %>
+  </div>
+
+  <div class="field">
+	  <%= company_leave_settings.check_box :pro_rate_accrual %>
+	  <%= company_leave_settings.label :prorate_accrual %>
+	  <p class="small-font-size">This will calculate the correct amount of leaves to give to the Employee starting from the accrual start month. Number of leaves rounded to the nearest 0.25</p>
+  </div>
+  <div class="space"></div>
+<% end -%>

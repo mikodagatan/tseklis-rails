@@ -64,4 +64,21 @@ $(document).ready(function(){
 	 	$('#show-leave-type-settings').show();
 	 	$('#hide-leave-type-settings').hide();
 	 });
+
+	// Company Leave Settings form
+
+
+	$('#company-leave-settings-edit-form').hide();
+	$('#hide-company-leave-settings').hide();
+	$('#show-company-leave-settings').click(function() {
+   	$('#company-leave-settings-edit-form').show();
+   	$('#show-company-leave-settings').hide();
+   	$('#hide-company-leave-settings').show();
+   });
+	
+	$('#hide-company-leave-settings').click(function() {
+	 	$('#company-leave-settings-edit-form').hide();
+	 	$('#show-company-leave-settings').show();
+	 	$('#hide-company-leave-settings').hide();
+	 });
 });
