@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="columns text-center">
+		<h1>Leave Requests</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="columns">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Company</th>
+					<th>Employee</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Salary</th>
+					<th colspan="1"></th>
+				</tr>	
+			</thead>
+			<tbody>
+				<!--
+					Below code will look for a partial: views/employments/_employment.html.erb
+				-->
+				<%# render @employments %>
+				
+				<% @employments.each do |employment| %>
+					<%= render 'employments/employment', employment: employment, company: @company %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+

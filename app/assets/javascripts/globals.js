@@ -14,6 +14,14 @@ $(document).ready(function(){
 		min: true
 	});
 
+	$('.timepickerstart').pickatime({
+
+		});
+
+	$('.timepickerend').pickatime({
+
+	});
+
 	$('.select-select').select2();
 
 	// password edit form

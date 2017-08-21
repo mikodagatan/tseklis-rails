@@ -1,7 +1,9 @@
 class LeaveRequestsController < ApplicationController
   before_action :set_up
 
-
+  def index
+  end
+  
 	def new
 		@leave_request = @employment.leave_requests.build
 	end

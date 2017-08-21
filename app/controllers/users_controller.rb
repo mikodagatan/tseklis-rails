@@ -3,11 +3,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find( params[:id] )
-    @employments = @user.employments
-    @employment = @user.employments.find(params[:id])
-    @company = @employment.company
+
 
     if @employments.present?
+      @employments = @user.employments
+      @employment = @user.employments.find(params[:id])
+      @company = @employment.company
       @leave_requests = @employment.leave_requests
       @leave_request = @employment.leave_requests.find_by_id( params[:id] )
     end
