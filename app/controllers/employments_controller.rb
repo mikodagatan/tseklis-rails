@@ -1,11 +1,9 @@
 class EmploymentsController < ApplicationController
 	before_action :authenticate_user!
   # before_action :only_current_user
-  before_action :set_user_and_employment, only: [:edit, :update]
+  before_action :set_user_and_employment, only: [:new, :create, :edit, :update]
 
   def new
-    @user = User.find(params[:user_id])
-    @employment = @user.employments.find_by_id( params[:employment_id] )
   	@employment = @user.employments.build
   end
 
@@ -36,7 +34,7 @@ class EmploymentsController < ApplicationController
   private
 
   def set_user_and_employment
-  	@user = User.find(params[:id])
+  	@user = User.find(params[:user_id])
   	@employments = @user.employments
     @employment = @user.employments.find_by_id( params[:id] )
     # @hr_officer = Role.find(1)
