@@ -41,7 +41,8 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
-		
+		@leaves = []
+		@leaves = @company.company_leave_counts
 
 	end
 

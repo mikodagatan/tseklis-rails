@@ -18,4 +18,15 @@ class Company < ApplicationRecord
 
 	validates :name, presence: true, uniqueness: true
 
+
+	attr_accessor :company_leave_counts
+	def company_leave_counts
+		leave = []
+		self.leave_types.each do |p|
+			name = p.name
+			value = p.company.leave_requests.where(leave_type_id: p.id).where(acceptance: true).count
+			leave << {name => value}
+		end
+		return leave
+	end
 end
