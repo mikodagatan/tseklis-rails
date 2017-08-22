@@ -45,5 +45,6 @@ class LeaveRequestsController < ApplicationController
 					:name,
   		    :amount,
           :company_id)
+  end
 
 end
