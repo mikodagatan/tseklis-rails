@@ -23,4 +23,13 @@ class LeaveRequest < ApplicationRecord
 		return correct
 	end	
 
+	attr_accessor :company_leave_counts
+	def company_leave_counts
+		company.leave_types.each do |p|
+			leave_type1 = p.name
+			leave_type1_amount_used = p.leave_requests.count
+		end
+		return leave_type1, leave_type1_amount_used
+	end
+
 end
