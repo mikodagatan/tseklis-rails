@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       @company = @employment.company
       @leave_requests = @employment.leave_requests
       @leave_request = @employment.leave_requests.find_by_id( params[:id] )
-      @current_employment = @current_employments.find_by(user_id: @user.id)
+      @current_employment = @current_employments.find_by(company_id: @company.id)
+      @current_company = @current_employment.company
     end
 
     if @leave_requests.present?
