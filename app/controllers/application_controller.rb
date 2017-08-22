@@ -36,8 +36,9 @@ class ApplicationController < ActionController::Base
         @current_employments = @current_user.employments
         if @current_employments.find_by(company_id: params[:id]).present?
           @current_employment = @current_employments.find_by(company_id: params[:id])
+        elsif @current_employments.find_by_id(params[:employment_id]).present?
+           @current_employment = @current_employments.find_by_id(params[:employment_id])
         else
-           @current_employment = @current_employments.find_by_id(params[:id])
         end
        
         @current_companies = @current_user.companies
