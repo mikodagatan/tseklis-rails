@@ -1,8 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def is_admin?(employment = nil)
-  		self.role_id == @administrator.id
+  def is_admin?  		
+    self.role_id == @administrator.id
   end
 
   def is_hr?
