@@ -48,7 +48,9 @@ class LeaveRequestsController < ApplicationController
 				:title,
 				:description,
 				:start_date,
+				:start_time,
 				:end_date,
+				:end_time,
 				:leave_type_id,
 				:employment_id)
 		end

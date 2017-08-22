@@ -2,13 +2,16 @@
 	<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
 	<td><%= employment.start_date %></td>
 		<td><%= employment.end_date %></td>
-	<td><%= number_with_delimiter(employment.salary) %></td>
+
 	<td>
-	<% if @current_employment.present? %>
-		<% if (@current_employment.role_id == @hr_officer.id) || (@user.id.to_i == @current_user.id.to_i) %>
-			<%= Role.find(employment.role_id).name %>
+		<% if @current_employment.present? %>
+			<% if ((@current_employment.role_id == @hr_officer.id) && (@current_company.id.to_i == @company.id.to_i)) || (@user.id.to_i == @current_user.id.to_i) %>
+				<%= number_with_delimiter(employment.salary) %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</td>
+	<td>
+			<%= Role.find(employment.role_id).name %>
 	</td>
 
 	<td class="text-center">

@@ -1,8 +1,8 @@
 <tr>
 	<td><%= leave_request.title %></td>
 	<td><%= @leave_types.find(leave_request.leave_type_id).name %></td>
-	<td><%= leave_request.start_date %></td>
-	<td><%= leave_request.end_date %></td>
+	<td><%= leave_request.start_date %> <%= leave_request.start_time %></td>
+	<td><%= leave_request.end_date %> <%= leave_request.end_time %></td>
 
 
 	<td>
