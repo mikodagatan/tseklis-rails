@@ -26,12 +26,14 @@ class LeaveRequestsController < ApplicationController
  		else
  			# flash[:alert] = "Error in Update!"
  			render action: :edit
+    end
  	end
 
  	def destroy
  	end
 
   private
+  
 	def set_up
 		@user = current_user
   	@employments = @user.employments
