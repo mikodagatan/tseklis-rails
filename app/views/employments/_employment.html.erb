@@ -11,11 +11,14 @@
 		<% end %>
 	</td>
 	<td>
+		<%= employment.acceptance.nil? ? "Waiting" : (employment.acceptance == true ? "Accepted" : "Rejected") %>
+	</td>
+	<td>
 			<%= Role.find(employment.role_id).name %>
 	</td>
 
 	<td class="text-center">
 
-		<%= link_to 'Edit', edit_user_employment_url(employment.user_id, employment), class: 'button' %>
+		<%= (link_to 'Edit', edit_user_employment_url(employment.user_id, employment), class: 'button') if ((@current_employment.role_id == @hr_officer.id) && (@current_company_id == employment.company.id)) || (@current_user.id == employment.user_id) %>
 	</td>
 </tr>
