@@ -34,7 +34,7 @@
 
 					</div>
 
-					<div class="columns" style= "padding-right: 0.25rem;">
+					<div class="columns" style= "padding-left: 0.25rem;">
 						<div class="field">
 							<%= f.label :start_time %>
 							<%= f.date_field :start_time, class: "timepickerend" %>		
@@ -43,15 +43,15 @@
 
 				</div>
 
-				<div class="row">
-					<div class="columns">
+				<div class="row" >
+					<div class="columns" style= "padding-right: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_date %>
 							<%= f.date_field :end_date, class: "datepickerend" %>
 								
 						</div>
 					</div>
-					<div class="columns">
+					<div class="columns" style= "padding-left: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_time %>
 							<%= f.date_field :end_time, class: "timepickerend" %>
