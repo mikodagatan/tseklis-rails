@@ -1,6 +1,11 @@
 
 body {
 	position: relative;
+
+	// monkey patch for horizontal scrolling problem.
+	// figure out the problem and properly solve it.
+	// problem is with forms.
+	overflow-x: hidden;
 }
 
 a {

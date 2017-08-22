@@ -44,38 +44,42 @@ class CompaniesController < ApplicationController
 
 	def company_params
 	  params.require(:company).permit(
-	  							:id,
-	  							:name, 
-							  	employments_attributes: 
-							  			[:id,
-							  			:start_date,
-							  			:end_date,
-							  			:salary,
-							  			:user_id, 
-							  			:company_id,
-							  			:role_id],
-							  	address_attributes:
-								  		[:id,
-								  		:first_line,
-								  		:second_line,
-								  		:city_town,
-								  		:province,
-								  		:country,
-								  		:zip_code,
-								  		:company_id],
-								  leave_types_attributes: 
-								  		[:id,
-								  		:name,
-								  		:company_id,
-								  		:amount,
-								  		:_destroy],
-								  company_leave_setting_attributes:
-								  		[:id,
-								  		:company_id,
-								  		:leave_month_expiration,
-								  		:leave_month_start,
-								  		:prorate_accrual]
-								  )
+			:id,
+			:name, 
+	  	employments_attributes: [
+	  		:id,
+  			:start_date,
+  			:end_date,
+  			:salary,
+  			:user_id, 
+  			:company_id,
+  			:role_id
+  		],
+	  	address_attributes: [
+	  		:id,
+	  		:first_line,
+	  		:second_line,
+	  		:city_town,
+	  		:province,
+	  		:country,
+	  		:zip_code,
+	  		:company_id
+	  	],
+		  leave_types_attributes: [
+		  	:id,
+	  		:name,
+	  		:company_id,
+	  		:amount,
+	  		:_destroy
+	  	],
+		  company_leave_setting_attributes: [
+		  	:id,
+	  		:company_id,
+	  		:leave_month_expiration,
+	  		:leave_month_start,
+	  		:prorate_accrual
+	  	]
+	  )
 	end
 
 	def set_up

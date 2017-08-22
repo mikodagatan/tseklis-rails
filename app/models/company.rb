@@ -12,11 +12,9 @@ class Company < ApplicationRecord
 	accepts_nested_attributes_for :employments, :address, 
 		:leave_types,
 		:company_leave_setting, 
-		reject_if: lambda { |a| a[:name].blank? },
+		# reject_if: lambda { |a| a[:name].blank? },
 		allow_destroy: true
 
 	validates :name, presence: true
-
-
 
 end

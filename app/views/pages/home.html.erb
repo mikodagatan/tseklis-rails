@@ -4,7 +4,7 @@
 
 	<% unless current_user.companies.present? %>
 
-		<%= link_to "Create a Company", new_company_url(current_user) %> <br/>
+		<%= link_to "Create a Company", new_company_url %> <br/>
 	<% end %>
 	
 	<%= link_to "Connect to a Company", new_user_employment_url(current_user) %> <br />
