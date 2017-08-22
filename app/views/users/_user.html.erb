@@ -1,24 +1,65 @@
-<tr>
-	<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
-	<td><%= employment.start_date %></td>
-	<td><%= employment.end_date %></td>
-	<td>
-		<% if @current_employment.present? %>
-			<% if (@current_employment.role_id == @hr_officer.id) && (employment.company_id.to_i == @current_employment.company_id.to_i) %>
-				<%= number_with_delimiter(employment.salary) %>
+<% unless join_request == true %>
+	<tr>
+		<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
+		<td><%= employment.start_date %></td>
+		<td><%= employment.end_date %></td>
+		<td>
+			<% if @current_employment.present? %>
+				<% if (@current_employment.role_id == @hr_officer.id) && (employment.company_id.to_i == @current_employment.company_id.to_i) %>
+					<%= number_with_delimiter(employment.salary) %>
+				<% else %>
+					-
+				<% end %>
 			<% else %>
 				-
+			<% end %>			
+		</td>
+		<td><%= Role.find(employment.role_id).name %></td>
+		<td class="text-center">
+			<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
+				(@current_employment.role_id == @hr_officer.id)  %>
+				<%= link_to 'Edit', edit_user_employment_url(user, employment), class: "button primary" %>
 			<% end %>
-		<% else %>
-			-
-		<% end %>			
-	</td>
-	<td><%= Role.find(employment.role_id).name %></td>
-	<td class="text-center">
-		<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
-			(@current_employment.role_id == @hr_officer.id)  %>
-			<%= link_to 'Edit', edit_user_employment_url(user, employment), class: "button primary" %>
-		<% end %>
 
-	</td>
-</tr>
+		</td>
+	</tr>
+<% else %>
+	<% if employment.acceptance.nil? %>
+		<tr>
+			<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
+			<td><%= employment.start_date %></td>
+			<td>
+				<% if @current_employment.present? %>
+					<% if (@current_employment.role_id == @hr_officer.id) && (employment.company_id.to_i == @current_employment.company_id.to_i) %>
+						<%= number_with_delimiter(employment.salary) %>
+					<% else %>
+						-
+					<% end %>
+				<% else %>
+					-
+				<% end %>			
+			</td>
+			<td><%= Role.find(employment.role_id).name %></td>
+			<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
+				(@current_employment.role_id == @hr_officer.id) && (employment.acceptance.nil?) %>
+				<td>
+					<%= form_for employment, url: url, method: method do |f| %>
+						<%= f.hidden_field :acceptance, value: true %>
+						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
+						<%= f.submit "Accept", class: "button success"%>
+					<% end %>
+				</td>
+				<td>
+					<%= form_for employment, url: url, method: method do |f| %>
+						<%= f.hidden_field :acceptance, value: false %>
+						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
+						<%= f.submit "Reject", class: "button alert" %>
+					<% end %>
+				</td>
+			<% else %>
+				<td></td>
+				<td></td>
+			<% end %>
+		</tr>
+	<% end %>
+<% end %>

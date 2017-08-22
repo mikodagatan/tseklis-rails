@@ -21,7 +21,7 @@
 				<%# render @employments %>
 				
 				<% @company.employments.each do |employment| %>
-					<%= render 'users/user', employment: employment, user: employment.user %>
+					<%= render 'users/user', employment: employment, user: employment.user, join_request: false %>
 				<% end %>
 			</tbody>
 		</table>
