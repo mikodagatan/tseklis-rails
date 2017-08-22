@@ -15,6 +15,6 @@ class Company < ApplicationRecord
 		# reject_if: lambda { |a| a[:name].blank? },
 		allow_destroy: true
 
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 
 end
