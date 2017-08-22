@@ -8,6 +8,9 @@ class CreateEmployments < ActiveRecord::Migration[5.1]
 
     t.boolean           :inactive, default: false 
 
+    t.boolean           :acceptance
+    t.integer           :acceptor_id
+
     t.integer			:company_id
     t.integer			:user_id
     t.integer           :role_id   

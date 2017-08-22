@@ -9,6 +9,7 @@ class CreateLeaveRequests < ActiveRecord::Migration[5.1]
         t.time      :end_time
         t.boolean   :acceptance
         t.integer   :acceptor_id
+        t.boolean   :reviewed
         t.integer   :leave_type_id
  
     	t.integer   :employment_id

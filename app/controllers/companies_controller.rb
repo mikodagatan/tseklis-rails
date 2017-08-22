@@ -55,6 +55,8 @@ class CompaniesController < ApplicationController
   			:start_date,
   			:end_date,
   			:salary,
+  			:acceptance,
+  			:acceptor_id,
   			:user_id, 
   			:company_id,
   			:role_id

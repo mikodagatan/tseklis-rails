@@ -42,7 +42,8 @@ class ApplicationController < ActionController::Base
         end
        
         @current_companies = @current_user.companies
-        @current_company = @current_companies.find_by_id( params[:id])
+
+        params[:company_id].present? ? (@current_company = @current_companies.find(params[:company_id])) : (@current_company = @current_companies) 
 
       end
     end

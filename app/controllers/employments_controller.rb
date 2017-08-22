@@ -50,7 +50,9 @@ class EmploymentsController < ApplicationController
             :id,
             :start_date, 
             :end_date, 
-            :salary, 
+            :salary,
+            :acceptance,
+            :acceptor_id, 
             :company_id, 
             :user_id, 
             :role_id)

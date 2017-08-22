@@ -17,8 +17,8 @@
 
       <ul class="dropdown menu">
         <% if current_user %>
-          <% unless current_user.employments.nil? %>
-            <% unless current_user.companies.nil? %>
+          <% unless current_user.employments.empty? %>
+            <% unless current_user.companies.empty? %>
             <% end %>
             <li><%= link_to "Company", companies_path %><li>
           <% end %>
