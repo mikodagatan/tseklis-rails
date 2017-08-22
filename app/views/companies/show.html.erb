@@ -4,7 +4,7 @@
 			<div class="columns">
 				<h1><%= @company.name %></h1>
 
-				<% unless (@address.first_line == "") %>
+				<% unless (@address.first_line.blank?) %>
 					<p> 
 						<%= @address.first_line -%>,
 						<%= @address.second_line -%>
