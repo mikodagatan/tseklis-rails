@@ -13,6 +13,7 @@ class LeaveRequestsController < ApplicationController
   	else
   		# flash[:alert] = "Cannot create Leave Type!"
   		render action: :new
+    end
   end
 
   def edit
