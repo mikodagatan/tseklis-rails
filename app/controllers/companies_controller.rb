@@ -40,6 +40,10 @@ class CompaniesController < ApplicationController
 	  end
 	end
 
+	def show
+
+	end
+
 	private
 
 	def company_params
@@ -83,12 +87,11 @@ class CompaniesController < ApplicationController
 	end
 
 	def set_up
-		@user = current_user
-		@users = User.all
 		@company = Company.find_by_id(params[:id])
 		@employments = @company.employments
 		@address = @company.address
 		@leave_types = @company.leave_types
+		@leave_requests = @company.leave_requests
 	end
 
 	def destroy_leave_type_blank

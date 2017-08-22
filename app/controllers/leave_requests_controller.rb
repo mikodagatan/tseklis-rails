@@ -32,6 +32,9 @@ class LeaveRequestsController < ApplicationController
 	  end
 	end
 
+	def show
+	end
+
 	private
 		def set_up
 			@user = User.find(params[:user_id])
@@ -51,6 +54,9 @@ class LeaveRequestsController < ApplicationController
 				:start_time,
 				:end_date,
 				:end_time,
+				:acceptance,
+				:acceptor_id,
+				:reviewed,
 				:leave_type_id,
 				:employment_id)
 		end

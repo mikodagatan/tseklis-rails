@@ -6,12 +6,14 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>Employee</th>
 					<th>Title</th>
 					<th>Leave Type</th>
 					<th>Start</th>
 					<th>End</th>
 					<th>Status</th>
 					<th>Reviewer</th>
+					<th colspan="1"></th>
 					<th colspan="1"></th>
 				</tr>
 			</thead>
@@ -22,12 +24,13 @@
 				<%# render @employments %>
 				<% @leave_requests.each do |leave_request| %>
 					<%= render 'leave_requests/leave_request',
-								url: user_employment_leave_request_url(@user, @employment, leave_request),
+								url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request),
 								leave_request: leave_request,
-								employment: @employment,
-								at_company: false,
+								employment: leave_request.employment,
+								at_company: true,
 								method: :patch
-					%>				<% end %>
+					%>
+				<% end %>
 			</tbody>
 		</table>
 	</div>

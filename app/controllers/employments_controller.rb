@@ -1,13 +1,15 @@
 class EmploymentsController < ApplicationController
 	before_action :authenticate_user!
   # before_action :only_current_user
-  before_action :set_user_and_employment, only: [:new, :create, :edit, :update]
+  before_action :set_user_and_employment, only: [:edit, :update]
 
   def new
+    @user = User.find(params[:user_id])
   	@employment = @user.employments.build
   end
 
   def create
+    @user = User.find(params[:user_id])
   	@employment = @user.employments.build(employment_params)
   	if @employment.save
 	    flash[:success] = "Employment Updated!"
