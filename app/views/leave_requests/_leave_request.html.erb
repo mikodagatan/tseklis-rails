@@ -24,7 +24,7 @@
 			"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" : nil %>
 	</td>
 	<% unless at_company == false %>
-		<% if leave_request.reviewed.nil? %>
+		<% if leave_request.acceptance.nil? %>
 			<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %> 
 				<td>
 					<%= form_for leave_request, url: url, method: method do |f| %>
