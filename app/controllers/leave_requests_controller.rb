@@ -25,7 +25,11 @@ class LeaveRequestsController < ApplicationController
 	def update
 		if @leave_request.update_attributes(leave_request_params)
 	    flash[:success] = "Employment Updated!"
-	    redirect_to user_path( params[:user_id] )
+	    if :to_company.nil?
+	    	redirect_to user_path( params[:user_id] )
+	    else
+	    	redirect_to company_path( @employment.company.id)
+	    end
 	  else
 	  	 flash[:alert] = "Error in Update!"
 	    render action: :edit
