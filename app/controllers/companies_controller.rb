@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
 	def show
 		@leaves = []
 		@leaves = @company.company_leave_counts
-
+		@leaves2 = @company.leaves_taken
 	end
 
 	private

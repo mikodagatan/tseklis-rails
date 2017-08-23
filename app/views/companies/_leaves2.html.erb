@@ -1,0 +1,11 @@
+<div class="row">
+	<% @leaves2.each do |p| %>
+	<% p.each do |k,v| %>
+		<div class="columns text-center">
+				<h1><%= v %></h1>
+				<p><%= k %></p>	 
+		</div>
+		
+		<% end %> 
+	<% end %>	
+</div>

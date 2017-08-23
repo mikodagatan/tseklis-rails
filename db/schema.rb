@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.datetime "start_time"
     t.date "end_date"
     t.datetime "end_time"
+    t.decimal "leaves_taken"
     t.boolean "acceptance"
     t.integer "acceptor_id"
     t.integer "leave_type_id"

@@ -43,7 +43,10 @@ class Company < ApplicationRecord
 		 		.where("EXTRACT(HOUR FROM leave_requests.end_time) - EXTRACT(HOUR FROM leave_requests.start_time) 
 		 			<= EXTRACT(HOUR FROM INTERVAL '4 hours')"
 		 			).count * 0.5
-		 	value_multiple = 
+		 	value_multiple = p.company.leave_requests
+		 		.where(leave_type_id: p.id)
+		 		.where(acceptance: true)
+		 		.where("EXTRACT(")
 			name = p.name
 			value = value_whole_day
 			leave << {name => value}
@@ -51,4 +54,18 @@ class Company < ApplicationRecord
 		return leave
 	end
 
+	attr_accessor :leaves_taken
+	def enter_leaves_taken
+		leave = []
+		self.leave_types.each do |p|
+			value = p.company.leave_requests
+				.where(leave_type_id: p.id)
+				.where(acceptance: true)
+			name = p.name
+			leave << {name => value}
+		end
+		return leave
+	end
+
 end
+				# .select("(extract(doy from end_date) - extract(doy from start_date))")

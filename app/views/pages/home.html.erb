@@ -6,14 +6,15 @@
 		<%= link_to "Create a Company", new_company_url %> <br/>
 	<% end %>
 	
-	<%= link_to "Connect to a Company", new_user_employment_url(current_user) %> <br />
+	<%= (link_to "Connect to a Company", new_user_employment_url(current_user)) unless Company.all.nil? %> <br />
 	
-
-	<% if current_user.employed? && @employment.company.leave_types.present? %>
-		<%= link_to "Create a Leave Request",
-			new_user_employment_leave_request_url(current_user, @employment.id) %> <br />
-	<% elsif @employment.role_id == @hr_officer.id %>
-		<%= link_to "Edit Latest Company Settings (You need to add Leave Types)", edit_company_url(@employment.company_id) %> 
+	<% if current_user.employed? %>
+		<% if @employment.company.leave_types.present?  %>
+			<%= link_to "Create a Leave Request",
+				new_user_employment_leave_request_url(current_user, @employment.id) %> <br />
+		<% elsif @employment.role_id == @hr_officer.id %>
+			<%= link_to "Edit Latest Company Settings (You need to add Leave Types)", edit_company_url(@employment.company_id) %> 
+		<% end %>
 	<% end %>
 
 <% end %>
