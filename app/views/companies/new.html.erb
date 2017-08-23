@@ -39,6 +39,8 @@
             <%= employment.hidden_field :user_id, value: current_user.id %>
 
             <%= employment.hidden_field :role_id, value: @hr_officer.id %>
+
+            <%= employment.hidden_field :acceptance, value: true %>
           
           <% end %>
 

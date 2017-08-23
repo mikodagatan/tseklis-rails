@@ -23,10 +23,32 @@ class Company < ApplicationRecord
 	def company_leave_counts
 		leave = []
 		self.leave_types.each do |p|
+		 	value_whole_day = p.company.leave_requests
+		 		.where(leave_type_id: p.id)
+		 		.where(acceptance: true)
+		 		.where(" EXTRACT(YEAR FROM leave_requests.start_date) = ?", 
+		 			Date.today.year)
+		 		.where("EXTRACT(MONTH FROM leave_requests.start_date) = ?", 
+		 			Date.today.month).where("EXTRACT(HOUR FROM leave_requests.end_time) 
+		 			- EXTRACT(HOUR FROM leave_requests.start_time) 
+		 			> EXTRACT(HOUR FROM INTERVAL '4 hours')"
+		 			).count
+		 	value_half_day = p.company.leave_requests
+		 		.where(leave_type_id: p.id)
+		 		.where(acceptance: true)
+		 		.where(" EXTRACT(YEAR FROM leave_requests.start_date) = ?", 
+		 			Date.today.year)
+		 		.where("EXTRACT(MONTH FROM leave_requests.start_date) = ?", 
+		 			Date.today.month)
+		 		.where("EXTRACT(HOUR FROM leave_requests.end_time) - EXTRACT(HOUR FROM leave_requests.start_time) 
+		 			<= EXTRACT(HOUR FROM INTERVAL '4 hours')"
+		 			).count * 0.5
+		 	value_multiple = 
 			name = p.name
-			value = p.company.leave_requests.where(leave_type_id: p.id).where(acceptance: true).count
+			value = value_whole_day
 			leave << {name => value}
 		end
 		return leave
 	end
+
 end

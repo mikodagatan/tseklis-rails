@@ -2,8 +2,7 @@
 
 <% if user_signed_in? %>
 
-	<% unless current_user.companies.present? %>
-
+	<% unless current_user.companies.present? && (current_user.employments.map { |u| u.role_id == @employee.id ? true : false } == true) %>
 		<%= link_to "Create a Company", new_company_url %> <br/>
 	<% end %>
 	
