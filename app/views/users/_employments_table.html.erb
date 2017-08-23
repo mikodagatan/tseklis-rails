@@ -21,7 +21,7 @@
 				-->
 				<%# render @employments %>
 				
-				<% @employments.each do |employment| %>
+				<% @employments.reverse_order.each do |employment| %>
 					<%= render 'employments/employment', employment: employment, company: @company %>
 				<% end %>
 			</tbody>

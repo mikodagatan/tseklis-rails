@@ -21,7 +21,7 @@
 					Below code will look for a partial: views/employments/_employment.html.erb
 				-->
 				<%# render @employments %>
-				<% @leave_requests.each do |leave_request| %>
+				<% @leave_requests.reverse_order.each do |leave_request| %>
 					<%= render 'leave_requests/leave_request',
 								url: user_employment_leave_request_url(@user, @employment, leave_request),
 								leave_request: leave_request,

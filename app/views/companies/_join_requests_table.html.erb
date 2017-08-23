@@ -22,7 +22,7 @@
 						-->
 						<%# render @employments %>
 						
-						<% @company.employments.each do |employment| %>
+						<% @company.employments.feverse_order.each do |employment| %>
 							<%= render 'users/user', 
 								employment: employment, 
 								user: employment.user, 
