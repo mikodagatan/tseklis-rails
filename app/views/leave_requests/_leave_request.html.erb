@@ -29,7 +29,6 @@
 				<td>
 					<%= form_for leave_request, url: url, method: method do |f| %>
 						<%= f.hidden_field :acceptance, value: true %>
-						<%= f.hidden_field :reviewed, value: true %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 						<%= f.submit "Accept", class: "button small no-margin success"%>
 					<% end %>
@@ -37,7 +36,6 @@
 				<td>
 					<%= form_for leave_request, url: url, method: method do |f| %>
 						<%= f.hidden_field :acceptance, value: false %>
-						<%= f.hidden_field :reviewed, value: true %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 						<%= f.submit "Reject", class: "button small no-margin alert" %>
 					<% end %>
@@ -54,7 +52,7 @@
 				<%= (link_to 'Edit', edit_user_employment_leave_request_url(
 					current_user, employment, leave_request), 
 					class: 'button small no-margin') if 
-					leave_request.reviewed == false %>
+					leave_request.acceptance.present? %>
 			</td>
 		<% end %>
 	<% end %>

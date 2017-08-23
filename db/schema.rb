@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.datetime "end_time"
     t.boolean "acceptance"
     t.integer "acceptor_id"
-    t.boolean "reviewed"
     t.integer "leave_type_id"
     t.integer "employment_id"
     t.datetime "created_at", null: false

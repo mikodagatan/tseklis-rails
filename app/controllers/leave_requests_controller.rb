@@ -56,7 +56,6 @@ class LeaveRequestsController < ApplicationController
 				:end_time,
 				:acceptance,
 				:acceptor_id,
-				:reviewed,
 				:leave_type_id,
 				:employment_id)
 		end
