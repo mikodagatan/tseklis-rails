@@ -54,13 +54,35 @@ class Company < ApplicationRecord
 		return leave
 	end
 
-	attr_accessor :leaves_taken
+	attr_accessor :enter_leaves_taken
 	def enter_leaves_taken
+		
 		leave = []
+
 		self.leave_types.each do |p|
-			value = p.company.leave_requests
+			value = 0
+			leave_requests = p.company.leave_requests
 				.where(leave_type_id: p.id)
 				.where(acceptance: true)
+				
+				leave_requests.each do |leave_request|
+					start_d = leave_request.start_date
+					end_d = leave_request.end_date
+					start_t = leave_request.start_time
+					end_t = leave_request.end_time
+					
+					if start_d.month < end_d.month || start_d.year < end_d.year
+						begin
+							unless start_d.on_weekend? || 
+								day_add += 1  
+							start_d = start_d.advance(days: 1)
+						end until end_d == start_d
+						# to_add = (leave_request.start_date.end_of_month.day + 1) - leave_request.start_date.day 			
+
+					end
+
+				end
+			end 
 			name = p.name
 			leave << {name => value}
 		end

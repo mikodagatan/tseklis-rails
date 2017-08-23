@@ -11,12 +11,10 @@ class LeaveRequest < ApplicationRecord
 		if start_date > end_date
 			correct = false
 			errors.add[:start_date, "can't be later than End Date"]
-			errors.add[:end_date, "can't be earlier than End Date"]
 		else
-			if start_time > end_time
+			if (start_date.day == end_date.day) && (start_time > end_time)
 				correct = false
 				errors.add(:start_time, "can't be later than End Time")
-				errors.add(:end_time, "can't be earlier than End Date")
 			end
 		end
 		return correct
