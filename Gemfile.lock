@@ -241,7 +241,7 @@ DEPENDENCIES
   devise
   figaro (~> 1.1.1)
   flamegraph
-  font-awesome-sass (~> 4.7.0)
+  font-awesome-sass
   foundation-rails
   jbuilder (~> 2.5)
   jquery-rails

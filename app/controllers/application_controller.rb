@@ -49,4 +49,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def employed_here?
+    @current_company.present?
+  end
+
 end

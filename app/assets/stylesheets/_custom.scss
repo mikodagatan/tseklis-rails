@@ -27,6 +27,22 @@ select {
 	margin-right: 0;
 }
 
+// texts
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+// 
+
+.no-padding {
+	padding: 0;
+}
+
 .no-sidepadding {
   padding-left: 0;
   padding-right: 0;
@@ -85,11 +101,6 @@ select {
 	font-size: 0.8rem;
 }
 
-.callout.small.notice {
-	color: #8a6d3b;
-	background-color: #fcf8e3;
-	border-color: #faebcc;
-}
 
 .white-text {
 	color: white;
@@ -128,9 +139,7 @@ select {
 
 // Colors
 
-.text-center {
-	text-align: center;
-}
+
 
 // sticky
 

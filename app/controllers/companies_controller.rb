@@ -103,6 +103,9 @@ class CompaniesController < ApplicationController
 		@address = @company.address
 		@leave_types = @company.leave_types
 		@leave_requests = @company.leave_requests
+
+
+
 	end
 
 	def destroy_leave_type_blank
@@ -112,5 +115,6 @@ class CompaniesController < ApplicationController
 			LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
 		end
 	end
+
 end
 

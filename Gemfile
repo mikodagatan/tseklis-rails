@@ -48,7 +48,7 @@ gem 'figaro', '~> 1.1.1'
 gem 'pickadate-rails'
 gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 gem 'foundation-rails'
-gem 'font-awesome-sass', '~> 4.7.0'
+gem 'font-awesome-sass'
 gem 'paperclip', '~> 5.1.0'
 gem 'custom_error_message', "~> 1.1.1"
 gem 'nested_form_fields'
