@@ -15,21 +15,23 @@
       <ul class="dropdown menu">
         <% if current_user %>
           <% unless current_user.employments.empty? %>
-            <li>
-              <%= link_to "Company", companies_path %>  
-            </li>
+            <div data-toggle="companies-dropdown">
+              <li>
+                <a>Companies</a> 
+              </li>
+            </div>  
           <% end %>
-          <li>
-            <%= link_to "Visit the community", users_path %>    
-          </li>
           <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
             <li>
-              <%= link_to "User: #{current_user.profile.first_name} #{current_user.profile.last_name}", user_path(current_user) %> 
+              <div data-toggle="user-dropdown">
+                <%= link_to user_path(current_user) do %>
+                  <%= fa_icon "user-o"%>
+                  <%= current_user.profile.first_name %>
+                  <%= current_user.profile.last_name %>
+                <% end %>
+              </div>
             </li>
           <% end %>
-          <li>
-            <%= link_to "Sign Out", destroy_user_session_path, class: 'button warning' %> 
-          </li>
         <% else %>
           <li>
             <%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %>
@@ -39,6 +41,25 @@
           </li>
         <% end %>
       </ul>
+      </div>
     </div>
   </div>
 </div>
+
+<section class="dropdown-pane no-padding" id="companies-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
+  <div class=" row horizontal-max no-padding collapse">
+    <% if @current_user.employed? %>
+      <% @current_user.employments.reverse_order.each do |u| %>
+        <%= link_to u.company.name, company_url(u.company),
+          class: ""
+        %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<section class="dropdown-pane no-padding" id="user-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
+  <div class=" row horizontal-max no-padding collapse">
+    <%= link_to "Sign Out", destroy_user_session_path, class: 'button white horizontal-max no-margin text-left' %> 
+  </div>
+</section>
