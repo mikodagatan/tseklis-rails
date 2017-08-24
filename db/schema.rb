@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817073956) do
+ActiveRecord::Schema.define(version: 20170823173548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,16 +58,24 @@ ActiveRecord::Schema.define(version: 20170817073956) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "holidays", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "leave_requests", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.date "start_date"
-    t.time "start_time"
+    t.datetime "start_time"
     t.date "end_date"
-    t.time "end_time"
+    t.datetime "end_time"
+    t.decimal "leaves_taken"
     t.boolean "acceptance"
     t.integer "acceptor_id"
-    t.boolean "reviewed"
     t.integer "leave_type_id"
     t.integer "employment_id"
     t.datetime "created_at", null: false

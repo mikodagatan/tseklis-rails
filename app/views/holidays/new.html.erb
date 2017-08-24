@@ -1,0 +1,18 @@
+<div class="row text-center align-middle form-header">
+
+  <div class="columns">
+
+		<h2>Add Holidays</h2>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="columns">
+		<%= render 'holidays_form', 
+			url: company_holidays_url(@company), 
+			method: :post,
+			holiday: @holiday 
+		%>
+	</div>
+</div>

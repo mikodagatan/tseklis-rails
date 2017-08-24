@@ -28,6 +28,7 @@ class CompaniesController < ApplicationController
 		1.times do 
 			leave_type = @leave_types.build
 		end
+			holiday = Company.find(params[:id]).holidays.build
 	end
 
 	def update
@@ -85,6 +86,12 @@ class CompaniesController < ApplicationController
 	  		:leave_month_expiration,
 	  		:leave_month_start,
 	  		:prorate_accrual
+	  	],
+	  	holidays_attributes: [
+	  		:id,
+	  		:name,
+	  		:date,
+	  		:company_id
 	  	]
 	  )
 	end

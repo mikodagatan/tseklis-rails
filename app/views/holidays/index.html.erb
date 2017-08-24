@@ -1,0 +1,22 @@
+<div class="row text-center align-middle form-header">
+
+  <div class="columns">
+
+  	<h4>Holidays</h4>
+
+		<h2>#{@company.name}</h2>
+
+	</div>
+</div>
+
+<div class="row">
+	<% @holidays.each do |holiday|  %>
+		<%= render 'holiday',
+			url: company_holiday_url(
+				@company,
+				holiday),
+			holiday: holiday,
+			company: @company
+		%>
+	<% end %>
+</div>li

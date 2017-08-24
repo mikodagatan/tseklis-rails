@@ -1,0 +1,27 @@
+<div class="columns holiday_card">
+	<h3><%= holiday.name %></h3>
+	<h6>Month: <%= holiday.strfime(%B) %></h6>
+	<h6>Day: <%= holiday.strfime(%e %A) %></h6>
+	<h6>Year: <%= holiday.strftime(%Y) %></h6>
+	<div class="text-center">
+		<div id="show-edit-holiday" class="button warning">
+			Edit Holiday
+		</div>
+		<div id="hide-edit-holiday" class="button warning">
+			Hide Edit
+		</div>
+	</div>
+	<div class="edit-holiday-form">
+		<%= form_for holiday, url: url, method: :patch do |t| %>
+			<%= t.text_field :name %>
+			<%= t.text_field :date, class: "datepicker" %>
+			<div class="text-right">
+				<%= link_to "Delete", 
+					company_holiday(company, holiday), 
+					method: :delete, 
+					class: "small-font-size" 
+				%>
+			</div>
+			<%= f.submit "Edit", class: "button primary" %>
+	</div>
+</div>

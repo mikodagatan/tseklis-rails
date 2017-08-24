@@ -7,4 +7,5 @@ class LeaveRequest < ApplicationRecord
 	validates_presence_of :end_date
 	validates_presence_of :leave_type_id
 	validates_presence_of :employment_id	
+
 end

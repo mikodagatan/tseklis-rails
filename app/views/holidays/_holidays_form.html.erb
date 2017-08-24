@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+
+			
+		<%= form_for holiday, url: url, method: method  do |f| %>
+
+			<%= show_error_message(holiday) %>
+
+			<div class="m-well align-middle">
+				<div class="field">
+				<%= f.label :name, "Company" %>
+				<%= f.text_field :name %>
+				</div>
+				<div class="space"></div>
+
+				<div class="field">
+					<%= f.label :date, "Date" %>
+					<%= f.text_field :date, class: "datepicker" %>
+				</div>
+				<div class="space"></div>
+
+			</div>
+		<% end %>
+
+	</div>
+</div>

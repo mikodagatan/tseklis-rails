@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   resources :companies do
     resources :leave_types
+    resources :holidays
   end
   
 	get 'about' => 'pages#about'

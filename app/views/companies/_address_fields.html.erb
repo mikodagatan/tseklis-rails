@@ -1,35 +1,35 @@
-            <h5>Address</h5> <br />
+<h5>Address</h5> <br />
 
-            <%= input.fields_for :address, @address do |address| %>
+<%= input.fields_for :address, @address do |address| %>
 
-              <div class="field">
-                <%= address.label :first_line %>
-                <%= address.text_field :first_line %>
-              </div>
+  <div class="field">
+    <%= address.label :first_line %>
+    <%= address.text_field :first_line %>
+  </div>
 
-              <div class="field">
-                <%= address.label :second_line %>
-                <%= address.text_field :second_line %>
-              </div>
+  <div class="field">
+    <%= address.label :second_line %>
+    <%= address.text_field :second_line %>
+  </div>
 
-              <div class="field">
-                <%= address.label :city_town, "City/Town" %>
-                <%= address.text_field :city_town %>
-              </div>
+  <div class="field">
+    <%= address.label :city_town, "City/Town" %>
+    <%= address.text_field :city_town %>
+  </div>
 
-              <div class="field">
-                <%= address.label :province %>
-                <%= address.text_field :province %>
-              </div>
+  <div class="field">
+    <%= address.label :province %>
+    <%= address.text_field :province %>
+  </div>
 
-              <div class="field">
-                <%= address.label :country %>
-                <%= address.text_field :country %>
-              </div>
+  <div class="field">
+    <%= address.label :country %>
+    <%= address.text_field :country %>
+  </div>
 
-              <div class="field">
-                <%= address.label :zip_code, "Zip Code" %>
-                <%= address.text_field :zip_code %>
-              </div>
-             
-            <% end %>
+  <div class="field">
+    <%= address.label :zip_code, "Zip Code" %>
+    <%= address.text_field :zip_code %>
+  </div>
+ 
+<% end %>
