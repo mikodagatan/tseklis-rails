@@ -56,5 +56,4 @@ gem 'flamegraph'
 gem 'rack-mini-profiler'
 gem 'stackprof'
 
-
 ruby '2.4.0'
