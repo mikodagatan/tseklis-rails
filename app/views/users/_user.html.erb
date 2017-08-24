@@ -19,7 +19,7 @@
 			<td class="text-center">
 				<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
 					(@current_employment.role_id == @hr_officer.id)  %>
-					<%= link_to 'Edit', edit_user_employment_url(user, employment), class: "button small primary" %>
+					<%= link_to 'Edit', edit_user_employment_url(user, employment), class: "button small expanded primary" %>
 				<% end %>
 
 			</td>
@@ -48,14 +48,14 @@
 					<%= form_for employment, url: url, method: method do |f| %>
 						<%= f.hidden_field :acceptance, value: true %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-						<%= f.submit "Accept", class: "button small success"%>
+						<%= f.submit "Accept", class: "button small expanded success"%>
 					<% end %>
 				</td>
 				<td>
 					<%= form_for employment, url: url, method: method do |f| %>
 						<%= f.hidden_field :acceptance, value: false %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-						<%= f.submit "Reject", class: "button small alert" %>
+						<%= f.submit "Reject", class: "button small expanded alert" %>
 					<% end %>
 				</td>
 			<% else %>

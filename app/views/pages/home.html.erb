@@ -3,7 +3,7 @@
 		<div class="space"></div>
 		
 			
-				<% unless current_user.companies.present? %>
+				<% unless current_user.companies.present? && (current_user.employments.map { |u| u.role_id == @employee.id ? true : false } == true) %>
 					<div class="columns home-create-company text-center">
 						<h1>
 							<%= link_to "Create a Company", new_company_url %></h1>
