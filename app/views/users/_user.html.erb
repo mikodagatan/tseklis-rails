@@ -16,10 +16,12 @@
 				<% end %>			
 			</td>
 			<td><%= Role.find(employment.role_id).name %></td>
-			<td class="text-center">
+			<td class="edit-column">
 				<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
-					(@current_employment.role_id == @hr_officer.id)  %>
-					<%= link_to 'Edit', edit_user_employment_url(user, employment), class: "button small expanded primary" %>
+					(@current_employment.role_id == @hr_officer.id) && @current_employment.acceptance.nil?  %>
+					<%= link_to edit_user_employment_url(user, employment), class: "button small secondary" do %>
+						<%= fa_icon "edit" %>
+					<% end %>
 				<% end %>
 
 			</td>

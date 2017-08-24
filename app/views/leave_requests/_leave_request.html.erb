@@ -49,14 +49,15 @@
 			<td colspan="1"></td>		
 		<% end %>
 	<% else %>
-		<td>
+		<td class="edit-column">
 			<% if leave_request.acceptance.nil? %>
 				<% if @current_user.id == 
 					leave_request.employment.user.id %>
-					<%= (link_to 'Edit', edit_user_employment_leave_request_url(
+					<%= link_to edit_user_employment_leave_request_url(
 						current_user, employment, leave_request), 
-						class: 'button small no-margin') if 
-						leave_request.acceptance.present? %>
+						class: 'button small secondary no-margin' do  %>
+							<%= fa_icon "edit" %>
+					<% end %>	
 				<% end %>
 			<% end %>	
 		</td>

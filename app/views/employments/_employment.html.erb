@@ -16,9 +16,13 @@
 	<td>
 			<%= Role.find(employment.role_id).name %>
 	</td>
-
-	<td class="text-center">
-
-		<%= (link_to 'Edit', edit_user_employment_url(employment.user_id, employment), class: 'button small expanded') if ((@current_employment.role_id == @hr_officer.id) && (@current_employment.company.id == employment.company.id)) || (@current_user.id == employment.user_id) %>
+	<td class="edit-column">
+		<% if @current_employment.acceptance.nil? %>
+			<% if ((@current_employment.is_hr?) && @current_employment.present?) || (@current_user = @user) %>
+				<%= link_to 'edit', url: edit_user_employment_url(employment.user_id, employment), class: "button small secondary" do  %>
+					<%= fa_icon "edit" %>
+				<% end %>
+			<% end %>
+		<% end %>
 	</td>
 </tr>
