@@ -1,35 +1,42 @@
-<div data-sticky-container>
-  
-  <% if user_signed_in? %>
-    <div class="top-bar sticky" data-sticky data-margin-top='0' >
-  <% elsif current_page?(root_path) %>
-    <div class="top-bar sticky" data-sticky data-margin-top='0' data-top-anchor="landing:bottom">
-  <% else %>
-    <div class="top-bar sticky" data-sticky data-margin-top='0' >
-  <% end %>
-
+<% if user_signed_in? %>
+  <div class="top-bar">
+<% elsif current_page?(root_path) %>
+  <div class="top-bar sticky" data-sticky data-margin-top='0' data-top-anchor="landing:bottom">
+<% else %>
+  <div class="top-bar">
+<% end %>
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text"><%= link_to "Tseklis", root_path  %></li>
-      </ul>
+        <li class="menu-text">
+          <%= link_to "Tseklis", root_path  %></li>
+        </ul>
     </div>
     <div class="top-bar-right">
-
       <ul class="dropdown menu">
         <% if current_user %>
           <% unless current_user.employments.empty? %>
-            <% unless current_user.companies.empty? %>
-            <% end %>
-            <li><%= link_to "Company", companies_path %><li>
+            <li>
+              <%= link_to "Company", companies_path %>  
+            </li>
           <% end %>
-          <li><%= link_to "Visit the community", users_path %></li>
+          <li>
+            <%= link_to "Visit the community", users_path %>    
+          </li>
           <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
-            <li><%= link_to "User: #{current_user.profile.first_name} #{current_user.profile.last_name}", user_path(current_user) %> </li>
+            <li>
+              <%= link_to "User: #{current_user.profile.first_name} #{current_user.profile.last_name}", user_path(current_user) %> 
+            </li>
           <% end %>
-          <li><%= link_to "Sign Out", destroy_user_session_path, class: 'button warning' %> </li>
+          <li>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'button warning' %> 
+          </li>
         <% else %>
-          <li><%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %></li>
-          <li><%= link_to "Sign In", new_user_session_path, class: 'button primary' %></li>
+          <li>
+            <%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %>
+          </li>
+          <li>
+            <%= link_to "Sign In", new_user_session_path, class: 'button primary' %>
+          </li>
         <% end %>
       </ul>
     </div>
