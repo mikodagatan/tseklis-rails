@@ -44,7 +44,9 @@ class CompaniesController < ApplicationController
 	def show
 		@leaves = []
 		@leaves = @company.company_leave_counts
+		@total_leaves = @company.monthly_total
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
+		a 1
 	end
 
 	private

@@ -33,6 +33,7 @@ class LeaveRequestsController < ApplicationController
 	end
 
 	def show
+		
 	end
 
 	private
@@ -60,5 +61,6 @@ class LeaveRequestsController < ApplicationController
 				:leave_type_id,
 				:employment_id)
 		end
+
 
 end

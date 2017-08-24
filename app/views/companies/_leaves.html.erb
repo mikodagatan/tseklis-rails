@@ -1,5 +1,15 @@
 <div class="row">
 	<div class="columns medium-offset-2 medium-8">
+		<div class="row">
+			<div class="columns text-center">
+				<h1>
+					<%= @total_leaves %>
+				</h1>
+				<p>
+					Total Leaves
+				</p>
+			</div>
+		</div>
 		<div class="row ">
 			<% @leaves.each do |p| %>
 				<% p.each do |k,v| %>
