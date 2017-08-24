@@ -24,6 +24,14 @@ class HolidaysController < ApplicationController
   end
 
   def update
+  	@holidays = @company.holidays
+  	@holiday = @holidays.find(params[:id])
+  	if @holiday.update_attributes(holiday_params)
+	    flash[:success] = "Holiday Updated!"
+	    redirect_to company_holidays_url(@company)
+	  else
+	  	render action: :index
+	  end
   end
 
   def destroy
