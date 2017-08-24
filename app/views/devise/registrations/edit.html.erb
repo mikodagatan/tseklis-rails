@@ -37,10 +37,15 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
+
+          <div class="field">
+              <%= f.label :current_password %> <p class="small-font-size">(We need your current password to confirm your changes)</p>
+              <%= f.password_field :current_password, autocomplete: "off" %>
+          </div>
+
           <div id="show-password-settings" class="button warning">Show Password Settings</div>
           <div id="hide-password-settings" class="button warning">Hide Password Settings</div> 
           <div id="password-edit-form">
-   
 
 
             <div class="field">
@@ -57,24 +62,6 @@
             </div>
 
           </div>
-
-            <%= f.fields_for :profile, @profile do |t| %>
-              <div class="field">
-                <%= t.label :first_name %>
-                <%= t.text_field :first_name, autofocus: true %>
-              </div>
-
-               <div class="field">
-                <%= t.label :last_name %>
-                <%= t.text_field :last_name, autofocus: true %>
-              </div>
-
-            <div class="field">
-              <%= f.label :current_password %> <p class="small-font-size">(We need your current password to confirm your changes)</p>
-              <%= f.password_field :current_password, autocomplete: "off" %>
-            </div>
-
-            <% end %>
 
           <div class="actions">
             <%= f.submit "Update", class: "button primary" %>

@@ -5,6 +5,7 @@ class Holiday < ApplicationRecord
 
 	validates :name, 
 		length: { minimum: 3, maximum: 20}
+	validates :date, uniqueness: { message: "already has a Holiday."}
 
-	
+
 end

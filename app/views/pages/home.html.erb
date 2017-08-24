@@ -1,19 +1,27 @@
-<div class="space"></div>
+<div class="row align-middle small-collapse medium-collapse">
+	<% if user_signed_in? %>
+		<div class="space"></div>
+		
+			
+				<% unless current_user.companies.present? %>
+					<div class="columns home-create-company text-center">
+						<h1>
+							<%= link_to "Create a Company", new_company_url %></h1>
+					</div>
+				<% end %>
+					<div class="columns home-connect-company text-center">
+						<h1>
+							<%= link_to "Connect to a Company", new_user_employment_url(current_user) %>
+						</h1>	
+					</div>
+				
 
-<% if user_signed_in? %>
+				<% if current_user.employed? %>
+					<div class="columns home-create-leave-request text-center">
+						<%= link_to "Create a Leave Request",
+						new_user_employment_leave_request_url(current_user, @employment.id) %>
+					</div>
+				<% end %>
 
-	<% unless current_user.companies.present? %>
-
-		<%= link_to "Create a Company", new_company_url %> <br/>
 	<% end %>
-	
-	<%= link_to "Connect to a Company", new_user_employment_url(current_user) %> <br />
-	
-
-	<% if current_user.employed? %>
-		<%= link_to "Create a Leave Request",
-			new_user_employment_leave_request_url(current_user, @employment.id) %> <br />
-
-	<% end %>
-
-<% end %>
+</div>

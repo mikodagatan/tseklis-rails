@@ -21,15 +21,12 @@
     <%= render 'partials/navbar' %>
     
     <% flash.each do |key, value| %>
-      <% content_tag :div, value, class: "callout  #{key}" %>
+      <%= content_tag :div, value, class: "callout  #{key}" %>
     <% end %>
 
     
-		<div class="row">
-			<div class="small-12">
-				<%= yield %>		
-			</div>
-		</div>
+		
+		<%= yield %>		
 
   </body>
 </html>

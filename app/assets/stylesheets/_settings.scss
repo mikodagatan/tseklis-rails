@@ -66,12 +66,12 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1200);
+$global-width: 95%;
 $global-lineheight: 1.5;
 $foundation-palette: (
   primary: #1779ba,
   secondary: #767676,
-  success: #3adb76,
+  success: #77dd77,
   warning: #ffae00,
   alert: #cc4b37,
 );
@@ -157,7 +157,7 @@ $header-styles: (
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
 $header-small-font-color: $medium-gray;
-$paragraph-lineheight: 1.6;
+$paragraph-lineheight: 1;
 $paragraph-margin-bottom: 1rem;
 $paragraph-text-rendering: optimizeLegibility;
 $code-color: $black;
@@ -313,7 +313,7 @@ $buttongroup-radius-on-each: true;
 
 $callout-background: $white;
 $callout-background-fade: 85%;
-$callout-border: 1px solid rgba($black, 0.25);
+$callout-border: 0;
 $callout-margin: 0 0 1rem 0;
 $callout-padding: 1rem;
 $callout-font-color: $body-font-color;
