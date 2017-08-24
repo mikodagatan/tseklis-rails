@@ -54,6 +54,7 @@ gem 'custom_error_message', "~> 1.1.1"
 gem 'nested_form_fields'
 gem 'flamegraph'
 gem 'rack-mini-profiler'
+gem 'stackprof'
 
 
 ruby '2.4.0'
