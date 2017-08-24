@@ -9,8 +9,6 @@ $(document).ready(function(){
 
 	$('.datepickerend').pickadate({
 		format: 'yyyy/mm/dd',
-		selectMonths: true,
-		selectYears: 5,
 		min: true
 	});
 
@@ -88,6 +86,25 @@ $(document).ready(function(){
 	 	$('#company-leave-settings-edit-form').hide();
 	 	$('#show-company-leave-settings').show();
 	 	$('#hide-company-leave-settings').hide();
+	 });
+
+	// Holiday settings
+
+	// Company Leave Settings form
+
+	$('.edit-holiday-form').hide();
+	$('.hide-edit-holiday').hide();
+
+	$('.show-edit-holiday', this).click(function() {
+   	$(this).parent().siblings(".edit-holiday-form").slideToggle();
+   	$(this).toggle();
+   	$(this).siblings(".hide-edit-holiday").toggle();
+   });
+	
+	$('.hide-edit-holiday', this).click(function() {
+	 	$(this).parent().siblings(".edit-holiday-form").slideToggle();
+	 	$(this).siblings(".show-edit-holiday").toggle();
+	 	$(this).toggle();
 	 });
 
 

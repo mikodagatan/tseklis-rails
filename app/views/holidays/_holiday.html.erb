@@ -1,27 +1,29 @@
-<div class="columns holiday_card">
-	<h3><%= holiday.name %></h3>
-	<h6>Month: <%= holiday.strfime(%B) %></h6>
-	<h6>Day: <%= holiday.strfime(%e %A) %></h6>
-	<h6>Year: <%= holiday.strftime(%Y) %></h6>
-	<div class="text-center">
-		<div id="show-edit-holiday" class="button warning">
+<div class="columns small-12 medium-6 holiday_card m-well">
+	<div class="space"></div>
+	<h3><%= holiday.name %></h3><br />
+	<%= holiday.date.strftime("%B") %><br />
+	<%= holiday.date.strftime("%e %A") %><br />
+	<%= holiday.date.strftime("%Y") %><br />
+	<div class="space5"></div>
+	<div class="text-center ">
+		<div class="button warning show-edit-holiday">
 			Edit Holiday
 		</div>
-		<div id="hide-edit-holiday" class="button warning">
+		<div class="button warning hide-edit-holiday">
 			Hide Edit
 		</div>
 	</div>
 	<div class="edit-holiday-form">
 		<%= form_for holiday, url: url, method: :patch do |t| %>
 			<%= t.text_field :name %>
-			<%= t.text_field :date, class: "datepicker" %>
-			<div class="text-right">
-				<%= link_to "Delete", 
-					company_holiday(company, holiday), 
-					method: :delete, 
-					class: "small-font-size" 
-				%>
-			</div>
-			<%= f.submit "Edit", class: "button primary" %>
+			<%= t.text_field :date, class: "datepickerend" %>
+			<%= link_to "Delete", 
+				company_holiday_url(company, holiday), 
+				method: :delete, 
+				class: "small-font-size" 
+			%>
+			<div class="space"></div>
+			<%= t.submit "Edit", class: "button" %>
+		<% end %>
 	</div>
 </div>

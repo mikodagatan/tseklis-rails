@@ -1,8 +1,7 @@
-class PagesController < ApplicationController
+class HolidaysController < ApplicationController
 	before_action :set_up
   
   def index
-  	@company = Company.find(params[:id])
   	@holidays = @company.holidays
   end
 
@@ -11,7 +10,14 @@ class PagesController < ApplicationController
   end
 
   def create
-  	@holiday = @company.holidays.build(:holiday_params)
+  	@holidays = @company.holidays
+  	@holiday = @company.holidays.build(holiday_params)
+  	if @holiday.save
+  		flash[:success] = "Holiday Created!"
+  		redirect_to company_holidays_url(@company, @holidays)
+  	else
+  		render action: :new
+  	end
   end
 
   def edit
@@ -30,11 +36,12 @@ class PagesController < ApplicationController
 			@user = current_user
 			@employment = @user.employments.last
 			@employments = @user.employments
-			@company = Company.find(params[:id])
+			@company = Company.find(params[:company_id])
 		end
+	end
 
 	def holiday_params
-		params.require(:holidays).permit(
+		params.require(:holiday).permit(
 			:id,
 			:name,
 			:date,

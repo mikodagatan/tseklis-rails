@@ -1,15 +1,20 @@
-<div class="row text-center align-middle form-header">
+<div class="row align-middle form-header">
 
   <div class="columns">
 
-  	<h4>Holidays</h4>
 
-		<h2>#{@company.name}</h2>
+		<h4><%= @company.name %></h4>
+  	<h1>Holidays</h1>
 
+	</div>
+
+	<div class="columns shrink">
+		<%= link_to "Create Holiday", new_company_holiday_url, class: "button primary" %>
 	</div>
 </div>
 
-<div class="row">
+
+<div class="row small-up-1 medium-up-3 large-up-3">
 	<% @holidays.each do |holiday|  %>
 		<%= render 'holiday',
 			url: company_holiday_url(
@@ -19,4 +24,6 @@
 			company: @company
 		%>
 	<% end %>
-</div>li
+</div>
+
+<div class="show-header"></div>

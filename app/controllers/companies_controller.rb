@@ -42,8 +42,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
-		
-
+		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
 	end
 
 	private
