@@ -52,6 +52,8 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'paperclip', '~> 5.1.0'
 gem 'custom_error_message', "~> 1.1.1"
 gem 'nested_form_fields'
+gem 'flamegraph'
+gem 'rack-mini-profiler'
 
 
 ruby '2.4.0'

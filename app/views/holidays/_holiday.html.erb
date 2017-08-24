@@ -1,5 +1,5 @@
 <div class="columns small-12 medium-5">
-	<div class="holiday-card m-well">
+	<div class="holiday-card <%= cycle('graymax-bg','white-bg','secondary','warning','success','alert') %>">
 		<div class="space"></div>
 		<h3><%= holiday.name %></h3><br />
 		<%= holiday.date.strftime("%B") %><br />
