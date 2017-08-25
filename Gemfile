@@ -55,5 +55,6 @@ gem 'nested_form_fields'
 gem 'flamegraph'
 gem 'rack-mini-profiler'
 gem 'stackprof'
+gem 'irbtools'
 
 ruby '2.4.0'
