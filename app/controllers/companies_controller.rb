@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
 			holiday = Company.find(params[:id]).holidays.build
 	end
 
-	def update
+def update
 		if @company.update_attributes(company_params)
 	    flash[:success] = "Company Updated!"
 	    redirect_to edit_company_url( params[:id] )
@@ -45,10 +45,8 @@ class CompaniesController < ApplicationController
 	def show
 		@sum = 0
 		@leaves = []
-		@leaves = @company.company_leave_counts
-		# @leaves2 = []
-		# @leaves2 = @company.company_leave_counts2
-		@total_leaves = @company.monthly_total
+		@leaves = @company.segmented_monthly_leaves
+		@total_leaves = @company.total_monthly_leaves
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
 	end
 

@@ -22,39 +22,26 @@ class Company < ApplicationRecord
 	validates :name, presence: true, uniqueness: true
 
 
-	attr_accessor :company_leave_counts
-	def company_leave_counts
+	attr_accessor :segmented_monthly_leaves
+
+	def segmented_monthly_leaves
 		leave = []
 		self.leave_types.each do |p|
-		 	value_whole_day = p.company.leave_requests
-		 		.where(leave_type_id: p.id)
-		 		.where(acceptance: true)
-		 		.where(" EXTRACT(YEAR FROM leave_requests.start_date) = ?", 
-		 			Date.today.year)
-		 		.where("EXTRACT(MONTH FROM leave_requests.start_date) = ?", 
-		 			Date.today.month).where("EXTRACT(HOUR FROM leave_requests.end_time) 
-		 			- EXTRACT(HOUR FROM leave_requests.start_time) 
-		 			> EXTRACT(HOUR FROM INTERVAL '4 hours')"
-		 			).count
-		 	value_half_day = p.company.leave_requests
-		 		.where(leave_type_id: p.id)
-		 		.where(acceptance: true)
-		 		.where(" EXTRACT(YEAR FROM leave_requests.start_date) = ?", 
-		 			Date.today.year)
-		 		.where("EXTRACT(MONTH FROM leave_requests.start_date) = ?", 
-		 			Date.today.month)
-		 		.where("EXTRACT(HOUR FROM leave_requests.end_time) - EXTRACT(HOUR FROM leave_requests.start_time) 
-		 			<= EXTRACT(HOUR FROM INTERVAL '4 hours')"
-		 			).count * 0.5
-		 	value_multiple = p.company.leave_requests
-		 		.where(leave_type_id: p.id)
-		 		.where(acceptance: true)
-		 		.where("EXTRACT(")
-			name = p.name
-			value = value_whole_day + value_half_day
+		 	value = self.leave_amounts
+		 		.where(date: Date.today.all_month)
+		 		.where(leave_request_id: self.leave_requests.ids)
+		 		.where("leave_requests.acceptance = true")
+		 		.where("leave_requests.leave_type_id = ?", p.id)
+		 		.sum(:amount)
+		 	name = p.name
+			value = value
 			leave << {name => value}
 		end
 		return leave
+	end
+
+	def total_monthly_leaves
+		self.leave_amounts.where(date: Date.today.all_month).sum(:amount)
 	end
 
 	# attr_accessor :enter_leaves_taken
@@ -102,8 +89,8 @@ class Company < ApplicationRecord
 	# end
 
 
-	# attr_accessor :company_leave_counts2
-	# def company_leave_counts2
+	# attr_accessor :segmentend_monthly_leave2
+	# def segmentend_monthly_leave2
 	# 	leave = []
 	# 	this_year = Date.today.year
 	# 	this_month = Date.today.month
@@ -136,65 +123,65 @@ class Company < ApplicationRecord
 	# 	return leave
 	# end
 
-	attr_accessor :monthly_total
+	# attr_accessor :monthly_total
 
-	def self.monthly_total
-		minus = 0
-		add = 0
+	# def self.monthly_total
+	# 	minus = 0
+	# 	add = 0
 		
-		this_month = Date.today.month
-		month_leaves_by_start = self.leave_requests.where("extract(month from leave_requests.start_date) = ?", this_month)
-		month_leaves_by_end = self.leave_requests.where("extract(month from leave_requests.end_date) = ?", this_month )
+	# 	this_month = Date.today.month
+	# 	month_leaves_by_start = self.leave_requests.where("extract(month from leave_requests.start_date) = ?", this_month)
+	# 	month_leaves_by_end = self.leave_requests.where("extract(month from leave_requests.end_date) = ?", this_month )
 
-		total_add = (month_leaves_by_start.monthly_add + month_leaves_by_end.monthly_add)
-		total_minus = (month_leaves_by_start.monthly_minus 
-			+ month_leaves_by_end.monthly_minus)
+	# 	total_add = (month_leaves_by_start.monthly_add + month_leaves_by_end.monthly_add)
+	# 	total_minus = (month_leaves_by_start.monthly_minus 
+	# 		+ month_leaves_by_end.monthly_minus)
 
-		total_monthly = total_add - total_minus
+	# 	total_monthly = total_add - total_minus
 
-		return total_monthly
-	end
+	# 	return total_monthly
+	# end
 
-	attr_accessor :monthly_minus
+	# attr_accessor :monthly_minus
 
-	def self.monthly_minus
-		minus = 0
-		this_month = Date.today.month
-		self.each do |u|
-			start_date = u.start_date
-			end_date = u.end_date
-			month_holidays = u.company.holidays.where("extract(month from holidays.date) = ?", this_month)
-			month_holidays.each do |t|
-				if end_date.month > this_month
-					end_date = start_date.end_of_month
-				elsif start_date.month < this_month
-					start_date = end_date.start_of_month
-				end
-				if (start_date <= t && t <= end_date) || u.on_weekend? 
-					minus += 1
-				end
+	# def self.monthly_minus
+	# 	minus = 0
+	# 	this_month = Date.today.month
+	# 	self.each do |u|
+	# 		start_date = u.start_date
+	# 		end_date = u.end_date
+	# 		month_holidays = u.company.holidays.where("extract(month from holidays.date) = ?", this_month)
+	# 		month_holidays.each do |t|
+	# 			if end_date.month > this_month
+	# 				end_date = start_date.end_of_month
+	# 			elsif start_date.month < this_month
+	# 				start_date = end_date.start_of_month
+	# 			end
+	# 			if (start_date <= t && t <= end_date) || u.on_weekend? 
+	# 				minus += 1
+	# 			end
 
-			end
-		return minus
-		end
-	end
+	# 		end
+	# 	return minus
+	# 	end
+	# end
 
-	attr_accessor :monthly_add
+	# attr_accessor :monthly_add
 
-	def self.monthly_add
-		add = 0
-		this_month = Date.today.month
-		self.each do |u|
-			start_date = u.start_date
-			end_date = u.end_date
-			if end_date.month > this_month
-				end_date = start_date.end_of_month
-			elsif start_date.month < this_month
-				start_date = end_date.start_of_month
-			end
-			add += end_date.day - start_date.day + 1
-		end
-		return add
-	end
+	# def self.monthly_add
+	# 	add = 0
+	# 	this_month = Date.today.month
+	# 	self.each do |u|
+	# 		start_date = u.start_date
+	# 		end_date = u.end_date
+	# 		if end_date.month > this_month
+	# 			end_date = start_date.end_of_month
+	# 		elsif start_date.month < this_month
+	# 			start_date = end_date.start_of_month
+	# 		end
+	# 		add += end_date.day - start_date.day + 1
+	# 	end
+	# 	return add
+	# end
 
 end
