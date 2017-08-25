@@ -1,4 +1,4 @@
-<%= input.fields_for :company_company_leave_settings do |company_leave_settings| %>
+<%= input.fields_for :company_company_leave_settings, @company_leave_setting do |company_leave_settings| %>
 
 	<h5>Company Leave Settings</h5> <br />
 
@@ -14,9 +14,15 @@
   </div> 
 
   <div class="field">
-	  <%= company_leave_settings.check_box :pro_rate_accrual %>
+	  <%= company_leave_settings.check_box :include_weekends %>
+	  <%= company_leave_settings.label :include_weekends %>
+  </div>
+
+  <div class="field">
+	  <%= company_leave_settings.check_box :prorate_accrual %>
 	  <%= company_leave_settings.label :prorate_accrual %>
 	  <p class="small-font-size">This will calculate the amount of leaves to give to the Employee on a daily basis starting from the accrual start month. The number of available leaves is rounded to the nearest 0.25.</p>
   </div>
+
   <div class="space"></div>
 <% end -%>

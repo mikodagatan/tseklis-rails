@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825032315) do
+ActiveRecord::Schema.define(version: 20170825044858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170825032315) do
     t.boolean "prorate_accrual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "include_weekends", default: true
   end
 
   create_table "employments", force: :cascade do |t|

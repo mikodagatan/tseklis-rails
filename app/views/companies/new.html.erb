@@ -75,6 +75,13 @@
             </div>
           <% end %>
 
+          <%= f.fields_for :company_leave_setting, @company_leave_setting do |settings| %>
+            <%= settings.hidden_field :leave_month_expiration, value: 12 %>
+            <%= settings.hidden_field :leave_month_start, value: 6 %>
+            <%= settings.hidden_field :include_weekends, value: true %>
+            <%= settings.hidden_field :prorate_accrual, value: false %>
+          <% end %>
+
           <div class="actions">
             <%= f.submit "Create", class: 'button primary' %>
           </div>

@@ -11,6 +11,7 @@ class CompaniesController < ApplicationController
 		@company = Company.new
 		@employment = @company.employments.build
 		@address = @company.build_address
+		@company_leave_setting = @company.build_company_leave_setting
 	end
 
 	def create
@@ -90,7 +91,8 @@ class CompaniesController < ApplicationController
 	  		:company_id,
 	  		:leave_month_expiration,
 	  		:leave_month_start,
-	  		:prorate_accrual
+	  		:prorate_accrual,
+	  		:include_weekends
 	  	],
 	  	holidays_attributes: [
 	  		:id,
@@ -107,7 +109,7 @@ class CompaniesController < ApplicationController
 		@address = @company.address
 		@leave_types = @company.leave_types
 		@leave_requests = @company.leave_requests
-
+		@company_leave_setting = @company.company_leave_setting
 
 
 	end
