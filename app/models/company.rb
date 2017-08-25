@@ -50,7 +50,7 @@ class Company < ApplicationRecord
 		 		.where(acceptance: true)
 		 		.where("EXTRACT(")
 			name = p.name
-			value = value_whole_day
+			value = value_whole_day + value_half_day
 			leave << {name => value}
 		end
 		return leave
@@ -89,7 +89,6 @@ class Company < ApplicationRecord
 	# 						end  
 	# 						start_d = start_d.advance(days: 1)
 	# 					end until (end_d == start_d) || 
-	# 					# to_add = (leave_request.start_date.end_of_month.day + 1) - leave_request.start_date.day 			
 
 	# 				end
 
@@ -100,6 +99,24 @@ class Company < ApplicationRecord
 	# 	end
 	# 	return leave
 	# end
+
+
+	attr_accessor :company_leave_counts2
+	def company_leave_counts2
+		leave = []
+		self.leave_types.each do |leave_type|
+		 	value_whole_day = leave_type.company.leave_requests
+		 		.where(leave_type_id: leave_type.id)
+		 		.where(acceptance: true)
+		 		.where("(extract(year from leave_requests.start_date) = ? or extract(year from leave_requests.end_date) = ?)", Date.today.year, Date.today.year)
+		 		value_whole_day.map do |val|
+		 			val.
+		 	name = leave_type.name
+			value = value_whole_day
+			leave << {name => value}
+		end
+		return leave
+	end
 
 	attr_accessor :monthly_total
 

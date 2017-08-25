@@ -27,7 +27,7 @@
 		<% if leave_request.acceptance.nil? %>
 			<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %> 
 				<td>
-					<%= form_for leave_request, url: url, method: method do |f| %>
+					<%= form_for leave_request, url: url, method: method, at_company: at_company do |f| %>
 						<%= f.hidden_field :acceptance, value: true %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 						<%= f.submit "Accept", class: "button small expanded success"%>
