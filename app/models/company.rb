@@ -5,6 +5,7 @@ class Company < ApplicationRecord
 	has_many :employments
 	has_many :users, through: :employments
 	has_many :leave_requests, through: :employments
+	has_many :leave_amounts, through: :leave_requests
 	has_many :holidays
 	has_one	 :address
 
@@ -101,22 +102,39 @@ class Company < ApplicationRecord
 	# end
 
 
-	attr_accessor :company_leave_counts2
-	def company_leave_counts2
-		leave = []
-		self.leave_types.each do |leave_type|
-		 	value_whole_day = leave_type.company.leave_requests
-		 		.where(leave_type_id: leave_type.id)
-		 		.where(acceptance: true)
-		 		.where("(extract(year from leave_requests.start_date) = ? or extract(year from leave_requests.end_date) = ?)", Date.today.year, Date.today.year)
-		 		value_whole_day.map do |val|
-		 			val.
-		 	name = leave_type.name
-			value = value_whole_day
-			leave << {name => value}
-		end
-		return leave
-	end
+	# attr_accessor :company_leave_counts2
+	# def company_leave_counts2
+	# 	leave = []
+	# 	this_year = Date.today.year
+	# 	this_month = Date.today.month
+	# 	self.leave_types.each do |leave_type|
+	# 		amount = 0
+	# 	 	year_values = leave_type.company.leave_requests
+	# 	 		.where(leave_type_id: leave_type.id)
+	# 	 		.where(acceptance: true)
+	# 	 		.where(
+	# 	 			"(extract(year from leave_requests.start_date) = ? or extract(year from leave_requests.end_date) = ?)
+	# 	 			and (extract(day from leave_requests.start_date) NOT extract(day from leave_requests.end_date))", 
+	# 	 			Date.today.year, Date.today.year).count
+	# 	 		# monthly iteration
+	# 	 		month_values = year_values.where(
+	# 	 			"(extract_month from year_values")
+	# 	 		year_values.each do |year_val|
+	# 	 			start_date = year_val.start_date
+	# 	 			end_date = year_val.end_date
+	# 	 			if end_date.month > this_month
+	# 					end_date = start_date.end_of_month
+	# 				elsif start_date.month < this_month
+	# 					start_date = end_date.start_of_month
+	# 				end
+	# 				end_date.day- 
+	# 	 		end
+	# 	 	name = leave_type.name
+	# 		value = year_values
+	# 		leave << {name => value}
+	# 	end
+	# 	return leave
+	# end
 
 	attr_accessor :monthly_total
 
@@ -178,4 +196,5 @@ class Company < ApplicationRecord
 		end
 		return add
 	end
+
 end
