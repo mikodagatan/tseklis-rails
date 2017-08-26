@@ -4,6 +4,7 @@ class CompaniesController < ApplicationController
 	after_action :destroy_leave_type_blank, only: [:update ]
 
 	def index
+		@companies = Company.all
 	end
 
 	def new

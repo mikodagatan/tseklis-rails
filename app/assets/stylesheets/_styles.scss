@@ -1,5 +1,13 @@
 .holiday_card {
-	padding: 1rem;
+	padding: 1.5rem;
+	margin: 0.5rem;
+	border-radius: 1rem;
+	height: auto;
+	max-height: 100%;
+}
+
+.company_card {
+	padding: 1.5rem;
 	margin: 0.5rem;
 	border-radius: 1rem;
 	height: auto;
@@ -54,3 +62,36 @@
 section.dropdown-pane {
 	border: none;
 }
+
+// Div headers
+
+.form-header {
+	height: 14rem;
+}
+
+.show-header {
+	height: 20rem;
+}
+
+// Font-sizes
+
+.h-1 {
+	font-size: 7rem;
+}
+
+// Buttons
+
+.button {
+	.success {
+		color: white;
+		border-radius: 0.3rem;	
+	}
+	.warning {
+		color: white;
+		border-radius: 0.3rem;	
+	}
+}
+
+
+
+

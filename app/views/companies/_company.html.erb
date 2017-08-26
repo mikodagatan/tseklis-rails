@@ -1,0 +1,45 @@
+<div class="columns small-12 medium-5">
+	<div class="holiday_card callout <%= cycle('primary','warning') %>">
+		<div class="space"></div>
+		<h3><%= link_to company.name, company_url(company) %></h3>
+		<p  class="small-font-size">
+			<%= company.address.first_line %>,
+			<%= company.address.second_line %>
+			<%= company.address.city_town %>,
+			<%= company.address.province %>,
+			<%= company.address.country %>
+			<%= company.address.zip_code %>
+		</p>
+		<div class="space"></div>
+		<div class="row align-middle margin-card-row">
+			<div class="columns shrink medium-6">
+				<div class="text-right">
+					<i class="fa fa-calendar-o fa-2x"></i>
+				</div>
+			</div>
+			<div class="columns medium-6 text-center">
+				<%= company.created_at.strftime("%B %d, %Y") %>
+			</div>
+		</div>
+		<div class="row align-middle margin-card-row">
+			<div class="columns shrink medium-6">
+				<div class="text-right">
+					<i class="fa fa-users fa-2x"></i>
+				</div>
+			</div>
+			<div class="columns medium-6 text-center">
+				<%= company.number_of_users %>
+			</div>
+		</div>
+		<div class="row align-middle margin-card-row">
+			<div class="columns shrink medium-6">
+				<div class="text-right">
+					<i class="fa fa-suitcase fa-2x"></i>
+				</div>
+			</div>
+			<div class="columns medium-6 text-center">
+				<%= company.leave_amounts.sum(:amount) %> leaves
+			</div>
+		</div>
+	</div>
+</div>

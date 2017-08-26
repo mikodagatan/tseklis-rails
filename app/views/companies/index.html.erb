@@ -1,21 +1,25 @@
-<div class="space2"></div>
-<div class="row">
-	<div class="columns">
-		<h1>Companies</h1>
+<div class="row align-middle show-header">
+
+  <div class="columns">
+
+  	<h1 class="no-margin">Companies</h1>
+  	<p>All the clients we serve.</p>
+
+	</div>
+
+	<div class="columns small-1 medium-2 ">
+		<%= link_to "Create Company", new_company_url, class: "button primary" %>
 	</div>
 </div>
 
-<div class="space2"></div>
 
-<div class="row">
-	<div class="columns">
-		<% Company.all.each do |company| %>
-			<div class="row m-well <%= cycle('', 'white-bg') %>">
-				<h4 ><%= link_to company.name, company_url(company.id) %> </h4>
-			</div>
-		<% end %> 
-	</div>
-	
-
+<div class="row small-up-1 medium-up-3">
+	<% Array.wrap(@companies).each do |company|  %>
+		<%= render 'company',
+			url: company_url(company),
+			company: company
+		%>
+	<% end %>
 </div>
 
+<div class="show-header"></div>

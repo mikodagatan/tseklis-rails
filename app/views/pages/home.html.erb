@@ -1,30 +1,28 @@
 <div class="row small-collapse medium-collapse vh-max">
 	<% if user_signed_in? %>
-			
-				<div class="columns home-connect-company text-center">
-					<div class="row vertical-max align-middle">
-						<div class="columns">
-							<h1>
-								<%= link_to "Connect to a Company", new_user_employment_url(current_user), class: "white-text" %>
-							</h1>	
-						</div>
+		<div class="columns home-connect-company text-center">
+			<div class="row vertical-max align-middle">
+				<div class="columns">
+					<h1>
+						<%= link_to "Connect to a Company", new_user_employment_url(current_user), class: "white-text" %>
+					</h1>	
+				</div>
+			</div>
+		</div>
+		<% unless current_user.companies.present? && (current_user.employments.map { |u| u.role_id == @employee.id ? true : false } == true) %>
+			<div class="columns home-create-company text-center">
+				<div class="row vertical-max align-middle">
+					<div class="columns">
+						<h1>
+							<%= link_to "Create a Company", new_company_url, class: "white-text" %>
+						</h1>
 					</div>
 				</div>
-				<i 
-				<% unless current_user.companies.present? && (current_user.employments.map { |u| u.role_id == @employee.id ? true : false } == true) %>
-					<div class="columns home-create-company text-center">
-						<div class="row vertical-max align-middle">
-							<div class="columns">
-								<h1>
-									<%= link_to "Create a Company", new_company_url, class: "white-text" %>
-								</h1>
-							</div>
-						</div>
-					</div>
-				<% end %>
-
-				<% if current_user.employed? %>
-				<% end %>
-
+			</div>
+		<% end %>
+		<% if current_user.employed? %>
+		<% end %>
+	<% else %>
+		<%= render 'partials/landing_page' %>
 	<% end %>
 </div>
