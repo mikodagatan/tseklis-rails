@@ -13,10 +13,6 @@
   </head>
 
   <body>
-    <% if user_signed_in? && current_page?(root_path) %>
-    <% elsif current_page?(root_path) %>
-      <%= render 'partials/landing_page' %>
-    <% end %>
     
     <%= render 'partials/navbar' %>
     
@@ -24,8 +20,6 @@
       <%= content_tag :div, value, class: "callout  #{key}" %>
     <% end %>
 
-    
-		
 		<%= yield %>		
 
   </body>

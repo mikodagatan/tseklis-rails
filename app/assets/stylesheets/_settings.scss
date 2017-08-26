@@ -73,7 +73,7 @@ $foundation-palette: (
   secondary: #767676,
   success: #27c229,
   warning: #ffae00,
-  alert: #ff6961,
+  alert: #f22613,
   white: #FFF,
 );
 $light-gray: #e6e6e6;
@@ -81,9 +81,10 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
-$body-background: $white;
+$smoke-gray: #f7f7f9;
+$body-background: $smoke-gray;
 $body-font-color: $black;
-$body-font-family: 'Open Sans','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Quicksand','Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -130,13 +131,13 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: 'Montserrat';
+$header-font-family: 'Comfortaa','Rubik','Fjalla One','Montserrat';
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-color: inherit;
 $header-lineheight: 1.4;
-$header-margin-bottom: 0.5rem;
+$header-margin-bottom: 0.4rem;
 $header-styles: (
   small: (
     'h1': ('font-size': 24),
@@ -766,10 +767,10 @@ $switch-paddle-transition: all 0.25s ease-out;
 // ---------
 
 $table-background: $white;
-$table-color-scale: 5%;
+$table-color-scale: 2%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
-$table-hover-scale: 2%;
+$table-hover-scale: 1%;
 $table-row-hover: darken($table-background, $table-hover-scale);
 $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
 $table-is-striped: true;
@@ -840,7 +841,7 @@ $tooltip-radius: $global-radius;
 // 55. Top Bar
 // -----------
 
-$topbar-padding: 0.5rem;
+$topbar-padding: 0.3rem;
 $topbar-background: $light-gray;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;

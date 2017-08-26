@@ -7,7 +7,7 @@
 }
 
 .company_card {
-	padding: 1.5rem;
+	padding: 1rem;
 	margin: 0.5rem;
 	border-radius: 1rem;
 	height: auto;
@@ -20,25 +20,17 @@
 
 // Homepage styles
 
-.home-create-company {
-	height: 92%;
-	width: 50vw;
-	background-color: #4B92FC;
+.home-create-company, .home-connect-company {
 	color: white;
+	padding: 1rem;
+}
+
+.home-create-company {
+	background-color: #FF7979;
 }
 
 .home-connect-company {
-	height: 92%;
-	width: 50vw;
-	background-color: #FF3535;
-	color: white;
-}
-
-.home-create-leave-request {
-	height: 92%;
-	width: 50vw;
-	background-color: #FF7C00;
-	color: white;
+	background-color: #FF5050;
 }
 
 
@@ -80,18 +72,42 @@ section.dropdown-pane {
 }
 
 // Buttons
-
+$miko-button-border: 0.3rem;
 .button {
-	.success {
+	&.primary {
 		color: white;
-		border-radius: 0.3rem;	
+		border-radius: $miko-button-border;	
+		&:hover {
+		 	color: white;
+		}
 	}
-	.warning {
+	&.success {
 		color: white;
-		border-radius: 0.3rem;	
+		border-radius: $miko-button-border;
+		 &:hover {
+		 	color: white;
+		}
+	}
+	&.alert {
+		color: white;
+		border-radius: $miko-button-border;	
+		&:hover {
+		 	color: white;
+		}
 	}
 }
 
+// Topbar
+$top-bar-height: 5%;
+.top-bar {
+	height: $top-bar-height;
+}
+
+.logo-round {
+	border-radius: 50%;
+	background-color: #ffae00;
+	padding: 0rem;
+}
 
 
 

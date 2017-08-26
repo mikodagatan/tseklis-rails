@@ -8,7 +8,18 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">
-          <%= link_to "Tseklis", root_path  %></li>
+          <%= link_to root_path do %>
+            <div class="row align-middle collapse">
+              <div class="columns shrink">
+                <div class="logo-round">
+                  <%= fa_icon "check 2x white-text" %>
+                </div>
+              </div>
+              <div class="columns medium-2">
+                lis
+              </div>
+            </div>
+          <% end %></li>
         </ul>
     </div>
     <div class="top-bar-right">
