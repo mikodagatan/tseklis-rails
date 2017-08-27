@@ -16,12 +16,12 @@
 				<div class="columns small-12 medium-12">
 					<div class="row align-middle">
 						<div class="columns medium-3 text-center">
-							<h2 class="h-1"><%= @month_total_leaves %></h2>
+							<h2 class="h-1"><%= current_user.total_leaves(Date.today.all_month, company)  %></h2>
 							<h5>Total</h5>
 						</div>
 						<div class="columns">
 							<div class="row">
-								<% @month_segmented_leaves.each do |p| %>
+								<% current_user.segmented_leaves(Date.today.all_month, company).each do |p| %>
 									<% p.each do |k,v| %>
 										<div class="columns text-center">
 											<h1><%= v %></h1>
