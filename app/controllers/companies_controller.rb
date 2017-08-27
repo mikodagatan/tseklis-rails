@@ -100,26 +100,25 @@ def update
 	  		:company_id
 	  	]
 	  )
+end
+
+	
+def set_up
+	@company = Company.find_by_id(params[:id])
+	@employments = @company.employments
+	@address = @company.address
+	@leave_types = @company.leave_types
+	@leave_requests = @company.leave_requests
+	@company_leave_setting = @company.company_leave_setting
+end
+
+def destroy_leave_type_blank
+	leave_types = @leave_types
+	leave_types.each do |leave_types_array|
+		leave_type = leave_types_array
+		LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
 	end
-
-	def set_up
-		@company = Company.find_by_id(params[:id])
-		@employments = @company.employments
-		@address = @company.address
-		@leave_types = @company.leave_types
-		@leave_requests = @company.leave_requests
-		@company_leave_setting = @company.company_leave_setting
-
-
-	end
-
-	def destroy_leave_type_blank
-		leave_types = @leave_types
-		leave_types.each do |leave_types_array|
-			leave_type = leave_types_array
-			LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
-		end
-	end
+end
 
 end
 

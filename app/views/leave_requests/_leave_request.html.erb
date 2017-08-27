@@ -1,65 +1,67 @@
-<tr>
-	<% unless at_company == false %>
+<% if leave_request.present? %>
+	<tr>
+		<% unless at_company == false %>
+			<td>
+				<%= employment.user.profile.first_name%> <%= employment.user.profile.last_name %> 
+			</td>
+		<% end %>
 		<td>
-			<%= employment.user.profile.first_name%> <%= employment.user.profile.last_name %> 
+			<%= leave_request.title %>
 		</td>
-	<% end %>
-	<td>
-		<%= leave_request.title %>
-	</td>
-	<td>
-		<%= @leave_types.find(leave_request.leave_type_id).name %>
-	</td>
-	<td><%= leave_request.start_date %> <%= leave_request.start_time.strftime("%I:%M%p") %>
-	</td>
-	<td><%= leave_request.end_date %> <%= leave_request.end_time.strftime("%I:%M%p") %>
-	</td>
-	<td>
-		<%= leave_request.acceptance.blank? ? 
-			"Waiting" :	(leave_request.acceptance == true ? 
-			"Accepted" : "Rejected") %>			
-	</td>
-	<td>
-		<%= leave_request.acceptance.present? ?
-			"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" : nil %>
-	</td>
-	<% unless at_company == false %>
-		<% if leave_request.acceptance.nil? %>
-			<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %> 
-				<td>
-					<%= form_for leave_request, url: url, method: method, at_company: at_company do |f| %>
-						<%= f.hidden_field :acceptance, value: true %>
-						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-						<%= f.submit "Accept", class: "button small expanded success"%>
-					<% end %>
-				</td>
-				<td>
-					<%= form_for leave_request, url: url, method: method do |f| %>
-						<%= f.hidden_field :acceptance, value: false %>
-						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-						<%= f.submit "Reject", class: "button small expanded alert small" %>
-					<% end %>
-				</td>
+		<td>
+			<%= LeaveType.find(leave_request.leave_type_id).name %>
+		</td>
+		<td><%= leave_request.start_date %> <%= leave_request.start_time.strftime("%I:%M%p") %>
+		</td>
+		<td><%= leave_request.end_date %> <%= leave_request.end_time.strftime("%I:%M%p") %>
+		</td>
+		<td>
+			<%= leave_request.acceptance.blank? ? 
+				"Waiting" :	(leave_request.acceptance == true ? 
+				"Accepted" : "Rejected") %>			
+		</td>
+		<td>
+			<%= leave_request.acceptance.present? ?
+				"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" : nil %>
+		</td>
+		<% unless at_company == false %>
+			<% if leave_request.acceptance.nil? %>
+				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %> 
+					<td>
+						<%= form_for leave_request, url: url, method: method, at_company: at_company do |f| %>
+							<%= f.hidden_field :acceptance, value: true %>
+							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
+							<%= f.submit "Accept", class: "button small expanded success"%>
+						<% end %>
+					</td>
+					<td>
+						<%= form_for leave_request, url: url, method: method do |f| %>
+							<%= f.hidden_field :acceptance, value: false %>
+							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
+							<%= f.submit "Reject", class: "button small expanded alert small" %>
+						<% end %>
+					</td>
+				<% else %>
+					<td colspan="1"></td>
+					<td colspan="1"></td>
+				<% end %>
 			<% else %>
 				<td colspan="1"></td>
-				<td colspan="1"></td>
+				<td colspan="1"></td>		
 			<% end %>
 		<% else %>
-			<td colspan="1"></td>
-			<td colspan="1"></td>		
+			<td class="edit-column">
+				<% if leave_request.acceptance.nil? %>
+					<% if @current_user.id == 
+						leave_request.employment.user.id %>
+						<%= link_to edit_user_employment_leave_request_url(
+							current_user, employment, leave_request), 
+							class: 'button small secondary no-margin' do  %>
+								<%= fa_icon "edit" %>
+						<% end %>	
+					<% end %>
+				<% end %>	
+			</td>
 		<% end %>
-	<% else %>
-		<td class="edit-column">
-			<% if leave_request.acceptance.nil? %>
-				<% if @current_user.id == 
-					leave_request.employment.user.id %>
-					<%= link_to edit_user_employment_leave_request_url(
-						current_user, employment, leave_request), 
-						class: 'button small secondary no-margin' do  %>
-							<%= fa_icon "edit" %>
-					<% end %>	
-				<% end %>
-			<% end %>	
-		</td>
-	<% end %>
-</tr>
+	</tr>
+<% end %>

@@ -1,25 +1,16 @@
-<div class="row align-middle show-header">
-	<div class="columns small-12 medium-8">
-		<h1 class=""> <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h1>
-		<%= @user.email %><br/>
-	</div>
-	<div class="columns medium-3 small-12 text-right">
-		<div class="space"></div>
-		<%= link_to "Edit Profile", edit_user_registration_path, class: "button primary text-right" %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="column">
-		<% if @user.employed? %>
-			<%= render 'employments_table' %>
-
-		<div class="space2"></div>
-
-			<% if @leave_requests.exists? %>
-				<%= render 'user_leave_requests_table' %>
-			<% end %>
-
-		<% end %>
+<div class="horizontal-max white-bg">
+	<div class="row align-middle show-header">
+		<div class="columns small-12 medium-8">
+			<h1 class=""> <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h1>
+			<%= @user.email %><br/>
+		</div>
+		<div class="columns medium-3 small-12 text-right">
+			<div class="space"></div>
+			<%= link_to "Edit Profile", edit_user_registration_path, class: "button primary text-right" %>
+		</div>
 	</div>
 </div>
+<%= render 'user_leaves_taken' %>
+<div class="space"></div>
+<%= render 'employments_table' %>
+<%= render 'user_leave_requests_table' %>

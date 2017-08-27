@@ -1,55 +1,53 @@
-<div class="row">
-	<div class="columns">
-		<div class="row show-header align-middle">
-			<div class="columns">
-				<h1><%= @company.name %></h1>
-				<% unless @address.first_line.blank? %>
-					<p> 
-						<%= @address.first_line -%>,
-						<%= @address.second_line -%>
-						<%= @address.city_town -%>,
-						<%= @address.province -%>,
-						<%= @address.country -%>
-						<%= @address.zip_code -%>
-					</p>
-				<% end %>
-			</div>
-			<div class="columns medium-3">
-				<div class="text-right">
-					<div class="button warning" data-toggle="company-dropdown"><i class="fa fa-bars fa-2x white-text"></i></div>
-					<section class="dropdown-pane no-padding" id="company-dropdown" data-dropdown data-hover="true" data-hover-pane="true" >
-				    <div class="row horizontal-max no-margin no-padding collapse">
-							<div class="columns small-up-1 medium-up-1">
-								<% unless @current_employment.nil? %>
-									<div class="columns no-padding">
-									<%= link_to "Create a Leave Request",
-												new_user_employment_leave_request_url(@current_user,@current_employment), 
-												class: "button white horizontal-max no-margin text-left" %>
-									</div>
-								<% end %>
-								<% if (@current_employment.is_hr? || @current_employment.is_admin?) %>
-									<div class="columns no-padding">
-										<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white horizontal-max no-margin text-left" %>
-									</div>
-									<div class="columns no-padding">
-										<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white horizontal-max no-margin text-left" %>
-									</div>
-								<% end %>
-							</div>				      
-				    </div>
-					</section>
-				</div>
+<div class="white-bg horizontal-max">
+	<div class="row show-header align-middle">
+		<div class="columns">
+			<h1><%= @company.name %></h1>
+			<% unless @address.first_line.blank? %>
+				<p> 
+					<%= @address.first_line -%>,
+					<%= @address.second_line -%>
+					<%= @address.city_town -%>,
+					<%= @address.province -%>,
+					<%= @address.country -%>
+					<%= @address.zip_code -%>
+				</p>
+			<% end %>
+		</div>
+		<div class="columns medium-3">
+			<div class="text-right">
+				<div class="button warning" data-toggle="company-dropdown"><i class="fa fa-bars fa-2x white-text"></i></div>
+				<section class="dropdown-pane no-padding" id="company-dropdown" data-dropdown data-hover="true" data-hover-pane="true" >
+			    <div class="row horizontal-max no-margin no-padding collapse">
+						<div class="columns small-up-1 medium-up-1">
+							<% unless @current_employment.nil? %>
+								<div class="columns no-padding">
+								<%= link_to "Create a Leave Request",
+											new_user_employment_leave_request_url(@current_user,@current_employment), 
+											class: "button white horizontal-max no-margin text-left" %>
+								</div>
+							<% end %>
+							<% if (@current_employment.is_hr? || @current_employment.is_admin?) %>
+								<div class="columns no-padding">
+									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white horizontal-max no-margin text-left" %>
+								</div>
+								<div class="columns no-padding">
+									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white horizontal-max no-margin text-left" %>
+								</div>
+							<% end %>
+						</div>				      
+			    </div>
+				</section>
 			</div>
 		</div>
-
-		<%= render "monthly_leaves" %>
-
-		<%= render "join_requests_table" %>
-
-		<%= render "users_table" %>
-
-		<%= render "company_leave_requests_table" %>
-
-
 	</div>
 </div>
+	<%= render "monthly_leaves" %>
+	
+	<div class="space"></div>
+	<%= render "join_requests_table" %>
+
+	<%= render "users_table" %>
+
+	<%= render "company_leave_requests_table" %>
+		
+

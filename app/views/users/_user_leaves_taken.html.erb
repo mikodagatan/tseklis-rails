@@ -1,36 +1,39 @@
 <% if current_user.leave_amounts.find_by(date: Date.today.all_month).present? %>
-	<div class="user_show_leave">
-		<div class="row">
+	<div class="show-leave">
+		<div class="row vertical-padding">
 			<div class="columns">
-				<h4>Your Leaves</h4>
+				<h2>Your Leaves</h2>
 			</div>
 		</div>
-		<div class="row align-middle">
-			<div class="columns small-12 medium-12">
-				<div class="row">
-					<div class="columns">
-						<h4>PUT THE COMPANY HERE</h4>
-					</div>
+		<% @user.companies.each do |company| %>
+			<div class="row vertical-padding">
+				<div class="columns">
+					<h4><%= company.name %></h4>
 				</div>
-				<div class="row">
-					<div class="columns medium-3 text-center">
-						<h2 class="h-1"><%= @month_total_leaves %></h2>
-						<h5>Total</h5>
-					</div>
-					<div class="columns">
-						<div class="row ">
-							<% @month_segmented_leaves.each do |p| %>
-								<% p.each do |k,v| %>
-									<div class="columns text-center">
-										<h1><%= v %></h1>
-										<p><%= k %></p>	 
-									</div>
-								<% end %> 
-							<% end %>
+			</div>
+			<div class="space"></div>
+			<div class="row">
+				<div class="columns small-12 medium-12">
+					<div class="row align-middle">
+						<div class="columns medium-3 text-center">
+							<h2 class="h-1"><%= @month_total_leaves %></h2>
+							<h5>Total</h5>
+						</div>
+						<div class="columns">
+							<div class="row">
+								<% @month_segmented_leaves.each do |p| %>
+									<% p.each do |k,v| %>
+										<div class="columns text-center">
+											<h1><%= v %></h1>
+											<p><%= k %></p>	 
+										</div>
+									<% end %> 
+								<% end %>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
 <% end %>
