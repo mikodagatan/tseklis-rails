@@ -1,59 +1,60 @@
-<% if user_signed_in? %>
-  <div class="top-bar" data-topbar>
-<% elsif current_page?(root_path) %>
-  <div class="top-bar sticky" data-topbar data-sticky data-margin-top='0' data-top-anchor="landing:bottom">
-<% else %>
-  <div class="top-bar" data-topbar>
-<% end %>
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text">
-          <%= link_to root_path do %>
-            <div class="row align-middle collapse">
-              <div class="columns shrink">
-                <div class="logo-round">
-                  <%= fa_icon "check 2x white-text" %>
+<!-- <div class="top-bar sticky" data-topbar data-sticky data-margin-top='0' data-top-anchor="landing:bottom"> -->
+<div class="top-bar" data-topbar>
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">
+        <div class="row align-middle">
+          <div class="columns shrink">
+            <%= link_to root_path do %>
+              <div class="row collapse align-middle">
+                <div class="columns">
+                  <div class="logo-round">
+                    <%= fa_icon "check 2x white-text" %>
+                  </div>
+                </div>
+                <div class="columns logo-text">
+                  LIS
                 </div>
               </div>
-              <div class="columns medium-2">
-                lis
-              </div>
-            </div>
-          <% end %></li>
-        </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="dropdown menu">
-        <% if current_user %>
-          <% unless current_user.employments.empty? %>
-            <div data-toggle="companies-dropdown">
-              <li>
-                <%= link_to "Companies", companies_url %> 
-              </li>
-            </div>  
-          <% end %>
-          <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
+            <% end %>
+          </div>
+          <div class="columns">
+            <%= "Efficiently Simple" unless user_signed_in? %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="dropdown menu">
+      <% if current_user %>
+        <% unless current_user.employments.empty? %>
+          <div data-toggle="companies-dropdown">
             <li>
-              <div data-toggle="user-dropdown">
-                <%= link_to user_path(current_user) do %>
-                  <%= fa_icon "user-circle"%>
-                  <%= current_user.profile.first_name %>
-                  <%= current_user.profile.last_name %>
-                <% end %>
-              </div>
+              <%= link_to "Companies", companies_url %> 
             </li>
-          <% end %>
-        <% else %>
+          </div>  
+        <% end %>
+        <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
           <li>
-            <%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %>
-          </li>
-          <li>
-            <%= link_to "Sign In", new_user_session_path, class: 'button primary' %>
+            <div data-toggle="user-dropdown">
+              <%= link_to user_path(current_user) do %>
+                <%= fa_icon "user-circle"%>
+                <%= current_user.profile.first_name %>
+                <%= current_user.profile.last_name %>
+              <% end %>
+            </div>
           </li>
         <% end %>
-      </ul>
-      </div>
-    </div>
+      <% else %>
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path, class: 'button success white-text' %>
+        </li>
+        <li>
+          <%= link_to "Sign In", new_user_session_path %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 

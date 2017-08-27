@@ -148,6 +148,10 @@ select {
 	margin: 0;
 }
 
+.logo-text {
+	margin-left: 0.3rem;
+}
+
 .card-row {
 	margin: 0.5rem;
 	padding: 0.5rem;
@@ -202,4 +206,8 @@ select {
 
 .graymax-bg {
 	background: #eee;
+}
+
+.adopt-height {
+	height: inherit;
 }

@@ -33,6 +33,20 @@
 	background-color: #FF5050;
 }
 
+// Homepage landing styles
+
+div#landing {
+	background: url(https://unsplash.it/1280/720/?image=1067);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.landing {
+	height: 80vh;
+	max-height: 80vh;
+	overflow: hidden;
+}
+
 // Leave styles
 
 .user_show_leave {
@@ -48,6 +62,8 @@
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 }
+
+
 
 
 // Table Customizations
@@ -75,7 +91,7 @@ section.dropdown-pane {
 // Font-sizes
 
 .h-1 {
-	font-size: 7rem;
+	font-size: 5rem;
 }
 
 // Buttons
@@ -115,6 +131,10 @@ $top-bar-height: 5%;
 	background-color: #29a4e9;
 	padding: 0rem;
 }
+
+
+
+// Typography
 
 
 

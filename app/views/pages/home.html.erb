@@ -1,9 +1,7 @@
 <% if user_signed_in? %>
-	
-
-<% if current_user.employed? %>
-	<%= render 'user_home' %>
-<% end %>
+	<% if current_user.employed? %>
+		<%= render 'user_home' %>
+	<% end %>
 <% else %>
 	<%= render 'partials/landing_page' %>
 <% end %>
