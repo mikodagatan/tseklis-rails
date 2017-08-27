@@ -1,0 +1,39 @@
+<% if @company.leave_amounts.present? %>
+	<div class="show-leave">
+		<div class="row vertical-padding">
+			<div class="columns">
+				<% if @company.leave_requests.present? %>
+					<h2><%= Date.today.strftime("%B %Y") %> <small>Company leaves</small></h2>
+					<div class="row align-middle vertical-padding2">
+						<div class="columns small-12 medium-12 text-center">
+							<div class="row align-middle">
+								<div class="columns medium-3 text-center">
+									<h1 class="h-1">
+										<%= @month_total_leaves %>
+									</h1> 
+									<h5>
+										Total
+									</h5>
+								</div>
+								<div class="columns">
+									<div class="row">
+										<% @month_segmented_leaves.each do |p| %>
+											<% p.each do |k,v| %>
+												<div class="columns text-center">
+													<h1><%= v %></h1>
+													<p><%= k %></p>	 
+												</div>
+											<% end %> 
+										<% end %>	
+									</div>
+								</div>
+							</div>
+						<% end %>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+<% end %>
+
+		
