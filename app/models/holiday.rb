@@ -12,7 +12,7 @@ class Holiday < ApplicationRecord
 	attr_accessor :holiday_check
 
 	def holiday_check
-		concurrent = self.company.leave_amounts.find_all_by(date: self.date)
+		concurrent = self.company.leave_amounts.where(date: self.date)
 		if concurrent.nil?
 		else
 			concurrent.update_all(amount: 0)

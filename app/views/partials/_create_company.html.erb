@@ -1,20 +1,18 @@
 <div class="home-create-company">
 	<div class="row align-justify align-middle">
-		<% unless current_user.companies.present? && (current_user.employments.map { |u| u.role_id == @employee.id ? true : false } == true) %>
-				<div class="columns shrink">
-					<h5>
-						<%= link_to "Create a Company", new_company_url, class: "white-text" %>
-					</h5>
-				</div>
-			<div class="columns text-right shrink">
-				<h1>
-					<%= Company.count %>
-				</h1>
-				<p>
-				companies joined
-				</p>
-			</div>
-		<% end %>
+		<div class="columns shrink">
+			<h5>
+				<%= link_to "Create a Company", new_company_url, class: "white-text" %>
+			</h5>
+		</div>
+		<div class="columns text-right shrink">
+			<h1>
+				<%= Company.count %>
+			</h1>
+			<p>
+			companies joined
+			</p>
+		</div>
 	</div>	
 </div>
 
