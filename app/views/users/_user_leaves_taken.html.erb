@@ -1,0 +1,25 @@
+<div class="user_show_leave">
+	<div class="row">
+		<div class="columns">
+			<h4>Your Leaves</h4>
+		</div>
+	</div>
+	<div class="row align-middle">
+		<div class="columns medium-3 text-center">
+			<h2 class="h-1"><%= @month_total_leaves %></h2>
+			<h5>Total</h5>
+		</div>
+		<div class="columns">
+			<div class="row ">
+				<% @month_segmented_leaves.each do |p| %>
+					<% p.each do |k,v| %>
+						<div class="columns text-center">
+							<h1><%= v %></h1>
+							<p><%= k %></p>	 
+						</div>
+					<% end %> 
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -46,8 +46,8 @@ def update
 	def show
 		@sum = 0
 		@leaves = []
-		@leaves = @company.segmented_monthly_leaves
-		@total_leaves = @company.total_monthly_leaves
+		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
+		@month_total_leaves = @company.total_leaves(Date.today.all_month)
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
 	end
 

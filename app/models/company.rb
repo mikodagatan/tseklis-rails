@@ -29,24 +29,23 @@ class Company < ApplicationRecord
 
 	attr_accessor :segmented_monthly_leaves
 
-	def segmented_monthly_leaves
+	def segmented_leaves(date_used)
 		leave = []
 		self.leave_types.each do |p|
 		 	value = self.leave_amounts
-		 		.where(date: Date.today.all_month)
+		 		.where(date: date_used)
 		 		.where(leave_request_id: self.leave_requests.ids)
 		 		.where("leave_requests.acceptance = true")
 		 		.where("leave_requests.leave_type_id = ?", p.id)
 		 		.sum(:amount)
 		 	name = p.name
-			value = value
 			leave << {name => value}
 		end
 		return leave
 	end
 
-	def total_monthly_leaves
-		self.leave_amounts.where(date: Date.today.all_month).sum(:amount)
+	def total_leaves(date_used)
+		self.leave_amounts.where(date: date_used).sum(:amount)
 	end
 
 	def number_of_users	
