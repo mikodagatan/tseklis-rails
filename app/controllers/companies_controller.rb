@@ -44,6 +44,7 @@ def update
 	end
 
 	def show
+		@user = current_user
 		@sum = 0
 		@leaves = []
 		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
@@ -56,7 +57,7 @@ def update
 	def company_params
 	  params.require(:company).permit(
 			:id,
-			:name, 
+			:name,
 	  	employments_attributes: [
 	  		:id,
   			:start_date,
@@ -86,7 +87,6 @@ def update
 	  		:_destroy
 	  	],
 		  company_leave_setting_attributes: [
-		  	:id,
 	  		:company_id,
 	  		:leave_month_expiration,
 	  		:leave_month_start,

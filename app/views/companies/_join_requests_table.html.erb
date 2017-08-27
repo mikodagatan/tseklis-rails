@@ -1,42 +1,41 @@
-<% unless @company.employments.where(:acceptance == nil).present? %>
-	<div class="callout warning">
+<% if @company.employments.find_by(acceptance: nil).present? %>
 	<h4>Join Requests</h4>
-		<div class="space"></div>
+	<div class="space"></div>
 
-		<div class="row" id="join-requests">
-			<div class="column">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Start Date</th>
-							<th>Salary</th>
-							<th>Role</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<!--
-							Below code will look for a partial: views/employments/_employment.html.erb
-						-->
-						<%# render @employments %>
-						
-						<% @company.employments.reverse_order.each do |employment| %>
-							<%= render 'users/user', 
-								employment: employment, 
-								user: employment.user, 
-								join_request: true,
-								url: user_employment_url(
-									employment.user,
-									employment),
-								method: :patch %>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
+	<div class="row" id="join-requests">
+		<div class="column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Start Date</th>
+						<th>Salary</th>
+						<th>Role</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--
+						Below code will look for a partial: views/employments/_employment.html.erb
+					-->
+					<%# render @employments %>
+					
+					<% @company.employments.reverse_order.each do |employment| %>
+						<%= render 'users/user', 
+							employment: employment, 
+							user: employment.user, 
+							join_request: true,
+							in_company: true,
+							url: user_employment_url(
+								employment.user,
+								employment),
+							method: :patch %>
+					<% end %>
+				</tbody>
+			</table>
 		</div>
-	</div> 
+	</div>
 	
 	<div class="space2"></div>
 

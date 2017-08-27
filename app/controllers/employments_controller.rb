@@ -26,7 +26,12 @@ class EmploymentsController < ApplicationController
 	def update
 		if @employment.update_attributes(employment_params)
 	    flash[:success] = "Employment Updated!"
-	    redirect_to user_path( params[:user_id] )
+      if :in_company
+        
+      else
+	      redirect_to user_path( params[:user_id] )
+      end
+
   else
 	  	# flash[:failure] = "Error in Update!"
 	    render action: :edit

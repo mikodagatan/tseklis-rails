@@ -1,35 +1,37 @@
-<h4>Employees</h4>
-<div class="space"></div>
+<% if @company.employments.present? %>	
+	<h4>Employees</h4>
+	<div class="space"></div>
 
-<div class="row" id="users">
-	<div class="column">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>Salary</th>
-					<th>Role</th>
-					<th colspan="1"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!--
-					Below code will look for a partial: views/employments/_employment.html.erb
-				-->
-				<%# render @employments %>
-				
-				<% @company.employments.reverse_order.each do |employment| %>
-					<%= render 'users/user', 
-						employment: employment, 
-						user: employment.user, 
-						join_request: false 
-					%>
-				<% end %>
-			</tbody>
-		</table>
+	<div class="row" id="users">
+		<div class="column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Salary</th>
+						<th>Role</th>
+						<th colspan="1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--
+						Below code will look for a partial: views/employments/_employment.html.erb
+					-->
+					<%# render @employments %>
+					
+					<% @company.employments.reverse_order.each do |employment| %>
+						<%= render 'users/user', 
+							employment: employment, 
+							user: employment.user, 
+							join_request: false 
+						%>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
 
-<div class="space2"></div>
+	<div class="space2"></div>
+<% end %>

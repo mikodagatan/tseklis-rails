@@ -1,27 +1,29 @@
-<h3><%= Date.today.strftime("%B %Y") %></h3>
-<div class="row align-middle">
-	<div class="columns small-6 medium-4 text-center">
-		<div class="m-well callout success">
-			<h1>
-				<%= @month_total_leaves %>
-			</h1> 
-			<h4>
-				Total
-			</h4>
+<% if @company.leave_requests.present? %>
+	<h3><%= Date.today.strftime("%B %Y") %></h3>
+	<div class="row align-middle">
+		<div class="columns small-6 medium-4 text-center">
+			<div class="m-well callout success">
+				<h1>
+					<%= @month_total_leaves %>
+				</h1> 
+				<h4>
+					Total
+				</h4>
+			</div>
 		</div>
-	</div>
-	<div class="columns">
+		<div class="columns">
 		<div class="row">
-			<% @month_segmented_leaves.each do |p| %>
-				<% p.each do |k,v| %>
-					<div class="columns text-center">
-						<h1><%= v %></h1>
-						<p><%= k %></p>	 
-					</div>
-				<% end %> 
-			<% end %>	
+				<% @month_segmented_leaves.each do |p| %>
+					<% p.each do |k,v| %>
+						<div class="columns text-center">
+							<h1><%= v %></h1>
+							<p><%= k %></p>	 
+						</div>
+					<% end %> 
+				<% end %>	
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="space2"></div>
+	<div class="space2"></div>
+<% end %>

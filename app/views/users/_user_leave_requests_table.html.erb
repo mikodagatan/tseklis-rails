@@ -1,41 +1,43 @@
-<div class="row">
-	<div class="columns">
-		<h4>Leave Requests</h4>
-		<div class="space"></div>
+<% if @user.leave_requests.present? %>
+	<div class="row">
+		<div class="columns">
+			<h4>Leave Requests</h4>
+			<div class="space"></div>
 
-		<div class="row" id="leave_requests">
-			<div class="column">
-				<table class="table">
-					<thead>
+			<div class="row" id="leave_requests">
+				<div class="column">
+					<table class="table">
+						<thead>
 						<tr>
-							<th>Title</th>
-							<th>Leave Type</th>
-							<th>Start</th>
-							<th>End</th>
-							<th>Status</th>
-							<th>Reviewer</th>
-							<th colspan="1"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<!--
-							Below code will look for a partial: views/employments/_employment.html.erb
-						-->
-						<%# render @employments %>
-						<% @leave_requests.reverse_order.each do |leave_request| %>
-							<%= render 'leave_requests/leave_request',
-										url: user_employment_leave_request_url(@user, @employment, leave_request),
-										leave_request: leave_request,
-										employment: @employment,
-										at_company: false,
-										method: :patch
-							%>				
-						<% end %>
-					</tbody>
-				</table>
+								<th>Title</th>
+								<th>Leave Type</th>
+								<th>Start</th>
+								<th>End</th>
+								<th>Status</th>
+								<th>Reviewer</th>
+								<th colspan="1"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!--
+								Below code will look for a partial: views/employments/_employment.html.erb
+							-->
+							<%# render @employments %>
+							<% @leave_requests.reverse_order.each do |leave_request| %>
+								<%= render 'leave_requests/leave_request',
+											url: user_employment_leave_request_url(@user, @employment, leave_request),
+											leave_request: leave_request,
+											employment: @employment,
+											at_company: false,
+											method: :patch
+								%>				
+							<% end %>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="space2"></div>
+	<div class="space2"></div>
+<% end %>

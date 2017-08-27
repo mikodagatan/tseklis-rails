@@ -47,14 +47,14 @@
 			<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
 				(@current_employment.role_id == @hr_officer.id) && (employment.acceptance.nil?) %>
 				<td>
-					<%= form_for employment, url: url, method: method do |f| %>
+					<%= form_for employment, url: url, method: method, in_company: true do |f| %>
 						<%= f.hidden_field :acceptance, value: true %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 						<%= f.submit "Accept", class: "button small expanded success"%>
 					<% end %>
 				</td>
 				<td>
-					<%= form_for employment, url: url, method: method do |f| %>
+					<%= form_for employment, url: url, method: method, in_company: true do |f| %>
 						<%= f.hidden_field :acceptance, value: false %>
 						<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 						<%= f.submit "Reject", class: "button small expanded alert" %>
