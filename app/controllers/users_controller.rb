@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         @month_segmented_leaves = current_user.segmented_leaves(Date.today.all_month, @company)
         @month_total_leaves = current_user.total_leaves(Date.today.all_month, @company)
       end
-    
+    a 1
     end
 
     if @leave_requests.present?

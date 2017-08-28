@@ -3,6 +3,7 @@ class Employment < ApplicationRecord
 	belongs_to :user
 
 	has_many :leave_requests
+	has_many :leave_amounts, through: :leave_requests
 
 	attr_accessor :skip_validation
 

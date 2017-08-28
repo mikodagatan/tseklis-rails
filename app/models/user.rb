@@ -33,13 +33,14 @@ class User < ApplicationRecord
 	def segmented_leaves(date_used, company)
 		leave = []
 		self.leave_types.each do |p|
-		 	value = company.leave_amounts
+		 	value = self.employments
+		 		.where(company_id: company)
+		 		.last
+		 		.leave_amounts
 		 		.where(date: date_used)
 		 		.where(leave_request_id: self.leave_requests.ids)
 		 		.where("leave_requests.acceptance = true")
 		 		.where("leave_requests.leave_type_id = ?", p.id)
-		 		.where("employments.company_id = ?", company.id)
-		 		.where("employments.user_id = ?",  self.id)
 		 		.sum(:amount)
 		 	name = p.name
 			leave << {name => value}
