@@ -7,6 +7,7 @@ class CreateCompanyLeaveSettings < ActiveRecord::Migration[5.1]
     		t.integer			:leave_month_start
 
     		t.boolean			:prorate_accrual
+        t.boolean     :include_weekends, default: true
 
     		t.timestamps
     end
