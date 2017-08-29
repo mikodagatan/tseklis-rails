@@ -2,7 +2,10 @@
 	<tr>
 		<% unless at_company == false %>
 			<td>
-				<%= employment.user.profile.first_name%> <%= employment.user.profile.last_name %> 
+				<%= link_to user_url(employment.user) do %>
+					<%= employment.user.profile.first_name%>
+					<%= employment.user.profile.last_name %>
+				<% end %>
 			</td>
 		<% end %>
 		<td>
@@ -16,9 +19,9 @@
 		<td><%= leave_request.end_date %> <%= leave_request.end_time.strftime("%I:%M%p") %>
 		</td>
 		<td>
-			<%= leave_request.acceptance.blank? ? 
-				"Waiting" :	(leave_request.acceptance == true ? 
-				"Accepted" : "Rejected") %>			
+			<%= leave_request.acceptance.blank? ?
+				"Waiting" :	(leave_request.acceptance == true ?
+				"Accepted" : "Rejected") %>
 		</td>
 		<td>
 			<%= leave_request.acceptance.present? ?
@@ -26,7 +29,7 @@
 		</td>
 		<% unless at_company == false %>
 			<% if leave_request.acceptance.nil? %>
-				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %> 
+				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %>
 					<td>
 						<%= form_for leave_request, url: url, method: method, at_company: at_company do |f| %>
 							<%= f.hidden_field :acceptance, value: true %>
@@ -47,20 +50,20 @@
 				<% end %>
 			<% else %>
 				<td colspan="1"></td>
-				<td colspan="1"></td>		
+				<td colspan="1"></td>
 			<% end %>
 		<% else %>
 			<td class="edit-column">
 				<% if leave_request.acceptance.nil? %>
-					<% if @current_user.id == 
+					<% if @current_user.id ==
 						leave_request.employment.user.id %>
 						<%= link_to edit_user_employment_leave_request_url(
-							current_user, employment, leave_request), 
+							current_user, employment, leave_request),
 							class: 'button small secondary no-margin' do  %>
 								<%= fa_icon "edit" %>
-						<% end %>	
+						<% end %>
 					<% end %>
-				<% end %>	
+				<% end %>
 			</td>
 		<% end %>
 	</tr>

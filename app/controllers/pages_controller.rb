@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 	before_action :set_up
-  
+
   def home
   	if user_signed_in?
 	  	if current_user.leave_amounts.present?
@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 				@month_segmented_leaves = current_user.segmented_leaves(Date.today.all_month, @company)
 				@month_total_leaves = current_user.total_leaves(Date.today.all_month, @company)
 			end
+			@connections = Employment.select('DISTINCT (user_id, company_id)').count
 		end
   end
 
@@ -27,5 +28,3 @@ def set_up
 		@employments = @user.employments
 	end
 end
-
-

@@ -18,8 +18,10 @@ class UsersController < ApplicationController
         # to change for multiple companies
         @company = @current_user.employments.last.company
         @leaves = []
-        @month_segmented_leaves = current_user.segmented_leaves(Date.today.all_month, @company)
-        @month_total_leaves = current_user.total_leaves(Date.today.all_month, @company)
+        @month_segmented_leaves = @user.segmented_leaves(Date.today.all_month, @company)
+        @month_total_leaves = @user.total_leaves(Date.today.all_month, @company)
+        @available_leaves = @user.available_leaves(@company)
+
       end
     end
 
@@ -42,4 +44,7 @@ class UsersController < ApplicationController
     @employments = @user.employments
     @leave_requests = @user.leave_requests
   end
+
+
+
 end

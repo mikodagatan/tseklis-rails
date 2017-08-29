@@ -51,8 +51,46 @@ class User < ApplicationRecord
 		return leave
 	end
 
-	def total_leaves(date_used, company)
-		self.leave_amounts.where(date: date_used).where("employments.company_id = ?", company.id).sum(:amount)
-	end
+  def total_leaves(date_used, company)
+    self.leave_amounts.where(date: date_used).where("employments.company_id = ?", company.id).sum(:amount)
+  end
+
+  attr_accessor :available_leaves
+  def available_leaves(company)
+    leave = []
+    leave_settings = company.company_leave_setting
+    start = leave_settings.leave_month_start
+    leave_start = self.employments
+      .where(company_id: company.id)
+      .first
+      .start_date
+      + start.month
+    company.leave_types.each do |leave_type|
+      if Date.today > leave_start
+        value = 0
+        with_accrual = ((Date.today - leave_start) / 12).to_i.round(2)
+        # add without_accrual
+        if leave_settings.prorate_accrual == true
+          value = with_accrual
+        else
+          # Change to without_accrual
+          value = with_accrual
+        end
+        value = 0
+      end
+      name = leave_type.name
+      leave << {name => value}
+    end
+    return leave
+  end
+
+  def total_available_leaves(company)
+    value = 0
+    self.available_leaves(company).each do |k, v|
+      value += v
+    end
+    return value
+  end
+
 
 end

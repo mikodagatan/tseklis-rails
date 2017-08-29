@@ -3,10 +3,10 @@
 		<div class="columns shrink">
 			<h5>
 				<%= link_to "Connect to a Company", new_user_employment_url(current_user), class: "white-text" %>
-			</h5>	
+			</h5>
 		</div>
 		<div class="columns text-right shrink">
-			<h1><%= Employment.count %></h1> employee connections
+			<h1><%= @connections %></h1> employee connections
 		</div>
 	</div>
 </div>
