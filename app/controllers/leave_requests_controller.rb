@@ -3,7 +3,7 @@ class LeaveRequestsController < ApplicationController
 
   def index
   end
-  
+
 	def new
 		@leave_request = @employment.leave_requests.build
 	end
@@ -26,7 +26,7 @@ class LeaveRequestsController < ApplicationController
 		if @leave_request.update_attributes(leave_request_params)
 	    flash[:success] = "Employment Updated!"
 	    if :at_company
-	    	redirect_to company_path(@employment.company)
+	    	redirect_to company_url(@company.id)
 	    else
 	    	redirect_to user_path( params[:user_id] )
 	    end

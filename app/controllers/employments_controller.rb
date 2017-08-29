@@ -12,7 +12,7 @@ class EmploymentsController < ApplicationController
     @user = User.find(params[:user_id])
   	@employment = @user.employments.build(employment_params)
   	if @employment.save
-	    flash[:success] = "Employment Updated!"
+	    flash[:success] = "Employment Created!"
 	    redirect_to user_path( params[:user_id] )
 	  else
 	  	# flash[:failure] = "Error in Update!"
@@ -27,12 +27,11 @@ class EmploymentsController < ApplicationController
 		if @employment.update_attributes(employment_params)
 	    flash[:success] = "Employment Updated!"
       if :in_company
-        redirect_to company_url( params[:id] )
+        redirect_to company_url( @employment.company.id )
       else
 	      redirect_to user_path( params[:user_id] )
       end
-
-  else
+  	else
 	  	# flash[:failure] = "Error in Update!"
 	    render action: :edit
 	  end
