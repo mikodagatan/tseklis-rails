@@ -84,13 +84,5 @@ class User < ApplicationRecord
     return leave
   end
 
-  def total_available_leaves(company)
-    value = 0
-    self.available_leaves(company).each do |k, v|
-      value += v
-    end
-    return value
-  end
-
 
 end
