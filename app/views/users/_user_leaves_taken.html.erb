@@ -5,7 +5,7 @@
 				<h2><%= Date.today.strftime("%B %Y")%> <small>User leaves</small></h2>
 			</div>
 		</div>
-		<% @user.companies.each do |company| %>
+		<% @user.companies.distinct.each do |company| %>
 			<div class="row vertical-padding2">
 				<div class="columns">
 					<h4><%= company.name %></h4>
