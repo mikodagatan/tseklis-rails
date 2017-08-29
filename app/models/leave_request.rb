@@ -19,7 +19,7 @@ class LeaveRequest < ApplicationRecord
 		if self.acceptance.present?
 			weekends_included = self.employment.company.company_leave_setting.include_weekends
 			holidays = self.employment.company.holidays
-			leave_request = Array.wrap(self) 
+			leave_request = Array.wrap(self)
 			leave_request.each do |leave|
 				start_date = leave.start_date
 				end_date = leave.end_date
@@ -38,7 +38,7 @@ class LeaveRequest < ApplicationRecord
 						att.date = focus_date
 						att.leave_request_id = leave.id
 						# To see if it's better to add holiday logic after save
-						if (focus_date == end_date) && (start_date == end_date) 
+						if (focus_date == end_date) && (start_date == end_date)
 							if (end_time - start_time < 1.hours)
 								att.amount = 0
 							elsif (end_time - start_time < 2.hours)

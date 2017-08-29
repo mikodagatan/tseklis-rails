@@ -1,4 +1,4 @@
-<% if @company.leave_amounts.present? %>
+<% if @company.leave_requests.where(acceptance: true).present? %>
 	<div class="show-leave">
 		<div class="row vertical-padding">
 			<div class="columns">
@@ -10,7 +10,7 @@
 								<div class="columns medium-3 text-center">
 									<h1 class="h-1">
 										<%= @month_total_leaves %>
-									</h1> 
+									</h1>
 									<h5>
 										Total
 									</h5>
@@ -21,19 +21,17 @@
 											<% p.each do |k,v| %>
 												<div class="columns text-center">
 													<h1><%= v %></h1>
-													<p><%= k %></p>	 
+													<p><%= k %></p>
 												</div>
-											<% end %> 
-										<% end %>	
+											<% end %>
+										<% end %>
 									</div>
 								</div>
 							</div>
 						<% end %>
 					</div>
-				</div>		
+				</div>
 			</div>
 		</div>
 	</div>
 <% end %>
-
-		

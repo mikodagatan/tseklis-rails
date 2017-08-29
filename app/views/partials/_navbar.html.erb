@@ -31,9 +31,9 @@
         <% unless current_user.employments.empty? %>
           <div data-toggle="companies-dropdown">
             <li>
-              <%= link_to "Companies", companies_url %> 
+              <%= link_to "Companies", companies_url %>
             </li>
-          </div>  
+          </div>
         <% end %>
         <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
           <li>
@@ -62,7 +62,7 @@
   <div class=" row horizontal-max no-padding collapse">
     <% if user_signed_in? %>
       <% if @current_user.employed? %>
-        <% @current_user.employments.each do |u| %>
+        <% @current_user.employments.select(:company_id).distinct.each do |u| %>
           <%= link_to u.company.name, company_url(u.company),
             class: "button white horizontal-max no-margin text-left"
           %>
@@ -74,6 +74,6 @@
 
 <section class="dropdown-pane no-padding" id="user-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
   <div class=" row horizontal-max no-padding collapse">
-    <%= link_to "Sign Out", destroy_user_session_path, class: 'button warning horizontal-max no-margin text-left' %> 
+    <%= link_to "Sign Out", destroy_user_session_path, class: 'button warning horizontal-max no-margin text-left' %>
   </div>
 </section>

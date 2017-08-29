@@ -12,16 +12,14 @@ class Company < ApplicationRecord
 	has_one  :company_leave_setting
 	has_many :leave_types, dependent: :destroy
 
-	accepts_nested_attributes_for :employments, 
-		:address, 
+	accepts_nested_attributes_for :employments,
+		:address,
 		:leave_types,
-		:company_leave_setting, 
+		:company_leave_setting,
 		:holidays,
 		allow_destroy: true
 
 	validates :name, presence: true, uniqueness: true
-
-
 
 	attr_accessor :segmented_monthly_leaves
 
@@ -44,12 +42,12 @@ class Company < ApplicationRecord
 		self.leave_amounts.where(date: date_used).sum(:amount)
 	end
 
-	def number_of_users	
+	def number_of_users
 		self.users.size
 	end
 	# attr_accessor :enter_leaves_taken
 	# def enter_leaves_taken
-		
+
 	# 	leave = []
 
 	# 	self.leave_types.each do |p|
@@ -57,14 +55,14 @@ class Company < ApplicationRecord
 	# 		leave_requests = p.company.leave_requests
 	# 			.where(leave_type_id: p.id)
 	# 			.where(acceptance: true)
-				
+
 	# 			leave_requests.each do |leave_request|
 	# 				start_d = leave_request.start_date
 	# 				end_d = leave_request.end_date
 	# 				start_t = leave_request.start_time
 	# 				end_t = leave_request.end_time
 	# 				month_holidays = leave_request.company.holidays.where(:date.month == start_d.month)
-					
+
 	# 				if start_d.month < end_d.month || start_d.year < end_d.year
 	# 					begin
 	# 						if start_d.on_weekend?
@@ -77,15 +75,15 @@ class Company < ApplicationRecord
 	# 							end
 	# 						else
 	# 							day_add += 1
-	# 						end  
+	# 						end
 	# 						start_d = start_d.advance(days: 1)
-	# 					end until (end_d == start_d) || 
+	# 					end until (end_d == start_d) ||
 
 	# 				end
 
 	# 			end
-	# 		value = day_add 
 	# 		name = p.name
+	# 		value = day_add
 	# 		leave << {name => value}
 	# 	end
 	# 	return leave
@@ -104,7 +102,7 @@ class Company < ApplicationRecord
 	# 	 		.where(acceptance: true)
 	# 	 		.where(
 	# 	 			"(extract(year from leave_requests.start_date) = ? or extract(year from leave_requests.end_date) = ?)
-	# 	 			and (extract(day from leave_requests.start_date) NOT extract(day from leave_requests.end_date))", 
+	# 	 			and (extract(day from leave_requests.start_date) NOT extract(day from leave_requests.end_date))",
 	# 	 			Date.today.year, Date.today.year).count
 	# 	 		# monthly iteration
 	# 	 		month_values = year_values.where(
@@ -117,7 +115,7 @@ class Company < ApplicationRecord
 	# 				elsif start_date.month < this_month
 	# 					start_date = end_date.start_of_month
 	# 				end
-	# 				end_date.day- 
+	# 				end_date.day-
 	# 	 		end
 	# 	 	name = leave_type.name
 	# 		value = year_values
@@ -131,13 +129,13 @@ class Company < ApplicationRecord
 	# def self.monthly_total
 	# 	minus = 0
 	# 	add = 0
-		
+
 	# 	this_month = Date.today.month
 	# 	month_leaves_by_start = self.leave_requests.where("extract(month from leave_requests.start_date) = ?", this_month)
 	# 	month_leaves_by_end = self.leave_requests.where("extract(month from leave_requests.end_date) = ?", this_month )
 
 	# 	total_add = (month_leaves_by_start.monthly_add + month_leaves_by_end.monthly_add)
-	# 	total_minus = (month_leaves_by_start.monthly_minus 
+	# 	total_minus = (month_leaves_by_start.monthly_minus
 	# 		+ month_leaves_by_end.monthly_minus)
 
 	# 	total_monthly = total_add - total_minus
@@ -160,7 +158,7 @@ class Company < ApplicationRecord
 	# 			elsif start_date.month < this_month
 	# 				start_date = end_date.start_of_month
 	# 			end
-	# 			if (start_date <= t && t <= end_date) || u.on_weekend? 
+	# 			if (start_date <= t && t <= end_date) || u.on_weekend?
 	# 				minus += 1
 	# 			end
 

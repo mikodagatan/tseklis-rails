@@ -1,4 +1,4 @@
-class CreateLeaves < ActiveRecord::Migration[5.1]
+class CreateLeaveAmounts < ActiveRecord::Migration[5.1]
   def change
     create_table :leave_amounts do |t|
     	t.date		:date

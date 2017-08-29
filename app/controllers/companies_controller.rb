@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit
-		1.times do 
+		1.times do
 			leave_type = @leave_types.build
 		end
 			holiday = Company.find(params[:id]).holidays.build
@@ -50,7 +50,7 @@ def update
 		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
 		@month_total_leaves = @company.total_leaves(Date.today.all_month)
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
-	end
+ 	end
 
 	private
 
@@ -65,7 +65,7 @@ def update
   			:salary,
   			:acceptance,
   			:acceptor_id,
-  			:user_id, 
+  			:user_id,
   			:company_id,
   			:role_id
   		],
@@ -102,7 +102,7 @@ def update
 	  )
 end
 
-	
+
 def set_up
 	@company = Company.find_by_id(params[:id])
 	@employments = @company.employments
@@ -121,4 +121,3 @@ def destroy_leave_type_blank
 end
 
 end
-

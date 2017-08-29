@@ -27,7 +27,7 @@ class EmploymentsController < ApplicationController
 		if @employment.update_attributes(employment_params)
 	    flash[:success] = "Employment Updated!"
       if :in_company
-        
+        redirect_to company_url( params[:id] )
       else
 	      redirect_to user_path( params[:user_id] )
       end
@@ -56,13 +56,13 @@ class EmploymentsController < ApplicationController
   def employment_params
   	params.require(:employment).permit(
             :id,
-            :start_date, 
-            :end_date, 
+            :start_date,
+            :end_date,
             :salary,
             :acceptance,
-            :acceptor_id, 
-            :company_id, 
-            :user_id, 
+            :acceptor_id,
+            :company_id,
+            :user_id,
             :role_id)
   end
 

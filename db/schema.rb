@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825044858) do
+ActiveRecord::Schema.define(version: 20170825032315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20170825044858) do
     t.integer "leave_month_expiration"
     t.integer "leave_month_start"
     t.boolean "prorate_accrual"
+    t.boolean "include_weekends", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "include_weekends", default: true
   end
 
   create_table "employments", force: :cascade do |t|
@@ -79,22 +79,14 @@ ActiveRecord::Schema.define(version: 20170825044858) do
     t.string "title"
     t.text "description"
     t.date "start_date"
-    t.datetime "start_time"
+    t.time "start_time"
     t.date "end_date"
-    t.datetime "end_time"
-    t.decimal "leaves_taken"
+    t.time "end_time"
     t.boolean "acceptance"
     t.integer "acceptor_id"
+    t.boolean "reviewed"
     t.integer "leave_type_id"
     t.integer "employment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "leave_reviews", force: :cascade do |t|
-    t.integer "leave_request_id"
-    t.boolean "leave_allow"
-    t.integer "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,12 +106,6 @@ ActiveRecord::Schema.define(version: 20170825044858) do
     t.string "contact_email"
     t.boolean "inactive", default: false
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "role_users", force: :cascade do |t|
-    t.string "role_user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
