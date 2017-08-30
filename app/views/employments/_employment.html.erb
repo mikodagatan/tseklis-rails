@@ -1,11 +1,12 @@
+<% @current_employment = @current_employments.find_by(company_id: employment.company_id) %>
 <tr>
 	<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
 	<td><%= employment.start_date %></td>
 		<td><%= employment.end_date %></td>
 
 	<td>
-		<% if @current_employment.present? %>
-			<% if ((@current_employment.role_id == @hr_officer.id) && (@current_company.id.to_i == @current_employment.company.id.to_i)) || (@user.id.to_i == @current_user.id.to_i) %>
+		<% if @user.employments.find_by(company_id: employment.company_id).present? %>
+			<% if @current_employment.is_hr? || (@user == @current_user) %>
 				<%= number_with_delimiter(employment.salary) %>
 			<% end %>
 		<% end %>
@@ -17,8 +18,8 @@
 			<%= Role.find(employment.role_id).name %>
 	</td>
 	<td class="edit-column">
-		<% if @current_employment.acceptance.nil? %>
-			<% if ((@current_employment.is_hr?) && @current_employment.present?) || (@current_user = @user) %>
+		<% if employment.acceptance.nil? %>
+			<% if @current_employment.is_hr? && @current_employment.present?) || (@current_user = @user) %>
 				<%= link_to 'edit', url: edit_user_employment_url(employment.user_id, employment), class: "button small secondary" do  %>
 					<%= fa_icon "edit" %>
 				<% end %>

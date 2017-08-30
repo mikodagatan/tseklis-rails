@@ -66,15 +66,19 @@ class User < ApplicationRecord
       .start_date
       + start.month
     company.leave_types.each do |leave_type|
+      leave_amounts = company.leave_amounts
+        .where("leave_requests.leave_type_id = ?", leave_type.id)
+        .where("employments.user_id = ?", self.id)
+        .sum(:amount)
       if Date.today > leave_start
         value = 0
         with_accrual = ((Date.today - leave_start) / 12).to_i.round(2)
         # add without_accrual
         if leave_settings.prorate_accrual == true
-          value = with_accrual
+          value = with_accrual - leave_amounts
         else
           # Change to without_accrual
-          value = with_accrual
+          value = with_accrual - leave_amounts
         end
         value = 0
       end

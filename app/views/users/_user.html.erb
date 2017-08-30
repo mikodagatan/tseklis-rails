@@ -1,5 +1,6 @@
 <% unless join_request == true %>
-	<% if employment.acceptance.present? %> 
+	<% if employment.acceptance.present? %>
+		<% @current_employment =  @current_employments.find_by(company_id: employment.company_id) %>
 		<tr>
 			<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
 			<td><%= employment.start_date %></td>
@@ -13,12 +14,12 @@
 					<% end %>
 				<% else %>
 					-
-				<% end %>			
+				<% end %>
 			</td>
 			<td><%= Role.find(employment.role_id).name %></td>
 			<td class="edit-column">
-				<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
-					(@current_employment.role_id == @hr_officer.id) && @current_employment.acceptance.nil?  %>
+				<% if @current_employment.present? &&
+					@current_employment.is_hr? %>
 					<%= link_to edit_user_employment_url(user, employment), class: "button small secondary" do %>
 						<%= fa_icon "edit" %>
 					<% end %>
@@ -41,10 +42,10 @@
 					<% end %>
 				<% else %>
 					-
-				<% end %>			
+				<% end %>
 			</td>
 			<td><%= Role.find(employment.role_id).name %></td>
-			<% if (@current_employments.find_by(company_id: params[:id]).present?) && 
+			<% if (@current_employments.find_by(company_id: params[:id]).present?) &&
 				(@current_employment.role_id == @hr_officer.id) && (employment.acceptance.nil?) %>
 				<td>
 					<%= form_for employment, url: url, method: method, in_company: true do |f| %>

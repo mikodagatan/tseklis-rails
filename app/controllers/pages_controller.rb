@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 		  	@leaves = []
 				@month_segmented_leaves = current_user.segmented_leaves(Date.today.all_month, @company)
 				@month_total_leaves = current_user.total_leaves(Date.today.all_month, @company)
+				@available_leaves = @user.available_leaves(@company)
 			end
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
 		end

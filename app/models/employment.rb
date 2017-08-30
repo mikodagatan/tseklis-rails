@@ -41,4 +41,7 @@ class Employment < ApplicationRecord
 		end
 	end
 
+	def current_employment(user_given, company_given)
+		Employment.find_by(user_id: user_given.id, company_id: company_given.id)
+	end
 end
