@@ -3,7 +3,7 @@
 		<div class="columns">
 			<h1><%= @company.name %></h1>
 			<% unless @address.first_line.blank? %>
-				<p> 
+				<p>
 					<%= @address.first_line -%>,
 					<%= @address.second_line -%>
 					<%= @address.city_town -%>,
@@ -22,7 +22,7 @@
 							<% unless @current_employment.nil? %>
 								<div class="columns no-padding">
 								<%= link_to "Create a Leave Request",
-											new_user_employment_leave_request_url(@current_user,@current_employment), 
+											new_user_employment_leave_request_url(@current_user,@current_employment),
 											class: "button white horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
@@ -34,20 +34,20 @@
 									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
-						</div>				      
+						</div>
 			    </div>
 				</section>
 			</div>
 		</div>
 	</div>
 </div>
+
+<% if @current_user.employments.find_by(company_id: @company.id).acceptance == true %>
 	<%= render "company_leaves_taken" %>
-	
 	<div class="space"></div>
 	<%= render "join_requests_table" %>
-
 	<%= render "users_table" %>
-
 	<%= render "company_leave_requests_table" %>
-		
-
+<% else %>
+	<%= render "not_yet_accepted" %>
+<% end %>

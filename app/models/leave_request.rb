@@ -65,12 +65,13 @@ class LeaveRequest < ApplicationRecord
 		amount.sum
 	end
 
-	def check_leaves_available(leave_type)
-		avaialable = available_leaves(leave_type)
+	def check_leaves_available
+		user = self.employment.user
+		company = self.employment.company
+		leave_type = LeaveType.find(self.leave_type_id)
+		available = user.available_leaves(company, leave_type)
 		if enter_amounts > available[:amount]
 			errors.add(:start_date, "You have #{available[:amount]} available leaves but consuming  #{enter_amounts} leaves for #{available[:name]}")
-		else
-			errors.add(:start_date, enter_amounts)
 		end
 	end
 

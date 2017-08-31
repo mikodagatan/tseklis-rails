@@ -15,10 +15,10 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
 
 	def employed?(company=nil)
-		if company == nil
+		if company.nil?
 			employments.present?
 		else
-			companies.include?(company)
+			employments.find_by(company_id: company.id).acceptance == true
 		end
 	end
 

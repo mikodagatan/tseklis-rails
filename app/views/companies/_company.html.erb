@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="columns">
 				<div class="space"></div>
-			<h3><%= link_to company.name, company_url(company) %></h3>
+			<h3><%= company.name %></h3>
 			<div  class="small-font-size">
 				<%= company.address.first_line %>,
 				<%= company.address.second_line %>
@@ -12,7 +12,7 @@
 				<%= company.address.country %>
 				<%= company.address.zip_code %>
 			</div>
-		<div class="space"></div>		
+		<div class="space"></div>
 			</div>
 		</div>
 		<div class="space"></div>

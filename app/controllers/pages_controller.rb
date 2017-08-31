@@ -3,14 +3,7 @@ class PagesController < ApplicationController
 
   def home
   	if user_signed_in?
-	  	if current_user.leave_amounts.present?
-	  		# to change for multiple companies
-	  		@company = @current_user.employments.last.company
-		  	@leaves = []
-				@month_segmented_leaves = current_user.segmented_leaves(Date.today.all_month, @company)
-				@month_total_leaves = current_user.total_leaves(Date.today.all_month, @company)
-				@all_available_leaves = @user.available_leaves(@company)
-			end
+			@companies = @current_user.companies.distinct if @current_user.companies.present?
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
 		end
   end

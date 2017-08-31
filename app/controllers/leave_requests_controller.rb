@@ -6,9 +6,6 @@ class LeaveRequestsController < ApplicationController
 
 	def new
 		@leave_request = @employment.leave_requests.build
-    @month_segmented_leaves = @user.segmented_leaves(Date.today.all_month, @company)
-    @month_total_leaves = @user.total_leaves(Date.today.all_month, @company)
-    @all_available_leaves = @user.all_available_leaves(@company)
 	end
 
 	def create
@@ -49,6 +46,7 @@ class LeaveRequestsController < ApplicationController
 	  	@employments = @user.employments
 			@employment = @user.employments.find(params[:employment_id])
 			@company = @employment.company
+      @companies = @user.companies
 	  	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
 	  	@leave_types = @company.leave_types
 		end
