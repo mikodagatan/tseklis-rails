@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 			@companies = @current_user.companies.distinct if @current_user.companies.present?
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
 		end
-  end
+  	end
 
   def about
   end

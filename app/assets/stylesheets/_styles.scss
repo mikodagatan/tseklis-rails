@@ -89,6 +89,16 @@ section.dropdown-pane {
 	height: 20rem;
 }
 
+// Footer
+.footer {
+	height: 10rem;
+	max-height: 10rem;
+	width: 100%;
+	background: #191925;
+	color: #FFF;
+	padding: 2rem;
+}
+
 // Font-sizes
 
 .h-1 {
@@ -100,7 +110,7 @@ $miko-button-border: 0.3rem;
 .button {
 	&.primary {
 		color: white;
-		border-radius: $miko-button-border;	
+		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;
 		}
@@ -114,7 +124,7 @@ $miko-button-border: 0.3rem;
 	}
 	&.alert {
 		color: white;
-		border-radius: $miko-button-border;	
+		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;
 		}
@@ -136,6 +146,3 @@ $top-bar-height: 5%;
 
 
 // Typography
-
-
-
