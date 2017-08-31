@@ -67,10 +67,6 @@ class User < ApplicationRecord
   def available_leaves(company, leave_type)
     leave = {}
     leave_settings = company.company_leave_setting
-    leave_amounts = company.leave_amounts
-      .where("leave_requests.leave_type_id = ?", leave_type.id)
-      .where("employments.user_id = ?", self.id)
-      .sum(:amount)
     start = leave_settings.leave_month_start
     leave_start = self.employments
       .where(company_id: company.id)
@@ -80,31 +76,77 @@ class User < ApplicationRecord
     if Date.today > leave_start
       value = 0
     else
-      # add without_accrual
-      if leave_settings.prorate_accrual == true
-        value = prorate_accrual_calc(company) - leave_amounts
-      else
-        # Change to without_accrual
-        value = prorate_accrual_calc(company) - leave_amounts
-      end
+      value = leave_add_calculation(company)
     end
-    value = prorate_accrual_calc(company)
+    value = leave_add_calculation(company)
     leave[:name] = leave_type.name
     leave[:amount] = value
     return leave
   end
 
-  def prorate_accrual_calc(company)
+  def leave_type_amounts(company, leave_type)
+    company.leave_amounts
+      .where("leave_requests.leave_type_id = ?", leave_type.id)
+      .where("employments.user_id = ?", self.id)
+      .sum(:amount)
+  end
+
+  def prorate_accrual_calc(company, leave_type)
     leave_settings = company.company_leave_setting
     start = leave_settings.leave_month_start
-    leave_expire = company.company_leave_setting.leave_month_expiration
     leave_start = self.employments
       .where(company_id: company.id)
       .first
       .start_date
       + start.months
-    ((Date.today - leave_start) / 12).to_i.round(2) - leave_expire
+    available = ((Date.today - leave_start) / 12 * assigned_leave_type_amount(company, leave_type)).to_d(2)
+    # Change max_available to a company_leve_setting attribute
+    max_available = 30
+    available = max_available if available > max_available
   end
 
+  def non_prorate_accrual_calc(company)
+    # change this
+    10
+  end
 
+  def leave_add_calculation(company)
+    if company.company_leave_setting.prorate_accrual == true
+      prorate_accrual_calc(company)
+    else
+      # TO CHANGE THIS
+      prorate_accrual_calc(company)
+    end
+  end
+
+  def leave_expire(company, leave_type)
+    leave_settings = company.company_leave_setting
+    expiration = leave_settings.leave_month_expiration
+    start = leave_settings.leave_month_start
+    leave_start = self.employments
+      .where(company_id: company.id)
+      .first
+      .start_date
+      + start.months
+    expiration_start = leave_start + expiration.months
+    duration = Date.today - leave_start
+    to_expire = 0
+    if duration > 0
+      added_expiration = ((Date.today - expiration_start / 12) * assigned_leave_type_amount).to_d(2)
+      added_expiration.times each do |expiration|
+        if leave_add_calculation(company) - leave_type_amounts(copmany, leave_type) - to_expire > expiration
+        end
+      end
+    else
+      expired = 0
+    end
+    return to_expire
+  end
+
+  def assigned_leave_type_amount(company, leave_type)
+    company.leave_types.find(leave_type.id)
+      .where("leave_requests.leave_type_id = ?", leave_type.id)
+      .where("employments.user_id = ?", self.id)
+      .amount
+  end
 end
