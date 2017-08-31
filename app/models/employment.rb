@@ -12,7 +12,7 @@ class Employment < ApplicationRecord
 				:role_id,
 				presence: true
 
-	validates :salary, presence: true,numericality: {greater_than: 0 }
+	validates :salary, presence: true, numericality: {greater_than: 0 }
 
 	after_commit :new_employment_same_company, on: :update
 	after_commit :hr_before, on: :create
