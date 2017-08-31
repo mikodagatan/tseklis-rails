@@ -1,23 +1,22 @@
 
 <%= form_for @company, method: :post do |f| %>
 
-
-
-<div class="row text-center align-middle form-header">
-
-  <div class="columns">
-    <h2>Create a Company</h2> <br />
-    <p class="small-font-size">In creating a company. You'll be assigned as an HR officer in the website.</p>
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
+    <div class="columns">
+      <h2>Create a Company</h2> <br />
+      <p>In creating a company. You'll be assigned as an HR officer in the website.</p>
+    </div>
   </div>
-
 </div>
+
 
   <%= show_error_message(@company) %>
 
   <div class="row">
     <div class="small-12 medium-offset-3 medium-6">
       <div class="m-well align-middle">
-        
+
 
           <div class="field">
             <%= f.label :name, "Company Name" %>
@@ -41,7 +40,7 @@
             <%= employment.hidden_field :role_id, value: @hr_officer.id %>
 
             <%= employment.hidden_field :acceptance, value: true %>
-          
+
           <% end %>
 
           <%= f.fields_for :address, @address do |address| %>
@@ -93,4 +92,3 @@
   </div>
 
 <% end %>
-

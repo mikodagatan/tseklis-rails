@@ -1,15 +1,17 @@
-<div class="row text-center align-middle form-header">
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
 
-  <div class="columns">
-    <h4><%= @user.profile.first_name %> <%= @user.profile.last_name %></h4>
-		<h2>Employment Edit</h2>
+    <div class="columns">
+      <h4><%= @user.profile.first_name %> <%= @user.profile.last_name %></h4>
+      <h2>Employment Edit</h2>
 
-	</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="row">
-	<div class="columns">
-		<%= render 'employments_form', url: user_employment_path(@user, @employment), method: :patch %>
-	</div>
+  <div class="row">
+    <div class="columns">
+      <%= render 'employments_form', url: user_employment_path(@user, @employment), method: :patch %>
+    </div>
+  </div>
 </div>

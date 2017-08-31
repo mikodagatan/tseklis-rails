@@ -1,19 +1,21 @@
-<div class="row text-center align-middle form-header">
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
 
-  <div class="columns">
+    <div class="columns">
 
-		<h5><%= @company.name %></h5>
-		<h1>Add Holidays</h1>
+      <h5><%= @company.name %></h5>
+      <h1>Add Holidays</h1>
 
-	</div>
-</div>
+    </div>
+  </div>
 
-<div class="row">
-	<div class="columns ">
-		<%= render 'holidays_form', 
-			url: company_holidays_url(@company), 
-			method: :post,
-			holiday: @holiday 
-		%>
-	</div>
+  <div class="row">
+    <div class="columns ">
+      <%= render 'holidays_form',
+      url: company_holidays_url(@company),
+      method: :post,
+      holiday: @holiday
+      %>
+    </div>
+  </div>
 </div>

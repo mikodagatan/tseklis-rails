@@ -65,7 +65,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 100%;
+$global-font-size: 90%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
@@ -74,7 +74,7 @@ $foundation-palette: (
   success: #27c229,
   warning: #ffae00,
   alert: #f22613,
-  white: #FFF,
+  white-c: #FFF,
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
@@ -131,7 +131,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: 'Comfortaa','Rubik','Fjalla One','Montserrat';
+$header-font-family: 'Rubik','Fjalla One','Montserrat';
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
@@ -168,8 +168,8 @@ $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
 $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: $primary-color;
-$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-color: $secondary-color;
+$anchor-color-hover: scale-color($anchor-color, $lightness: 20%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $hr-width: 5rem;
@@ -862,4 +862,3 @@ $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $block-grid-max: 8;
-

@@ -64,7 +64,7 @@
       <% if @current_user.employed? %>
         <% @current_user.employments.select(:company_id).distinct.each do |u| %>
           <%= link_to u.company.name, company_url(u.company),
-            class: "button white horizontal-max no-margin text-left"
+            class: "button white-c horizontal-max no-margin text-left"
           %>
         <% end %>
       <% end %>
