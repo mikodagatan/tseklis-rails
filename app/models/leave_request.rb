@@ -66,8 +66,9 @@ class LeaveRequest < ApplicationRecord
 	end
 
 	def check_leaves_available(leave_type)
-		if enter_amounts >
-			errors.add(:start_date, "You have 0 available leaves but consuming  #{enter_amounts} leaves")
+		avaialable = available_leaves(leave_type)
+		if enter_amounts > available[:amount]
+			errors.add(:start_date, "You have #{available[:amount]} available leaves but consuming  #{enter_amounts} leaves for #{available[:name]}")
 		else
 			errors.add(:start_date, enter_amounts)
 		end

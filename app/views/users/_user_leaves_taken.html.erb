@@ -1,60 +1,56 @@
-<% if current_user.leave_amounts.find_by(date: Date.today.all_month).present? %>
-	<div class="show-leave">
-		<div class="row vertical-padding">
+<div class="show-leave">
+	<div class="row vertical-padding">
+		<div class="columns">
+			<h2><%= Date.today.strftime("%B %Y")%> <small>User leaves</small></h2>
+		</div>
+	</div>
+	<% @companies.each do |company| %>
+		<div class="row vertical-padding2">
 			<div class="columns">
-				<h2><%= Date.today.strftime("%B %Y")%> <small>User leaves</small></h2>
+				<h4><%= link_to company.name, company_url(company), class: "white-text" %></h4>
 			</div>
 		</div>
-		<% @user.companies.distinct.each do |company| %>
-			<div class="row vertical-padding2">
-				<div class="columns">
-					<h4><%= link_to company.name, company_url(company), class: "white-text" %></h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="columns small-12 medium-12">
-					<div class="row align-middle">
-						<div class="columns medium-3 text-center">
-							<h1 class="h-1"><%= @month_total_leaves %></h1>
-							<h5>Total</h5>
+		<div class="row">
+			<div class="columns small-12 medium-12">
+				<div class="row align-middle">
+					<div class="columns medium-3 text-center">
+					<h1 class="h-1"><%= @user.total_leaves(Date.today.all_month, company) %></h1>
+						<h5>Total</h5>
+					</div>
+					<div class="columns">
+						<div class="row">
+							<div class="columns text-center">
+								<h3>Used</h3>
+							</div>
 						</div>
-						<div class="columns">
-							<div class="row">
-								<div class="columns text-center">
-									<h3>Used</h3>
-								</div>
-							</div>
-							<div class="row">
-								<% @month_segmented_leaves.each do |p| %>
-									<% p.each do |k,v| %>
-										<div class="columns text-center">
-											<h1><%= v %></h1>
-											<p><%= k %></p>
-										</div>
-									<% end %>
+						<div class="row">
+							<% @user.segmented_leaves(Date.today.all_month, company).each do |p| %>
+								<% p.each do |k,v| %>
+									<div class="columns text-center">
+										<h1><%= v %></h1>
+										<p><%= k %></p>
+									</div>
 								<% end %>
+							<% end %>
+						</div>
+						<div class="space2"></div>
+						<div class="row">
+							<div class="columns text-center">
+								<h3>Available</h3>
 							</div>
-							<div class="space2"></div>
-							<div class="row">
-								<div class="columns text-center">
-									<h3>Available</h3>
-								</div>
+						</div>
+						<div class="row">
+							<% @user.all_available_leaves(company).each do |leave_type, values| %>
+							<div class="columns text-center">
+										<h1><%= values[:amount] %></h1>
+										<p><%= values[:name] %></p>
 							</div>
-							<div class="row">
-								<% @available_leaves.each do |avail| %>
-									<% avail.each do |k, v| %>
-										<div class="columns text-center">
-											<h1><%= v %></h1>
-											<p><%= k %></p>
-										</div>
-									<% end %>
-								<% end %>
-							</div>
+							<% end %>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="space2"></div>
-		<% end %>
-	</div>
-<% end %>
+		</div>
+		<div class="space2"></div>
+	<% end %>
+</div>
