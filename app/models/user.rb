@@ -30,24 +30,30 @@ class User < ApplicationRecord
 		end
 	end
 
-	def segmented_leaves(date_used, company)
-		leave = []
-		company.leave_types.each do |p|
-      employment = self.employments
-        .where(company_id: company)
-      value = 0
-      employment.each do |emp|
-        value += emp
-          .leave_amounts
-  		 		.where(date: date_used)
-  		 		.where(leave_request_id: self.leave_requests.ids)
-  		 		.where("leave_requests.acceptance = true")
-  		 		.where("leave_requests.leave_type_id = ?", p.id)
-  		 		.sum(:amount)
-      end
-		 	name = p.name
-			leave << {name => value}
-		end
+  def all_segmented_leaves(date_used, company)
+    leaves = {}
+    company.leave_types.each do |leave_type|
+      leaves[leave_type.name] = segmented_leaves(date_used, company, leave_type)
+    end
+    return leaves
+  end
+
+	def segmented_leaves(date_used, company, leave_type)
+		leave = {}
+    value = 0
+    employment = self.employments
+      .where(company_id: company.id)
+    employment.each do |emp|
+      value += emp
+        .leave_amounts
+		 		.where(date: date_used)
+		 		.where(leave_request_id: self.leave_requests.ids)
+		 		.where("leave_requests.acceptance = true")
+		 		.where("leave_requests.leave_type_id = ?", leave_type.id)
+		 		.sum(:amount)
+    end
+	 	leave[:name] = leave_type.name
+		leave[:amount] = value
 		return leave
 	end
 
@@ -65,6 +71,7 @@ class User < ApplicationRecord
 
 
   def available_leaves(company, leave_type)
+    # You may want to think that if the expiration is not > 12 months, we will not reach the maximum leave amounts.
     leave = {}
     leave_settings = company.company_leave_setting
     start = leave_settings.leave_month_start
@@ -74,11 +81,10 @@ class User < ApplicationRecord
       .start_date
       + start.months
     if Date.today > leave_start
-      value = 0
+      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round - segmented_leaves(Date.today.all_month, company, leave_type)[:amount]
     else
-      value = leave_add_calculation(company)
+      value = 0
     end
-    value = leave_add_calculation(company)
     leave[:name] = leave_type.name
     leave[:amount] = value
     return leave
@@ -99,23 +105,25 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
-    available = ((Date.today - leave_start) / 12 * assigned_leave_type_amount(company, leave_type)).to_d(2)
-    # Change max_available to a company_leve_setting attribute
-    max_available = 30
-    available = max_available if available > max_available
+    available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
   end
 
-  def non_prorate_accrual_calc(company)
-    # change this
-    10
+  def non_prorate_accrual_calc(company, leave_type)
+    leave_settings = company.company_leave_setting
+    start = leave_settings.leave_month_start
+    leave_start = self.employments
+      .where(company_id: company.id)
+      .first
+      .start_date
+      + start.months
+    available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).floor
   end
 
-  def leave_add_calculation(company)
+  def leave_add_calculation(company, leave_type)
     if company.company_leave_setting.prorate_accrual == true
-      prorate_accrual_calc(company)
+      prorate_accrual_calc(company, leave_type)
     else
-      # TO CHANGE THIS
-      prorate_accrual_calc(company)
+      non_prorate_accrual_calc(company, leave_type)
     end
   end
 
@@ -128,25 +136,13 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
-    expiration_start = leave_start + expiration.months
-    duration = Date.today - leave_start
-    to_expire = 0
-    if duration > 0
-      added_expiration = ((Date.today - expiration_start / 12) * assigned_leave_type_amount).to_d(2)
-      added_expiration.times each do |expiration|
-        if leave_add_calculation(company) - leave_type_amounts(copmany, leave_type) - to_expire > expiration
-        end
-      end
-    else
-      expired = 0
-    end
-    return to_expire
+    expiration_start = leave_start + 12.months
+    expire = ((Date.today - expiration_start) / 365 * assigned_leave_type_amount(company, leave_type)).to_f
+    return expire
   end
 
   def assigned_leave_type_amount(company, leave_type)
     company.leave_types.find(leave_type.id)
-      .where("leave_requests.leave_type_id = ?", leave_type.id)
-      .where("employments.user_id = ?", self.id)
       .amount
   end
 end

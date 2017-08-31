@@ -24,13 +24,11 @@
 							</div>
 						</div>
 						<div class="row">
-							<% @user.segmented_leaves(Date.today.all_month, company).each do |p| %>
-								<% p.each do |k,v| %>
-									<div class="columns text-center">
-										<h1><%= v %></h1>
-										<p><%= k %></p>
-									</div>
-								<% end %>
+							<% @user.all_segmented_leaves(Date.today.all_month, company).each do |leave_type, values| %>
+								<div class="columns text-center">
+									<h1><%= values[:amount] %></h1>
+									<p><%= values[:name] %></p>
+								</div>
 							<% end %>
 						</div>
 						<div class="space2"></div>
