@@ -75,15 +75,15 @@ class User < ApplicationRecord
     leave = {}
     leave_settings = company.company_leave_setting
     start = leave_settings.leave_month_start
-    leave_start = self.employments
+    start_d = self.employments
       .where(company_id: company.id)
       .first
       .start_date
-      + start.months
+    leave_start = start_d + start.months
     if Date.today > leave_start
-      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round - segmented_leaves(Date.today.all_month, company, leave_type)[:amount]
+      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round - segmented_leaves(start_d..Date.today, company, leave_type)[:amount]
     else
-      value = 0
+      value = 0.0
     end
     leave[:name] = leave_type.name
     leave[:amount] = value
@@ -137,7 +137,7 @@ class User < ApplicationRecord
       .start_date
       + start.months
     expiration_start = leave_start + 12.months
-    expire = ((Date.today - expiration_start) / 365 * assigned_leave_type_amount(company, leave_type)).to_f
+    expire = ((Date.today - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
     return expire
   end
 
