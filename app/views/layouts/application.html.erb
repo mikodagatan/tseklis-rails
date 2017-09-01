@@ -16,7 +16,7 @@
 
     <%= render 'partials/navbar' %>
 
-    <% unless current_page?(root_path) %>
+    <% unless no_flash_pages %>
       <% flash.each do |key, value| %>
         <%= content_tag :div, value, class: "callout  #{key}" %>
       <% end %>

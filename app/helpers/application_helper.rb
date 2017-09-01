@@ -20,4 +20,9 @@ module ApplicationHelper
 		html.html_safe
   end
 
+  def no_flash_pages
+    current_page?(root_path) ||
+    current_page?(new_user_session_path)
+  end
+
 end

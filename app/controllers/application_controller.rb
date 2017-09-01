@@ -8,15 +8,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-   				
 
-    attrs = [:name, 
-            :email, 
-            :password, 
+
+    attrs = [:name,
+            :email,
+            :password,
             :password_confirmation,
             :current_password,
-            profile_attributes: [:id, 
-                              :first_name, 
+            profile_attributes: [:id,
+                              :first_name,
                               :last_name]]
     devise_parameter_sanitizer.permit :sign_up, keys:attrs
     devise_parameter_sanitizer.permit :account_update, keys: attrs
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
            @current_employment = @current_employments.find_by_id(params[:employment_id])
         else
         end
-       
+
         @current_companies = @current_user.companies
 
         Company.find_by_id(params[:id]).present? ? (@current_company = @current_companies.find(params[:id])) : (@current_company = nil)
@@ -52,5 +52,6 @@ class ApplicationController < ActionController::Base
   def employed_here?
     @current_company.present?
   end
+
 
 end
