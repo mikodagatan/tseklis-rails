@@ -19,11 +19,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rubocop'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
