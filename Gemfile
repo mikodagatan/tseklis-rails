@@ -26,6 +26,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rack-mini-profiler'
 end
 
 group :production do
@@ -52,8 +53,8 @@ gem 'paperclip', '~> 5.1.0'
 gem 'custom_error_message', '~> 1.1.1'
 gem 'nested_form_fields'
 gem 'flamegraph'
-gem 'rack-mini-profiler'
 gem 'stackprof'
 gem 'irbtools'
+gem 'will_paginate'
 
 ruby '2.4.0'

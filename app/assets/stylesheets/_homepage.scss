@@ -1,3 +1,15 @@
+
+div#landing {
+	background: url(https://unsplash.it/1280/720/?image=1067);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.landing {
+	height: 92vh;
+	max-height: 92vh;
+	overflow: hidden;
+}
 .homepage-right {
   background-color: #29a4e9;
   height: 100%;
@@ -6,6 +18,6 @@
 
 .landing-advantage {
   background-color: #29a4e9;
-  height: 80vh;
+  height: 100vh;
   width: 100%;
 }

@@ -3,6 +3,8 @@ class CompaniesController < ApplicationController
 	before_action :set_up, only: [ :edit, :update, :show]
 	after_action :destroy_leave_type_blank, only: [:update ]
 
+  helper ApplicationHelper
+
 	def index
 		@companies = Company.all
 	end

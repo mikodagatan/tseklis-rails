@@ -22,7 +22,12 @@ module ApplicationHelper
 
   def no_flash_pages
     current_page?(root_path) ||
-    current_page?(new_user_session_path)
+    current_page?(new_user_session_path) ||
+    current_page?(user_session_path)
+  end
+
+  def better_date(date)
+    date.strftime("%B %d, %Y") if date.present?
   end
 
 end

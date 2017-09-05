@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :roles
   before_action :current_user_set
 
+  helper ApplicationHelper
+
   protected
 
   def configure_permitted_parameters
@@ -25,6 +27,7 @@ class ApplicationController < ActionController::Base
     @hr_officer = Role.find(1)
     @employee = Role.find(2)
   end
+
 
   def current_user_set
     if user_signed_in?
