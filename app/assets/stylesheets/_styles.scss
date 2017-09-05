@@ -26,11 +26,15 @@
 }
 
 .home-create-company {
-	background-color: #FF7979;
+	background-color: white;
+  height: 7rem;
+  line-height: 3.5rem;
 }
 
 .home-connect-company {
-	background-color: #FF5050;
+	background-color: white;
+  height: 7rem;
+  line-height: 4rem;
 }
 
 
@@ -41,7 +45,7 @@
 	background-color: #393945;
 	padding: 2rem 0 2rem 0;
 	color: white;
-	width: 100%;
+	line-height: 4rem;
 }
 
 // Callouts
@@ -109,6 +113,13 @@ $miko-button-border: 0.3rem;
 	}
 	&.alert {
 		color: white;
+		border-radius: $miko-button-border;
+		&:hover {
+		 	color: white;
+		}
+  }
+  &.warning.large {
+		color: black;
 		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;

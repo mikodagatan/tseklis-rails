@@ -1,12 +1,1 @@
-<div class="home-connect-company">
-	<div class="row align-justify align-middle adopt-height">
-		<div class="columns shrink">
-			<h5>
-				<%= link_to "Connect to a Company", new_user_employment_url(current_user), class: "white-text" %>
-			</h5>
-		</div>
-		<div class="columns text-right shrink">
-			<h1><%= @connections %></h1> employee connections
-		</div>
-	</div>
-</div>
+<%= link_to "Connect to a Company", new_user_employment_url(current_user), class: 'button warning large horizontal-max' %>

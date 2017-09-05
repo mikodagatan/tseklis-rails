@@ -19,7 +19,7 @@
 				<section class="dropdown-pane no-padding" id="company-dropdown" data-dropdown data-hover="true" data-hover-pane="true" >
 			    <div class="row horizontal-max no-margin no-padding collapse">
 						<div class="columns small-up-1 medium-up-1">
-							<% unless @current_employment.nil? %>
+							<% if @current_employment.present? && @has_leave_types %>
 								<div class="columns no-padding">
 								<%= link_to "Create a Leave Request",
 											new_user_employment_leave_request_url(@current_user,@current_employment),

@@ -21,3 +21,34 @@ div#landing {
   height: 100vh;
   width: 100%;
 }
+
+.welcome {
+  background-color: #29a4e9;
+  height: 40vh;
+  width: 100vw;
+  max-width: 100vw;
+  color: white;
+}
+
+.grow-circle {
+  background-color: white;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  color: black;
+  line-height: 5rem;
+}
+
+#show-instructions {
+  padding: 2rem;
+}
+
+#instructions {
+  height: 52vh;
+  width: 100vw;
+}
+
+.instructions {
+  height: 52vh;
+  width: 100vw;
+}

@@ -54,6 +54,8 @@ def update
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
     @leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(5)
+
+    @has_leave_types = @company.leave_types.present? ? true : false
  	end
 
 	private
