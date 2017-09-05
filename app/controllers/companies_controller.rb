@@ -91,7 +91,8 @@ def update
 	  		:_destroy
 	  	],
 		  company_leave_setting_attributes: [
-	  		:company_id,
+        :id,
+        :company_id,
 	  		:leave_month_expiration,
 	  		:leave_month_start,
 	  		:prorate_accrual,

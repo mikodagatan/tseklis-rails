@@ -1,4 +1,4 @@
-<%= input.fields_for :company_company_leave_settings, @company_leave_setting do |company_leave_settings| %>
+<%= input.fields_for :company_leave_setting, @company_leave_setting do |company_leave_settings| %>
 
 	<h5>Company Leave Settings</h5> <br />
 
@@ -11,7 +11,7 @@
   <div class="field">
 	  <%= company_leave_settings.label :leave_month_start %>
 	  <%= company_leave_settings.number_field :leave_month_start, placeholder: "# of Months after the Employee's start date" %>
-  </div> 
+  </div>
 
   <div class="field">
 	  <%= company_leave_settings.check_box :include_weekends %>

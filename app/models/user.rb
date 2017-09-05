@@ -81,7 +81,7 @@ class User < ApplicationRecord
       .start_date
     leave_start = start_d + start.months
     if Date.today > leave_start
-      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round - segmented_leaves(start_d..Date.today, company, leave_type)[:amount]
+      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round(2) - segmented_leaves(start_d..Date.today, company, leave_type)[:amount]
     else
       value = 0.0
     end
@@ -116,7 +116,7 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
-    available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).floor
+    available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
   end
 
   def leave_add_calculation(company, leave_type)
@@ -136,8 +136,12 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
-    expiration_start = leave_start + 12.months
-    expire = ((Date.today - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+    expiration_start = leave_start + expiration.months
+    if Date.today > expiration_start
+      expire = ((Date.today - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+    else
+      expire = 0
+    end
     return expire
   end
 
