@@ -2,9 +2,9 @@
 	<tr>
 		<% unless at_company == false %>
 			<td>
-				<%= link_to user_url(employment.user) do %>
-					<%= employment.user.profile.first_name%>
-					<%= employment.user.profile.last_name %>
+				<%= link_to user_url(leave_request.employment.user) do %>
+					<%= leave_request.employment.user.profile.first_name%>
+					<%= leave_request.employment.user.profile.last_name %>
 				<% end %>
 			</td>
 		<% end %>
@@ -31,14 +31,14 @@
 			<% if leave_request.acceptance.nil? %>
 				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %>
 					<td>
-						<%= form_for leave_request, url: url, method: method, at_company: at_company do |f| %>
+						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: at_company do |f| %>
 							<%= f.hidden_field :acceptance, value: true %>
 							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 							<%= f.submit "Accept", class: "button small expanded success"%>
 						<% end %>
 					</td>
 					<td>
-						<%= form_for leave_request, url: url, method: method do |f| %>
+						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch do |f| %>
 							<%= f.hidden_field :acceptance, value: false %>
 							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 							<%= f.submit "Reject", class: "button small expanded alert small" %>

@@ -4,7 +4,7 @@
 				<h4>Leave Requests</h4>
 			<div class="space"></div>
 
-			<div class="row" id="leave_requests">
+			<div class="row">
 				<div class="column">
 					<table class="table">
 						<thead>
@@ -21,15 +21,7 @@
 							</tr>
 						</thead>
 						<tbody id="leave_requests">
-							<% @leave_requests.each do |leave_request| %>
-								<%= render 'leave_requests/leave_request',
-											url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request),
-											leave_request: leave_request,
-											employment: leave_request.employment,
-											at_company: true,
-											method: :patch
-								%>
-							<% end %>
+              <%= render @leave_requests, at_company: true, patch: true %>
 						</tbody>
 					</table>
           <div class="row align-center">

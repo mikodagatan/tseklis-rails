@@ -24,7 +24,6 @@
 //= require nested_form_fields
 
 //= require globals
-//= require company_leave_request_table
 
 $(document).ready( function(){
 	$(document).foundation();
