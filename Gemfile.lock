@@ -91,6 +91,11 @@ GEM
     every_day_irb (2.0.0)
       cd (~> 1.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     fancy_irb (1.1.0)
       paint (>= 0.9, < 3.0)
       unicode-display_width (~> 1.1)
@@ -318,6 +323,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   custom_error_message (~> 1.1.1)
   devise
+  factory_girl_rails
   figaro (~> 1.1.1)
   flamegraph
   font-awesome-rails

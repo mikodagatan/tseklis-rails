@@ -18,7 +18,7 @@
 								</tr>
 						</thead>
 						<tbody>
-							<% @leave_requests.reverse_order.each do |leave_request| %>
+							<% @leave_requests.each do |leave_request| %>
 								<%= render 'leave_requests/leave_request',
 											url: user_employment_leave_request_url(@user, leave_request.employment, leave_request),
 											leave_request: leave_request,
@@ -29,6 +29,11 @@
 							<% end %>
 						</tbody>
 					</table>
+          <div class="row align-center">
+            <div class="column shrink">
+              <%= paginate @leave_requests %>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,6 @@
 				<div class="columns">
 				<h4>Leave Requests</h4>
 			<div class="space"></div>
-
 			<div class="row">
 				<div class="column">
 					<table class="table">
@@ -21,12 +20,12 @@
 							</tr>
 						</thead>
 						<tbody id="leave_requests">
-              <%= render @leave_requests, at_company: true, patch: true %>
+              <%= render @leave_requests, at_company: true %>
 						</tbody>
 					</table>
           <div class="row align-center">
             <div class="column shrink">
-              <%= paginate @leave_requests, remote: true %>
+              <%= paginate @leave_requests %>
             </div>
           </div>
 				</div>

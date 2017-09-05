@@ -1,7 +1,7 @@
 <% unless join_request == true %>
 	<% if employment.acceptance.present? %>
 		<% @current_employment =  @current_employments.find_by(company_id: employment.company_id) %>
-		<tr>
+		<tr class="table-data">
 			<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
       <td><%= better_date(employment.start_date) %></td>
 			<td><%= better_date(employment.end_date) %></td>
@@ -30,7 +30,7 @@
 	<% end %>
 <% else %>
 	<% if employment.acceptance.nil? %>
-		<tr>
+		<tr class="table-data">
 			<td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
 			<td><%= better_date(employment.start_date) %></td>
 			<td>
