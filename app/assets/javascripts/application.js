@@ -15,17 +15,17 @@
 //= require cable
 //= require foundation
 
-//= require pickadate/picker 
-//= require pickadate/picker.date 
-//= require pickadate/picker.time 
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/picker.time
 
 //= require select2
 
 //= require nested_form_fields
 
 //= require globals
+//= require company_leave_request_table
 
-$(document).ready( function(){ 
-	$(document).foundation(); 
+$(document).ready( function(){
+	$(document).foundation();
 });
-

@@ -29,7 +29,8 @@
         <% unless current_user.employments.empty? %>
           <div data-toggle="companies-dropdown">
             <li>
-              <%= link_to "Companies", companies_url %>
+              <%# link_to "Companies", companies_url %>
+              <a>Companies</a>
             </li>
           </div>
         <% end %>

@@ -55,6 +55,6 @@ gem 'nested_form_fields'
 gem 'flamegraph'
 gem 'stackprof'
 gem 'irbtools'
-gem 'will_paginate'
+gem 'kaminari'
 
 ruby '2.4.0'

@@ -1,4 +1,4 @@
-<% if @company.leave_requests.present? %>	
+<% if @company.leave_requests.present? %>
 	<div class="row vertical-padding">
 				<div class="columns">
 				<h4>Leave Requests</h4>
@@ -20,12 +20,8 @@
 								<th colspan="1"></th>
 							</tr>
 						</thead>
-						<tbody>
-							<!--
-								Below code will look for a partial: views/employments/_employment.html.erb
-							-->
-							<%# render @employments %>
-							<% @leave_requests.reverse_order.each do |leave_request| %>
+						<tbody id="leave_requests">
+							<% @leave_requests.each do |leave_request| %>
 								<%= render 'leave_requests/leave_request',
 											url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request),
 											leave_request: leave_request,
@@ -36,9 +32,14 @@
 							<% end %>
 						</tbody>
 					</table>
+          <div class="row align-center">
+            <div class="column shrink">
+              <%= paginate @leave_requests, remote: true %>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 <% end %>
