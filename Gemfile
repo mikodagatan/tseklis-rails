@@ -58,5 +58,6 @@ gem 'flamegraph'
 gem 'stackprof'
 gem 'irbtools'
 gem 'kaminari'
+gem 'google-analytics-rails', '~> 1.1'
 
 ruby '2.4.0'

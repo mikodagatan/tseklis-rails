@@ -21,7 +21,6 @@ module ApplicationHelper
   end
 
   def no_flash_pages
-    current_page?(root_path)
   end
 
   def better_date(date)
