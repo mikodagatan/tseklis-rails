@@ -5,5 +5,5 @@
     </div>
   </div>
 
-  <%= render 'leave_request_form', url: user_employment_leave_requests_url(current_user, @employment), method: :post %>
+  <%= render 'leave_request_form', url: user_employment_leave_requests_url(@user, @employment), method: :post %>
 </div>

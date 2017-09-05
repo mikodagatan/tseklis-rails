@@ -1,0 +1,27 @@
+<div class="white-bg horizontal-max">
+  <div class="row show-header align-middle">
+    <div class="columns">
+      <h1> <%= @leave_request.title %> </h1>
+      <h5> Requested by: <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h5>
+      <br />
+      <p><strong>From:</strong> <%= better_date(@leave_request.start_date) %> - <%= better_time(@leave_request.start_time) %></p>
+      <p><strong>To:</strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
+    </div>
+    <div class="columns align-self-right text-right">
+      <% if @leave_request.acceptance.nil? %>
+  			<% if @current_employment.is_hr? && @current_employment.present? || (@current_user = @user) %>
+  				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button large secondary" do  %>
+  					<%= fa_icon "edit" %>
+  				<% end %>
+  			<% end %>
+  		<% end %>
+    </div>
+  </div>
+</div>
+<div class="space3"></div>
+<div class="row">
+  <div class="columns">
+    <h5>Description</h5>
+    <p><%= @leave_request.description %></p>
+  </div>
+</div>

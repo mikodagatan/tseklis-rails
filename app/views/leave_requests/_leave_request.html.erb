@@ -9,7 +9,7 @@
 			</td>
 		<% end %>
 		<td>
-			<%= leave_request.title %>
+			<%= link_to leave_request.title, user_employment_leave_request_url(@user, leave_request.employment, leave_request) %>
 		</td>
 		<td>
 			<%= LeaveType.find(leave_request.leave_type_id).name %>

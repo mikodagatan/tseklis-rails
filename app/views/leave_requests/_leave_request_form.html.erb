@@ -12,7 +12,6 @@
 					<%= f.text_field :title %>
 				</div>
 
-
 				<div class="field">
 					<%= f.label :leave_type_id, "Type of Leave" %>
 					<%= f.collection_select(:leave_type_id, @leave_types, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
