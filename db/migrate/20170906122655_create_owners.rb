@@ -4,7 +4,7 @@ class CreateOwners < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :designation
       t.string :quote
-      t.string :description
+      t.text :description
       t.attachment :photo
       t.attachment :video
       t.boolean :active, default: true

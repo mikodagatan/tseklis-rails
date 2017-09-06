@@ -60,5 +60,7 @@ gem 'irbtools'
 gem 'kaminari'
 gem 'google-analytics-rails', '~> 1.1'
 gem 'inherited_resources'
+gem 'simple_form'
+gem 'country_select'
 
 ruby '2.4.0'

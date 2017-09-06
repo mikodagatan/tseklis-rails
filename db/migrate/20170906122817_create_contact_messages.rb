@@ -6,6 +6,7 @@ class CreateContactMessages < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :phone_number
       t.string :country
+      t.text :description
 
       t.timestamps
     end

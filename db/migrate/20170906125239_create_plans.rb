@@ -5,7 +5,8 @@ class CreatePlans < ActiveRecord::Migration[5.1]
       t.decimal :price
       t.attachment :photo
       t.boolean :active, default: true
-
+      t.text :description
+      
       t.timestamps
     end
   end

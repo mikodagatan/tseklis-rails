@@ -6,7 +6,7 @@ class CreateEndorsements < ActiveRecord::Migration[5.1]
       t.string :link
       t.string :award_name
       t.decimal :rating
-      t.string :description
+      t.text :description
       t.boolean :active, default: true
 
       t.timestamps

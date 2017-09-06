@@ -12,19 +12,19 @@ class CreateLandingPageSettings < ActiveRecord::Migration[5.1]
       t.attachment :call_to_action_background
       t.string :header_message
       t.string :subheader_message
-      t.string :header_description_message
+      t.text :header_description_message
       t.string :endorsement_header
-      t.string :endorsement_description
+      t.text :endorsement_description
       t.string :testimonial_header
-      t.string :testimonial_descriptionn
+      t.text :testimonial_descriptionn
       t.string :features_header
-      t.string :features_description
+      t.text :features_description
       t.string :owners_header
-      t.string :owners_description
+      t.text :owners_description
       t.string :contact_messages_header
-      t.string :contact_messages_description
+      t.text :contact_messages_description
       t.string :plans_header
-      t.string :plans_description
+      t.text :plans_description
 
       t.integer :user_id
 
