@@ -26,13 +26,13 @@
 
           <div class="row">
             <div class="columns" style= "padding-right:0.25rem;">
-              <div id="show-address-settings" class="button warning horizontal-max hide">Address Settings </div>
+              <div id="show-address-settings" class="button warning horizontal-max">Address Settings </div>
             </div>
             <div class="columns" style= "padding-left:0.25rem;">
-              <div id="show-leave-type-settings" class="button warning horizontal-max hide">Leave Type Settings </div>
+              <div id="show-leave-type-settings" class="button warning horizontal-max">Leave Type Settings </div>
             </div>
           </div>
-          <div id="show-company-leave-settings" class="button success horizontal-max hide">Company Leave Settings</div>
+          <div id="show-company-leave-settings" class="button success horizontal-max">Company Leave Settings</div>
 
           <div class="space"></div>
 
@@ -60,3 +60,5 @@
     </div>
   </div>
 <% end %>
+
+<%= render 'users/user_leaves_taken', @has_leave_types = true %>
