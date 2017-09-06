@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <% attributes.each do |attr| %>
+        <th>resource_class.human_attribute_name(attr)</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% collection.each do |resource| %>
+      <tr>[resource]
+        <% attributes.each do |attr| %>
+          <td>resource.public_send(attr).to_s.truncate(20)</td>
+          <td>
+            <%= link_to 'show', resource_path(resource) %>
+            <%= link_to 'edit', edit_resource_path(resource) %>
+            <%= link_to 'delete', method: :delete, confirm: "Are you sure?" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
