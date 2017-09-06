@@ -37,17 +37,17 @@
           <div class="space"></div>
 
 
-          <div id="address-edit-form">
+          <div id="address-edit-form" class="hide">
             <%= render 'address_fields', input: f %>
             <br />
           </div>
 
-          <div id="leave-type-edit-form">
+          <div id="leave-type-edit-form" class="hide">
             <%= render 'leave_type_fields', input: f %>
             <br />
           </div>
 
-          <div id="company-leave-settings-edit-form">
+          <div id="company-leave-settings-edit-form" class="hide">
             <%= render 'company_leave_settings_fields', input: f %> <br />
           </div>
 
@@ -60,5 +60,3 @@
     </div>
   </div>
 <% end %>
-
-<%= render 'users/user_leaves_taken', @has_leave_types = true %>

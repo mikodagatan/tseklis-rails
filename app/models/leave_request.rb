@@ -16,8 +16,6 @@ class LeaveRequest < ApplicationRecord
 
 	protected
 
-	attr_accessor :enter_amounts
-
 	def weekends_included?
 		weekends_included = self.employment.company.company_leave_setting.include_weekends
 	end
@@ -41,20 +39,24 @@ class LeaveRequest < ApplicationRecord
 			leave_amount = LeaveAmount.new do |att|
 				att.date = focus_date
 				att.leave_request_id = id
-				if (focus_date == end_date) && (start_date == end_date)
-					if (end_time - start_time < 1.hours)
+				if focus_date == end_date
+					if (end_time - start_time <= 1.hours)
 						att.amount = 0
-					elsif (end_time - start_time < 2.hours)
+					elsif (end_time - start_time <= 2.hours)
 						att.amount = 0.25
-					elsif (end_time - start_time < 4.hours)
+					elsif (end_time - start_time <= 4.hours)
 						att.amount = 0.5
+          else
+            att.amount = 1
 					end
 				else
 					att.amount = 1
 				end
-				if (focus_date.on_weekend? && weekends_included?) || on_holiday?(focus_date)
-					att.amount = 0
-				end
+        if allow_weekend_holiday_leave == false
+  				if ((focus_date.on_weekend? && weekends_included?) || on_holiday?(focus_date))
+  					att.amount = 0
+  				end
+        end
 			end
 			amount << leave_amount.amount
 			leave_amount.save if self.acceptance.present?
@@ -80,13 +82,15 @@ class LeaveRequest < ApplicationRecord
   end
 
 	def check_leaves_available
-		user = self.employment.user
-		company = self.employment.company
-		leave_type = LeaveType.find(self.leave_type_id)
-		available = user.available_leaves(company, leave_type)
-		if enter_amounts > available[:amount]
-			errors.add(:start_date, "You have #{available[:amount]} available leaves but consuming  #{enter_amounts} leaves for #{available[:name]}")
-		end
+    if self.acceptance.nil?
+  		user = self.employment.user
+  		company = self.employment.company
+  		leave_type = LeaveType.find(self.leave_type_id)
+  		available = user.available_leaves(company, leave_type)
+  		if enter_amounts > available[:amount]
+  			errors.add(:start_date, "You have #{available[:amount]} available leaves but consuming  #{enter_amounts} leaves for #{available[:name]}")
+  		end
+    end
 	end
 
 end
