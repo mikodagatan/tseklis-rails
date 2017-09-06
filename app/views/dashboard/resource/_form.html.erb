@@ -1,0 +1,6 @@
+<%= simple_form_for [:dashboard, resource] do |f| %>
+  <% attributes.each do |attr| %>
+    <%= f.input attr %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

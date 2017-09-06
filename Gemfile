@@ -62,5 +62,7 @@ gem 'google-analytics-rails', '~> 1.1'
 gem 'inherited_resources'
 gem 'simple_form'
 gem 'country_select'
+gem 'has_scope', git: 'git://github.com/plataformatec/has_scope.git'
+gem "responders"
 
 ruby '2.4.0'

@@ -1,0 +1,11 @@
+<%= content_for :header do %>
+  <h1>Edit <%= resource_class.model_name.human%></h1>
+<% end %>
+
+<%= ul.tabs %>
+  <li><%= link_to "Index", collection_path %></li>
+  <li><%= link_to "Index", collection_path %></li>x
+  <li><%= link_to "Show", resource_path%></li>
+  <li><%= link_to "Destroy", resource_path, method: :delete, confirm: "Are you sure?" %></li>
+
+<%= render "form", attributes: attributes %>

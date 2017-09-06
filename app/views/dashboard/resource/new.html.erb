@@ -1,0 +1,8 @@
+<% content_for :header do %>
+  <h1>
+    New <%= resource_class.model_name.human %>
+  </h1>
+<% end %>
+
+<% attributes = resource_class.attribute_names - %w(id created_at updated_at) %>
+<%= render "form", attributes: attributes %>

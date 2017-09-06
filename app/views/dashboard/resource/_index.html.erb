@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <% attributes.each do |attr| %>
-        <th>resource_class.human_attribute_name(attr)</th>
+        <th><%= resource_class.human_attribute_name(attr) %></th>
       <% end %>
     </tr>
   </thead>
@@ -21,3 +21,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate collection %>
