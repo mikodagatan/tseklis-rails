@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 20170906125239) do
 
   create_table "endorsements", force: :cascade do |t|
     t.string "name"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.string "link"
     t.string "award_name"
     t.decimal "rating"
