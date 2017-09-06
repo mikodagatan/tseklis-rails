@@ -2,6 +2,8 @@ class LeaveRequest < ApplicationRecord
 	belongs_to :employment
 	has_many :leave_amounts, foreign_key: :leave_request_id
 
+  validate :check_date_validity
+  validate :invalidate_weekends_and_holidays_only
 	validate :check_leaves_available
 	after_commit :enter_amounts
 
@@ -26,13 +28,9 @@ class LeaveRequest < ApplicationRecord
 	end
 
 	def duration_date
-		if start_date.end_of_year < end_date
-			duration_date = start_date.days_in_year.day + end_date - start_date + 1.day
-			# counting days always + 1
-		else
-			duration_date = end_date - start_date + 1
-			duration_date = duration_date.to_i
-		end
+		# counting days always + 1
+		duration_date = end_date - start_date + 1
+		duration_date = duration_date.to_i
 		return duration_date
 	end
 
@@ -64,6 +62,22 @@ class LeaveRequest < ApplicationRecord
 		end
 		amount.sum
 	end
+
+  def invalidate_weekends_and_holidays_only
+    if allow_weekend_holiday_leave == false
+      if duration_date <= 2
+        if (start_date.on_weekend? && weekends_included? || on_holiday?(start_date)) && (end_date.on_weekend? && weekends_included? || on_holiday?(end_date))
+          errors.add(:end_date, ": cannot enter leave solely on a weekend or holiday")
+        end
+      end
+    end
+  end
+
+  def check_date_validity
+    if start_date > end_date
+      errors.add(:start_date, "cannot be earlier than End date")
+    end
+  end
 
 	def check_leaves_available
 		user = self.employment.user

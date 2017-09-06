@@ -63,7 +63,7 @@ class LeaveRequestsController < ApplicationController
 				:end_time,
 				:acceptance,
 				:acceptor_id,
-				:reviewed,
+				:allow_weekend_holiday_leave,
 				:leave_type_id,
 				:employment_id)
 		end
