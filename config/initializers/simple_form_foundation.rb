@@ -18,7 +18,7 @@ SimpleForm.setup do |config|
     b.use :label_input
     b.use :error, wrap_with: { tag: :small, class: :error }
 
-    # b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
 
   config.wrappers :horizontal_form, tag: 'div', class: 'row', hint_class: :field_with_hint, error_class: :error do |b|
@@ -95,7 +95,7 @@ SimpleForm.setup do |config|
   end
 
   # CSS class for buttons
-  config.button_class = 'button'
+  config.button_class = 'button primary'
 
   # Set this to div to make the checkbox and radio properly work
   # otherwise simple_form adds a label tag instead of a div around
