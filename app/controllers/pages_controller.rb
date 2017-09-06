@@ -6,9 +6,11 @@ class PagesController < ApplicationController
 			@companies = @current_user.companies.distinct if @current_user.companies.present?
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
       # has_leave_types
-      count = 0
-      @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
-      @has_leave_types = count > 0 ? true : false
+      if @current_user.employed?
+        count = 0
+        @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
+        @has_leave_types = count > 0 ? true : false
+      end
 		end
   end
 

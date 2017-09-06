@@ -1,4 +1,4 @@
-<% if (@current_user.employed? && @has_leave_types) || :at_leave_request %>
+<% if (@current_user.employed? && (@has_leave_types || :at_leave_request)) %>
 	<div class="show-leave">
 		<div class="row vertical-padding">
 			<div class="columns">
