@@ -1,0 +1,2 @@
+class UserHomePageSetting < ApplicationRecord
+end
