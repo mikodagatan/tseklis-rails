@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def roles
-    @administrator = Role.find(653555391)
     @hr_officer = Role.find(1)
     @employee = Role.find(2)
   end

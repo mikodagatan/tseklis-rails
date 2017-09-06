@@ -7,10 +7,10 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.string 	:last_name
       t.string 	:contact_email
 
-      t.boolean :inactive, default: false
-      
+      t.boolean :active, default: true
+
       t.integer :user_id
-      
+
       t.timestamps
     end
   end

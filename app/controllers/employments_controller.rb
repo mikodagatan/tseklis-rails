@@ -47,9 +47,6 @@ class EmploymentsController < ApplicationController
   	@employments = @user.employments
     @employment = @user.employments.find_by_id( params[:id] )
     @current_employment = @current_employments.find_by( company_id: @employment.company_id )
-    # @hr_officer = Role.find(1)
-    # @employee = Role.find(2)
-    # @administrator = Role.find(653555391)
   end
 
   def employment_params
