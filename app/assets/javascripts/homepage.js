@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  $('#instructions').hide();
+
+  $('#instructions').hide().removeClass("hide");
   $('#show_instructions').click(function(){
     $('#instructions').slideToggle();
   });

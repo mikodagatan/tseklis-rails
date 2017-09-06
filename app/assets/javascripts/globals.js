@@ -23,8 +23,8 @@ $(document).ready(function(){
 	$('.select-select').select2();
 
 	// password edit form
-	$('#password-edit-form').hide();
-	$('#hide-password-settings').hide();
+	$('#password-edit-form').hide().removeClass('hide');
+	$('#hide-password-settings').hide().removeClass('hide');
 
 	$('#show-password-settings').click(function(){
    	$('#password-edit-form').slideToggle();
@@ -38,7 +38,7 @@ $(document).ready(function(){
 	 });
 	 	// Address edit form
 
-	$('#address-edit-form').hide();
+	$('#address-edit-form').hide().removeClass('hide');
 	$('#show-address-settings').click(function() {
    	$('#address-edit-form').slideToggle();
     $('#leave-type-edit-form').hide();
@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 		// Leave Type edit form
 
-	$('#leave-type-edit-form').hide();
+	$('#leave-type-edit-form').hide().removeClass('hide');
 	$('#show-leave-type-settings').click(function() {
    	$('#leave-type-edit-form').slideToggle();
     $('#company-leave-settings-edit-form').hide();
@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 	// Company Leave Settings form
 
-	$('#company-leave-settings-edit-form').hide();
+	$('#company-leave-settings-edit-form').hide().removeClass('hide');
 	$('#show-company-leave-settings').click(function() {
    	$('#company-leave-settings-edit-form').slideToggle();
     $('#leave-type-edit-form').hide();
@@ -66,8 +66,8 @@ $(document).ready(function(){
 	// Holiday settings
 
 
-	$('.edit-holiday-form').hide();
-	$('.hide-edit-holiday').hide();
+	$('.edit-holiday-form').hide().removeClass('hide');
+	$('.hide-edit-holiday').hide().removeClass('hide');
 
 	$('.show-edit-holiday', this).click(function() {
    	$(this).parent().siblings(".edit-holiday-form").slideToggle();
