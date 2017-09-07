@@ -1,12 +1,14 @@
-<%= content_for :header do %>
-  <h1>Edit <%= resource_class.model_name.human%></h1>
-<% end %>
+<div class="text-center">
+  <h1> <%= resource_class.model_name.human%> <small>Edit</small> </h1>
+</div>
 
-<ul class="tabs">
-  <li><%= link_to "Index", collection_path %></li>
-  <li><%= link_to "Index", collection_path %></li>x
-  <li><%= link_to "Show", resource_path%></li>
-  <li><%= link_to "Destroy", resource_path, method: :delete, confirm: "Are you sure?" %></li>
-</ul>
+<div class="text-center">
+  <ul class="menu">
+    <li><%= link_to "Index", collection_path %></li>
+    <li><%= link_to "Show", resource_path %></li>
+    <li><%= link_to "Edit", edit_resource_path %></li>
+    <li><%= link_to "Destroy", resource_path, method: :delete, confirm: "Are you sure?" %></li>
+  </ul>
+</div>
 
 <%= render "form", attributes: attributes %>

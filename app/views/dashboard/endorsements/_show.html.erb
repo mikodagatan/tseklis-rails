@@ -1,0 +1,17 @@
+
+<div class="row">
+  <div class="columns medium-1"></div>
+  <div class="columns">
+    <%= image_tag resource.photo.url(:medium) %>
+    <p>Active: <%= resource.active %></p>
+    <p>Name: <%= resource.name %></p>
+    <p>Photo: <%= resource.photo_file_name %> </p>
+    <p>Size: <%= better_file_size(resource.photo_file_size) %> kb</p>
+    <p>Link: <%= resource.link %> </p>
+    <p>Award Name: <%= resource.award_name %> </p>
+    <p>Rating: <%= resource.rating %> / 5</p>
+    <p>Description:</p>
+    <p><%= resource.description %></p>
+
+  </div>
+</div>

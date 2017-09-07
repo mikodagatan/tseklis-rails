@@ -1,0 +1,28 @@
+<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+  <div class="field">
+    <%= f.label :link %>
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :award_name %>
+    <%= f.text_field :award_name %>
+  </div>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <%= f.submit 'Submit', class: "button primary" %>
+<% end %>
