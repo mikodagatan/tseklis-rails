@@ -1,2 +1,2 @@
-class Dashboard::LandingPageSettingsController < ApplicationController
+class Dashboard::LandingPageSettingsController < Dashboard::ResourceController
 end

@@ -1,2 +1,2 @@
-class Dashboard::UserHomePageSettingsController < ApplicationController
+class Dashboard::UserHomePageSettingsController < Dashboard::ResourceController
 end

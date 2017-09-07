@@ -1,2 +1,2 @@
-class Dashboard::EndorsementsController < ApplicationController
+class Dashboard::EndorsementsController < Dashboard::ResourceController
 end

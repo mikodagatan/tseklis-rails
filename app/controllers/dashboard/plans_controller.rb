@@ -1,2 +1,2 @@
-class Dashboard::PlansController < ApplicationController
+class Dashboard::PlansController < Dashboard::ResourceController
 end

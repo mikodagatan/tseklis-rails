@@ -1,2 +1,2 @@
-class Dashboard::RolesController < ApplicationController
+class Dashboard::RolesController < Dashboard::ResourceController
 end

@@ -1,2 +1,2 @@
-class Dashboard::OwnersController < ApplicationController
+class Dashboard::OwnersController < Dashboard::ResourceController
 end
