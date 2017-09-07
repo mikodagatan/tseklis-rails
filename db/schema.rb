@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 20170906125239) do
     t.string "endorsement_header"
     t.text "endorsement_description"
     t.string "testimonial_header"
-    t.text "testimonial_descriptionn"
+    t.text "testimonial_description"
     t.string "features_header"
     t.text "features_description"
     t.string "owners_header"

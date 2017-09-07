@@ -9,6 +9,7 @@ class Dashboard::EndorsementsController < Dashboard::ResourceController
             :award_name,
             :rating,
             :description,
+            :active
             )
   end
 end
