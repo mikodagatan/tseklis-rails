@@ -1,0 +1,2 @@
+module Dashboard::EndorsementsHelper
+end

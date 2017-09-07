@@ -19,16 +19,17 @@ Rails.application.routes.draw do
 
 
   namespace :dashboard do
-    resources :contact_message
+    resources :contact_messages
     resources :endorsements
     resources :features
     resources :owners
     resources :plans
     resources :roles
     resources :testimonials
-    resource :site_setting
-    resource :landing_page_setting
-    resource :user_home_page_setting
+    resource :site_settings
+    resource :landing_page_settings
+    resource :user_home_page_settings
+    resources :plans
   end
 
 	get 'about' => 'pages#about'

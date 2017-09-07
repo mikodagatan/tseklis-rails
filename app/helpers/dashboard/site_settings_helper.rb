@@ -1,0 +1,2 @@
+module Dashboard::SiteSettingsHelper
+end

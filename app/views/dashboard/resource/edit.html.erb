@@ -2,10 +2,11 @@
   <h1>Edit <%= resource_class.model_name.human%></h1>
 <% end %>
 
-<%= ul.tabs %>
+<ul class="tabs">
   <li><%= link_to "Index", collection_path %></li>
   <li><%= link_to "Index", collection_path %></li>x
   <li><%= link_to "Show", resource_path%></li>
   <li><%= link_to "Destroy", resource_path, method: :delete, confirm: "Are you sure?" %></li>
+</ul>
 
 <%= render "form", attributes: attributes %>

@@ -1,8 +1,10 @@
-<% content_for :header do %>
-  <h1>
-    New <%= resource_class.model_name.human %>
-  </h1>
-<% end %>
+<div class="row">
+  <div class="columns">
+    <h1 class="text-center">
+      New <%= resource_class.model_name.human %>
+    </h1>
+    <% attributes = resource_class.attribute_names - %w(id created_at updated_at ) %>
 
-<% attributes = resource_class.attribute_names - %w(id created_at updated_at) %>
-<%= render "form", attributes: attributes %>
+    <%= render "form", attributes: attributes %>
+  </div>
+</div>
