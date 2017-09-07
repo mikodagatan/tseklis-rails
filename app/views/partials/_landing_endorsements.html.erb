@@ -1,0 +1,31 @@
+<% if @endorsements.present? %>
+  <div class="landing-endorsements">
+    <div class="row landing-endorsements align-middle text-center">
+      <div class="columns">
+        <div class="row">
+          <div class="columns white-text">
+            <h2><%= @landing_page_settings.endorsement_header %></h2>
+            <p><%= @landing_page_settings.endorsement_description %></p>
+          </div>
+        </div>
+        <div class="space5">
+        </div>
+        <div class="row small-up-1 medium-up-3 white-text">
+          <% @endorsements.each do |f| %>
+          <div class="columns">
+            <%= image_tag f.photo.url(:medium), class: "endorsement-photo" %>
+            <div class="space3"></div>
+            <h5 class=""><%= f.name %></h5>
+            <p><%= f.award_name %></p>
+            <h3><%= f.rating%> / 5.0 </h3>
+            <div class="space"></div>
+            <p class=""><%= f.description %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="space5">
+    </div>
+  </div>
+<% end %>

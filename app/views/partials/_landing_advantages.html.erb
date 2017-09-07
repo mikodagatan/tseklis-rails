@@ -1,13 +1,28 @@
 <div class="landing-advantage">
-  <div class="row landing-advantage small-up-1 medium-up-3 align-middle text-center">
+  <div class="row landing-advantage align-middle text-center">
     <div class="columns">
-      <h1>Advantage 1</h1>
+      <div class="row">
+        <div class="columns white-text">
+          <h2><%= @landing_page_settings.features_header %></h2>
+          <p><%= @landing_page_settings.features_description %></p>
+        </div>
+      </div>
+      <div class="space5">
+      </div>
+      <div class="row small-up-1 medium-up-3">
+        <% @features.each do |feature| %>
+        <div class="columns">
+          <%= image_tag feature.photo.url(:medium), class:'feature-icon' %>
+          <div class="space3"></div>
+          <h4 class="white-text"><%= feature.name %></h4>
+          <div class="space">
+          </div>
+          <p class="white-text"><%= feature.short_description %></p>
+        </div>
+        <% end %>
+      </div>
     </div>
-    <div class="columns">
-      <h1>Advantage 2</h1>
-    </div>
-    <div class="column">
-      <h1>Advantage 3</h1>
-    </div>
+  </div>
+  <div class="space5">
   </div>
 </div>

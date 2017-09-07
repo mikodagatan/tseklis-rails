@@ -1,0 +1,31 @@
+<% if @testimonials.present? %>
+  <div class="landing-testimonials">
+    <div class="row landing-testimonials align-middle text-center">
+      <div class="columns">
+        <div class="row">
+          <div class="columns">
+            <h2><%= @landing_page_settings.testimonial_header %></h2>
+            <p><%= @landing_page_settings.testimonial_description %></p>
+          </div>
+        </div>
+        <div class="space5">
+        </div>
+        <div class="row small-up-1 medium-up-3">
+          <% @testimonials.each do |f| %>
+          <div class="columns">
+            <%= image_tag f.photo.url(:medium), class: "testimonial-photo" %>
+            <div class="space3"></div>
+            <h5 class=""><%= f.name %></h5>
+            <p><%=f.company_name%></p>
+            <div class="space">
+            </div>
+            <p class=""><%= f.description %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="space5">
+    </div>
+  </div>
+<% end %>

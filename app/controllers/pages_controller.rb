@@ -12,6 +12,10 @@ class PagesController < ApplicationController
         @has_leave_types = count > 0 ? true : false
       end
 		end
+    @features = Feature.all.where("features.active = true")
+    @testimonials = Testimonial.all.where('testimonials.active = true')
+    @endorsements = Endorsement.all.where('endorsements.active = true')
+    @landing_page_settings = LandingPageSetting.last
   end
 
   def about
