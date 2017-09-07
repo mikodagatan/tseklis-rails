@@ -1,10 +1,16 @@
-<dl>
-  <% resource_class.attribute_names.each do |attr| %>
-    <dt>
-      <%= resource_class.human_attribute_name(attr) %>
-    </dt>
-    <dd>
-      <%= resource.public_send(attr) %>
-    </dd>
-  <% end %>
-</dl>
+<table>
+  <thead>
+    <tr>
+      <td>Key</td>
+      <td>value</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% resource.attributes.each do |k, v| %>
+    <tr>
+      <td class="text-center"><%= k.humanize %></td>
+      <td> <%= v %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

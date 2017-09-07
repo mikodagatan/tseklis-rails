@@ -26,10 +26,11 @@ Rails.application.routes.draw do
     resources :plans
     resources :roles
     resources :testimonials
-    resource :site_settings
-    resource :landing_page_settings
-    resource :user_home_page_settings
+    resources :site_settings
+    resources :landing_page_settings
+    resources :user_home_page_settings
     resources :plans
+    root to: "site_settings#index"
   end
 
 	get 'about' => 'pages#about'

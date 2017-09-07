@@ -1,6 +1,6 @@
 class Dashboard::LandingPageSettingsController < Dashboard::ResourceController
-  def landing_page_settings_params
-  	params.require(:landing_page_settings).permit(
+  def landing_page_setting_params
+  	params.require(:landing_page_setting).permit(
             :id,
             :photo_1,
             :photo_2,
@@ -13,13 +13,19 @@ class Dashboard::LandingPageSettingsController < Dashboard::ResourceController
             :call_to_action_background,
             :header_message,
             :subheader_message,
+            :header_description_message,
             :endorsement_header,
             :endorsement_description,
             :testimonial_header,
-            :testimonial_description
-            :short_description,
-            :long_description,
-            :active,
+            :testimonial_description,
+            :features_header,
+            :features_description,
+            :owners_header,
+            :owners_description,
+            :contact_messages_header,
+            :contact_messages_description,
+            :plans_header,
+            :plans_description
             )
   end
 end

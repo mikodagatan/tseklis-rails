@@ -1,8 +1,5 @@
-<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<%= simple_form_for [:dashboard, resource], html: { multipart: true } do |f| %>
+    <%= f.input :name %>
   <div class="space"></div>
-  <%= f.submit 'Submit', class: "button primary" %>
+  <%= f.button :submit, class: "button primary" %>
 <% end %>

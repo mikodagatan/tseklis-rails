@@ -1,32 +1,11 @@
-<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :photo %>
-    <%= f.file_field :photo %>
-  </div>
-  <div class="field">
-    <%= f.label :designation %>
-    <%= f.text_field :designation %>
-  </div>
-  <div class="field">
-    <%= f.label :quote %>
-    <%= f.text_field :quote %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :video %>
-    <%= f.file_field :video %>
-  </div>
-  <div class="field">
-    <%= f.check_box :active %>
-    <%= f.label :active %>
-  </div>
+<%= simple_form_for [:dashboard, resource], html: { multipart: true } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :photo %>
+    <%= f.input :designation %>
+    <%= f.input :quote %>
+    <%= f.input :description %>
+    <%= f.input :video, as: :file %>
+    <%= f.input :active %>
   <div class="space"></div>
-  <%= f.submit 'Submit', class: "button primary" %>
+  <%= f.button :submit, class: "button primary" %>
 <% end %>

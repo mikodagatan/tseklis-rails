@@ -1,24 +1,12 @@
-<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
-  <div class="field">
-    <%= f.label :site_name %>
-    <%= f.text_field :site_name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :site_icon %>
-    <%= f.file_field :site_icon %>
-  </div>
-  <div class="field">
-    <%= f.label :site_logo %>
-    <%= f.file_field :site_logo %>
-  </div>
+<%= simple_form_for [:dashboard, resource], html: { multipart: true } do |f| %>
+    <%= f.input :site_name %>
+    <%= f.input :site_description %>
+    <%= f.input :site_icon %>
+    <%= resource.site_icon_file_name if resource.site_icon_file_name.present? %>
+    <%= image_tag resource.site_icon.url(:medium) if resource.site_icon_file_name.present?%>
+    <%= f.input :site_logo %>
+    <%= resource.site_logo_file_name if resource.site_logo_file_name.present? %>
+    <%= image_tag resource.site_logo.url(:medium) if resource.site_logo_file_name.present? %>
   <div class="space"></div>
-  <%= f.submit 'Submit', class: "button primary" %>
+  <%= f.button :submit, class: "button primary" %>
 <% end %>

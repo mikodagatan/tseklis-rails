@@ -1,15 +1,12 @@
 <div data-sticky-container>
-  <div class="menu-vertical sticky" data-sticky data-margin-top="0" >
+  <div class="menu-vertical sticky padding" data-sticky data-margin-top="0" >
     <h1 class="text-center">Tseklis</h1>
-    <ul class="vertical menu drilldown" data-drilldown>
+    <ul class="vertical menu accordion-menu" data-accordion-menu>
       <li>
       </li>
       <li>
         <a>Features</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Features</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_feature_url %></li>
           <li><%= link_to "Index",  dashboard_features_url %></li>
         </ul>
@@ -17,9 +14,6 @@
       <li>
         <a>Testimonials</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Testimonials</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_testimonial_url %></li>
           <li><%= link_to "Index",  dashboard_testimonials_url %></li>
         </ul>
@@ -27,9 +21,6 @@
       <li>
         <a>Endorsements</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Endorsements</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_endorsement_url %></li>
           <li><%= link_to "Index",  dashboard_endorsements_url %></li>
         </ul>
@@ -37,9 +28,6 @@
       <li>
         <a>Plans</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Plans</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_plan_url %></li>
           <li><%= link_to "Index",  dashboard_plans_url %></li>
         </ul>
@@ -47,9 +35,6 @@
       <li>
         <a>Roles</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Roles</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_role_url %></li>
           <li><%= link_to "Index",  dashboard_roles_url %></li>
         </ul>
@@ -57,9 +42,6 @@
       <li>
         <a>Company Owners</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Company Owners</h5>
-          </li>
           <li><%= link_to "Create", new_dashboard_owner_url %></li>
           <li><%= link_to "Index",  dashboard_owners_url %></li>
         </ul>
@@ -67,23 +49,16 @@
       <li>
         <a>Contact Messages</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Contact Messages</h5>
-          </li>
           <li><%= link_to "Index",  dashboard_contact_messages_url %></li>
         </ul>
       </li>
       <li>
         <a>Site Settings</a>
         <ul class="menu vertical nested">
-          <li>
-            <h5 class="text-center">Site Settings</h5>
+            <%= link_to "Create", new_dashboard_site_setting_url if SiteSetting.last.nil? %>
           </li>
           <li>
-            <%= link_to "Create", new_dashboard_site_settings_url if SiteSetting.last.nil? %>
-          </li>
-          <li>
-            <%= link_to "Update", edit_dashboard_site_settings_url if SiteSetting.last.present? %>
+            <%= link_to "Update", edit_dashboard_site_setting_url(SiteSetting.last) if SiteSetting.last.present? %>
           </li>
         </ul>
       </li>
@@ -91,13 +66,10 @@
         <a>Landing Page Settings</a>
         <ul class="menu vertical nested">
           <li>
-            <h5 class="text-center">Landing Page Settings</h5>
+            <%= link_to "Create", new_dashboard_landing_page_setting_url if LandingPageSetting.last.nil? %>
           </li>
           <li>
-            <%= link_to "Create", new_dashboard_landing_page_settings_url if SiteSetting.last.nil? %>
-          </li>
-          <li>
-            <%= link_to "Update", edit_dashboard_landing_page_settings_url if SiteSetting.last.present? %>
+            <%= link_to "Update", edit_dashboard_landing_page_setting_url(LandingPageSetting.last) if SiteSetting.last.present? %>
           </li>
         </ul>
       </li>
@@ -105,13 +77,10 @@
         <a>User Home Page Settings</a>
         <ul class="menu vertical nested">
           <li>
-            <h5 class="text-center">User Home Page Settings</h5>
+            <%= link_to "Create", new_dashboard_user_home_page_setting_url if UserHomePageSetting.last.nil? %>
           </li>
           <li>
-            <%= link_to "Create", new_dashboard_user_home_page_settings_url if SiteSetting.last.nil? %>
-          </li>
-          <li>
-            <%= link_to "Update", edit_dashboard_user_home_page_settings_url if SiteSetting.last.present? %>
+            <%= link_to "Update", edit_dashboard_user_home_page_setting_url(UserHomePageSetting.last) if UserHomePageSetting.last.present? %>
           </li>
         </ul>
       </li>

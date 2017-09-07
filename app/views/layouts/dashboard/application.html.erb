@@ -14,12 +14,16 @@
   <body>
 
     <div class="row no-sidepadding horizontal-max collapse">
-      <div class="columns medium-2">
+      <div class="columns medium-3">
         <%= render 'dashboard/partials/navbar' %>
       </div>
-      <div class="columns medium-10">
+      <div class="columns medium-9">
         <div class="row">
           <div class="columns">
+            <% flash.each do |key, value| %>
+              <%= content_tag :div, value, class: "callout  #{key}" %>
+            <% end %>
+
             <%= yield %>
           </div>
         </div>

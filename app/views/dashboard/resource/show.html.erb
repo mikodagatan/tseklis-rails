@@ -1,13 +1,11 @@
   <h1 class="text-center"><%= resource_class.model_name.human%> <small>Show</small></h1>
 
-<div class="text-center">
-  <ul class="menu text-center">
+  <ul class="menu align-center graymax-bg">
     <li><%= link_to "Index", collection_path %></li>
     <li><%= link_to "Show", resource_path %></li>
     <li><%= link_to "Edit", edit_resource_path %></li>
     <li><%= link_to "Destroy", resource_path, method: :delete, confirm: "Are you sure?" %></li>
   </ul>
-</div>
 <div class="space3"></div>
 
 <%= render "show" %>
