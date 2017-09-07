@@ -1,0 +1,16 @@
+<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :create_company_photo %>
+    <%= f.file_field :create_company_photo %>
+  </div>
+  <div class="field">
+    <%= f.label :connect_company_photo %>
+    <%= f.file_field :connect_company_photo %>
+  </div>
+  <div class="field">
+    <%= f.label :company_settings_photo %>
+    <%= f.file_field :company_settings_photo %>
+  </div>
+  <div class="space"></div>
+  <%= f.submit 'Submit', class: "button primary" %>
+<% end %>
