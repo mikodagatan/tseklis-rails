@@ -4,13 +4,12 @@
     <%= image_tag resource.photo.url(:thumbnail) %>
     <p>Active: <%= resource.active %></p>
     <p>Name: <%= resource.name %></p>
+    <p>Designation: <%= resource.designation %></p>
+    <p>Quote: <%= resource.quote%></p>
     <p>Photo: <%= resource.photo_file_name %> </p>
+    <p>Description:</p>
+    <p><%= resource.description %></p>
     <p>Photo Size: <%= better_file_size(resource.photo_file_size) %> kb</p>
     <p>Video: <%= resource.video_file_name %> </p>
-    <p>Video Size: <%= better_file_size(resource.video_file_size) %> kb</p>
-    <p>Short Description:</p>
-    <p><%= resource.short_description %></p>
-    <p>Long Description:</p>
-    <p><%= resource.long_description %></p>
   </div>
 </div>
