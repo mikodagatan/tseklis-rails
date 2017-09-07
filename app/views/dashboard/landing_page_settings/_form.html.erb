@@ -1,0 +1,100 @@
+<%= form_for [:dashboard, resource], method: :post, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :photo_1 %>
+    <%= f.file_field :photo_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :photo_2 %>
+    <%= f.file_field :photo_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :photo_3 %>
+    <%= f.file_field :photo_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :photo_4 %>
+    <%= f.file_field :photo_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :video_1 %>
+    <%= f.file_field :video_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :video_2 %>
+    <%= f.file_field :video_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :video_3 %>
+    <%= f.file_field :video_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :video_4 %>
+    <%= f.file_field :video_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :call_to_action_background %>
+    <%= f.file_field :call_to_action_background %>
+  </div>
+  <div class="field">
+    <%= f.label :header_message %>
+    <%= f.text_field :header_message %>
+  </div>
+  <div class="field">
+    <%= f.label :subheader_message %>
+    <%= f.text_field :subheader_message %>
+  </div>
+  <div class="field">
+    <%= f.label :header_description_message %>
+    <%= f.text_area :header_description_message %>
+  </div>
+  <div class="field">
+    <%= f.label :endorsement_header %>
+    <%= f.text_field :endorsement_header %>
+  </div>
+  <div class="field">
+    <%= f.label :endorsement_description %>
+    <%= f.text_area :endorsement_description %>
+  </div>
+  <div class="field">
+    <%= f.label :testimonial_header %>
+    <%= f.text_field :testimonial_header %>
+  </div>
+  <div class="field">
+    <%= f.label :testimonial_descriptionn %>
+    <%= f.text_area :testimonial_descriptionn %>
+  </div>
+  <div class="field">
+    <%= f.label :features_header %>
+    <%= f.text_field :features_header %>
+  </div>
+  <div class="field">
+    <%= f.label :features_description %>
+    <%= f.text_area :features_description %>
+  </div>
+  <div class="field">
+    <%= f.label :owners_header %>
+    <%= f.text_field :owners_header %>
+  </div>
+  <div class="field">
+    <%= f.label :owners_description %>
+    <%= f.text_area :owners_description %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_messages_header %>
+    <%= f.text_field :contact_messages_header %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_messages_description %>
+    <%= f.text_area :contact_messages_description %>
+  </div>
+  <div class="field">
+    <%= f.label :plans_header %>
+    <%= f.text_field :plans_header %>
+  </div>
+  <div class="field">
+    <%= f.label :plans_description %>
+    <%= f.text_area :plans_description %>
+  </div>
+ <div class="space"></div>
+  <%= f.submit 'Submit', class: "button primary" %>
+<% end %>
