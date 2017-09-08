@@ -1,0 +1,30 @@
+<div class="meet-the-team">
+  <div class="row">
+    <div class="columns">
+      <div class="row">
+        <div class="columns text-center white-text">
+          <div class="space"></div>
+          <h1> The Pit Crew </h1>
+        </div>
+      </div>
+      <div class="row medium-up-3">
+        <% @owners.each do |owner|%>
+        <div class="columns white-text">
+          <div class="row horizontal-max">
+            <div class="columns text-center">
+              <%= image_tag owner.photo.url(:medium), class: 'owner-photo text-center' %>
+            </div>
+          </div>
+          <div class="space2"></div>
+          <h3><%= owner.name %></h3>
+          <h5><%= owner.designation %></h5>
+          <div class="space"></div>
+          <blockquote><%= owner.quote %></blockquote>
+          <div class="space"></div>
+          <p><%= owner.description %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

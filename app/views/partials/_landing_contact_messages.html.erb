@@ -1,18 +1,29 @@
 <div class="landing-contact_messages">
-  <div class="row landing-contact_messages align-middle text-center">
-    <div class="columns">
-      <div class="row">
-        <div class="columns">
-          <h2><%= @landing_page_settings.contact_messages_header %></h2>
-          <p><%= @landing_page_settings.contact_messages_description %></p>
-        </div>
-      </div>
-      <div class="space5">
-      </div>
-      <div class="row small-up-1 medium-up-3 white-text">
+  <div class="row landing-contact_messages align-middle align-justify">
+    <div class="columns medium-6 white-text">
+      <h2><%= @landing_page_settings.contact_messages_header %></h2>
+      <p><%= @landing_page_settings.contact_messages_description %></p>
+    </div>
+    <div class="columns medium-4 white-text align-self-right">
+      <div class="row small-up-1 medium-up-3">
+        <%= simple_form_for :contact_messages do |f| %>
+          <%= f.label :first_name, class: 'white-text' %>
+          <%= f.input_field :first_name, class: 'contact-field'  %>
+          <%= f.label :last_name, class: 'white-text' %>
+          <%= f.input_field :last_name, class: 'contact-field' %>
+          <%= f.label :email, class: 'white-text' %>
+          <%= f.input_field :email, as: :email, class: 'contact-field' %>
+          <%= f.label :phone_number, class: 'white-text' %>
+          <%= f.input_field :phone_number, as: :tel, class: 'contact-field' %>
+          <%= f.label :country, class: 'white-text' %>
+          <%= f.input_field :country, as: :country, class: 'contact-field' %>
+          <%= f.label :description, class: 'white-text' %>
+          <%= f.input_field :description, as: :text, class: 'contact-field text-area-max' %>
+          <%= f.hint '*All fields are required' %>
+          <div class="space"></div>
+          <%= f.button :submit, 'Send', class: 'button warning large' %>
+        <% end %>
       </div>
     </div>
-  </div>
-  <div class="space5">
   </div>
 </div>

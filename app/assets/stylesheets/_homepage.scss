@@ -6,44 +6,46 @@ div#landing {
 }
 
 .landing {
-	height: 92vh;
-	max-height: 92vh;
-	overflow: hidden;
+	min-height: 40rem;
 }
+
 .homepage-right {
   background-color: #29a4e9;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
 .landing-advantage {
   background-color: #29a4e9;
-  height: 120vh;
-  max-height: 10000px;
+  min-height: 120%;
+  max-min-height: 10000px;
   width: 100vw;
+  padding: 3rem;
 }
 
 .landing-testimonials {
-  height: 120vh;
+  min-height: 120%;
   width: 100vw;
+  padding: 3rem;
 }
 
 .landing-endorsements {
   background-color: #ffae00;
-  height: 120vh;
+  min-height: 120%;
   width: 100vw;
+  padding: 3rem;
 }
 
 .landing-contact_messages {
   background-color: #29a4e9;
-  height: 120vh;
-  max-height: 10000px;
+  min-height: 120%;
   width: 100vw;
+  padding: 3rem;
 }
 
 .welcome {
   background-color: #29a4e9;
-  height: 40vh;
+  min-height: 20rem;
   width: 100vw;
   max-width: 100vw;
   color: white;
@@ -52,10 +54,10 @@ div#landing {
 .grow-circle {
   background-color: white;
   border-radius: 50%;
-  height: 5rem;
+  min-height: 5rem;
   width: 5rem;
   color: black;
-  line-height: 5rem;
+  line-min-height: 5rem;
 }
 
 #show-instructions {
@@ -63,19 +65,19 @@ div#landing {
 }
 
 #instructions {
-  height: 52vh;
+  min-height: 52%;
   width: 100vw;
 }
 
 .instructions {
-  height: 52vh;
+  min-height: 20rem;
   width: 100vw;
 }
 
 // icons
 
 .feature-icon {
-  height: 10rem;
+  min-height: 10rem;
   width: 10rem;
   background-repeat: no-repeat;
   background-size: cover;
@@ -83,15 +85,39 @@ div#landing {
 
 .testimonial-photo {
   border-radius: 50%;
-  height: 15rem;
+  min-height: 15rem;
   width: 15rem;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .endorsement-photo {
-  height: auto;
+  min-height: auto;
   width: auto;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.text-area-max {
+  max-width: inherit;
+}
+// Contact Messages
+
+.contact-field {
+}
+
+// Owners / Team
+
+.meet-the-team {
+  background-color: #393945;
+  min-height: 50rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+.owner-photo {
+  border: 0.5rem solid white;
+  border-radius: 50%;
+  min-height: 15rem;
+  width: 15rem;
 }

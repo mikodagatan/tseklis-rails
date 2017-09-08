@@ -21,6 +21,10 @@ class PagesController < ApplicationController
   def about
   end
 
+  def team
+    @owners = Owner.all.where('owners.active = true')
+  end
+
 end
 
 private

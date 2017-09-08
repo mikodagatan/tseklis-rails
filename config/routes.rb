@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do
@@ -31,8 +32,9 @@ Rails.application.routes.draw do
     resources :user_home_page_settings
     resources :plans
     root to: "site_settings#index"
+    devise_for :admins, skip: :registrations
   end
-
+  get 'team' => 'pages#team'
 	get 'about' => 'pages#about'
 	root 'pages#home'
 end
