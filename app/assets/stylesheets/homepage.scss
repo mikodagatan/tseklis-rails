@@ -6,7 +6,7 @@ div#landing {
 }
 
 .landing {
-	min-height: 40rem;
+	min-height: 120vh;
 }
 
 .homepage-right {
@@ -84,6 +84,7 @@ div#landing {
 }
 
 .testimonial-photo {
+  border: 0.5rem solid white;
   border-radius: 50%;
   min-height: 15rem;
   width: 15rem;

@@ -22,13 +22,16 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rubocop'
   gem 'factory_girl_rails'
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'irbtools'
+
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rack-mini-profiler'
 end
 
 group :production do
@@ -54,9 +57,6 @@ gem 'font-awesome-rails'
 gem 'paperclip', '~> 5.1.0'
 gem 'custom_error_message', '~> 1.1.1'
 gem 'nested_form_fields'
-gem 'flamegraph'
-gem 'stackprof'
-gem 'irbtools'
 gem 'kaminari'
 gem 'google-analytics-rails', '~> 1.1'
 gem 'inherited_resources'
