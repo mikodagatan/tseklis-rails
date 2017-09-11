@@ -130,7 +130,8 @@ $miko-button-border: 0.3rem;
 // Topbar
 $top-bar-height: 5%;
 .top-bar {
-	height: $top-bar-height;
+	min-height: $top-bar-height;
+  background-color: #f7f7f9;
 }
 
 .logo-round {
