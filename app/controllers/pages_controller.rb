@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       if @current_user.employed?
         count = 0
         @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
-        @has_leave_types = count > 0 ? true : false
+        @has_leave_types = count > 1 ? true : false
       end
 		end
     @features = Feature.all.where("features.active = true")

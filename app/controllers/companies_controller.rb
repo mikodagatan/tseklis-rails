@@ -15,6 +15,7 @@ class CompaniesController < ApplicationController
 		@employment = @company.employments.build
 		@address = @company.build_address
 		@company_leave_setting = @company.build_company_leave_setting
+		@leave_types = @company.leave_types.build
 	end
 
 	def create

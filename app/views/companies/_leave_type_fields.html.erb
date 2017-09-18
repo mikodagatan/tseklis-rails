@@ -2,26 +2,28 @@
 
 <%= input.nested_fields_for :leave_types do |leave_type| %>
 
-	<div class="row">
-		<div class="columns" style="padding-right: 0.25rem;">
-		 	<%= leave_type.label :name %>
-	  	<%= leave_type.text_field :name,  placeholder: "Enter Leave Type" %>
+	<% unless leave_type.object.id == 1 %>
+		<div class="row">
+			<div class="columns" style="padding-right: 0.25rem;">
+			 	<%= leave_type.label :name %>
+		  	<%= leave_type.text_field :name,  placeholder: "Enter Leave Type" %>
+			</div>
+			<div class="columns" style="padding-left:0.25rem;">
+			  <%= leave_type.label :amount, "Annual Number of Leaves" %>
+		  	<%= leave_type.number_field :amount, placeholder: "Annual Number of Leaves" %>
+			</div>
 		</div>
-		<div class="columns" style="padding-left:0.25rem;">
-		  <%= leave_type.label :amount, "Annual Number of Leaves" %>
-	  	<%= leave_type.number_field :amount, placeholder: "Annual Number of Leaves" %>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="columns">
-		  <%# leave_type.remove_nested_fields_link 'Delete', class: "small-font-size"%>
-	  	<%= leave_type.check_box :_destroy %>
-	  	<%= leave_type.label :_destroy, "Remove", class: "small-font-size" %>
+		<div class="row">
+			<div class="columns">
+			  <%# leave_type.remove_nested_fields_link 'Delete', class: "small-font-size"%>
+		  	<%= leave_type.check_box :_destroy %>
+		  	<%= leave_type.label :_destroy, "Remove", class: "small-font-size" %>
+			</div>
 		</div>
-	</div>
 
-  <div class="space"></div>
+	  <div class="space"></div>
+	<% end %>
 <% end %>
 
 <div class="space"></div>
