@@ -69,7 +69,7 @@
             <%= link_to "Create", new_dashboard_landing_page_setting_url if LandingPageSetting.last.nil? %>
           </li>
           <li>
-            <%= link_to "Update", edit_dashboard_landing_page_setting_url(LandingPageSetting.last) if SiteSetting.last.present? %>
+            <%= link_to "Update", edit_dashboard_landing_page_setting_url(LandingPageSetting.last) if LandingPageSetting.last.present? %>
           </li>
         </ul>
       </li>
