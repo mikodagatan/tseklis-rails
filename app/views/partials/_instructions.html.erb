@@ -9,20 +9,18 @@
         <div class="space2"></div>
         <div class="row">
           <div class="columns">
-            <div class="row medium-up-1 small-up-1">
+            <div class="row medium-up-2 small-up-1">
               <div class="columns">
                 <%= render 'partials/create_company' %>
               </div>
               <div class="columns">
-                <%= render 'partials/company_edit' if @current_user.employed? %>
-              </div>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="row medium-up-1 small-up-1">
-              <div class="columns">
                 <%= render 'partials/connect_company' %>
               </div>
+              <% if @employment.role_id == @hr_officer.id %>
+                <div class="columns">
+                  <%= render 'partials/company_edit' if @current_user.employed? %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

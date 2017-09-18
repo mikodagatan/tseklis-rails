@@ -2,4 +2,5 @@
 <%= render 'partials/instructions' %>
 <%= render 'partials/no_company' unless @current_user.employed? %>
 <%= render 'partials/no_leave_types' unless @has_leave_types || @current_user.employed? == false %>
+<%= render 'partials/no_leave_requests' unless @has_leave_requests %>
 <%= render 'users/user_leaves_taken' if @has_leave_types %>
