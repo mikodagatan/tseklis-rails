@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       # has_leave_types
       if @current_user.employed?
         count = 0
-        @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
+        @companies.each { |u| u.leave_types.count > 0 ? count += u.leave_types.count : count += 0}
         @has_leave_types = count > 1 ? true : false
       end
 		end
