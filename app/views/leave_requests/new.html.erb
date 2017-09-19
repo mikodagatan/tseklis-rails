@@ -1,9 +1,24 @@
-<div class="form-header">
-  <div class="row text-center align-middle form-header">
+<div class="form-header no-margin">
+  <div class="row text-center align-middle form-header no-margin horizontal-max">
     <div class="columns">
+      <%= @current_user.profile.first_name %> <%= @current_user.profile.last_name %> <br />
+      <%= @company.name %>
       <h2>Create Leave Request</h2>
     </div>
   </div>
-
-  <%= render 'leave_request_form', url: user_employment_leave_requests_url(@user, @employment), method: :post %>
 </div>
+<div class="section-blue">
+  <div class="row section-blue align-middle">
+    <div class="columns">
+      <h3>File your leaves the easy way.</h3>
+      <h4>Enjoy Tseklis </h4>
+    </div>
+    <div class="columns">
+      <%= render 'leave_request_form', url: user_employment_leave_requests_url(@user, @employment), method: :post %>
+    </div>
+  </div>
+</div>
+
+
+
+<%= render 'users/user_leaves_taken', at_leave_request: true %>

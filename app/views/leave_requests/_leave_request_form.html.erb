@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="small-12 medium-offset-3 medium-6">
+  <div class="small-12 medium-offset-1 medium-10">
 
 		<%= form_for @leave_request, url: url, method: method  do |f| %>
 
@@ -52,7 +52,7 @@
 					<div class="columns" style= "padding-left: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_time %>
-							<%= f.date_field :end_time, class: "timepickerend" %>
+							<%= f.date_field :end_time, class: "timepickerend", id: 'leave-request-end-time'%>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
           <div class="column">
             <%= f.check_box :allow_weekend_holiday_leave %>
             <%= f.label :allow_weekend_holiday_leave, "Allow Leaves on Weekends and Holidays" %>
-            <p class="small-font-size">Use this option if your assigned day offs are different from your company's normal day offs. Use with caution.</p>
+            <p class="small-font-size black-text">* Use this option if your assigned day offs are different from your company's normal day offs. Use with caution.</p>
           </div>
         </div>
 
@@ -73,5 +73,3 @@
 		<% end %>
 	</div>
 </div>
-
-<%= render 'users/user_leaves_taken', at_leave_request: true %>

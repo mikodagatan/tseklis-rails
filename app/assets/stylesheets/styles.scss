@@ -2,16 +2,16 @@
 	padding: 1.5rem;
 	margin: 0.5rem;
 	border-radius: 1rem;
-	height: auto;
-	max-height: 100%;
+	min-height: auto;
+	max-min-height: 100%;
 }
 
 .company_card {
 	padding: 1rem;
 	margin: 0.5rem;
 	border-radius: 1rem;
-	height: auto;
-	max-height: 100%;
+	min-height: auto;
+	max-min-height: 100%;
 }
 
 .button.small {
@@ -27,14 +27,14 @@
 
 .home-create-company {
 	background-color: white;
-  height: 7rem;
-  line-height: 3.5rem;
+  min-height: 7rem;
+  line-min-height: 3.5rem;
 }
 
 .home-connect-company {
 	background-color: white;
-  height: 7rem;
-  line-height: 4rem;
+  min-height: 7rem;
+  line-min-height: 4rem;
 }
 
 
@@ -45,7 +45,7 @@
   background-color: #393945;
 	padding: 2rem 0 2rem 0;
 	color: white;
-	line-height: 4rem;
+	line-min-height: 4rem;
 }
 
 // Callouts
@@ -72,23 +72,30 @@ section.dropdown-pane {
 // Div headers
 
 .form-header {
-	height: 20rem;
+	min-height: 20rem;
 	background: #FFF;
 	margin-bottom: 2rem;
 }
 
 .show-header {
-	height: 20rem;
-	background: #FFF;
-}
-
-.no-leave-request {
 	min-height: 20rem;
 	background: #FFF;
 }
 
+.section-blue {
+	min-height: 20rem;
+	background-color: #29a4e9;
+	color: white;
+	padding: 2rem 0rem 2rem 0rem;
+}
+
+.no-leave-request {
+	min-min-height: 20rem;
+	background: #FFF;
+}
+
 .footer {
-	height: 20rem;
+	min-height: 20rem;
 	width: 100%;
 	background: #191925;
 	color: #fff;
@@ -134,9 +141,9 @@ $miko-button-border: 0.3rem;
 }
 
 // Topbar
-$top-bar-height: 5%;
+$top-bar-min-height: 5%;
 .top-bar {
-	min-height: $top-bar-height;
+	min-min-height: $top-bar-min-height;
   background-color: #f7f7f9;
 }
 
