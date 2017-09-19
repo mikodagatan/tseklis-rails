@@ -16,8 +16,9 @@
 								<th colspan="1"></th>
 							</tr>
 						</thead>
-						<tbody>
-							<% @company.employments.reverse_order.each do |employment| %>
+						<tbody id="employments">
+							<%# render @users, join_request: false %>
+							<% @employments.each do |employment| %>
 								<%= render 'users/user',
 									employment: employment,
 									user: employment.user,
@@ -26,6 +27,16 @@
 							<% end %>
 						</tbody>
 					</table>
+					<div class="row align-center text-center">
+						<div class="column shrink">
+							<div id="employment_paginator_company">
+								<%= paginate @employments, remote: true %>
+							</div>
+							<div class="small-font-size" id="employment_info">
+								<%= page_entries_info @employments %>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -54,9 +54,11 @@ def update
 		@month_total_leaves = @company.total_leaves(Date.today.all_month)
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
     @leave_requests = @company.leave_requests.reverse_order
-    @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(25)
-
+    @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(10)
+		@employments = @company.employments.reverse_order
+		@employments = Kaminari.paginate_array(@employments).page(params[:page]).per(1)
     @has_leave_types = @company.leave_types.present? ? true : false
+
  	end
 
 	private
