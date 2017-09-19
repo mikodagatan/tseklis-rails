@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
     if @leave_requests.present?
       @leave_requests = @user.leave_requests.reverse_order
-      @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(5)
+      @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(2)
     end
   end
 

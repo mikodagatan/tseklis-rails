@@ -62,7 +62,7 @@
 					<% if @current_user.id ==
 						leave_request.employment.user.id %>
 						<%= link_to edit_user_employment_leave_request_url(
-							current_user, employment, leave_request),
+							current_user, leave_request.employment, leave_request),
 							class: 'button small secondary no-margin' do  %>
 								<%= fa_icon "edit" %>
 						<% end %>
