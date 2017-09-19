@@ -47,7 +47,7 @@ def update
 	end
 
 	def show
-		@per_show = 1
+		@per_show = 10
 		@user = current_user
 		@sum = 0
 		@leaves = []
@@ -56,9 +56,12 @@ def update
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
     @leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
-		@employments = @company.employments.reverse_order
+		@employments = @company.employments.where('employments.acceptance = true').reverse_order
 		@employments = Kaminari.paginate_array(@employments).page(params[:employments_page]).per(@per_show)
     @has_leave_types = @company.leave_types.present? ? true : false
+		@join_requests = @company.employments.where('employments.acceptance IS null').reverse_order
+		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)
+
 
  	end
 

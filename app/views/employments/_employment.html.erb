@@ -1,29 +1,29 @@
-<% @current_employment = @current_employments.find_by(company_id: employment.company_id) %>
-<tr class="table-data">
-	<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
-	<td><%= better_date(employment.start_date) %></td>
-		<td><%= better_date(employment.end_date) %></td>
+	<% @current_employment = @current_employments.find_by(company_id: employment.company_id) %>
+	<tr class="table-data">
+		<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
+		<td><%= better_date(employment.start_date) %></td>
+			<td><%= better_date(employment.end_date) %></td>
 
-	<td>
-		<% if @user.employments.find_by(company_id: employment.company_id).present? %>
-			<% if @current_employment.is_hr? || (@user == @current_user) %>
-				<%= number_with_delimiter(employment.salary) %>
-			<% end %>
-		<% end %>
-	</td>
-	<td>
-		<%= employment.acceptance.nil? ? "Waiting" : (employment.acceptance == true ? "Accepted" : "Rejected") %>
-	</td>
-	<td>
-			<%= Role.find(employment.role_id).name %>
-	</td>
-	<td class="edit-column">
-		<% if employment.acceptance.nil? %>
-			<% if @current_employment.is_hr? && @current_employment.present? || (@current_user = @user) %>
-				<%= link_to 'edit', url: edit_user_employment_url(employment.user_id, employment), class: "button small secondary" do  %>
-					<%= fa_icon "edit" %>
+		<td>
+			<% if @user.employments.find_by(company_id: employment.company_id).present? %>
+				<% if @current_employment.is_hr? || (@user == @current_user) %>
+					<%= number_with_delimiter(employment.salary) %>
 				<% end %>
 			<% end %>
-		<% end %>
-	</td>
-</tr>
+		</td>
+		<td>
+			<%= employment.acceptance.nil? ? "Waiting" : (employment.acceptance == true ? "Accepted" : "Rejected") %>
+		</td>
+		<td>
+				<%= Role.find(employment.role_id).name %>
+		</td>
+		<td class="edit-column">
+			<% if employment.acceptance.nil? %>
+				<% if @current_employment.is_hr? && @current_employment.present? || (@current_user = @user) %>
+					<%= link_to 'edit', url: edit_user_employment_url(employment.user_id, employment), class: "button small secondary" do  %>
+						<%= fa_icon "edit" %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</td>
+	</tr>

@@ -16,9 +16,10 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
-								<% @company.employments.reverse_order.each do |employment| %>
-									<%= render 'users/user',
+							<tbody id='join_requests'>
+								<%= render partial: 'employments/company_join_request', collection: @join_requests, as: 'employment', join_request: true, in_company: true %>
+								<%# @join_requests.each do |employment| %>
+									<%# render 'users/user',
 										employment: employment,
 										user: employment.user,
 										join_request: true,
@@ -27,9 +28,19 @@
 											employment.user,
 											employment),
 										method: :patch %>
-								<% end %>
+								<%# end %>
 							</tbody>
 						</table>
+						<div class="row align-center text-center">
+							<div class="column shrink">
+								<div id="join_requests_paginator_company">
+									<%= paginate @join_requests, remote: true, param_name: 'join_requests_page' %>
+								</div>
+								<!-- <div class="small-font-size" id="join_requests_info">
+									<%= page_entries_info @join_requests  %>
+								</div> -->
+							</div>
+						</div>
 					</div>
 				</div>
 
