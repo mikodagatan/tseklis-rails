@@ -83,7 +83,7 @@ class User < ApplicationRecord
     moving_date = Date.today - expiration.months
     leave_start = start_d + start.months
     if Date.today > leave_start
-      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round(2) - segmented_leaves(moving_date..Date.today, company, leave_type)[:amount]
+      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round(2) - segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
     else
       value = 0.0
     end

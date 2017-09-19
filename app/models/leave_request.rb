@@ -30,7 +30,7 @@ class LeaveRequest < ApplicationRecord
 					amount_plus = 1
 				end
 			else
-				amount_plus = 1
+					amount_plus = 1
 			end
 			if allow_weekend_holiday_leave == false
 				if ((focus_date.on_weekend? && weekends_included?) || on_holiday?(focus_date))
