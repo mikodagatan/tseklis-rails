@@ -28,6 +28,7 @@
 							<div class="field">
 								<%= f.label :end_date, "End Date" %>
 								<%= f.text_field :end_date, class: "datepickerstart" %>
+                <p class="small-font-size">* Enter if the user has left the company</p>
 							</div>
 						<% end %>
 					<% end %>
@@ -47,11 +48,18 @@
 								<div class="small-font-size">Pressing this will not save your other inputs.</div>
 								<div class="space"></div>
 							<% end %>
+
 						<% end %>
 					<% else%>
 						<%= f.hidden_field :role_id, value: @employee.id %>
 					<% end %>
-
+          <% if @current_employment.is_hr? %>
+            <%= fields_for :leave_reduction do |lr| %>
+              <%= lr.label :amount, "Leave Reduction Amount" %>
+              <%= lr.text_field :amount %>
+              <p class="small-font-size">* Reduces amount of leaves of the user due to leave usage before Tseklis use.</p>
+            <% end %>
+          <% end %>
 					<%= f.submit 'Update', class: "button primary" %>
 				</div>
 		<% end %>

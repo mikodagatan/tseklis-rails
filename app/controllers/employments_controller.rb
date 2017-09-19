@@ -21,6 +21,7 @@ class EmploymentsController < ApplicationController
   end
 
 	def edit
+		@leave_reduction = @employment.build_leave_reduction
 	end
 
 	def update
@@ -59,7 +60,11 @@ class EmploymentsController < ApplicationController
             :acceptor_id,
             :company_id,
             :user_id,
-            :role_id)
+            :role_id,
+						leave_reduction_attributes: [
+							:amount
+							]
+						)
   end
 
   # def only_current_user

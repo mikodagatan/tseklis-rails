@@ -4,6 +4,9 @@ class Employment < ApplicationRecord
 
 	has_many :leave_requests
 	has_many :leave_amounts, through: :leave_requests
+	has_one :leave_reduction
+
+	accepts_nested_attributes_for :leave_reduction
 
 	attr_accessor :skip_validation
 
