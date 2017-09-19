@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_up
 
   def show
+    @per_show = 1
     if @user.employments.present?
       @companies = @user.companies.distinct
       # Checking if there are companies with leave types
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     end
     if @leave_requests.present?
       @leave_requests = @user.leave_requests.reverse_order
-      @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:page]).per(2)
+      @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
     end
   end
 

@@ -34,7 +34,7 @@
           <div class="row align-center text-center">
             <div class="columns shrink">
 							<div id="leave_request_paginator_user">
-								<%= paginate @leave_requests, remote: true %>
+								<%= paginate @leave_requests, remote: true, param_name: "leave_requests_page" %>
 							</div>
 							<div class="small-font-size" id="leave_request_info">
 								<%= page_entries_info @leave_requests %>
