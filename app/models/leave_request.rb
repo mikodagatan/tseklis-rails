@@ -14,6 +14,35 @@ class LeaveRequest < ApplicationRecord
 	validates_presence_of :leave_type_id
 	validates_presence_of :employment_id
 
+
+	def show_amount
+		amount = []
+		focus_date = start_date
+		duration_date.times do |date|
+			if focus_date == end_date
+				if (end_time - start_time <= 1.hours)
+					amount_plus = 0
+				elsif (end_time - start_time <= 2.hours)
+					amount_plus = 0.25
+				elsif (end_time - start_time <= 4.hours)
+					amount_plus = 0.5
+				else
+					amount_plus = 1
+				end
+			else
+				amount_plus = 1
+			end
+			if allow_weekend_holiday_leave == false
+				if ((focus_date.on_weekend? && weekends_included?) || on_holiday?(focus_date))
+					amount_plus = 0
+				end
+			end
+			amount << amount_plus
+			focus_date = focus_date.next_day
+		end
+		amount.sum
+	end
+
 	protected
 
 	def weekends_included?

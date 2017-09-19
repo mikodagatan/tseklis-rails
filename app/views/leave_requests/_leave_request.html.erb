@@ -28,6 +28,9 @@
         nil :
 				"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" %>
 		</td>
+		<td class="text-center">
+			<%= leave_request.show_amount %>
+		</td>
 		<% unless at_company == false %>
 			<% if leave_request.acceptance.nil? %>
 				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %>
