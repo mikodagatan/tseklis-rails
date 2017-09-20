@@ -23,6 +23,13 @@ class Company < ApplicationRecord
 
 	attr_accessor :segmented_monthly_leaves
 
+	def self.search(search)
+	  if search
+	    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+	  else
+	  end
+	end
+
 	def segmented_leaves(date_used)
 		leave = []
 		self.leave_types.each do |p|

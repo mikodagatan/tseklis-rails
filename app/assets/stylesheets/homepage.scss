@@ -48,8 +48,18 @@ div#landing {
   background-color: #29a4e9;
   min-height: 20rem;
   width: 100vw;
-  max-width: 100vw;
   color: white;
+	padding: 1.5rem;
+}
+
+.text-search {
+	// width: 50%;
+	padding: 3rem;
+}
+
+.text-search-div {
+	// background-color: #ffae00;
+	background-color: white;
 }
 
 .grow-circle {

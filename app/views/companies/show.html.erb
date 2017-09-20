@@ -2,7 +2,7 @@
 	<div class="row show-header align-middle">
 		<div class="columns">
 			<h1><%= @company.name %></h1>
-			<% unless @address.first_line.blank? %>
+			<% unless @address.nil? || @address.first_line.blank? %>
 				<p>
 					<%= @address.first_line -%>,
 					<%= @address.second_line -%>
@@ -26,7 +26,7 @@
 											class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
-							<% if (@current_employment.is_hr?) %>
+							<% if (@current_employment.present? && @current_employment.is_hr?) %>
 								<div class="columns no-padding">
 									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
@@ -42,7 +42,7 @@
 	</div>
 </div>
 
-<% if @current_user.employments.find_by(company_id: @company.id).acceptance == true %>
+<% if @current_user.employments.find_by(company_id: @company.id).present? && @current_user.employments.find_by(company_id: @company.id).acceptance == true %>
 	<%= render "company_leaves_taken" %>
 	<div class="space3"></div>
 	<%= render "join_requests_table" %>

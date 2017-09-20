@@ -26,7 +26,7 @@ group :development, :test do
   gem 'stackprof'
   gem 'irbtools'
   gem 'rack-mini-profiler'
-
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -65,5 +65,9 @@ gem 'simple_form'
 gem 'country_select'
 gem 'has_scope', git: 'git://github.com/plataformatec/has_scope.git'
 gem "responders"
+gem 'pg_search'
+gem 'ransack'
+gem 'faker'
+
 
 ruby '2.4.0'

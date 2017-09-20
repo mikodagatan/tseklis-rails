@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
 
         @current_companies = @current_user.companies
 
-        Company.find_by_id(params[:id]).present? ? (@current_company = @current_companies.find(params[:id])) : (@current_company = nil)
+        Company.includes(:employments).where("employments.company_id = ?", params[:id]).where("employments.user_id = ?", @current_user.id).references(:employments).present? ? (@current_company = @current_companies.find(params[:id])) : (@current_company = nil)
 
       end
     end

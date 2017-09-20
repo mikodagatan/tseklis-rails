@@ -53,7 +53,7 @@ def update
 		@leaves = []
 		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
 		@month_total_leaves = @company.total_leaves(Date.today.all_month)
-		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company)
+		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company) if @current_company.present?
     @leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
 		@employments = @company.employments.where('employments.acceptance = true').reverse_order

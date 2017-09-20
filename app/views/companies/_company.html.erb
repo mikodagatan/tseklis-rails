@@ -3,14 +3,16 @@
 		<div class="row">
 			<div class="columns">
 				<div class="space"></div>
-			<h3><%= company.name %></h3>
+			<h3><%= link_to company.name, company_url(company.id) %></h3>
 			<div  class="small-font-size">
-				<%= company.address.first_line %>,
-				<%= company.address.second_line %>
-				<%= company.address.city_town %>,
-				<%= company.address.province %>,
-				<%= company.address.country %>
-				<%= company.address.zip_code %>
+				<% unless company.address.nil? %>
+					<%= company.address.first_line %>,
+					<%= company.address.second_line %>
+					<%= company.address.city_town %>,
+					<%= company.address.province %>,
+					<%= company.address.country %>
+					<%= company.address.zip_code %>
+				<% end %>
 			</div>
 		<div class="space"></div>
 			</div>

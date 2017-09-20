@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 				count2 = 0
 				@companies.each { |u| u.leave_requests.count > 0 ? count2 += 1 : count2 += 0 }
 				@has_leave_requests = count2 > 0 ? true : false
+				@company_search = Company.search(params[:search])
       end
 		end
     @features = Feature.all.where("features.active = true")
