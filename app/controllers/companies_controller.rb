@@ -54,10 +54,19 @@ def update
 		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
 		@month_total_leaves = @company.total_leaves(Date.today.all_month)
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company) if @current_company.present?
+
+		# Search
+		# @search_employee = User.where('employments.company_id = ?', @company.id).ransack(params[:q])
+		# @result_employees = @search_employee.result(distinct: true).includes(:profile, :employments)
+
+		@q_employments = Employment.where(company_id: @company.id).where(acceptance: true).ransack(params[:q_employments])
+		@employments = @q_employments.result(distinct: true).page(params[:employments_page]).per(@per_show)
+
+		# Kaminari
     @leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
-		@employments = @company.employments.where('employments.acceptance = true').reverse_order
-		@employments = Kaminari.paginate_array(@employments).page(params[:employments_page]).per(@per_show)
+		# @employments = @company.employments.where('employments.acceptance = true').reverse_order
+		# @employments = Kaminari.paginate_array(@employments).page(params[:employments_page]).per(@per_show)
     @has_leave_types = @company.leave_types.present? ? true : false
 		@join_requests = @company.employments.where('employments.acceptance IS null').reverse_order
 		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)

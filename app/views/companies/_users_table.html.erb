@@ -1,7 +1,18 @@
 <% if @company.employments.present? %>
 	<div class="row vertical-padding">
 		<div class="columns">
-			<h4>Employees</h4>
+			<div class="row">
+				<div class="columns">
+					<h4>Employees</h4>
+				</div>
+				<div class="columns medium-3 align-self-right">
+					<%= search_form_for @q_employments, url: company_url(@company), as: :q_employments, id: "employments_search" do |f| %>
+						<div class="input-group">
+						  <%= f.search_field :employee_name_cont, class:'input-group-field', type: 'text', placeholder: 'search employee' %>
+						</div>
+					<% end %>
+				</div>
+			</div>
 			<div class="space"></div>
 			<div class="row" id="users">
 				<div class="columns">

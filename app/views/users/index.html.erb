@@ -1,11 +1,10 @@
 
 
-<% @users.each do |user| %>
+<% Array.wrap(@users).each do |user| %>
 
-  <% if user.profile %>
     <div class="row m-well <%= cycle('', 'graymax-bg') %>">
       <div class="small-12 medium-12 columns">
-      
+
       <div>
         <%= link_to user do %>
           <h3><%= user.profile.first_name %> <%= user.profile.last_name %></h3>
@@ -14,5 +13,4 @@
 
       </div>
     </div>
-  <% end %>
 <% end %>

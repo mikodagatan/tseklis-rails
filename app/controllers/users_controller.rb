@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_up
+  before_action :set_up, only: :show
 
   def show
     @per_show = 5
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = User.all
+  	@users = User.ransack(params[:search])
 	end
 
   def set_up

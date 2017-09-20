@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     root to: "site_settings#index"
     devise_for :admins, skip: :registrations
   end
+  get 'search' => 'pages#search'
   get 'team' => 'pages#team'
 	get 'about' => 'pages#about'
 	root 'pages#home'

@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
 
+  ransack_alias :employee_name, :profile_first_name_or_profile_last_name
+
 	def employed?(company=nil)
 		if company.nil?
 			employments.present?
