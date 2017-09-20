@@ -14,6 +14,14 @@ class User < ApplicationRecord
 
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
 
+  def self.text_search(query)
+    if query.present?
+      where("name @@ :q", q: query)
+    else
+      scoped
+    end
+  end
+
 	def employed?(company=nil)
 		if company.nil?
 			employments.present?

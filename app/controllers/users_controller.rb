@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_up
 
   def show
-    @per_show = 1
+    @per_show = 5
     if @user.employments.present?
       @companies = @user.companies.distinct
       # Checking if there are companies with leave types
