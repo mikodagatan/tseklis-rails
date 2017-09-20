@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   $('#employments_search input').keyup( function() {
     $.get($("#employments_search").attr("action"), $("#employments_search").serialize(), null, "script");
     return false;

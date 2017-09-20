@@ -84,7 +84,7 @@
           <% end %>
 
           <%= f.fields_for :leave_types, @leave_types do |settings| %>
-            <%= settings.hidden_field :name, value: 'Non-paid leave' %>
+            <%= settings.hidden_field :name, value: 'Non-paid' %>
             <%= settings.hidden_field :amount, value: 365 %>
           <% end %>
 

@@ -35,14 +35,14 @@
 			<% if leave_request.acceptance.nil? %>
 				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %>
 					<td>
-						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: at_company do |f| %>
+						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: at_company, remote: true do |f| %>
 							<%= f.hidden_field :acceptance, value: true %>
 							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 							<%= f.submit "Accept", class: "button small expanded success"%>
 						<% end %>
 					</td>
 					<td>
-						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch do |f| %>
+						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, remote: true do |f| %>
 							<%= f.hidden_field :acceptance, value: false %>
 							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
 							<%= f.submit "Reject", class: "button small expanded alert small" %>

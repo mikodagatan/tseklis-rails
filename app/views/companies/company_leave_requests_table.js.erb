@@ -1,2 +1,0 @@
-$('#leave_requests').html('<%= escape_javascript render(@leave_requests, at_company: true) %>');
-$('#paginator').html('<%= escape_javascript(paginate(@leave_requests, remote: true).to_s) %>');
