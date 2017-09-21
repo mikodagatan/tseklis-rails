@@ -1,0 +1,11 @@
+$('#leave_requests').html('<%= escape_javascript render(@leave_requests, at_company: true) %>');
+$('#leave_request_paginator_company').html('<%= escape_javascript(paginate(@leave_requests, remote: true, param_name: "leave_requests_page").to_s) %>');
+$('#leave_request_info').html('<%= escape_javascript(page_entries_info(@leave_requests)) %>');
+
+$('#employments').html('<%= escape_javascript render(partial: "employments/company_employment", collection: @employments, as: "employment", join_request: false) %>');
+$('#employment_paginator_company').html('<%= escape_javascript(paginate(@employments, remote: true, param_name: "employments_page").to_s) %>');
+$('#employment_info').html('<%= escape_javascript(page_entries_info(@employments)) %>');
+
+$('#join_requests').html('<%= escape_javascript render( partial: "employments/company_join_request", collection: @join_requests, as: "employment", join_request: true, in_company: true) %>');
+$('#join_requests_paginator_company').html('<%= escape_javascript(paginate(@join_requests, remote: true, param_name: "join_requests_page").to_s) %>');
+$('#join_requests_info').html('<%= escape_javascript(page_entries_info(@join_requests)) %>');

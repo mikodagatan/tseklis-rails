@@ -44,6 +44,8 @@
 
 <% if @current_user.employments.find_by(company_id: @company.id).present? && @current_user.employments.find_by(company_id: @company.id).acceptance == true %>
 	<%= render "company_leaves_taken" %>
+	<%= render 'hr_dashboard_button' if @current_employment.present? && @current_employment.is_hr? %>
+	<%= render 'hr_dashboard' if @current_employment.present? && @current_employment.is_hr? %>
 	<div class="space3"></div>
 	<%= render "join_requests_table" %>
 	<%= render "users_table" %>

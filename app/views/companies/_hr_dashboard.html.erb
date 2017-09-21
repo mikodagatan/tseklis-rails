@@ -1,0 +1,25 @@
+<div id="hr-dashboard">
+  <div class="section-blue-small">
+    <div class="row section-blue-small small-up-1 medium-up-1">
+      <div class="columns">
+         <h2><%= Date.today.strftime("%B %Y") %> <small>Leave Data</small></h2>
+      </div>
+      <div class="columns">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <% @company.leave_types.each do |leave_type| %>
+                <th><%= leave_type.name %></th>
+              <% end %>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="leave_data">
+            <%= render partial: 'companies/leave_data', collection: @leave_data, as: 'leave_data'%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

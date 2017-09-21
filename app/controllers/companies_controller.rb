@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
 			holiday = Company.find(params[:id]).holidays.build
 	end
 
-def update
+	def update
 		if @company.update_attributes(company_params)
 	    flash[:success] = "Company Updated!"
 	    redirect_to edit_company_url( params[:id] )
@@ -71,76 +71,84 @@ def update
 		@join_requests = @company.employments.where('employments.acceptance IS null').reverse_order
 		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)
 
+		# leave_data
+		@leave_data = leave_data
 
  	end
 
 	private
 
-	def company_params
-	  params.require(:company).permit(
-			:id,
-			:name,
-	  	employments_attributes: [
-	  		:id,
-  			:start_date,
-  			:end_date,
-  			:salary,
-  			:acceptance,
-  			:acceptor_id,
-  			:user_id,
-  			:company_id,
-  			:role_id
-  		],
-	  	address_attributes: [
-	  		:id,
-	  		:first_line,
-	  		:second_line,
-	  		:city_town,
-	  		:province,
-	  		:country,
-	  		:zip_code,
-	  		:company_id
-	  	],
-		  leave_types_attributes: [
-		  	:id,
-	  		:name,
-	  		:company_id,
-	  		:amount,
-	  		:_destroy
-	  	],
-		  company_leave_setting_attributes: [
-        :id,
-        :company_id,
-	  		:leave_month_expiration,
-	  		:leave_month_start,
-	  		:prorate_accrual,
-	  		:include_weekends
-	  	],
-	  	holidays_attributes: [
-	  		:id,
-	  		:name,
-	  		:date,
-	  		:company_id
-	  	]
-	  )
-end
-
-
-def set_up
-	@company = Company.find_by_id(params[:id])
-	@employments = @company.employments
-	@address = @company.address
-	@leave_types = @company.leave_types
-	@leave_requests = @company.leave_requests
-	@company_leave_setting = @company.company_leave_setting
-end
-
-def destroy_leave_type_blank
-	leave_types = @leave_types
-	leave_types.each do |leave_types_array|
-		leave_type = leave_types_array
-		LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
+		def company_params
+		  params.require(:company).permit(
+				:id,
+				:name,
+		  	employments_attributes: [
+		  		:id,
+	  			:start_date,
+	  			:end_date,
+	  			:salary,
+	  			:acceptance,
+	  			:acceptor_id,
+	  			:user_id,
+	  			:company_id,
+	  			:role_id
+	  		],
+		  	address_attributes: [
+		  		:id,
+		  		:first_line,
+		  		:second_line,
+		  		:city_town,
+		  		:province,
+		  		:country,
+		  		:zip_code,
+		  		:company_id
+		  	],
+			  leave_types_attributes: [
+			  	:id,
+		  		:name,
+		  		:company_id,
+		  		:amount,
+		  		:_destroy
+		  	],
+			  company_leave_setting_attributes: [
+	        :id,
+	        :company_id,
+		  		:leave_month_expiration,
+		  		:leave_month_start,
+		  		:prorate_accrual,
+		  		:include_weekends
+		  	],
+		  	holidays_attributes: [
+		  		:id,
+		  		:name,
+		  		:date,
+		  		:company_id
+		  	]
+		  )
 	end
-end
 
+
+	def set_up
+		@company = Company.find_by_id(params[:id])
+		@employments = @company.employments
+		@address = @company.address
+		@leave_types = @company.leave_types
+		@leave_requests = @company.leave_requests
+		@company_leave_setting = @company.company_leave_setting
+	end
+
+	def destroy_leave_type_blank
+		leave_types = @leave_types
+		leave_types.each do |leave_types_array|
+			leave_type = leave_types_array
+			LeaveType.destroy(leave_type.id) if leave_type[:id].nil? || (leave_type[:amount].nil? || leave_type[:name].blank?)
+		end
+	end
+
+	def leave_data
+		return @company.leave_amounts
+			.where(date: Date.today.all_month)
+			.where('leave_requests.acceptance = ?', true)
+	end
+	
 end
