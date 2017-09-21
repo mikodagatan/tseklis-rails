@@ -146,9 +146,10 @@ class CompaniesController < ApplicationController
 	end
 
 	def leave_data
-		return @company.leave_amounts
-			.where(date: Date.today.all_month)
+		return @company.employments.includes(:leave_amounts)
+			.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
 			.where('leave_requests.acceptance = ?', true)
+			.references(:leave_amounts)
 	end
-	
+
 end
