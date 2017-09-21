@@ -89,6 +89,25 @@ section.dropdown-pane {
 	padding: 2rem 0rem 2rem 0rem;
 }
 
+.box-round-blue {
+	min-height: 20rem;
+	height: inherit;
+	background-color: #29a4e9;
+	color: white;
+	padding: 2rem;
+	border-radius: 1.5rem;
+	margin: 1rem;
+}
+
+.box-round-yellow {
+	min-height: 20rem;
+	background-color: #ffae00;
+	color: white;
+	padding: 2rem;
+	border-radius: 1.5rem;
+	margin: 1rem;
+}
+
 .no-leave-request {
 	min-min-height: 20rem;
 	background: #FFF;

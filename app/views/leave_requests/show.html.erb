@@ -4,8 +4,7 @@
       <h1> <%= @leave_request.title %> </h1>
       <h5> Requested by: <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h5>
       <br />
-      <p><strong>From:</strong> <%= better_date(@leave_request.start_date) %> - <%= better_time(@leave_request.start_time) %></p>
-      <p><strong>To:</strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
+
     </div>
     <div class="columns medium-3 align-self-right text-right">
       <% if @leave_request.acceptance.nil? %>
@@ -36,8 +35,20 @@
 </div>
 <div class="space3"></div>
 <div class="row">
-  <div class="columns">
+  <div class="columns medium-3 box-round-blue">
+    <h5>Amount of Leaves</h5>
+    <h1>
+      <%= @leave_request.show_amount%>
+
+    </h1>
+    <h5>From:</h5>
+    <p><strong></strong> <%= better_date(@leave_request.start_date) %> - <%= better_time(@leave_request.start_time) %></p>
+    <h5>To:</h5>
+    <p><strong></strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
+  </div>
+  <div class="columns medium-6 box-round-blue white-bg black-text">
     <h5>Description</h5>
     <p><%= @leave_request.description %></p>
   </div>
+
 </div>
