@@ -33,7 +33,7 @@
 				</div>
 			<% end %>
 		</td>
-		<td>
+		<td class='text-center'>
 			<%= leave_request.acceptance.nil? ?
         nil :
 				"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" %>
