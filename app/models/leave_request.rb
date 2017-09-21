@@ -5,6 +5,7 @@ class LeaveRequest < ApplicationRecord
   validate :check_date_validity
   validate :invalidate_weekends_and_holidays_only
 	validate :check_leaves_available
+	validate :check_time_validity
 	after_commit :enter_amounts
 
 	validates_presence_of :title
@@ -122,4 +123,9 @@ class LeaveRequest < ApplicationRecord
     end
 	end
 
+	def check_time_validity
+		if start_date == end_date && start_time > end_time
+			errors.add(:start_time, 'cannot be earlier than end time on the same date')
+		end
+	end
 end
