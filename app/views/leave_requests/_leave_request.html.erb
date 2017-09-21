@@ -18,10 +18,20 @@
 		</td>
 		<td><%= better_date(leave_request.end_date) %> - <%= leave_request.end_time.strftime("%I:%M%p") %>
 		</td>
-		<td>
-			<%= leave_request.acceptance.nil? ?
-				"Waiting" :	(leave_request.acceptance == true ?
-				"Accepted" : "Rejected") %>
+		<td class='text-center'>
+			<% if leave_request.acceptance.nil? %>
+				<div class="callout small no-margin no-padding secondary">
+					Waiting
+				</div>
+			<% elsif leave_request.acceptance == true %>
+				<div class="callout small no-margin no-padding success">
+					Accepted
+				</div>
+			<% else %>
+				<div class="callout small no-margin no-padding alert">
+					Rejected
+				</div>
+			<% end %>
 		</td>
 		<td>
 			<%= leave_request.acceptance.nil? ?
