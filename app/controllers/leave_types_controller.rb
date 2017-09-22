@@ -38,7 +38,7 @@ class LeaveRequestsController < ApplicationController
 		@user = current_user
   	@employments = @user.employments
 		@employment = @user.employments.last
-		@company = Company.find_by_id(params[:id] || params(:company_id))
+		@company = Company.find(params[:id]) || Company.find(params(:company_id])
   	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
 	end
 
