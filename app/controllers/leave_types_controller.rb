@@ -6,7 +6,7 @@ class LeaveRequestsController < ApplicationController
   end
 
   def create
-  	@leave_type = @company.leave_type.build(leave_type_params)
+  	@leave_type = @company.leave_types.build(leave_type_params)
   	if @leave_type.save
   		flash[:success] = "Leave Type Created!"
   		redirect_to user_path( @user.id )
@@ -38,7 +38,7 @@ class LeaveRequestsController < ApplicationController
 		@user = current_user
   	@employments = @user.employments
 		@employment = @user.employments.last
-		@company = Company.find_by_id(params[:id])
+		@company = Company.find_by_id(params[:id] || params(:company_id))
   	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
 	end
 
