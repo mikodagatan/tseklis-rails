@@ -13,16 +13,15 @@
 					<th>Employee</th>
 					<th>Start Date</th>
 					<th>End Date</th>
-					<th>Salary</th>
 					<th colspan="1"></th>
-				</tr>	
+				</tr>
 			</thead>
 			<tbody>
 				<!--
 					Below code will look for a partial: views/employments/_employment.html.erb
 				-->
 				<%# render @employments %>
-				
+
 				<% @employments.each do |employment| %>
 					<%= render 'employments/employment', employment: employment, company: @company %>
 				<% end %>
@@ -30,4 +29,3 @@
 		</table>
 	</div>
 </div>
-

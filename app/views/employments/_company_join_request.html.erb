@@ -1,17 +1,7 @@
 <tr class="table-data">
   <td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
   <td><%= better_date(employment.start_date) %></td>
-  <td>
-    <% if @current_employment.present? %>
-      <% if (@current_employment.role_id == @hr_officer.id) && (employment.company_id.to_i == @current_employment.company_id.to_i) %>
-        <%= number_with_delimiter(employment.salary) %>
-      <% else %>
-        -
-      <% end %>
-    <% else %>
-      -
-    <% end %>
-  </td>
+  <%= content_tag(:td, number_with_delimiter(employment.salary)) if hr? && employed_here? %>
   <td><%= Role.find(employment.role_id).name %></td>
   <% if (@current_employments.find_by(company_id: params[:id]).present?) &&
     (@current_employment.role_id == @hr_officer.id) && (employment.acceptance.nil?) %>

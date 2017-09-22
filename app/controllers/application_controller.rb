@@ -12,6 +12,19 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
+  helper_method :employed_here?, :employed?, :hr?
+
+  def employed_here?
+    @current_company.present?
+  end
+
+  def employed?
+    @current_employment.present? || @current_employments.present?
+  end
+
+  def hr?
+    @current_employment.is_hr?
+  end
 
   protected
 
@@ -47,9 +60,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def employed_here?
-    @current_company.present?
-  end
 
 
 end
