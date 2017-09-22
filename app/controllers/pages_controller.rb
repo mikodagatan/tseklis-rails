@@ -4,15 +4,19 @@ class PagesController < ApplicationController
   def home
   	if user_signed_in?
 			@companies = @current_user.companies.distinct if @current_user.companies.present?
+			@companies_accepted = @companies.where('employments.acceptance = true').distinct
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
       # has_leave_types
       if @current_user.employed?
         count = 0
         @companies.each { |u| u.leave_types.count > 0 ? count += u.leave_types.count : count += 0}
-        @has_leave_types = count > 1 ? true : false
+        @has_leave_types = count > 1
 				count2 = 0
-				@companies.each { |u| u.leave_requests.count > 0 ? count2 += 1 : count2 += 0 }
-				@has_leave_requests = count2 > 0 ? true : false
+				@companies.each { |u| u.leave_requests.where('employments.user_id = ?',@current_user.id).count > 0 ? count2 += 1 : count2 += 0 }
+				@has_leave_requests = count2 > 0
+				count3 = 0
+				@companies.each { |u| u.employments.where(user_id: @current_user.id).where(acceptance: true).count > 0 ? count3 += 1 : count3 += 0}
+				@accepted = count3 > 0
 				@company_search = Company.search(params[:search])
       end
 		end

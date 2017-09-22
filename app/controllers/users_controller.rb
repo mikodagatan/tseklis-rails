@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @per_show = 10
     if @user.employments.present?
       @companies = @user.companies.distinct
+      @companies_accepted = @companies.where('employments.acceptance = true').distinct
       # Checking if there are companies with leave types
       count = 0
       @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
