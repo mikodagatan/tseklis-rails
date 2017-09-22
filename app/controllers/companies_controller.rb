@@ -82,6 +82,13 @@ class CompaniesController < ApplicationController
 			.joins(user: :profile)
 			.order('profiles.last_name')
 			# .where(end_date: nil)
+	end
+
+	def leave_requests_index
+		@company = Company.find(params[:company_id])
+		@leave_requests = @company.leave_requests.reverse_order
+    @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
+		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company) if @current_company.present?
 
 	end
 

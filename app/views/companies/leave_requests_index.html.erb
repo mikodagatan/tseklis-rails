@@ -1,0 +1,42 @@
+<div class="show-header">
+  <div class="row align-middle show-header">
+    <div class="columns">
+      <h4><%= link_to @company.name, company_url(@company) %></h4>
+      <h1>Leave Requests</h1>
+    </div>
+  </div>
+</div>
+<div class="space2"></div>
+<div class="row">
+	<div class="column">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Employee</th>
+					<th>Title</th>
+					<th>Leave Type</th>
+					<th>Start</th>
+					<th>End</th>
+					<th class='text-center'>Status</th>
+					<th class='text-center'>Reviewer</th>
+					<th class="text-center">Amount</th>
+					<th colspan="1"></th>
+					<th colspan="1"></th>
+				</tr>
+			</thead>
+			<tbody id="leave_requests">
+        <%= render @leave_requests, at_company: true %>
+			</tbody>
+		</table>
+    <div class="row align-center text-center">
+      <div class="column shrink">
+				<div id="leave_request_paginator_company">
+					<%= paginate @leave_requests, param_name: 'leave_requests_page',remote: true %>
+				</div>
+				<div class="small-font-size" id="leave_request_info">
+					<%= page_entries_info @leave_requests %>
+				</div>
+			</div>
+    </div>
+	</div>
+</div>

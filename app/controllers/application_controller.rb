@@ -40,17 +40,9 @@ class ApplicationController < ActionController::Base
 
       if @current_user.employments.present?
         @current_employments = @current_user.employments
-        if @current_employments.find_by(company_id: params[:id]).present?
-          @current_employment = @current_employments.find_by(company_id: params[:id])
-        elsif @current_employments.find_by_id(params[:employment_id]).present?
-           @current_employment = @current_employments.find_by_id(params[:employment_id])
-        else
-        end
-
+        @current_employment = @current_employments.find_by(company_id: params[:id] || params[:company_id])
         @current_companies = @current_user.companies
-
-        Company.includes(:employments).where("employments.company_id = ?", params[:id]).where("employments.user_id = ?", @current_user.id).references(:employments).present? ? (@current_company = @current_companies.find(params[:id])) : (@current_company = nil)
-
+        @current_company = @current_companies.find(params[:id] || params[:company_id]) if params[:controller] == 'companies'
       end
     end
   end
