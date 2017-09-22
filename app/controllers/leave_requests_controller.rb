@@ -5,6 +5,7 @@ class LeaveRequestsController < ApplicationController
   end
 
 	def new
+    @employment = @user.employments.find(params[:id])
 		@leave_request = @employment.leave_requests.build
 	end
 
