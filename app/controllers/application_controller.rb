@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  helper_method :employed_here?, :employed?, :hr?
+  helper_method :employed_here?, :employed?, :hr?, :accepted?
 
   def employed_here?
     @current_company.present?
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
 
   def employed?
     @current_employment.present? || @current_employments.present?
+  end
+
+  def accepted?
+    @current_employments.present? && @current_employments.where(acceptance: true).present?
   end
 
   def hr?
