@@ -2,7 +2,7 @@ class LeaveRequestsController < ApplicationController
   before_action :set_up
 
   def new
-  	@leave_type = @company.leave_type.build
+  	@leave_type = @company.leave_types.build
   end
 
   def create
@@ -33,7 +33,7 @@ class LeaveRequestsController < ApplicationController
  	end
 
   private
-  
+
 	def set_up
 		@user = current_user
   	@employments = @user.employments
