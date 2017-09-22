@@ -23,7 +23,7 @@
               <% end %>
               <% if @current_user.employed? %>
                 <div class="columns">
-                  <%= render 'partials/company_holidays' if @current_user.employed? %>
+                  <%= render 'partials/company_holidays' if accepted? %>
                 </div>
               <% end %>
             </div>
