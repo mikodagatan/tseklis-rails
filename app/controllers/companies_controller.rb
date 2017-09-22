@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
 		# @search_employee = User.where('employments.company_id = ?', @company.id).ransack(params[:q])
 		# @result_employees = @search_employee.result(distinct: true).includes(:profile, :employments)
 
-		@q_employments = Employment.where(company_id: @company.id).where(acceptance: true).ransack(params[:q_employments])
+		@q_employments = Employment.where(company_id: @company.id).where(acceptance: true).reverse_order.ransack(params[:q_employments])
 		@employments = @q_employments.result(distinct: true).page(params[:employments_page]).per(@per_show)
 
 		# Kaminari
