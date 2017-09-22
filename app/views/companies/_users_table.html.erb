@@ -3,7 +3,7 @@
 		<div class="columns">
 			<div class="row">
 				<div class="columns">
-					<h4>Employees</h4>
+					<h4><%= link_to 'Employees', company_employees_url(@company) %></h4>
 				</div>
 				<div class="columns medium-3 align-self-right">
 					<%= search_form_for @q_employments, url: company_url(@company), as: :q_employments, id: "employments_search" do |f| %>

@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
 
-	before_action :set_up, only: [ :edit, :update, :show]
+	before_action :set_up, only: [ :edit, :update, :show, ]
 	after_action :destroy_leave_type_blank, only: [:update ]
 
   helper ApplicationHelper
@@ -75,6 +75,15 @@ class CompaniesController < ApplicationController
 		@leave_data = leave_data
 
  	end
+
+	def employees_index
+		@company = Company.find(params[:company_id])
+		@employments = @company.employments
+			.joins(user: :profile)
+			.order('profiles.last_name')
+			# .where(end_date: nil)
+
+	end
 
 	private
 

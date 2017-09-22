@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = User.ransack(params[:search])
+  	@users = User.all
 	end
 
   def set_up

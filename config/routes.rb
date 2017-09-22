@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :companies do
     resources :leave_types
     resources :holidays
+    get 'employees' => 'companies#employees_index'
   end
 
 
