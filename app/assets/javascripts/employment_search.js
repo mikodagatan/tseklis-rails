@@ -4,7 +4,7 @@ $(document).ready(function() {
     return false;
 
   });
-  $('html').bind('keypress', function(e)
+  $('#employments_search input').bind('keypress', function(e)
     {
       if(e.keyCode == 13)
       {
