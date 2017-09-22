@@ -11,6 +11,9 @@ class UsersController < ApplicationController
       count = 0
       @companies.each { |u| u.leave_types.present? ? count += 1 : count += 0}
       @has_leave_types = count > 0 ? true : false
+      count2 = 0
+      @companies.each { |u| u.leave_requests.where('employments.user_id = ?', @current_user.id).count > 0 ? count2 += 1 : count2 += 0 }
+      @has_leave_requests = count2 > 0
     end
     if @leave_requests.present?
       @leave_requests = @user.leave_requests.reverse_order

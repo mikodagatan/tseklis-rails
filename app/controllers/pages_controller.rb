@@ -12,7 +12,7 @@ class PagesController < ApplicationController
         @companies.each { |u| u.leave_types.count > 0 ? count += u.leave_types.count : count += 0}
         @has_leave_types = count > 1
 				count2 = 0
-				@companies.each { |u| u.leave_requests.where('employments.user_id = ?',@current_user.id).count > 0 ? count2 += 1 : count2 += 0 }
+				@companies.each { |u| u.leave_requests.where('employments.user_id = ?', @current_user.id).count > 0 ? count2 += 1 : count2 += 0 }
 				@has_leave_requests = count2 > 0
 				count3 = 0
 				@companies.each { |u| u.employments.where(user_id: @current_user.id).where(acceptance: true).count > 0 ? count3 += 1 : count3 += 0}
