@@ -3,8 +3,8 @@ class PagesController < ApplicationController
 
   def home
   	if user_signed_in?
-			@companies = @current_user.companies.distinct if @current_user.companies.present?
-			@companies_accepted = @companies.where('employments.acceptance = true').distinct
+			@companies = @current_user.companies.distinct if employed?
+			@companies_accepted = @companies.where('employments.acceptance = true').distinct if employed?
 			@connections = Employment.select('DISTINCT (user_id, company_id)').count
       # has_leave_types
       if @current_user.employed?
