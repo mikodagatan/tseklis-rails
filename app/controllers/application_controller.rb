@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
 
       if @current_user.employments.present?
         @current_employments = @current_user.employments
-        @current_employment = @current_employments.find_by(company_id: params[:id] || params[:company_id])
+        @current_employment = @current_employments.find_by(company_id: params[:id]) || @current_employments.find_by(company_id: params[:company_id])
         @current_companies = @current_user.companies
-        @current_company = @current_companies.find(params[:id] || params[:company_id]) if params[:controller] == 'companies' && params[:action] != 'new'
+        @current_company = @current_companies.find(params[:id]) || @current_companies.find(params[:company_id]) if params[:controller] == 'companies' && (params[:action] != 'new' && params[:action] != 'create')
       end
     end
   end
