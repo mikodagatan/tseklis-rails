@@ -42,10 +42,14 @@
 							</div>
 							<div class="row small-up-1 medium-up-3">
 								<% @user.all_available_leaves(company).each do |leave_type, values| %>
-								<div class="columns text-center">
+									<div class="columns text-center">
+										<% if values[:name] == 'Non-paid' || values[:name] == 'Non-paid leave' %>
+											<h1>-</h1>
+										<% else %>
 											<h1><%= values[:amount] %></h1>
-											<p><%= values[:name] %></p>
-								</div>
+										<% end %>
+										<p><%= values[:name] %></p>
+									</div>
 								<% end %>
 							</div>
 							<div class="space"></div>
