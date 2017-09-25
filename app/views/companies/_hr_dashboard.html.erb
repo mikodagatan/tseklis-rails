@@ -1,34 +1,16 @@
 <div id="hr-dashboard" class='hide'>
   <div class="section-green-small">
-    <div class="row section-green-small small-up-1 medium-up-1">
-      <div class="columns">
-         <h4><%= Date.today.strftime("%B %Y") %> <small></small></h4>
-         <h2>Leave Data</h2>
-         <div class="space"></div>
-      </div>
-      <div class="columns">
-        <% if @company.leave_amounts.where(date: Date.today.all_month).sum(:amount) > 0 %>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <% @company.leave_types.each do |leave_type| %>
-                  <th><%= leave_type.name %></th>
-                <% end %>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody id="leave_data">
-              <%= render partial: 'companies/leave_data', collection: @leave_data, as: 'leave_data'%>
-            </tbody>
-          </table>
-        <% else %>
-          <div class="row">
-            <div class="columns text-center">
-              <h1>No Data :(</h1>
-            </div>
-          </div>
+    <div class="row section-green-small no-sidepadding no-margin horizontal-max">
+      <div class="columns medium-1">
+        <% @months.each do |month| %>
+          <% month.each do |k, v| %>
+            <h6><%= link_to k, company_url(@company, month_used: v), class: 'white-text click-month', remote: true %></h6>
+          <% end %>
         <% end %>
+      </div>
+      <div class="columns medium-11">
+        <%# render 'hr_dashboard_current_month' %>
+        <%= render 'hr_dashboard_monthly' %>
       </div>
     </div>
   </div>

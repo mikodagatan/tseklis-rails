@@ -72,9 +72,31 @@ class CompaniesController < ApplicationController
 		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)
 
 		# leave_data
-		@leave_data = leave_data
+		if params[:month_used].nil?
+			@leave_data = @company.employments.includes(:leave_amounts)
+				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
+				.where('leave_requests.acceptance = ?', true)
+				.references(:leave_amounts)
+		elsif params[:month_used].to_s.to_i == 0
+			@leave_data = @company.employments.includes(:leave_amounts)
+				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_year, Date.today.at_end_of_year)
+				.where('leave_requests.acceptance = ?', true)
+				.references(:leave_amounts)
+		else
+			@leave_data = @company.employments.includes(:leave_amounts)
+				.where('leave_amounts.date between ? and ?', Date.new(2017, params[:month_used].to_s.to_i).at_beginning_of_month, Date.new(2017, params[:month_used].to_s.to_i).at_end_of_month)
+				.where('leave_requests.acceptance = ?', true)
+				.references(:leave_amounts)
+		end
+
+
+		@months = [{Year: 0}, {January: 1}, {February: 2}, {March: 3}, {April: 4}, {May: 5}, {June: 6}, {July: 7}, {August: 8}, {September: 9}, {October: 10}, {November: 11 }, {December: 12 }]
 
  	end
+
+	def month_change
+		@date = @date
+	end
 
 	def employees_index
 		@company = Company.find(params[:company_id])
@@ -89,7 +111,6 @@ class CompaniesController < ApplicationController
 		@leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
 		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company) if @current_company.present?
-
 	end
 
 	private

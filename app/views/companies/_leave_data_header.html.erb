@@ -1,0 +1,9 @@
+<h4>
+<% if params[:month_used].nil? %>
+  <%= Date.today.strftime("%B %Y") %>
+<% elsif params[:month_used].to_s.to_i == 0 %>
+  All Year 2017
+<% else %>
+  <%= Date.new(2017,params[:month_used].to_s.to_i).strftime("%B %Y") %>
+<% end %>
+</h4>

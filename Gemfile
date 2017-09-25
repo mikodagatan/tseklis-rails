@@ -70,5 +70,4 @@ gem 'pg_search'
 gem 'ransack'
 gem 'faker'
 
-
 ruby '2.4.0'
