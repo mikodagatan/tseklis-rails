@@ -26,14 +26,14 @@ class LeaveRequestsController < ApplicationController
 	def update
 		if @leave_request.update_attributes(leave_request_params)
 	    flash[:success] = "Leave Request Updated!"
-	    if :at_company
+	    if @leave_request.acceptance.present?
         respond_to do |format|
           format.html { redirect_to company_url(@company.id) + "#leave_requests" }
           format.js
         end
 	    	# redirect_to company_url(@company.id)
 	    else
-	    	redirect_to user_path( params[:id] )
+	    	redirect_to user_path( params[:user_id] )
 	    end
 	  else
 	  	# flash[:alert] = "Error in Update!"

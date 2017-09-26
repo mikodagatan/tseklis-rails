@@ -6,7 +6,7 @@
 
 		<td>
 			<% if @user.employments.find_by(company_id: employment.company_id).present? %>
-				<% if @current_employment.is_hr? || (@user == @current_user) %>
+				<% if (@current_employment.present? && @current_employment.is_hr?) || (@user == @current_user) %>
 					<%= number_with_delimiter(employment.salary) %>
 				<% end %>
 			<% end %>
@@ -19,7 +19,7 @@
 		</td>
 		<td class="edit-column">
 			<% if employment.acceptance.nil? %>
-				<% if @current_employment.is_hr? && @current_employment.present? || (@current_user = @user) %>
+				<% if (@current_employment.present? && @current_employment.is_hr?)  || (@current_user = @user) %>
 					<%= link_to 'edit', url: edit_user_employment_url(employment.user_id, employment), class: "button small secondary" do  %>
 						<%= fa_icon "edit" %>
 					<% end %>
