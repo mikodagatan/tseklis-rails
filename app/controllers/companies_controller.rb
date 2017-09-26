@@ -62,6 +62,9 @@ class CompaniesController < ApplicationController
 		@q_employments = Employment.where(company_id: @company.id).where(acceptance: true).reverse_order.ransack(params[:q_employments])
 		@employments = @q_employments.result(distinct: true).page(params[:employments_page]).per(@per_show)
 
+		@year_search = params[:leave_data_year].to_s.to_i
+		@year_search = Date.today.strftime('%Y').to_i if @year_search == 0
+
 		# Kaminari
     @leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
@@ -72,25 +75,31 @@ class CompaniesController < ApplicationController
 		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)
 
 		# leave_data
-		if params[:month_used].nil?
+		if params[:month_used].nil? && params[:leave_data_year].nil?
 			@leave_data = @company.employments.includes(:leave_amounts)
 				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
 				.where('leave_requests.acceptance = ?', true)
 				.references(:leave_amounts)
 		elsif params[:month_used].to_s.to_i == 0
 			@leave_data = @company.employments.includes(:leave_amounts)
-				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_year, Date.today.at_end_of_year)
+				.where('leave_amounts.date between ? and ?', Date.new(@year_search).at_beginning_of_year, Date.new(@year_search).at_end_of_year)
 				.where('leave_requests.acceptance = ?', true)
 				.references(:leave_amounts)
 		else
 			@leave_data = @company.employments.includes(:leave_amounts)
-				.where('leave_amounts.date between ? and ?', Date.new(2017, params[:month_used].to_s.to_i).at_beginning_of_month, Date.new(2017, params[:month_used].to_s.to_i).at_end_of_month)
+				.where('leave_amounts.date between ? and ?', Date.new(@year_search, params[:month_used].to_s.to_i).at_beginning_of_month, Date.new(@year_search, params[:month_used].to_s.to_i).at_end_of_month)
 				.where('leave_requests.acceptance = ?', true)
 				.references(:leave_amounts)
 		end
 
 
 		@months = [{Year: 0}, {January: 1}, {February: 2}, {March: 3}, {April: 4}, {May: 5}, {June: 6}, {July: 7}, {August: 8}, {September: 9}, {October: 10}, {November: 11 }, {December: 12 }]
+
+		respond_to do |format|
+	    format.html # index.html.erb
+	    format.js # ajax will call this format not html or json
+	    # format.json { render json: @portefeuillemodeles }
+		end
 
  	end
 

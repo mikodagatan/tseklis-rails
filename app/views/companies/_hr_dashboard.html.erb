@@ -1,16 +1,20 @@
-<div id="hr-dashboard" class='hide'>
+<div id="hr-dashboard">
   <div class="section-green-small">
     <div class="row section-green-small no-sidepadding no-margin horizontal-max">
       <div class="columns medium-1">
+        <%= form_tag company_url(@company, leave_data_year: @year_search, month_used: params[:month_used]), method: :get do %>
+          <%= text_field_tag 'leave_data_year', @year_search, placeholder: 'Year Ref', class:'black-text' %>
+          <%= submit_tag 'Enter', class: 'button' %>
+        <% end %>
         <% @months.each do |month| %>
           <% month.each do |k, v| %>
-            <h6><%= link_to k, company_url(@company, month_used: v), class: 'white-text click-month', remote: true %></h6>
+            <h6><%= link_to k, company_url(@company, month_used: v, leave_data_year: @year_search), class: 'white-text click-month', remote: true %></h6>
           <% end %>
         <% end %>
       </div>
       <div class="columns medium-11">
         <%# render 'hr_dashboard_current_month' %>
-        <%= render 'hr_dashboard_monthly' %>
+        <%= render 'hr_dashboard_monthly', locals: {leave_data_year: @year_search} %>
       </div>
     </div>
   </div>

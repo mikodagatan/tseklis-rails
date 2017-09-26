@@ -1,6 +1,6 @@
 <div class="columns">
-   <div id="leave_data_header">
-     <%= render partial: 'companies/leave_data_header', month_used: params[:month_used] %>
+  <div id="leave_data_header">
+     <%= render partial: 'companies/leave_data_header', locals: {year_search: @year_search} %>
    </div>
    <h2>Leave Data</h2>
    <div class="space"></div>
