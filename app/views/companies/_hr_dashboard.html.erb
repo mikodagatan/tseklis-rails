@@ -3,7 +3,7 @@
     <div class="row section-green-small no-sidepadding no-margin horizontal-max">
       <div class="columns medium-1">
         <%= form_tag company_url(@company, leave_data_year: @year_search, month_used: params[:month_used]), method: :get do %>
-          <%= text_field_tag 'leave_data_year', @year_search, placeholder: 'Year Ref', class:'black-text' %>
+          <%= text_field_tag 'leave_data_year', @year_search, placeholder: 'Year Ref', class:'black-text no-margin' %>
           <%= submit_tag 'Enter', class: 'button' %>
         <% end %>
         <% @months.each do |month| %>
