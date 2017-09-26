@@ -1,1 +1,7 @@
-$('#join_requests').html('<%= escape_javascript render( partial: "employments/company_join_request", collection: @join_requests, as: "employment", join_request: true, in_company: true) %>');
+$(function(){
+  $('#join_requests').html('<%= escape_javascript render( partial: "employments/company_join_request", collection: @join_requests, as: "employment", join_request: true, in_company: true) %>');
+
+  $('#leave_requests').html('<%= escape_javascript render(@leave_requests, at_company: true) %>');
+
+  $('#edit_leave_request_<%= leave_request.id %>').hide();
+});

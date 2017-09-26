@@ -28,7 +28,7 @@ class LeaveRequestsController < ApplicationController
 	    flash[:success] = "Leave Request Updated!"
 	    if :at_company
         respond_to do |format|
-          format.html { redirect_to company_url(@company.id) }
+          format.html { redirect_to company_url(@company.id) + "#leave_requests" }
           format.js
         end
 	    	# redirect_to company_url(@company.id)
