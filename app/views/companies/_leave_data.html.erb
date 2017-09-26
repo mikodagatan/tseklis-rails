@@ -5,10 +5,16 @@
   <% sumtotal = 0 %>
   <% @company.leave_types.each do |leave_type| %>
     <% unless leave_type.name == 'Non-paid leave' || leave_type.name == 'Non-paid' %>
-      <% sumtotal += leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).sum(:amount) %>
+
     <% end %>
     <td>
-      <%= leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).sum(:amount) %>
+      <% if params[:month_used].to_s.to_i == 0 %>
+        <% sumtotal += leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).where(date: Date.new(@year_search).all_year ).sum(:amount) %>
+        <%= leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).where(date: Date.new(@year_search).all_year ).sum(:amount) %>
+      <% else %>
+        <% sumtotal += leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).where(date: Date.new(@year_search, params[:month_used].to_s.to_i).all_month ).sum(:amount) %>
+        <%= leave_data.leave_amounts.where('leave_type_id = ?', leave_type.id ).where(date: Date.new(@year_search, params[:month_used].to_s.to_i).all_month ).sum(:amount) %>
+      <% end %>
     </td>
   <% end %>
   <td>

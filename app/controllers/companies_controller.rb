@@ -75,7 +75,7 @@ class CompaniesController < ApplicationController
 		@join_requests = Kaminari.paginate_array(@join_requests).page(params[:join_requests_page]).per(@per_show)
 
 		# leave_data
-		if params[:month_used].nil? && params[:leave_data_year].nil?
+		if params[:month_used].nil?
 			@leave_data = @company.employments.includes(:leave_amounts)
 				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
 				.where('leave_requests.acceptance = ?', true)
