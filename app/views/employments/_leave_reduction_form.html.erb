@@ -1,0 +1,16 @@
+<% if @current_employment.present? && @current_employment.is_hr? %>
+  <h4>Leave Reductions</h4>
+    <%= f.fields_for :leave_reductions do |leave_r| %>
+      <%= leave_r.hidden_field :leave_type_id %>
+      <h4><%= leave_r.object.leave_type.name %></h4>
+      <div class="field">
+        <%= leave_r.label :date, 'Leave Reduction Date' %>
+        <%= leave_r.text_field :date, class: 'datepickerstart'%>
+      </div>
+      <div class="field">
+        <%= leave_r.label :amount, 'Leave Reduction Amount' %>
+        <%= leave_r.text_field :amount %>
+        <p class="small-font-size">* Reduces amount of leaves of the user due to leave usage before Tseklis use.</p>
+      </div>
+    <% end %>
+  <% end %>

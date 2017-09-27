@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 20170920045224) do
     t.date "date"
     t.decimal "amount"
     t.integer "employment_id"
+    t.integer "leave_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

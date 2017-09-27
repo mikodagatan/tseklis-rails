@@ -181,4 +181,19 @@ class User < ApplicationRecord
     company.leave_types.find(leave_type.id)
       .amount
   end
+
+  def leave_reduction(company, leave_type)
+    leave_settings = company.company_leave_setting
+    expiration = leave_settings.leave_month_expiration
+    leave_reduction = self.employments
+      .where(company_id: company.id)
+      .first
+      .leave_reductions
+      .where(leave_type_id: leave_type.id)
+    if Date.today - (leave_reduction.date + expiration.months) < 0
+      return leave_reduction.amount
+    else
+      return 0
+    end
+  end
 end

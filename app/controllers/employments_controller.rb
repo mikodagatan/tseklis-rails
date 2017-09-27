@@ -21,7 +21,9 @@ class EmploymentsController < ApplicationController
   end
 
 	def edit
-		@leave_reduction = @employment.build_leave_reduction
+		@employment.company.leave_types.each do |leave_type|
+			@employment.leave_reductions.build(leave_type_id: leave_type.id)
+		end
 	end
 
 	def update
@@ -61,8 +63,11 @@ class EmploymentsController < ApplicationController
             :company_id,
             :user_id,
             :role_id,
-						leave_reduction_attributes: [
-							:amount
+						leave_reductions_attributes: [
+							:amount,
+							:date,
+							:leave_type_id,
+							:employment_id
 							]
 						)
   end

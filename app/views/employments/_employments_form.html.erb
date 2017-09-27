@@ -12,7 +12,7 @@
   					<%= f.label :company_id, "Company" %>
   					<%= f.collection_select(:company_id, Company.all, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
   						<div class="small-font-size">
-  							If you can't find your company. You can can create one.
+  							If you can't find your company. You can create one.
   						</div>
   					</div>
   					<div class="space"></div>
@@ -33,7 +33,6 @@
 						<% end %>
 					<% end %>
 
-
 					<div class="field">
 						<%= f.label :salary %>
 						<%= f.text_field :salary %>
@@ -41,25 +40,18 @@
 
 					<div class="space"></div>
 					<% unless @employment.id.nil? %>
-						<% if (method = :patch) && (@current_employment.is_hr?) && (current_user != @user) && (@employment.is_hr? == false) %>
-							<%= form_for @employment, url: url, method: method do |t| %>
+						<% if (method == :patch) && (@current_employment.is_hr?) && (current_user != @user) && (@employment.is_hr? == false) %>
+              <%= form_for @employment, url: url, method: method do |t| %>
 								<%= t.hidden_field :role_id, value: @hr_officer.id %>
 								<%= t.submit 'Make HR Officer', class: "button warning margin-none" %>
-								<div class="small-font-size">Pressing this will not save your other inputs.</div>
+								<div class="small-font-size">* Pressing this will not save your other inputs.</div>
 								<div class="space"></div>
 							<% end %>
-
 						<% end %>
 					<% else%>
 						<%= f.hidden_field :role_id, value: @employee.id %>
 					<% end %>
-          <% if @current_employment.present? && @current_employment.is_hr? %>
-            <%= fields_for :leave_reduction do |lr| %>
-              <%= lr.label :amount, "Leave Reduction Amount" %>
-              <%= lr.text_field :amount %>
-              <p class="small-font-size">* Reduces amount of leaves of the user due to leave usage before Tseklis use.</p>
-            <% end %>
-          <% end %>
+            <%# render 'leave_reduction_form', f: f %>
 					<%= f.submit 'Update', class: "button primary" %>
 				</div>
 		<% end %>

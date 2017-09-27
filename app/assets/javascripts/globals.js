@@ -4,12 +4,10 @@ $(document).ready(function(){
 		format: 'yyyy/mm/dd',
 		selectMonths: true,
 		selectYears: 60,
-		max: true,
 		});
 
 	$('.datepickerend').pickadate({
 		format: 'yyyy/mm/dd',
-		min: true
 	});
 
 	$('.timepickerstart').pickatime({
