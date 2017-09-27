@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(version: 20170920045224) do
   end
 
   create_table "leave_reductions", force: :cascade do |t|
+    t.date "date"
     t.decimal "amount"
     t.integer "employment_id"
     t.datetime "created_at", null: false

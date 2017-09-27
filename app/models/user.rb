@@ -82,6 +82,9 @@ class User < ApplicationRecord
       .where(company_id: company.id)
       .first
       .start_date
+    leave_end = self.employments
+      .where(company_id: company.id)
+      .last
     moving_date = Date.today - expiration.months
     leave_start = start_d + start.months
     if Date.today > leave_start
@@ -109,10 +112,19 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
+    leave_end = self.employments
+      .where(company_id: company.id)
+      .last
+      .end_date
     leave_expire = company.company_leave_setting.leave_month_expiration
     leave_start_with_expiration = leave_start + leave_expire.months
     if leave_start_with_expiration > Date.today
-      available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+      if leave_end.present?
+        ending = leave_end
+      else
+        ending = Date.today
+      end
+      available = ((ending - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
     else
       # find out how to include leavea only within the expiration date. Maybe it's better if you use another model for leaves generated.
       available = (Date.today - leave_start)/ Time.days_in_year * assigned_leave_type_amount(company, leave_type).to_f
@@ -147,9 +159,18 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
+    leave_end = self.employments
+      .where(company_id: company.id)
+      .last
+      .end_date
     expiration_start = leave_start + expiration.months
     if Date.today > expiration_start
-      expire = ((Date.today - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+      if leave_end.present?
+        ending = leave_end
+      else
+        ending = Date.today
+      end
+      expire = ((ending - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
     else
       expire = 0
     end
