@@ -22,7 +22,7 @@
 							<% if @current_employment.present? && @has_leave_types %>
 								<div class="columns no-padding">
 								<%= link_to "Create a Leave Request",
-											new_user_employment_leave_request_url(@current_user,@current_employment),
+											new_user_employment_leave_request_url(@current_user, @current_employment),
 											class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>

@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
@@ -52,7 +52,7 @@ Rails.application.configure do
   # config.log_level = :debug
   config.log_level = :info
   RAILS_DEFAULT_LOGGER = Logger.new('log/production.log')
-  
+
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 

@@ -2,9 +2,9 @@
 <div class="row">
   <div class="small-12 medium-offset-1 medium-10">
 
-		<%= form_for :leave_request, url: url, method: method  do |f| %>
+		<%= form_for @leave_request, url: url, method: method  do |f| %>
 
-			<%# show_error_message(@leave_request) %>
+			<%= show_error_message(@leave_request) %>
 
 			<div class="m-well align-middle">
 				<div class="field">
@@ -14,7 +14,7 @@
 
 				<div class="field">
 					<%= f.label :leave_type_id, "Type of Leave" %>
-					<%= f.collection_select(:leave_type_id, @leave_types, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
+					<%= f.collection_select(:leave_type_id, @company.leave_types, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
 				</div>
 				<br />
 
