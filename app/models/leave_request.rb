@@ -8,12 +8,13 @@ class LeaveRequest < ApplicationRecord
 	validates_presence_of :end_date
 	validates_presence_of :leave_type_id
 	validates_presence_of :employment_id
-	
-  validate :check_date_validity
-  validate :invalidate_weekends_and_holidays_only
-	validate :check_leaves_available
-	validate :check_time_validity
-	# validate :check_date_taken_validity
+
+  before_save :check_date_validity
+  before_save :invalidate_weekends_and_holidays_only
+	before_save :check_leaves_available
+	before_save :check_time_validity
+	# after_validation :check_date_taken_validity
+
 	after_commit :enter_amounts
 
 
@@ -109,7 +110,11 @@ class LeaveRequest < ApplicationRecord
   end
 
   def check_date_validity
-    if start_date > end_date
+		if start_date.blank?
+			errors.add(:start_date, "must not be blank")
+		elsif
+			errors.add(:end_date, "must not be blank")
+    elsif start_date > end_date
       errors.add(:start_date, "cannot be earlier than End date")
     end
   end
