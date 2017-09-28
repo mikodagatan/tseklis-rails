@@ -14,18 +14,11 @@
       <h4>Enjoy Tseklis </h4>
     </div>
     <div class="columns">
-      <%# render 'leave_request_form',
+      <%= render 'leave_request_form',
         url: user_employment_leave_requests_url(@user, @employment),
         method: :post,
         leave_request: @leave_request
       %>
-      <div class="row">
-        <div class="small-12 medium-offset-1 medium-10">
-        <%= @user %>
-        <%= @employment %>
-        <%= @employment.leave_requests.build %>
-      	</div>
-      </div>
     </div>
   </div>
 </div>
