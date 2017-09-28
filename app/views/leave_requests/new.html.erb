@@ -22,9 +22,9 @@
       <div class="row">
         <div class="small-12 medium-offset-1 medium-10">
 
-      		<%= form_for @leave_request, url: user_employment_leave_requests_url(@user, @employment), method: :patch  do |f| %>
+      		<%= form_for @leave_request, url: user_employment_leave_requests_url(@user, @employment), method: :patch do |f| %>
 
-      			<%= show_error_message(leave_request) %>
+      			<%= show_error_message(@leave_request) %>
 
       			<div class="m-well align-middle">
       				<div class="field">
