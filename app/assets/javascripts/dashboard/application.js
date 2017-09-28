@@ -17,3 +17,8 @@
 
 //= require globals
 //= require homepage
+
+
+$(document).ready( function() {
+	$(document).foundation();
+});
