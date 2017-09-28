@@ -1,4 +1,4 @@
-class LeaveRequestsController < ApplicationController
+class LeaveTypesController < ApplicationController
   before_action :set_up
 
   def new
