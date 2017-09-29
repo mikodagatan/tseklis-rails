@@ -18,7 +18,7 @@
                     <div class="columns logo-text">
                       <% if SiteSetting.last.present? && SiteSetting.last.site_icon.present? %>
                         <div class="logo">
-                          <%= SiteSetting.last.site_icon %>
+                          <%= image_tag SiteSetting.last.site_icon.url(:medium) %>
                         </div>
                       <% else %>
                         Tseklis
