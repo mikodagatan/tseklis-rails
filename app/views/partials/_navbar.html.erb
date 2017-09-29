@@ -10,13 +10,19 @@
               <div class="columns shrink">
                 <%= link_to root_path do %>
                   <div class="row collapse align-middle">
-                    <div class="columns">
+                    <!-- <div class="columns">
                       <div class="logo-round">
-                        <%= fa_icon "check 2x white-text" %>
+                        <%# fa_icon "check 2x white-text" %>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="columns logo-text">
-                      LIS
+                      <% if SiteSetting.last.present? && SiteSetting.last.site_icon.present? %>
+                        <div class="logo">
+                          <%= SiteSetting.last.site_icon %>
+                        </div>
+                      <% else %>
+                        Tseklis
+                      <% end %>
                     </div>
                   </div>
                 <% end %>
