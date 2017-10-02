@@ -27,6 +27,7 @@ group :development, :test do
   gem 'irbtools'
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
 
 group :development do

@@ -1,8 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-	def create
-		super
-	end
 
 	def edit
 		super
@@ -10,10 +7,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		@profile = @user.profile
 	end
 
-	def update
-		super
-			
-	end
 
 	protected
 
