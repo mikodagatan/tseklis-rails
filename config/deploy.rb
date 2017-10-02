@@ -52,4 +52,7 @@ namespace :rails do
 
     exec cmd
   end
+
+
+  set :rbenv_ruby, '2.1.1'
 end
