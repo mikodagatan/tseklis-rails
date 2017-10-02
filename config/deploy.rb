@@ -54,5 +54,5 @@ namespace :rails do
   end
 
 
-  set :rbenv_ruby, '2.1.1'
+  set :rbenv_ruby, '2.4.0'
 end
