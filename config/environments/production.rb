@@ -64,6 +64,16 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "tseklis-rails2_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+
+  #Zoho Settings
+  :address              => "smtp.zoho.com",
+  :port                 => 465,
+  :user_name            => 'admin@tseklis.com',
+  :password             => '!tseklisadministrator65fb35f526',
+  :authentication       => :login,
+  :ssl                  => true,
+  :tls                  => true,
+  :enable_starttls_auto => true
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -87,6 +97,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
