@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929113223) do
+ActiveRecord::Schema.define(version: 20171003105850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170929113223) do
     t.boolean "include_weekends", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "regularized_employees_only", default: true
   end
 
   create_table "contact_messages", force: :cascade do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170929113223) do
     t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "regularized", default: true
   end
 
   create_table "endorsements", force: :cascade do |t|
