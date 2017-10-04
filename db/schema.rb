@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20171003105850) do
     t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "regularized", default: true
+    t.boolean "regularized", default: false
   end
 
   create_table "endorsements", force: :cascade do |t|

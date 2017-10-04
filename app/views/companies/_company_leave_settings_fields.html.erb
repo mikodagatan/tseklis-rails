@@ -18,6 +18,11 @@
 	  <%= company_leave_settings.label :include_weekends %>
   </div>
 
+	<div class="field">
+	  <%= company_leave_settings.check_box :regularized_employees_only %>
+	  <%= company_leave_settings.label :regularized_employees_only, 'Allow leaves to Regularized Employees only' %>
+  </div>
+
   <!-- <div class="field">
 	  <%= company_leave_settings.check_box :prorate_accrual %>
 	  <%= company_leave_settings.label :prorate_accrual %>

@@ -63,6 +63,7 @@ class EmploymentsController < ApplicationController
             :company_id,
             :user_id,
             :role_id,
+						:regularized,
 						leave_reductions_attributes: [
 							:amount,
 							:date,

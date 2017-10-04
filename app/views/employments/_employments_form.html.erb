@@ -43,11 +43,19 @@
 						<% if (method == :patch) && (@current_employment.is_hr?) && (current_user != @user) && (@employment.is_hr? == false) %>
               <%= form_for @employment, url: url, method: method do |t| %>
 								<%= t.hidden_field :role_id, value: @hr_officer.id %>
-								<%= t.submit 'Make HR Officer', class: "button warning margin-none" %>
+								<%= t.submit 'Make HR Officer', class: "button warning margin-none add-button-border" %>
 								<div class="small-font-size">* Pressing this will not save your other inputs.</div>
 								<div class="space"></div>
 							<% end %>
 						<% end %>
+            <% if method == :patch && @current_employment.is_hr? && @employment.regularized == false %>
+              <%= form_for @employment, url: url, method: method do |t| %>
+                <%= t.hidden_field :regularized, value: true %>
+                <%= t.submit 'Regularize Employee', class: "button success margin-none" %>
+                <div class="small-font-size">* Pressing this will not save your other inputs.</div>
+                <div class="space"></div>
+              <% end %>
+            <% end %>
 					<% else%>
 						<%= f.hidden_field :role_id, value: @employee.id %>
 					<% end %>

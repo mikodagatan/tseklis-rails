@@ -171,6 +171,10 @@ $miko-button-border: 0.3rem;
 	}
 }
 
+.add-button-border {
+	border-radius: $miko-button-border;
+}
+
 // Topbar
 $top-bar-min-height: 5%;
 .top-bar {

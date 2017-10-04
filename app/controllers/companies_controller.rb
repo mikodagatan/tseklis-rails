@@ -137,7 +137,8 @@ class CompaniesController < ApplicationController
 	  			:acceptor_id,
 	  			:user_id,
 	  			:company_id,
-	  			:role_id
+	  			:role_id,
+					:regularized
 	  		],
 		  	address_attributes: [
 		  		:id,

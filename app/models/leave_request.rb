@@ -16,6 +16,7 @@ class LeaveRequest < ApplicationRecord
 	validate :check_time_validity
   validate :invalidate_weekends_and_holidays_only
 	validate :check_leaves_available
+	validate :check_regularized
 	# after_validation :check_date_taken_validity
 
 	after_commit :enter_amounts
@@ -187,4 +188,13 @@ class LeaveRequest < ApplicationRecord
 		end
 	end
 
+	def check_regularized
+		if leave_type_id.nil?
+			errors.add(:leave_type_id, "can't be blank")
+		elsif self.leave_type_id != 1 &&
+			self.employment.regularized == false &&
+			self.employment.company.company_leave_settings.regularized_employees_only == true
+			errors.add(:leave_type_id, ": leave type can't be")
+		end
+	end
 end
