@@ -104,7 +104,13 @@ class LeaveRequest < ApplicationRecord
 	end
 
   def invalidate_weekends_and_holidays_only
-    if allow_weekend_holiday_leave == false
+		if start_date.nil?
+			errors.add(:start_date, "must not be empty")
+			condition = false
+		elsif end_date.nil?
+			errors.add(:end_date, "must not be empty")
+			condition = false
+   	else allow_weekend_holiday_leave == false
       if duration_date <= 2 && ((on_holiday?(start_date) || on_holiday?(end_date)) || (start_date.on_weekend? || end_date.on_weekend?))
         errors.add(:end_date, ": cannot enter leave solely on a weekend or holiday")
       end
@@ -112,11 +118,11 @@ class LeaveRequest < ApplicationRecord
   end
 
   def check_date_validity
-		if start_date.blank?
-			errors.add(:start_date, "must not be blank")
+		if start_date.nil?
+			errors.add(:start_date, "must not be empty")
 			condition = false
-		elsif end_date.blank?
-			errors.add(:end_date, "must not be blank")
+		elsif end_date.nil?
+			errors.add(:end_date, "must not be empty")
 			condition = false
     elsif start_date > end_date
 			errors.add(:start_date, "can't be earlier than end date")
@@ -141,10 +147,10 @@ class LeaveRequest < ApplicationRecord
 	def check_time_validity
 		condition = true
 		if start_time.nil?
-			errors.add(:start_time, "can't be empty")
+			errors.add(:start_time, "must not be empty")
 			condition = false
 		elsif end_time.nil?
-			errors.add(:end_time, "can't be empty")
+			errors.add(:end_time, "must not be empty")
 			condition = false
 		elsif start_date == end_date && start_time > end_time
 			errors.add(:start_time, " can't be earlier than end time on the same date")
@@ -193,8 +199,8 @@ class LeaveRequest < ApplicationRecord
 			errors.add(:leave_type_id, "can't be blank")
 		elsif self.leave_type_id != 1 &&
 			self.employment.regularized == false &&
-			self.employment.company.company_leave_settings.regularized_employees_only == true
-			errors.add(:leave_type_id, ": leave type can't be")
+			self.employment.company.company_leave_setting.regularized_employees_only == true
+			errors.add(:leave_type_id, "can't be used by non-regularized employees")
 		end
 	end
 end
