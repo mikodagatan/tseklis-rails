@@ -37,7 +37,7 @@ end
 
   leave_type_ids = []
 
-  ['Non-paid','Sick','Vacation','Maternity'].each do |leave_type|
+  ['Unpaid','Sick','Vacation','Maternity'].each do |leave_type|
     leave = company.leave_types.build(
       name: leave_type,
       amount: (leave_type == 'Non-paid') ?

@@ -41,7 +41,9 @@
 
             <%= employment.hidden_field :acceptance, value: true %>
 
-            <%= employment.hidden_field :regularized, value: true %>
+            <!-- Removed Regularized in order to make sure that the HR employee is actually regularized first before using the unpaid leaves -->
+
+            <%# employment.hidden_field :regularized, value: true %>
 
           <% end %>
 
@@ -86,7 +88,7 @@
           <% end %>
 
           <%= f.fields_for :leave_types, @leave_types do |settings| %>
-            <%= settings.hidden_field :name, value: 'Non-paid' %>
+            <%= settings.hidden_field :name, value: 'Unpaid' %>
             <%= settings.hidden_field :amount, value: 365 %>
           <% end %>
 
