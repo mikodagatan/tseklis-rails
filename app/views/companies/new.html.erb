@@ -41,6 +41,8 @@
 
             <%= employment.hidden_field :acceptance, value: true %>
 
+            <%= employment.hidden_field :regularized, value: true %>
+
           <% end %>
 
           <%= f.fields_for :address, @address do |address| %>
