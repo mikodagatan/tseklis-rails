@@ -132,8 +132,9 @@ class User < ApplicationRecord
       available = (Date.today.at_beginning_of_month - leave_start)/ Time.days_in_year * assigned_leave_type_amount(company, leave_type).to_f
     end
     if available > leave_amount_max
-      availabe = leave_amount_max
+      available = leave_amount_max
     end
+    return available
   end
 
   def non_prorate_accrual_calc(company, leave_type)
