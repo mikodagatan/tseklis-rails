@@ -68,7 +68,7 @@
 							<% end %>
 						<% else %>
 							<% if @current_employment.is_employee? && Date.today.at_beginning_of_day < leave_request.start_date %>
-								<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small warning no-margin'  %>
+								<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
 							<% end %>
 						<% end %>
 					</td>
@@ -84,7 +84,7 @@
 					<% end %>
 				<% else %>
 					<% if @current_employment.is_employee? && Date.today.at_beginning_of_day < leave_request.start_date %>
-						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small warning no-margin' %>
+						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin' %>
 					<% end %>
 				<% end %>
 			</td>
