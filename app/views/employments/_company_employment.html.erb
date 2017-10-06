@@ -8,13 +8,7 @@
   		<%# content_tag(:td, number_with_delimiter(employment.salary)) if hr? && employed_here? %>
 			<td><%= Role.find(employment.role_id).name %></td>
 			<td class="edit-column">
-				<% if @current_employment.present? &&
-					@current_employment.is_hr? %>
-					<%= link_to edit_user_employment_url(employment.user, employment), class: "button small secondary" do %>
-						<%= fa_icon "edit" %>
-					<% end %>
-				<% end %>
-
+				<%= render 'employments/employment_button', employment: employment %> 
 			</td>
 		</tr>
 	<% end %>

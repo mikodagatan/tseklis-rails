@@ -30,10 +30,8 @@
               <%= employment.date_field :start_date, class: "datepickerstart", placeholder: "Click Here"%>
             </div>
 
-            <div class="field">
-              <%= employment.label :salary %>
-              <%= employment.text_field :salary %>
-            </div>
+            <%# employment.label :salary %>
+            <%# employment.text_field :salary %>
 
             <%= employment.hidden_field :user_id, value: current_user.id %>
 

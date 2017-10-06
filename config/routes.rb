@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   	resource :profile
   	resources :employments do
       resources :leave_requests
+      get 'leave_request_by_hr' => 'leave_requests#leave_request_by_hr'
     end
   end
 

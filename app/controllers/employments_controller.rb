@@ -43,6 +43,10 @@ class EmploymentsController < ApplicationController
   def show
   end
 
+	def leave_request_by_hr
+
+	end
+
   private
 
   def set_user_and_employment

@@ -6,13 +6,12 @@ class LeaveRequestsController < ApplicationController
 
 	def new
     @user = current_user
-    @employment = @user.employments.where(company_id: @company).first
-    @companies_accepted = @companies.where('employments.acceptance = true').distinct
+    @companies_accepted = @company
     if @employment.regularized?
       @available_leave_types = @company.leave_types
     else
       @available_leave_types = @company.leave_types.where(name: 'Unpaid')
-      if @available_leave_types.nil?
+      if @available_leave_types.blank?
         @available_leave_types = @company.leave_types.where(name: 'Non-paid')
       end
     end
@@ -56,6 +55,20 @@ class LeaveRequestsController < ApplicationController
     @leave_request = LeaveRequest.find(params[:id])
     @employment = @leave_request.employment
 	end
+
+  def leave_request_by_hr
+    @company_employment
+    @companies_accepted = @company
+    if @employment.regularized?
+      @available_leave_types = @company.leave_types
+    else
+      @available_leave_types = @company.leave_types.where(name: 'Unpaid')
+      if @available_leave_types.blank?
+        @available_leave_types = @company.leave_types.where(name: 'Non-paid')
+      end
+    end
+		@leave_request = @employment.leave_requests.build
+  end
 
 	private
 		def set_up
