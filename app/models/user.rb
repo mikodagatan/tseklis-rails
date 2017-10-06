@@ -118,16 +118,21 @@ class User < ApplicationRecord
       .end_date
     leave_expire = company.company_leave_setting.leave_month_expiration
     leave_start_with_expiration = leave_start + leave_expire.months
+    leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
     if leave_start_with_expiration > Date.today
       if leave_end.present?
         ending = leave_end
       else
-        ending = Date.today
+        ending = Date.today.at_beginning_of_month
       end
-      available = ((ending - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+      available = ((ending - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type))
     else
-      # find out how to include leavea only within the expiration date. Maybe it's better if you use another model for leaves generated.
-      available = (Date.today - leave_start)/ Time.days_in_year * assigned_leave_type_amount(company, leave_type).to_f
+
+      # at_beginning_of_month makes this monthly accrual
+      available = (Date.today.at_beginning_of_month - leave_start)/ Time.days_in_year * assigned_leave_type_amount(company, leave_type).to_f
+    end
+    if available > leave_amount_max
+      availabe = leave_amount_max
     end
   end
 
@@ -146,7 +151,8 @@ class User < ApplicationRecord
     if company.company_leave_setting.prorate_accrual == true
       prorate_accrual_calc(company, leave_type)
     else
-      non_prorate_accrual_calc(company, leave_type)
+      # non_prorate_accrual_calc(company, leave_type)
+      prorate_accrual_calc(company, leave_type)
     end
   end
 
@@ -164,13 +170,13 @@ class User < ApplicationRecord
       .last
       .end_date
     expiration_start = leave_start + expiration.months
-    if Date.today > expiration_start
+    if expiration_start > Date.today
       if leave_end.present?
         ending = leave_end
       else
         ending = Date.today
       end
-      expire = ((ending - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+      expire = ((ending.at_beginning_of_month - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
     else
       expire = 0
     end

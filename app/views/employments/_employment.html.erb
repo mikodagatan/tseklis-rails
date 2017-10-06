@@ -13,7 +13,7 @@
 		<!-- </td> -->
 
 		<td>
-			<%= employment.acceptance.nil? ? "Waiting" : (employment.acceptance == true ? "Accepted" : "Rejected") %>
+			<%= employment.acceptance.nil? ? "Waiting" : (employment.acceptance == true ? "Approved" : "Rejected") %>
 		</td>
 		<td>
 				<%= Role.find(employment.role_id).name %>
