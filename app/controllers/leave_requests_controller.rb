@@ -6,6 +6,16 @@ class LeaveRequestsController < ApplicationController
 
 	def new
     @user = current_user
+    @employment = @user.employments.where(company_id: @company).first
+    @companies_accepted = @companies.where('employments.acceptance = true').distinct
+    if @employment.regularized?
+      @available_leave_types = @company.leave_types
+    else
+      @available_leave_types = @company.leave_types.where(name: 'Unpaid')
+      if @available_leave_types.nil?
+        @available_leave_types = @company.leave_types.where(name: 'Non-paid')
+      end
+    end
     @employment = Employment.find(params[:employment_id])
 		@leave_request = @employment.leave_requests.build
 	end

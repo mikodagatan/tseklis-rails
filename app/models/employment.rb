@@ -22,6 +22,11 @@ class Employment < ApplicationRecord
 
 	ransack_alias :employee_name, :user_profile_first_name_or_user_profile_last_name
 
+
+	def regularized?
+		regularized == true
+	end
+
 	def new_employment_same_company(acceptance: nil)
 		if self.acceptance == true
 			same_employment = Employment.where(user_id: self.user_id).where(company_id: self.company_id)

@@ -14,7 +14,7 @@
 
 				<div class="field">
 					<%= f.label :leave_type_id, "Type of Leave" %>
-					<%= f.collection_select(:leave_type_id, @company.leave_types, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
+					<%= f.collection_select(:leave_type_id, @available_leave_types, :id, :name, {prompt: true}, {class: "select-select horizontal-max"}) %>
 				</div>
 				<br />
 
