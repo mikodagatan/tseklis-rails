@@ -60,7 +60,7 @@
 					</td>
 				<% else %>
 					<td colspan="1">
-						<% if Date.today.at_beginning_of_day > leave_request.start_date %>
+						<% if Date.today.at_beginning_of_day > leave_request.start_date || @current_employment.is_hr? %>
 							<%= link_to edit_user_employment_leave_request_url(
 								current_user, leave_request.employment, leave_request), at_company: true,
 								class: 'button small secondary no-margin' do  %>
@@ -72,7 +72,7 @@
 				<% end %>
 			<% else %>
 				<td colspan="1">
-					<% if Date.today.at_beginning_of_day > leave_request.start_date %>
+					<% if Date.today.at_beginning_of_day > leave_request.start_date || @current_employment.is_hr?  %>
 						<%= link_to edit_user_employment_leave_request_url(
 							current_user, leave_request.employment, leave_request), at_company: true,
 							class: 'button small secondary no-margin' do  %>
