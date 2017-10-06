@@ -7,19 +7,12 @@ class LeaveRequestsController < ApplicationController
 	def new
     @user = current_user
     @companies_accepted = @company
-    if @employment.regularized?
-      @available_leave_types = @company.leave_types
-    else
-      @available_leave_types = @company.leave_types.where(name: 'Unpaid')
-      if @available_leave_types.blank?
-        @available_leave_types = @company.leave_types.where(name: 'Non-paid')
-      end
-    end
     @employment = Employment.find(params[:employment_id])
 		@leave_request = @employment.leave_requests.build
 	end
 
 	def create
+
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @leave_request.save
 	    flash[:success] = "Leave Request Created!"
@@ -67,14 +60,6 @@ class LeaveRequestsController < ApplicationController
   def leave_request_by_hr
     @company_employment
     @companies_accepted = @company
-    if @employment.regularized?
-      @available_leave_types = @company.leave_types
-    else
-      @available_leave_types = @company.leave_types.where(name: 'Unpaid')
-      if @available_leave_types.blank?
-        @available_leave_types = @company.leave_types.where(name: 'Non-paid')
-      end
-    end
 		@leave_request = @employment.leave_requests.build
   end
 
@@ -98,6 +83,14 @@ class LeaveRequestsController < ApplicationController
       @companies = @user.companies
 	  	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
 	  	@leave_types = @company.leave_types
+      if @employment.regularized?
+        @available_leave_types = @company.leave_types
+      else
+        @available_leave_types = @company.leave_types.where(name: 'Unpaid')
+        if @available_leave_types.blank?
+          @available_leave_types = @company.leave_types.where(name: 'Non-paid')
+        end
+      end
 		end
 
 		def leave_request_params
