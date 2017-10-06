@@ -25,7 +25,7 @@
 				</div>
 			<% elsif leave_request.acceptance == true %>
 				<div class="callout small no-margin no-padding success">
-					Accepted
+					Approved
 				</div>
 			<% else %>
 				<div class="callout small no-margin no-padding alert">
@@ -59,11 +59,23 @@
 						<% end %>
 					</td>
 				<% else %>
-					<td colspan="1"></td>
+					<td colspan="1">
+						<%= link_to edit_user_employment_leave_request_url(
+							current_user, leave_request.employment, leave_request), at_company: true,
+							class: 'button small secondary no-margin' do  %>
+								<%= fa_icon "edit" %>
+						<% end %>
+					</td>
 					<td colspan="1"></td>
 				<% end %>
 			<% else %>
-				<td colspan="1"></td>
+				<td colspan="1">
+					<%= link_to edit_user_employment_leave_request_url(
+						leave_request.employment.user, leave_request.employment, leave_request), at_company: true,
+						class: 'button small secondary no-margin' do  %>
+							<%= fa_icon "edit" %>
+					<% end %>
+				</td>
 				<td colspan="1"></td>
 			<% end %>
 		<% else %>
@@ -72,7 +84,7 @@
 					<% if @current_user.id ==
 						leave_request.employment.user.id %>
 						<%= link_to edit_user_employment_leave_request_url(
-							current_user, leave_request.employment, leave_request), at_company: true,
+							leave_request.employment.user, leave_request.employment, leave_request), at_company: true,
 							class: 'button small secondary no-margin' do  %>
 								<%= fa_icon "edit" %>
 						<% end %>

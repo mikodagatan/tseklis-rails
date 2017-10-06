@@ -23,7 +23,7 @@ class LeaveRequestsController < ApplicationController
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @leave_request.save
 	    flash[:success] = "Leave Request Created!"
-	    redirect_to user_path( params[:user_id] )
+	    redirect_to company_path( @employment.company_id )
 	  else
 	  	# flash[:alert] = "Cannot create Leave Request!"
 	    render action: :new
@@ -31,6 +31,14 @@ class LeaveRequestsController < ApplicationController
 	end
 
 	def edit
+    if @employment.regularized?
+      @available_leave_types = @company.leave_types
+    else
+      @available_leave_types = @company.leave_types.where(name: 'Unpaid')
+      if @available_leave_types.blank?
+        @available_leave_types = @company.leave_types.where(name: 'Non-paid')
+      end
+    end
 	end
 
 	def update
@@ -68,6 +76,17 @@ class LeaveRequestsController < ApplicationController
       end
     end
 		@leave_request = @employment.leave_requests.build
+  end
+
+  def destroy
+	  @leave_request = LeaveRequest.find(params[:id])
+		if @leave_request.delete
+			redirect_to company_url(@company)
+      flash[:success] = "Leave Request Deleted!"
+      @leave_request.delete_amounts
+		else
+			render action: :edit
+		end
   end
 
 	private

@@ -1,6 +1,7 @@
 class LeaveRequest < ApplicationRecord
 	belongs_to :employment
-	has_many :leave_amounts, foreign_key: :leave_request_id
+	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
+	before_destroy :delete_amounts
 
 	validates_presence_of :title
 	validates_presence_of :description
@@ -18,10 +19,13 @@ class LeaveRequest < ApplicationRecord
 	validate :check_leaves_available
 	validate :check_regularized
 	# after_validation :check_date_taken_validity
-
+	
+	before_commit :delete_amounts
 	after_commit :enter_amounts
 
-
+	def delete_amounts
+		self.leave_amounts.delete_all
+	end
 
 
 	def show_amount

@@ -68,8 +68,11 @@
 
 				<div class="space2"></div>
 
-				<%= f.submit 'Update', class: "button primary" %>
-			</div>
+				<%= f.submit 'Submit', class: "button primary" %>
+        <div class="space"></div>
+
+        <%= link_to "Delete", user_employment_leave_request_url(@user,@employment,@leave_request), method: :delete, data: {confirm: "Are you sure?"} if method == :patch %>
+      </div>
 		<% end %>
 	</div>
 </div>
