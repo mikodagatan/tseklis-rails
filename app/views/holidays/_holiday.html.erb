@@ -18,11 +18,9 @@
 			<%= form_for holiday, url: url, method: :patch do |t| %>
 				<%= t.text_field :name %>
 				<%= t.text_field :date, class: "datepickerend" %>
-				<%= link_to "Delete", 
-					company_holiday_url(company, holiday), 
-					method: :delete, 
-					class: "small-font-size" 
-				%>
+				<%# t.check_box :_destroy %>
+				<%# t.label :_destroy, "Remove", class: "small-font-size" %>
+				<%= link_to "delete", company_holiday_url(company, holiday), method: :delete %>
 				<div class="space"></div>
 				<%= t.submit "Edit", class: "button" %>
 			<% end %>

@@ -1,6 +1,6 @@
 class HolidaysController < ApplicationController
 	before_action :set_up
-  
+
   def index
   	@holidays = @company.holidays
   end
@@ -35,6 +35,14 @@ class HolidaysController < ApplicationController
   end
 
   def destroy
+	  @holiday = Holiday.find(params[:id])
+		if @holiday.delete
+			flash[:success] = "Holiday Deleted!"
+			redirect_to company_holidays_url(@company)
+		else
+			render action: :index
+		end
+
   end
 
 	private
