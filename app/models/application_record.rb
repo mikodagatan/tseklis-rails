@@ -11,4 +11,8 @@ class ApplicationRecord < ActiveRecord::Base
     self.nil? ? self.present? : self.role_id == @employee.id
   end
 
+  def is_manager?
+    @manager = Role.find(3)
+    self.nil? ? self.present? : self.role_id == @manager.id
+  end
 end

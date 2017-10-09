@@ -56,6 +56,14 @@
                 <div class="space"></div>
               <% end %>
             <% end %>
+            <% if method == :patch && @current_employment.is_hr? || @employment.is_employee? %>
+              <%= form_for @employment, url: url, method: method do |t| %>
+                <%= t.hidden_field :role_id, value: @manager.id %>
+                <%= t.submit 'Make Manager', class: "button warning margin-none add-button-border" %>
+                <div class="small-font-size">* Pressing this will not save your other inputs.</div>
+                <div class="space"></div>
+              <% end %>
+            <% end %>
 					<% else%>
 						<%= f.hidden_field :role_id, value: @employee.id %>
 					<% end %>

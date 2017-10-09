@@ -48,6 +48,7 @@ class ApplicationController < ActionController::Base
   def roles
     @hr_officer = Role.find(1)
     @employee = Role.find(2)
+    @manager = Role.find(3)
   end
 
 
