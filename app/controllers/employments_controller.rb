@@ -4,8 +4,12 @@ class EmploymentsController < ApplicationController
   before_action :set_user_and_employment, only: [:edit, :update]
 
   def new
-		@available_companies = Company.where('id != ?', @current_companies.ids)
-    @user = User.find(params[:user_id])
+		if @current_companies.present?
+			@available_companies = Company.where('id != ?', @current_companies.ids) || Company.all
+		else
+			@available_companies = Company.all
+		end
+		@user = User.find(params[:user_id])
   	@employment = @user.employments.build
   end
 

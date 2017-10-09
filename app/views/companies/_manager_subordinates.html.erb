@@ -1,0 +1,21 @@
+<tr class="table-data">
+  <td><%= link_to "#{employment.user.profile.first_name} #{employment.user.profile.last_name}", user_url(employment.user_id) %></td>
+  <td><%= better_date(employment.start_date) %></td>
+  <td><%= better_date(employment.end_date) %></td>
+  <td class='text-center'>
+    <% if employment.regularized == true %>
+      <div class="callout small no-margin no-padding success">
+        Regular
+      </div>
+    <% else %>
+      <div class="callout small no-margin no-padding alert">
+        Non-regular
+      </div>
+    <% end %>
+  </td>
+  <%# content_tag(:td, number_with_delimiter(employment.salary)) if hr? && employed_here? %>
+  <td><%= Role.find(employment.role_id).name %></td>
+  <td class="edit-column">
+    <%= render 'employments/employment_button', employment: employment %>
+  </td>
+</tr>

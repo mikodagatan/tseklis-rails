@@ -7,9 +7,9 @@ class Employment < ApplicationRecord
 	has_many :leave_reductions
 
 	# Add Manager
-	has_many :subordinates, class_name: "Employee",
+	has_many :subordinates, class_name: 'Employment',
 	                        foreign_key: :manager_id
-	belongs_to :manager, class_name: "Employee", optional: true
+	belongs_to :manager, class_name: 'Employment', optional: true
 
 	accepts_nested_attributes_for :leave_reductions
 

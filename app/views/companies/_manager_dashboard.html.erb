@@ -2,7 +2,27 @@
   <div class="section-blue-small">
     <div class="row section-blue-small no-sidepadding no-margin horizontal-max">
       <div class="columns">
-        <%= @current_employment.
+        <% if @current_employment.subordinates.empty? %>
+          <div class="text-center">
+            <h3>No Data</h3>
+          </div>
+        <% else %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th class='text-center'>Regularization</th>
+              <th>Role</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody id="manager_subordinates">
+            <%= render partial: 'manager_subordinates', collection: @current_employment.subordinates, as: 'employment' %>
+          </tbody>
+        </table>
+        <% end %>
       </div>
     </div>
   </div>
