@@ -6,6 +6,11 @@ class Employment < ApplicationRecord
 	has_many :leave_amounts, through: :leave_requests
 	has_many :leave_reductions
 
+	# Add Manager
+	has_many :subordinates, class_name: "Employee"
+	                        foreign_key: "manager_id"
+	belongs_to :manager, class_name: "Employee"
+
 	accepts_nested_attributes_for :leave_reductions
 
 	attr_accessor :skip_validation
