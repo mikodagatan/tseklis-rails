@@ -45,27 +45,27 @@
 			<% if leave_request.acceptance.nil? %>
 				<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == leave_request.employment.company_id) %>
 					<td>
-						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: true do |f| %>
-							<%= f.hidden_field :acceptance, value: true %>
-							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-							<%= f.submit "Accept", class: "button small expanded success"%>
-						<% end %>
+						<%# form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: true do |f| %>
+							<%# f.hidden_field :acceptance, value: true %>
+							<%# f.hidden_field :acceptor_id, value: @current_user.id %>
+							<%# f.submit "Accept", class: "button small expanded success"%>
+						<%# end %>
 					</td>
 					<td>
-						<%= form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: true do |f| %>
-							<%= f.hidden_field :acceptance, value: false %>
-							<%= f.hidden_field :acceptor_id, value: @current_user.id %>
-							<%= f.submit "Reject", class: "button small expanded alert small" %>
-						<% end %>
+						<%# form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: true do |f| %>
+							<%# f.hidden_field :acceptance, value: false %>
+							<%# f.hidden_field :acceptor_id, value: @current_user.id %>
+							<%# f.submit "Reject", class: "button small expanded alert small" %>
+						<%# end %>
 					</td>
 				<% else %>
 					<td colspan="1">
 						<% if @current_employment.is_hr? %>
-							<%= link_to edit_user_employment_leave_request_url(
+							<%# link_to edit_user_employment_leave_request_url(
 								leave_request.employment.user, leave_request.employment, leave_request), at_company: true,
 								class: 'button small secondary no-margin' do  %>
-									<%= fa_icon "edit" %>
-							<% end %>
+									<%# fa_icon "edit" %>
+							<%# end %>
 						<% else %>
 							<% if @current_employment.is_employee? && Date.today.at_beginning_of_day < leave_request.start_date %>
 								<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
@@ -77,14 +77,14 @@
 			<% else %>
 			<td colspan="1">
 				<% if @current_employment.is_hr? %>
-					<%= link_to edit_user_employment_leave_request_url(
+					<%# link_to edit_user_employment_leave_request_url(
 						leave_request.employment.user, leave_request.employment, leave_request), at_company: true,
 						class: 'button small secondary no-margin' do  %>
-							<%= fa_icon "edit" %>
-					<% end %>
+							<%# fa_icon "edit" %>
+					<%# end %>
 				<% else %>
 					<% if @current_employment.is_employee? && Date.today.at_beginning_of_day < leave_request.start_date %>
-						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin' %>
+						<% link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin' %>
 					<% end %>
 				<% end %>
 			</td>

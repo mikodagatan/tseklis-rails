@@ -1,0 +1,32 @@
+<tr class="table-data">
+  <td>
+    <%= link_to user_url(leave_request.employment.user) do %>
+      <%= leave_request.employment.user.profile.first_name%>
+      <%= leave_request.employment.user.profile.last_name %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to leave_request.title, user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request) %>
+  </td>
+  <td>
+    <%= LeaveType.find(leave_request.leave_type_id).name %>
+  </td>
+  <td class='text-center'>
+    <% if leave_request.acceptance.nil? %>
+      <div class="callout small no-margin no-padding secondary">
+        Waiting
+      </div>
+    <% elsif leave_request.acceptance == true %>
+      <div class="callout small no-margin no-padding success">
+        Approved
+      </div>
+    <% else %>
+      <div class="callout small no-margin no-padding alert">
+        Rejected
+      </div>
+    <% end %>
+  </td>
+  <td class="text-center">
+    <%= leave_request.show_amount %>
+  </td>
+</tr>

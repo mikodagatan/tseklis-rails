@@ -26,6 +26,7 @@ class EmploymentsController < ApplicationController
   end
 
 	def edit
+		@current_role_id = @current_employment.role_id
 		@employment.company.leave_types.each do |leave_type|
 			@employment.leave_reductions.build(leave_type_id: leave_type.id)
 		end
@@ -58,7 +59,7 @@ class EmploymentsController < ApplicationController
   	@user = User.find(params[:user_id])
   	@employments = @user.employments
     @employment = @user.employments.find_by_id( params[:id] )
-    @current_employment = @current_employments.find_by( company_id: @employment.company_id )
+    @current_employment = @current_user.employments.where( company_id: @employment.company_id ).first
   end
 
   def employment_params

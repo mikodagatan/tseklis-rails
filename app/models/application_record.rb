@@ -3,16 +3,16 @@ class ApplicationRecord < ActiveRecord::Base
 
   def is_hr?
     @hr_officer = Role.find(1)
-    self.nil? ? self.present? : self.role_id == @hr_officer.id
+    self.present? ? self.role_id == @hr_officer.id : false
   end
 
   def is_employee?
     @employee = Role.find(2)
-    self.nil? ? self.present? : self.role_id == @employee.id
+    self.present? ? self.role_id == @employee.id : false
   end
 
   def is_manager?
     @manager = Role.find(3)
-    self.nil? ? self.present? : self.role_id == @manager.id
+    self.present? ? self.role_id == @manager.id : false
   end
 end

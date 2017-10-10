@@ -2,6 +2,10 @@ $('#leave_requests').html('<%= escape_javascript render(@leave_requests, at_comp
 $('#leave_request_paginator_company').html('<%= escape_javascript(paginate(@leave_requests, remote: true, param_name: "leave_requests_page").to_s) %>');
 $('#leave_request_info').html('<%= escape_javascript(page_entries_info(@leave_requests)) %>');
 
+$('#lr_manager_dashboard').html('<%= escape_javascript render(partial: "subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request") %>');
+$('#lr_paginator_manager_dashboard').html('<%= escape_javascript(paginate(@subordinate_leave_requests, remote: true, param_name: "lr_page_manager_dashboard").to_s) %>');
+$('#leave_request_info_manager_dashboard').html('<%= escape_javascript(page_entries_info(@subordinate_leave_requests)) %>');
+
 $('#employments').html('<%= escape_javascript render(partial: "employments/company_employment", collection: @employments, as: "employment", join_request: false) %>');
 $('#employment_paginator_company').html('<%= escape_javascript(paginate(@employments, remote: true, param_name: "employments_page").to_s) %>');
 $('#employment_info').html('<%= escape_javascript(page_entries_info(@employments)) %>');

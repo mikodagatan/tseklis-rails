@@ -19,6 +19,6 @@
 			<%= Role.find(employment.role_id).name %>
 		</td>
 		<td>
-			<%= render 'employments/employment_button', employment: employment %>
+			<%= render 'employments/employment_button', employment: employment, location: 'user_show' %>
 		</td>
 	</tr>

@@ -1,6 +1,5 @@
 <div class="row">
   <div class="small-12 medium-offset-3 medium-6">
-    <% @current_employment = @current_employments.find_by(company_id: @employment.company_id) if @current_user.employed? %>
 
 			<%= form_for @employment, url: url, method: method  do |f| %>
 
@@ -24,7 +23,7 @@
   					</div>
 
 					<% unless @employment.id.nil? %>
-						<% if (@current_employment.role_id = @hr_officer.id) && (@current_company_id = @employment.company_id)%>
+						<% if (@current_employment.role_id == @hr_officer.id) && (@current_company_id == @employment.company_id)%>
 							<div class="field">
 								<%= f.label :end_date, "End Date" %>
 								<%= f.text_field :end_date, class: "datepickerstart" %>
@@ -37,16 +36,14 @@
 						<%# f.label :salary %>
 						<%# f.text_field :salary %>
 					</div>
-
 					<div class="space"></div>
 					<% unless @employment.id.nil? %>
-            <div class="row">
-            	<% if (method == :patch) && (@current_employment.is_hr?) && (current_user != @user) && (@employment.is_hr? == false) %>
+            <div class="row medium-up-3">
+            	<% if (method == :patch) && (@current_employment.is_hr?) && (current_user != @user) && (!@employment.is_hr?) %>
                 <div class="columns">
                   <%= form_for @employment, url: url, method: method do |t| %>
     								<%= t.hidden_field :role_id, value: @hr_officer.id %>
     								<%= t.submit 'Make HR Officer', class: "button warning margin-none add-button-border" %>
-    								<div class="space"></div>
     							<% end %>
                 </div>
   						<% end %>
@@ -55,7 +52,6 @@
                   <%= form_for @employment, url: url, method: method do |t| %>
                     <%= t.hidden_field :regularized, value: true %>
                     <%= t.submit 'Regularize Employee', class: "button success margin-none" %>
-                    <div class="space"></div>
                   <% end %>
                 </div>
               <% end %>
@@ -64,11 +60,19 @@
                   <%= form_for @employment, url: url, method: method do |t| %>
                     <%= t.hidden_field :role_id, value: @manager.id %>
                     <%= t.submit 'Make Manager', class: "button warning margin-none add-button-border" %>
-                    <div class="space"></div>
+                  <% end %>
+                </div>
+              <% end %>
+              <% if method == :patch && @current_employment.is_manager? && @employment.manager_id != @current_employment.id %>
+                <div class="columns">
+                  <%= form_for @employment, url: url, method: method do |t| %>
+                    <%= t.hidden_field :manager_id, value: @current_employment.id %>
+                    <%= t.submit 'Make Subordinate', class: "button warning margin-none add-button-border" %>
                   <% end %>
                 </div>
               <% end %>
             </div>
+            <div class="space"></div>
             <div class="small-font-size">* Pressing these will not save the other inputs</div>
             <div class="space2"></div>
 					<% else%>

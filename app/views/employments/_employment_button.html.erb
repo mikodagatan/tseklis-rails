@@ -2,8 +2,8 @@
 <% else %>
   <% if (@current_employment.present?) || @current_user == employment.user %>
 
-    <div class="button secondary small no-margin" data-toggle="employee-dropdown-<%= employment.id %>"><i class="fa fa-bars white-text"></i></div>
-    <section class="dropdown-pane no-padding" id="employee-dropdown-<%= employment.id %>" data-dropdown data-hover="true" data-hover-pane="true" >
+    <div class="button secondary small no-margin" data-toggle="employee-dropdown-<%= employment.id %>-<%= location %>"><i class="fa fa-bars white-text"></i></div>
+    <section class="dropdown-pane no-padding" id="employee-dropdown-<%= employment.id %>-<%= location %>" data-dropdown data-hover="true" data-hover-pane="true" >
       <div class="row horizontal-max no-margin no-padding collapse">
         <div class="columns small-up-1 medium-up-1">
           <div class="columns no-padding">

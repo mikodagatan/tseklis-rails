@@ -8,20 +8,20 @@
     </div>
     <div class="columns medium-3 align-self-right text-right">
       <% if @leave_request.acceptance.nil? %>
-  			<% if @current_employment.is_hr? && @current_employment.present? || (@current_user = @user) %>
+  			<% if @current_employment.present? && @current_employment.is_hr? || (@current_user = @user) %>
   				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button large secondary" do  %>
   					<%= fa_icon "edit" %>
   				<% end %>
           <div class="row">
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, remote: true do |f| %>
+              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch do |f| %>
                 <%= f.hidden_field :acceptance, value: true %>
                 <%= f.hidden_field :acceptor_id, value: @current_user.id %>
                 <%= f.submit "Accept", class: "button large success leave_request_button"%>
               <% end %>
             </div>
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, remote: true do |f| %>
+              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch do |f| %>
                 <%= f.hidden_field :acceptance, value: false %>
                 <%= f.hidden_field :acceptor_id, value: @current_user.id %>
                 <%= f.submit "Reject", class: "button large alert small leave_request_button" %>
@@ -35,6 +35,7 @@
 </div>
 <div class="space3"></div>
 <div class="row">
+  <div class="columns medium-1"></div>
   <div class="columns medium-3 box-round-blue">
     <h5>Amount of Leaves</h5>
     <h1>

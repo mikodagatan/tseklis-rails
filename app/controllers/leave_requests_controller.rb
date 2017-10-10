@@ -42,7 +42,7 @@ class LeaveRequestsController < ApplicationController
         #   format.html { redirect_to company_url(@company.id) + "#leave_requests" }
         #   format.js
         # end
-	    	redirect_to company_url(@company.id) + "#leave_requests"
+	    	redirect_to company_url(@company.id) + "#manager-dashboard"
 	    else
 	    	redirect_to user_path( params[:user_id] )
 	    end
