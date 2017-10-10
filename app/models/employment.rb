@@ -11,6 +11,10 @@ class Employment < ApplicationRecord
 	                        foreign_key: :manager_id
 	belongs_to :manager, class_name: 'Employment', optional: true
 
+	# Email Invitation
+	has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+  has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+
 	accepts_nested_attributes_for :leave_reductions
 
 	validates :start_date,

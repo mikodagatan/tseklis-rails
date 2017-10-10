@@ -75,6 +75,5 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 gem 'capistrano-yarn'
 gem 'therubyracer'
-gem 'foundation_emails'
 
 ruby '2.4.0'

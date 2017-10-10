@@ -1,0 +1,20 @@
+<div class="white-bg horizontal-max">
+	<div class="row show-header align-middle">
+		<div class="columns text-center">
+      <h4><%= @company.name %></h4>
+      <h2>Invite Employee</h2>
+    </div>
+  </div>
+</div>
+<div class="space3"></div>
+<div class="row">
+  <div class="columns medium-offset-3 medium-6">
+    <%= form_for @invite, url: company_invites_path, method: :post do |f| %>
+			<%= show_error_message(@invite) %>
+      <%= f.hidden_field :company_id, :value => @invite.company_id %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <%= f.submit 'Send', class: "button primary" %>
+    <% end %>
+  </div>
+</div>

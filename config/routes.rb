@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :holidays
     get 'employees' => 'companies#employees_index'
     get 'leave_requests' => 'companies#leave_requests_index'
+    resources :invites
   end
+
 
 
   namespace :dashboard do
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
     root to: "site_settings#index"
     devise_for :admins, skip: :registrations
   end
+
   get 'search' => 'pages#search'
   get 'team' => 'pages#team'
 	get 'about' => 'pages#about'

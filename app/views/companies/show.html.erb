@@ -26,12 +26,15 @@
 											class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
-							<% if (@current_employment.present? && @current_employment.is_hr?) %>
+							<% if (@current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?)) %>
 								<div class="columns no-padding">
 									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 								<div class="columns no-padding">
 									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
+								</div>
+								<div class="columns no-padding">
+									<%= link_to "Invite Employee", new_company_invite_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
 						</div>
@@ -47,7 +50,7 @@
 	<%= render 'hr_dashboard_button' if @current_employment.present? && @current_employment.is_hr? %>
 	<%= render 'hr_dashboard' if @current_employment.present? && @current_employment.is_hr? %>
 	<%= render 'manager_dashboard_button' if @current_employment.is_manager? %>
-	<%= render 'manager_dashboard' if @current_employment.present? && @current_employment.is_manager? %> 
+	<%= render 'manager_dashboard' if @current_employment.present? && @current_employment.is_manager? %>
 	<div class="space3"></div>
 	<%= render "join_requests_table" %>
 	<%= render "users_table" %>

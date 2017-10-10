@@ -12,12 +12,15 @@ class Company < ApplicationRecord
 	has_one  :company_leave_setting
 	has_many :leave_types, dependent: :destroy
 
+	has_many :invites
+
 	accepts_nested_attributes_for :employments,
 		:address,
 		:leave_types,
 		:company_leave_setting,
 		:holidays,
 		allow_destroy: true
+
 
 	validates :name, presence: true, uniqueness: true
 
