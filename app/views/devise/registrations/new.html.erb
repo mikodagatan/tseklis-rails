@@ -19,7 +19,7 @@
           <div class="field">
             <%= t.label :first_name %>
             <% if params[:first_name].present? %>
-              <%= t.text_field :first_name, value: params[:first_name].capitalize, readonly: true, autofocus: true %>
+              <%= t.text_field :first_name, value: params[:first_name], readonly: true, autofocus: true %>
             <% else %>
               <%= t.text_field :first_name, autofocus: true %>
             <% end %>
@@ -28,7 +28,7 @@
           <div class="field">
             <%= t.label :last_name %>
             <% if params[:last_name].present? %>
-              <%= t.text_field :last_name, value: params[:last_name].capitalize, readonly: true, autofocus: true %>
+              <%= t.text_field :last_name, value: params[:last_name], readonly: true, autofocus: true %>
             <% else %>
               <%= t.text_field :last_name, autofocus: true %>
             <% end %>
