@@ -5,7 +5,10 @@ class CreateInvites < ActiveRecord::Migration[5.1]
       t.integer :company_id
       t.integer :sender_id
       t.integer :recipient_id
-      t.string :token
+      t.string  :first_name
+      t.string  :last_name
+      t.date    :start_date
+      t.string  :token
       t.timestamps
     end
   end

@@ -152,7 +152,6 @@ GEM
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
       sprockets-es6 (>= 0.9.0)
-    foundation_emails (2.2.1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     google-analytics-rails (1.1.1)
@@ -279,6 +278,11 @@ GEM
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     powerpack (0.1.1)
+    pry (0.11.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -463,7 +467,6 @@ DEPENDENCIES
   flamegraph
   font-awesome-rails
   foundation-rails
-  foundation_emails
   google-analytics-rails (~> 1.1)
   has_scope!
   inherited_resources
@@ -479,6 +482,7 @@ DEPENDENCIES
   pg (~> 0.21.0)
   pg_search
   pickadate-rails
+  pry-rails
   puma (~> 3.7)
   rack-mini-profiler
   rails (~> 5.1.2)

@@ -3,6 +3,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	def new
 		super
 		@token = params[:invite_token]
+		@email = params[:email]
+		@start_date = params[:start_date]
+		@first_name = params[:first_name]
+		@last_name = params[:last_name]
 	end
 
 	def create

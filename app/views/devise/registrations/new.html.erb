@@ -13,24 +13,34 @@
     <div class="small-12 medium-offset-3 medium-6">
       <div class="m-well align-middle">
 
-
-
         <%= f.fields_for :profile, resource.build_profile do |t| %>
-        <div class="field">
-          <%= t.label :first_name %>
-          <%= t.text_field :first_name, autofocus: true %>
-        </div>
+          <div class="field">
+            <%= t.label :first_name %>
+            <% if  @first_name.present? %>
+              <%= t.text_field :first_name, value: @first_name, readonly: true, autofocus: true %>
+            <% else %>
+              <%= t.text_field :first_name, autofocus: true %>
+            <% end %>
+          </div>
 
-        <div class="field">
-          <%= t.label :last_name %>
-          <%= t.text_field :last_name, autofocus: true %>
-        </div>
+          <div class="field">
+            <%= t.label :last_name %>
+            <% if @last_name.present? %>
+              <%= t.text_field :last_name, value: @last_name, readonly: true, autofocus: true %>
+            <% else %>
+              <%= t.text_field :last_name, autofocus: true %>
+            <% end %>
+          </div>
 
         <% end %>
 
         <div class="field">
           <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true %>
+          <% if @email.present? %>
+            <%= f.email_field :email, value: @email, readonly: true %>
+          <% else %>
+            <%= f.email_field :email, autofocus: true %>
+          <% end %>
         </div>
 
         <div class="field">
@@ -43,15 +53,13 @@
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
         </div>
 
-        <% if @token != nil %>
+        <% if @token.present? %>
           <%= hidden_field_tag :invite_token, @token %>
         <% end %>
 
         <div class="actions">
           <%= f.submit "Sign up", class: 'button primary' %>
         </div>
-
-
         <%= render "devise/shared/links" %>
 
 

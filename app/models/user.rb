@@ -12,7 +12,7 @@ class User < ApplicationRecord
 	has_many :leave_types, through: :companies
 	has_many :leave_amounts, through: :leave_requests
 
-	accepts_nested_attributes_for :profile, reject_if: :all_blank
+	accepts_nested_attributes_for :profile, :employments, reject_if: :all_blank
 
   ransack_alias :employee_name, :profile_first_name_or_profile_last_name
 

@@ -12,8 +12,15 @@
     <%= form_for @invite, url: company_invites_path, method: :post do |f| %>
 			<%= show_error_message(@invite) %>
       <%= f.hidden_field :company_id, :value => @invite.company_id %>
+			<%= f.hidden_field :sender_id, value: @current_user.id %>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name, autofocus: true %>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name, autofocus: true %>
+			<%= f.label :start_date %>
+			<%= f.text_field :start_date, autofocus: true, class: 'datepickerstart' %>
       <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, autofocus: true %>
       <%= f.submit 'Send', class: "button primary" %>
     <% end %>
   </div>

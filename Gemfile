@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'mailcatcher'
+  gem 'pry-rails'
 end
 
 group :development do

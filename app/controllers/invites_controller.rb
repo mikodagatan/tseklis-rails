@@ -3,6 +3,7 @@ class InvitesController < ApplicationController
   def new
     @company = Company.find(params[:company_id])
     @invite = @company.invites.build
+    @current_user = current_user
   end
 
   def create
@@ -12,7 +13,8 @@ class InvitesController < ApplicationController
     @invite.sender = current_user
     if @invite.save
       InviteMailer.new_user_invite(@invite,
-        new_user_registration_path(invite_token: @invite.token)).deliver_now
+        new_user_registration_path(invite_token: @invite.token, email: @invite.email, start_date: @invite.start_date, first_name: @invite.first_name, last_name: @invite.last_name)).deliver_now
+
       flash[:success] = "Invitation sent to " + @invite.email
       # redirect_to company_invite_path(@company)
       render action: :new
@@ -39,7 +41,10 @@ class InvitesController < ApplicationController
       :company_id,
       :sender_id,
       :recipient_id,
-      :token
+      :token,
+      :first_name,
+      :last_name,
+      :start_date
   		)
   end
 end

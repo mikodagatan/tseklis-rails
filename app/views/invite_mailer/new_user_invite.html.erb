@@ -1,14 +1,21 @@
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Welcome to Tseklis! </h1>
+<div style='background-color: #29a4e9; padding: 5rem;'>
+  <div style='font-family: "Arial"; background-color: #f7f7f9; padding: 2rem; border-radius: 1rem;'>
+    <h1>You've been invited to use Tseklis!</h1>
+    <br />
     <p>
-      Hi <%= @sender.profile.first_name %> <%= @sender.profile.last_name %>
+      <%= @sender.profile.first_name.capitalize %> <%= @sender.profile.last_name.capitalize %> just sent you an invitation to join <strong><%= @invite.company.name %></strong> through Tseklis.com!
     </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
-</html>
+    <p>
+      To continue joining, please click on the link below:
+    </p>
+
+    <a href='<%= @url %>'>
+      Click Here
+    </a>
+
+    <br />
+    <br />
+    <p>Thank you,</p>
+    <p>Tseklis Team</p>
+  </div>
+</div>
