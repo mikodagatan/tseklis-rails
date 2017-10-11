@@ -1,4 +1,4 @@
-<% if method == :patch && (@current_employment.is_hr?) && (@employment.is_employee? || @employment.is_hr?) %>
+<% if(@current_employment.is_hr?) && (@employment.is_employee? || @employment.is_hr?) %>
   <div class="columns">
     <%= form_for @employment, url: url, method: method do |t| %>
       <%= t.hidden_field :role_id, value: @manager.id %>
@@ -6,7 +6,7 @@
     <% end %>
   </div>
 <% end %>
-<% if method == :patch && (@current_employment.is_hr?) && (@employment.is_manager?) %>
+<% if (@current_employment.is_hr?) && (@employment.is_manager?) %>
   <div class="columns">
     <%= form_for @employment, url: url, method: method do |t| %>
       <%= t.hidden_field :role_id, value: @employee.id %>
