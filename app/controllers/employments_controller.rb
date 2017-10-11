@@ -47,6 +47,7 @@ class EmploymentsController < ApplicationController
 	end
 
   def show
+		@current_employment = @current_user.employments.where( company_id: @employment.company_id ).first
   end
 
 	def leave_request_by_hr

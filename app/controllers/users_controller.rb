@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_up, only: :show
 
   def show
+    # @employment = @user.employments.
     @per_show = 10
     if @user.employments.present?
       @companies = @user.companies.distinct
@@ -31,7 +32,10 @@ class UsersController < ApplicationController
   def set_up
     @user = User.find(params[:id])
     @employments = @user.employments
+    @employment = @employments.where(company_id: params[:company]).first
     @leave_requests = @user.leave_requests
+    @current_employments = @current_user.employments
+    @current_employment = @current_employments.where(company_id: params[:company]).first
   end
 
 end
