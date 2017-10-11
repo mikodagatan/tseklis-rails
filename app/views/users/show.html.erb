@@ -6,7 +6,8 @@
 		</div>
 		<div class="columns medium-3 small-12 text-right">
 			<div class="space"></div>
-			<%= link_to "Edit Profile", edit_user_registration_url(params[:id]), class: "button primary text-right" if ( @current_employment.present? && @current_employment.is_hr? )|| @user == @current_user %>
+			<%= link_to "Edit Profile", edit_user_url(params[:id]), class: "button primary text-right" if  @current_employment.present? && @current_employment.is_hr? && @user != @current_user %>
+			<%= link_to "Edit Account", edit_user_registration_url, class: "button primary text-right" if @user == @current_user %>
 		</div>
 	</div>
 </div>
