@@ -10,7 +10,7 @@
   <div class="columns">
     <%= form_for @employment, url: url, method: method do |t| %>
       <%= t.hidden_field :regularized, value: false %>
-      <%= t.submit 'Regularize Employee', class: "button success margin-none" %>
+      <%= t.submit 'Non-Regularize Employee', class: "button alert margin-none" %>
     <% end %>
   </div>
 <% end %>
