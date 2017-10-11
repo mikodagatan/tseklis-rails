@@ -1,0 +1,15 @@
+<% if method == :patch && @current_employment.is_hr? && @employment.regularized == false %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :regularized, value: true %>
+      <%= t.submit 'Regularize Employee', class: "button success margin-none" %>
+    <% end %>
+  </div>
+<%= elsif method== :patch && @current_employment.is_hr? && @employment.regularized == true %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :regularized, value: false %>
+      <%= t.submit 'Regularize Employee', class: "button success margin-none" %>
+    <% end %>
+  </div>
+<% end %>

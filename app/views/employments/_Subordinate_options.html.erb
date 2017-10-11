@@ -1,0 +1,16 @@
+<% if method == :patch && @current_employment.is_manager? && @employment.manager_id != @current_employment.id %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :manager_id, value: @current_employment.id %>
+      <%= t.submit 'Make Subordinate', class: "button warning margin-none add-button-border" %>
+    <% end %>
+  </div>
+<% end %>
+<% if method == :patch && @current_employment.is_manager? && @employment.manager_id == @current_employment.id %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :manager_id, value: nil %>
+      <%= t.submit 'Remove Subordinate', class: "button warning margin-none add-button-border" %>
+    <% end %>
+  </div>
+<% end %>

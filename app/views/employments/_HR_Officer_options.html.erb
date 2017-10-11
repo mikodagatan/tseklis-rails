@@ -1,0 +1,8 @@
+<% if (method == :patch) && (@current_employment.is_hr?) && (current_user != @user) && (!@employment.is_hr?) %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :role_id, value: @hr_officer.id %>
+      <%= t.submit 'Make HR Officer', class: "button warning margin-none add-button-border" %>
+    <% end %>
+  </div>
+<% end %>
