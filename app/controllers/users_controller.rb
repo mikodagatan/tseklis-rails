@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_up, only: [:show, :edit]
+  before_action :set_up, only: [:show, :edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -25,6 +25,15 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+    if @user.update_attributes(company_params)
+      flash[:success] = "User Updated!"
+      render action: :edit
+    else
+      render action: :edit
+  end
+
+
   def index
   	@users = User.all
 	end
@@ -37,5 +46,24 @@ class UsersController < ApplicationController
     @current_employments = @current_user.employments
     @current_employment = @current_employments.where(company_id: params[:company]).first
   end
-
+  def user_params
+		params.require(:user).permit(
+			:id,
+			:name,
+      :email,
+      :password,
+      :password_confirmation,
+      :current_password,
+      profile_attributes: [:id,
+                        :first_name,
+                        :last_name],
+      employments_attributes: [:id,
+                              :start_date,
+                              :end_date,
+                              :company_id,
+                              :user_id,
+															:role_id
+															]
+		)
+	end
 end
