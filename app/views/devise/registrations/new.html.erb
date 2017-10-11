@@ -1,23 +1,25 @@
 <div class="form-header">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name, invite_token: @token, start_date: @start_date, first_name: @first_name, last_name: @last_name, email: @email   ), method: :post, invite_token: params[:invite_token], start_date: params[:start_date]) do |f| %>
 
   <div class="row form-header align-middle text-center">
     <div class="columns">
       <h1>Sign Up</h1>
     </div>
   </div>
+</div>
 
-  <%= devise_error_messages! %>
+
 
   <div class="row">
     <div class="small-12 medium-offset-3 medium-6">
       <div class="m-well align-middle">
+        <%= show_error_message(@user) %>
 
-        <%= f.fields_for :profile, resource.build_profile do |t| %>
+        <%= f.fields_for :profile, @profile do |t| %>
           <div class="field">
             <%= t.label :first_name %>
-            <% if  @first_name.present? %>
-              <%= t.text_field :first_name, value: @first_name, readonly: true, autofocus: true %>
+            <% if params[:first_name].present? %>
+              <%= t.text_field :first_name, value: params[:first_name].capitalize, readonly: true, autofocus: true %>
             <% else %>
               <%= t.text_field :first_name, autofocus: true %>
             <% end %>
@@ -25,8 +27,8 @@
 
           <div class="field">
             <%= t.label :last_name %>
-            <% if @last_name.present? %>
-              <%= t.text_field :last_name, value: @last_name, readonly: true, autofocus: true %>
+            <% if params[:last_name].present? %>
+              <%= t.text_field :last_name, value: params[:last_name].capitalize, readonly: true, autofocus: true %>
             <% else %>
               <%= t.text_field :last_name, autofocus: true %>
             <% end %>
@@ -36,8 +38,8 @@
 
         <div class="field">
           <%= f.label :email %>
-          <% if @email.present? %>
-            <%= f.email_field :email, value: @email, readonly: true %>
+          <% if params[:email].present? %>
+            <%= f.email_field :email, value: params[:email], readonly: true %>
           <% else %>
             <%= f.email_field :email, autofocus: true %>
           <% end %>
@@ -53,9 +55,10 @@
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
         </div>
 
-        <% if @token.present? %>
-          <%= hidden_field_tag :invite_token, @token %>
+        <% if params[:token].present? %>
+          <%= hidden_field_tag :invite_token, params[:token] %>
         <% end %>
+
 
         <div class="actions">
           <%= f.submit "Sign up", class: 'button primary' %>
@@ -68,4 +71,3 @@
   </div>
 
   <% end %>
-z</div>

@@ -12,14 +12,32 @@ class InvitesController < ApplicationController
     @invite.company = @company
     @invite.sender = current_user
     if @invite.save
-      InviteMailer.new_user_invite(@invite,
-        new_user_registration_path(invite_token: @invite.token, email: @invite.email, start_date: @invite.start_date, first_name: @invite.first_name, last_name: @invite.last_name)).deliver_now
-
-      flash[:success] = "Invitation sent to " + @invite.email
-      # redirect_to company_invite_path(@company)
-      render action: :new
+        #if the user already exists
+      if @invite.recipient != nil
+        #send a notification email
+        if @invite.recipient.employments.where(company_id: @invite.company_id).blank?
+          InviteMailer.existing_user_invite(@invite).deliver
+          @employment = Employment.new(
+  												company: @invite.company,
+  												user: @invite.recipient,
+  												role_id: @employee.id,
+  												start_date: @invite.start_date,
+  												acceptance: true,
+  												acceptor_id: @invite.sender_id
+  											).save!
+          flash[:success] = "Invitation sent to " + @invite.email
+          render action: :new
+        else
+          flash[:alert] = "Employee already part of " + @invite.company.name
+          render action: :new
+        end
+      else
+        InviteMailer.new_user_invite(@invite,
+          new_user_registration_path(invite_token: @invite.token, email: @invite.email, start_date: @invite.start_date, first_name: @invite.first_name, last_name: @invite.last_name)).deliver_now
+        flash[:success] = "Invitation sent to " + @invite.email
+        render action: :new
+      end
     else
-      # flash[:alert] = "Invitation failed to send"
       render action: :new
     end
   end

@@ -25,7 +25,7 @@
 								<th class='text-center'>Regularization</th>
 								<%# content_tag(:th, 'Salary') if hr? && employed_here? %>
 								<th>Role</th>
-								<th colspan="1"></th>
+								<%= content_tag(:th) if @current_employment.is_hr? %>
 							</tr>
 						</thead>
 						<tbody id="employments">

@@ -7,4 +7,11 @@ class InviteMailer < ApplicationMailer
     mail(to: @invite.email, subject: @sender.profile.first_name.capitalize + " " + @sender.profile.last_name.capitalize + " invites you to use Tseklis" )
   end
 
+  def existing_user_invite(invite)
+    @invite = invite
+    @sender = User.find(invite.sender_id)
+    mail(to: @invite.email, subject: @sender.profile.first_name.capitalize + " " + @sender.profile.last_name.capitalize + " invites you to join " + @invite.company.name )
+  end
+
+
 end

@@ -2,7 +2,7 @@
 	<tr class="table-data">
 		<td><%= link_to employment.company.name, company_url(employment.company_id) %></td>
 		<td><%= better_date(employment.start_date) %></td>
-			<td><%= better_date(employment.end_date) %></td>
+		<td><%= better_date(employment.end_date) %></td>
 
 		<!-- <td> -->
 			<%# if @user.employments.find_by(company_id: employment.company_id).present? %>
@@ -18,7 +18,5 @@
 		<td>
 			<%= Role.find(employment.role_id).name %>
 		</td>
-		<td>
-			<%= render 'employments/employment_button', employment: employment, location: 'user_show' %>
-		</td>
+		<%= content_tag(:td, render('employments/employment_button', employment: employment, location: 'company_employment'), class: "edit-column") if @current_employment.is_hr? %>
 	</tr>

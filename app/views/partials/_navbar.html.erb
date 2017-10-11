@@ -85,7 +85,7 @@
         <% if user_signed_in? %>
           <%= link_to "Create Company", new_company_url, class: "button white-c horizontal-max no-margin text-left" %>
           <%# link_to "Connect to a Company / Change Salary", new_user_employment_url(@current_user), class: "button white-c horizontal-max no-margin text-left" %>
-          <%= link_to "Connect to a Company", new_user_employment_url(@current_user), class: "button white-c horizontal-max no-margin text-left" %>
+          <%# link_to "Connect to a Company", new_user_employment_url(@current_user), class: "button white-c horizontal-max no-margin text-left" %>
         <% end %>
         <%= link_to "Sign Out", destroy_user_session_path, class: 'button warning horizontal-max no-margin text-left' %>
       </div>

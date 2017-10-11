@@ -1,6 +1,6 @@
 class Employment < ApplicationRecord
 	belongs_to :company
-	belongs_to :user
+	belongs_to :user, required: false
 
 	has_many :leave_requests
 	has_many :leave_amounts, through: :leave_requests
