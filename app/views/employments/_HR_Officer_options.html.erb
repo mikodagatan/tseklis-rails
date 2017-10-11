@@ -1,4 +1,4 @@
-<% if (@current_employment.is_hr?) && (@current_user != @user) && (@employment.is_hr?) %>
+<% if (@current_employment.is_hr?) && (@current_user != @user) && (@employment.is_employee?) %>
   <div class="columns">
     <%= form_for @employment, url: url, method: method do |t| %>
       <%= t.hidden_field :role_id, value: @hr_officer.id %>
@@ -6,7 +6,7 @@
     <% end %>
   </div>
 <% end %>
-<% if (@current_employment.is_hr?) && (@current_user != @user) && (@employment.is_employee?) %>
+<% if (@current_employment.is_hr?) && (@current_user != @user) && (@employment.is_hr?) %>
   <div class="columns">
     <%= form_for @employment, url: url, method: method do |t| %>
       <%= t.hidden_field :role_id, value: @employee.id %>
