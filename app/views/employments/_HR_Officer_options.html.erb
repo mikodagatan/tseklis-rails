@@ -6,3 +6,11 @@
     <% end %>
   </div>
 <% end %>
+<% if (@current_employment.is_hr?) && (@current_user != @user) && (@employment.is_employee?) %>
+  <div class="columns">
+    <%= form_for @employment, url: url, method: method do |t| %>
+      <%= t.hidden_field :role_id, value: @employee.id %>
+      <%= t.submit 'Make Non-HR', class: "button warning margin-none add-button-border" %>
+    <% end %>
+  </div>
+<% end %>

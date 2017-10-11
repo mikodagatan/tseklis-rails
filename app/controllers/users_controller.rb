@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_up, only: :show
 
   def show
-    # @employment = @user.employments.
+    @user = User.find(params[:id])
     @per_show = 10
     if @user.employments.present?
       @companies = @user.companies.distinct
