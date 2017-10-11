@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     @current_employments = @current_user.employments
     @current_employment = @current_employments.where(company_id: params[:company]).first
   end
+  
   def user_params
 		params.require(:user).permit(
 			:id,
