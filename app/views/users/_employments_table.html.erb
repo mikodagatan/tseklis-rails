@@ -19,7 +19,7 @@
 						</thead>
 						<tbody>
 							<% @employments.reverse_order.each do |employment| %>
-								<%= render 'employments/employment', employment: employment, company: @company if @current_user.is_hr? %>
+								<%= render 'employments/employment', employment: employment, company: @company if @current_employment.present? && @current_user.is_hr? %>
 							<% end %>
 						</tbody>
 					</table>
