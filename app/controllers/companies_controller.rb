@@ -97,7 +97,7 @@ class CompaniesController < ApplicationController
 
 		# manager subordinates
 		@subordinates = @current_employment.subordinates
-			.where(end_date: nil)
+			.where(end_date: nil, acceptance: true)
 		@subordinate_leave_requests = LeaveRequest.where(employment_id: @subordinates.ids).reverse_order
 		@subordinate_leave_requests = Kaminari.paginate_array(@subordinate_leave_requests).page(params[:lr_page_manager_dashboard]).per(@per_show)
 
@@ -126,7 +126,7 @@ class CompaniesController < ApplicationController
 		@company = Company.find(params[:company_id])
 		@leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
-		@current_employment = @current_company.employments.find_by(user_id: @current_user, company_id: @company) if @current_company.present?
+		@current_employment = @current_company.employments.where(user_id: @current_user, company_id: @company, acceptance: true)
 	end
 
 	private
