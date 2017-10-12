@@ -18,4 +18,6 @@
 			<%= Role.find(employment.role_id).name %>
 		</td>
 		<%= content_tag(:td, render('employments/employment_button', employment: employment, location: 'company_employment'), class: "edit-column") if @current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?) %>
+		<%= @current_employment.role.name %>
+		<%= @current_employment.present? %>
 	</tr>
