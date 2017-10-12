@@ -58,6 +58,9 @@
 							<%# f.submit "Reject", class: "button small expanded alert small" %>
 						<%# end %>
 					</td>
+					<td>
+						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
+					</td>
 				<% else %>
 					<td colspan="1">
 						<% if @current_employment.is_hr? %>
