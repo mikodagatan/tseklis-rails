@@ -88,11 +88,12 @@ class User < ApplicationRecord
       .last
     moving_date = Date.today - expiration.months
     leave_start = start_d + start.months
+    leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
     place1 = leave_add_calculation(company, leave_type).round(2)
     place2 = leave_expire(company, leave_type).round(2)
     place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
     if Date.today > leave_start
-      value = place3 -  segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
+      value = leave_amount_max
     else
       value = 0.0
     end
