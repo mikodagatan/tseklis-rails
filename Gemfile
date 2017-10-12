@@ -76,5 +76,7 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 gem 'capistrano-yarn'
 gem 'therubyracer'
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 ruby '2.4.0'

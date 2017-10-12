@@ -19,7 +19,6 @@
   		<%# content_tag(:td, number_with_delimiter(employment.salary)) if hr? && employed_here? %>
 			<td><%= Role.find(employment.role_id).name %></td>
 			<%= content_tag(:td, render('employments/employment_button', employment: employment, location: 'company_employment'), class: "edit-column") if @current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?)  %>
-			<td><%= @current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?) %></td>
 		</tr>
 	<% end %>
 <% end %>
