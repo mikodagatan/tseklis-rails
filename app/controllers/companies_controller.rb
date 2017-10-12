@@ -53,7 +53,7 @@ class CompaniesController < ApplicationController
 		@leaves = []
 		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
 		@month_total_leaves = @company.total_leaves(Date.today.all_month)
-		@current_employment = @current_company.employments.where(user_id: @current_user, company_id: @company, acceptance: true) if @current_company.present?
+		@current_employment = @current_company.employments.where(company_id: @company, acceptance: true).first if @current_company.present?
 
 		# Search
 		# @search_employee = User.where('employments.company_id = ?', @company.id).ransack(params[:q])
