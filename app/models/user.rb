@@ -12,7 +12,7 @@ class User < ApplicationRecord
 	has_many :leave_types, through: :companies
 	has_many :leave_amounts, through: :leave_requests
 
-	accepts_nested_attributes_for :profile, reject_if: :all_blank 
+	accepts_nested_attributes_for :profile, reject_if: :all_blank
   accepts_nested_attributes_for :employments
 
   ransack_alias :employee_name, :profile_first_name_or_profile_last_name
@@ -88,8 +88,11 @@ class User < ApplicationRecord
       .last
     moving_date = Date.today - expiration.months
     leave_start = start_d + start.months
+    place1 = leave_add_calculation(company, leave_type).round(2)
+    place2 = leave_expire(company, leave_type).round(2)
+    place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
     if Date.today > leave_start
-      value = (leave_add_calculation(company, leave_type) - leave_expire(company, leave_type)).round(2) - segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
+      value = place3 -  segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
     else
       value = 0.0
     end
@@ -117,24 +120,18 @@ class User < ApplicationRecord
       .where(company_id: company.id)
       .last
       .end_date
-    leave_expire = company.company_leave_setting.leave_month_expiration
-    leave_start_with_expiration = leave_start + leave_expire.months
-    leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
-    if leave_start_with_expiration > Date.today
-      if leave_end.present?
-        ending = leave_end
-      else
-        ending = Date.today.at_beginning_of_month
-      end
-      available = ((ending - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type))
+    # leave_expire = company.company_leave_setting.leave_month_expiration
+    # leave_start_with_expiration = leave_start + leave_expire.months
+    # leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
+    if leave_end.present?
+      ending = leave_end
     else
-
-      # at_beginning_of_month makes this monthly accrual
-      available = (Date.today.at_beginning_of_month - leave_start)/ Time.days_in_year * assigned_leave_type_amount(company, leave_type).to_f
+      ending = Date.today
     end
-    if available > leave_amount_max
-      available = leave_amount_max
-    end
+    available = (ending.at_beginning_of_month - leave_start)
+    # if available > leave_amount_max
+    #   available = leave_amount_max
+    # end
     return available
   end
 
@@ -172,13 +169,13 @@ class User < ApplicationRecord
       .last
       .end_date
     expiration_start = leave_start + expiration.months
-    if expiration_start > Date.today
+    if expiration_start < Date.today
       if leave_end.present?
         ending = leave_end
       else
         ending = Date.today
       end
-      expire = ((ending.at_beginning_of_month - expiration_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+      expire = (ending.at_beginning_of_month - expiration_start)
     else
       expire = 0
     end
