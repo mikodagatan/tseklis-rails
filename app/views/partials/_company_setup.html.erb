@@ -1,0 +1,25 @@
+<div class="row align-middle">
+  <div class="columns medium-4">
+    <h4><%= link_to company.name, company_url(company) %></h4>
+  </div>
+  <div class="columns medium-8">
+    <div class="row align-middle">
+      <% if @current_user.employed? && @employment.role_id == @hr_officer.id %>
+        <div class="columns">
+          <%= render 'partials/company_edit', company: company %>
+        </div>
+      <% end %>
+      <% if @current_user.employed? && accepted? %>
+        <div class="columns">
+          <%= render 'partials/company_holidays', company: company  %>
+        </div>
+      <% end %>
+      <% if @current_user.employed? && accepted? %>
+        <div class="columns">
+          <%= render 'partials/home_leave_requests', company: company  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="space2"></div>
