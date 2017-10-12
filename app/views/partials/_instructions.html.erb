@@ -16,11 +16,11 @@
               <div class="columns">
                 <%= render 'partials/connect_company' %>
               </div>
-              <% if @current_user.employed? && @employment.role_id == @hr_officer.id %>
-                <div class="columns">
-                  <%= render 'partials/company_edit' if @current_user.employed? %>
-                </div>
-              <% end %>
+              <%# if @current_user.employed? && @employment.role_id == @hr_officer.id %>
+                <!-- <div class="columns"> -->
+                  <%# render 'partials/company_edit' if @current_user.employed? %>
+                <!-- </div> -->
+              <%# end %>
               <% if @current_user.employed? %>
                 <div class="columns">
                   <%= render 'partials/company_holidays' if accepted? %>
