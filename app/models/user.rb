@@ -93,7 +93,10 @@ class User < ApplicationRecord
     place2 = leave_expire(company, leave_type).round(2)
     place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
     if Date.today > leave_start
-      value = leave_amount_max
+      value = place3 -  segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
+      if value > leave_amount_max
+        value = leave_amount_max
+      end
     else
       value = 0.0
     end
