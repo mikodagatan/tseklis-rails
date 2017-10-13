@@ -15,7 +15,7 @@
     </div>
     <div class="columns">
       <%= render 'leave_request_form',
-        url: user_employment_leave_requests_url(@user, @employment),
+        url: user_employment_leave_requests_url(@user, @employment, leave_request_from_hr: false),
         method: :post,
         leave_request: @leave_request
       %>

@@ -12,11 +12,13 @@ class LeaveRequestsController < ApplicationController
 	end
 
 	def create
-
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @leave_request.save
-	    flash[:success] = "Leave Request Created!"
+      create_notification_employee(@leave_request) if params[:leave_request_from_hr] == false
+      create_notification_hr(@leave_request) if params[:leave_request_from_hr] == true
+      flash[:success] = "Leave Request Created!"
 	    redirect_to company_path( @employment.company_id )
+
 	  else
 	  	# flash[:alert] = "Cannot create Leave Request!"
 	    render action: :new
@@ -36,6 +38,8 @@ class LeaveRequestsController < ApplicationController
 
 	def update
 		if @leave_request.update_attributes(leave_request_params)
+      create_notification_accepted if accepted == true
+      create_notification_rejected if accepted == false
 	    flash[:success] = "Leave Request Updated!"
 	    if @leave_request.acceptance == true || @leave_request.acceptance == false
         # respond_to do |format|
@@ -74,7 +78,6 @@ class LeaveRequestsController < ApplicationController
 		end
   end
 
-	private
 		def set_up
 			@user = User.find(params[:user_id])
 	  	@employments = @user.employments
@@ -109,5 +112,60 @@ class LeaveRequestsController < ApplicationController
 				:employment_id)
 		end
 
+    def create_notification_employee(leave_request)
+      # create notications to HR Officers as the leave request is created by the employee
+      @hr_officers = leave_request.employment.company.employments.where(role_id: 1)
+      Array.wrap(@hr_officers).each do |hr_officer|
+        Notification.create(user_id: hr_officer.user.id,
+                            acting_user_id: @current_user.id,
+                            employment_id: leave_request.employment.id,
+                            leave_request_id: leave_request.id,
+                            notice_type: 'leave_request_from_employee_to_hr',
+                            read: false)
 
+      end
+      # Notify the corresponding Manager of the User
+      Notification.create(user_id: leave_request.employment.manager_id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_from_employee_to_manager',
+                          read: false)
+    end
+
+    def create_notification_hr(leave_request)
+      # create notifications to the Employee as the leave request is created by the HR Officer
+      Notification.create(user_id: @user.id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_from_hr_to_employee',
+                          read: false)
+      Notification.create(user_id: leave_request.employment.manager_id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_from_hr_to_employee',
+                          read: false)
+    end
+
+    def create_notification_accepted(leave_request)
+      # create notifications to the Employee as the leave_request is accepted
+      Notification.create(user_id: @user.id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_accepted',
+                          read: false)
+    end
+
+    def create_notification_rejected(leave_request)
+      # create notifications to the Employee as the leave_request is accepted
+      Notification.create(user_id: @user.id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_rejected',
+                          read: false)
+    end
 end

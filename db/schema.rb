@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010065738) do
+ActiveRecord::Schema.define(version: 20171013103032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,21 @@ ActiveRecord::Schema.define(version: 20171010065738) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "acting_user_id"
+    t.bigint "employment_id"
+    t.bigint "leave_request_id"
+    t.string "notice_type"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acting_user_id"], name: "index_notifications_on_acting_user_id"
+    t.index ["employment_id"], name: "index_notifications_on_employment_id"
+    t.index ["leave_request_id"], name: "index_notifications_on_leave_request_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "designation"
@@ -356,4 +371,8 @@ ActiveRecord::Schema.define(version: 20171010065738) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "employments"
+  add_foreign_key "notifications", "leave_requests"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "acting_user_id"
 end

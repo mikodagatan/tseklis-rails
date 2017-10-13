@@ -11,6 +11,7 @@ class User < ApplicationRecord
 	has_many :leave_requests, through: :employments
 	has_many :leave_types, through: :companies
 	has_many :leave_amounts, through: :leave_requests
+  has_many :notifications, dependent: :destroy
 
 	accepts_nested_attributes_for :profile, reject_if: :all_blank
   accepts_nested_attributes_for :employments

@@ -19,7 +19,7 @@ class LeaveRequest < ApplicationRecord
 	validate :check_leaves_available
 	validate :check_regularized
 	# after_validation :check_date_taken_validity
-	
+
 	before_commit :delete_amounts
 	after_commit :enter_amounts
 
@@ -110,11 +110,9 @@ class LeaveRequest < ApplicationRecord
   def invalidate_weekends_and_holidays_only
 		if start_date.nil?
 			errors.add(:start_date, "must not be empty")
-			condition = false
 		elsif end_date.nil?
 			errors.add(:end_date, "must not be empty")
-			condition = false
-   	else allow_weekend_holiday_leave == false
+   	elsif allow_weekend_holiday_leave == false
       if duration_date <= 2 && ((on_holiday?(start_date) || on_holiday?(end_date)) || (start_date.on_weekend? || end_date.on_weekend?))
         errors.add(:end_date, ": cannot enter leave solely on a weekend or holiday")
       end

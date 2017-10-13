@@ -14,14 +14,14 @@
   				<% end %>
           <div class="row">
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch do |f| %>
+              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: true do |f| %>
                 <%= f.hidden_field :acceptance, value: true %>
                 <%= f.hidden_field :acceptor_id, value: @current_user.id %>
                 <%= f.submit "Accept", class: "button large success leave_request_button"%>
               <% end %>
             </div>
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch do |f| %>
+              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: false do |f| %>
                 <%= f.hidden_field :acceptance, value: false %>
                 <%= f.hidden_field :acceptor_id, value: @current_user.id %>
                 <%= f.submit "Reject", class: "button large alert small leave_request_button" %>

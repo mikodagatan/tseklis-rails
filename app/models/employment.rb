@@ -5,6 +5,7 @@ class Employment < ApplicationRecord
 	has_many :leave_requests
 	has_many :leave_amounts, through: :leave_requests
 	has_many :leave_reductions
+	has_many :notifications, dependent: :destroy
 
 	# Add Manager
 	has_many :subordinates, class_name: 'Employment',
