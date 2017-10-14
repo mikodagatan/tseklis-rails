@@ -161,28 +161,24 @@ $miko-button-border: 0.3rem;
 .button {
 	&.primary {
 		color: white;
-		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;
 		}
 	}
 	&.success {
 		color: white;
-		border-radius: $miko-button-border;
 		 &:hover {
 		 	color: white;
 		}
 	}
 	&.alert {
 		color: white;
-		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;
 		}
   }
   &.warning.large {
 		color: black;
-		border-radius: $miko-button-border;
 		&:hover {
 		 	color: white;
 		}
@@ -191,6 +187,9 @@ $miko-button-border: 0.3rem;
 
 .add-button-border {
 	border-radius: $miko-button-border;
+}
+.no-button-border {
+	border-radius: 0;
 }
 
 // Topbar
@@ -204,6 +203,29 @@ $top-bar-min-height: 5%;
 	border-radius: 50%;
 	background-color: #29a4e9;
 	padding: 0rem;
+}
+
+.notification-dropdown {
+	min-height: 40vh;
+	max-width: 30rem;
+  margin-top: 10px;
+  &div.notification-item {
+		min-height: 3rem;
+		min-width: 100%;
+		padding: 1rem 1rem 0rem 1rem;
+		font-size: 0.9rem;
+		margin: 0;
+		border: 0.1rem red;
+  }
+	font-size: 0.9rem;
+}
+
+.notification-item {
+	min-height: 3rem;
+	min-width: 100%;
+	padding: 1.5rem 1rem 1.5rem 1rem;
+	font-size: 0.8rem;
+	margin: 0;
 }
 
 // table styles

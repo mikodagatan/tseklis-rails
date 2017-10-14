@@ -35,6 +35,7 @@
       <div class="top-bar-right">
         <ul class="dropdown menu">
           <% if current_user %>
+            <%= render 'partials/notifications' %>
             <% unless current_user.employments.empty? %>
               <div data-toggle="companies-dropdown">
                 <li>
@@ -74,7 +75,7 @@
               <%= link_to u.company.name, company_url(u.company),
                 class: "button white-c horizontal-max no-margin text-left"
               %>
-            <% end %>
+            <%end %>
           <% end %>
         <% end %>
       </div>
