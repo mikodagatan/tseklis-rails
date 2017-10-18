@@ -1,16 +1,15 @@
 <li>
   <div class="dropdown notification-dropown">
     <div class="button warning no-margin" data-toggle="notifications-dropdown">
-      5
+      <%= current_user.notifications.count %>
       <%= fa_icon 'flag' %>
     </div>
   </div>
 </li>
 
 <section class="dropdown-pane no-padding notification-dropdown" id="notifications-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
-  <div class=" row horizontal-max no-padding collapse">
+  <div class="horizontal-max no-padding ">
     <div class="button primary no-button-border horizontal-max no-margin text-center black-text">Notifications</div>
-    <div class="notification-item text-left no-margin white-bg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam temporibus animi quas, sapiente? Libero molestias quaerat animi iure culpa tenetur amet nam, consequuntur qui, asperiores dicta. Aperiam quisquam ducimus architecto!</div>
-    <div class="notification-item text-left no-margin">Notification2</div>
+    <%= render partial: 'partials/notification', collection: @current_user.notifications.reverse_order, as: 'notification' %>
   </div>
 </section>

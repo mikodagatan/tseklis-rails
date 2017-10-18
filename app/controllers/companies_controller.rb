@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
-		@per_show = 10
+		@per_show = 1
 		@user = current_user
 		@sum = 0
 		@leaves = []

@@ -1,0 +1,22 @@
+<div class="notification-item text-left no-margin">
+  <% if notification.notice_type == 'leave_request_from_employee_to_hr' %>
+    <%= link_to( user_employment_leave_request_url(notification.employment.user, notification.employment, notification.leave_request)) do %>
+        <p>
+          <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %> has created a leave request to Manager:  <%= notification.employment.manager.user.profile.first_name %> <%= notification.employment.manager.user.profile.last_name %>
+        </p>
+
+    <% end %>
+  <% elsif notification.notice_type == 'leave_request_from_employee_to_manager'%>
+    <p>
+      <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %> has filed for a leave request to you. %>
+    </p>
+  <% elsif notification.notice_type == 'leave_request_from_hr_to_employee' %>
+    <p>
+      <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %> has created a leave request for you.
+    </p>
+  <% elsif notification.notice_type == 'leave_request_from_hr_to_manager' %>
+    <%= link_to user_employments_leave_request_url(notification.employment.user, notification.employment, notification.leave_request) do %>
+       <%= notification.acting_user.profile.first_name + " " + notification.acting_user.profile.last_name + " has created a leave request for your employee: " + notification.employment.user.first_name + " " + notification.employment.user.last_name %>
+    <% end %>
+  <% end %>
+</div>

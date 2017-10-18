@@ -63,7 +63,6 @@ $(document).ready(function(){
 
 	// Holiday settings
 
-
 	$('.edit-holiday-form').hide().removeClass('hide');
 	$('.hide-edit-holiday').hide().removeClass('hide');
 
@@ -80,4 +79,8 @@ $(document).ready(function(){
 	 });
 
 
+});
+
+$(document).on('click', 'li a', function() {
+	console.log($(this));
 });

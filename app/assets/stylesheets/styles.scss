@@ -211,7 +211,8 @@ $top-bar-min-height: 5%;
   margin-top: 10px;
   &div.notification-item {
 		min-height: 3rem;
-		min-width: 100%;
+		width: 100%;
+		max-width: 100%;
 		padding: 1rem 1rem 0rem 1rem;
 		font-size: 0.9rem;
 		margin: 0;
@@ -222,10 +223,13 @@ $top-bar-min-height: 5%;
 
 .notification-item {
 	min-height: 3rem;
-	min-width: 100%;
+	width: 100%;
+	display: block;
+	max-width: 100%;
 	padding: 1.5rem 1rem 1.5rem 1rem;
 	font-size: 0.8rem;
 	margin: 0;
+	border-bottom: 0.1px solid gray;
 }
 
 // table styles
