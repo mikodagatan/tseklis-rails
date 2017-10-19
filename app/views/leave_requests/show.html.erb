@@ -1,30 +1,35 @@
 <div class="white-bg horizontal-max">
   <div class="row show-header align-middle">
     <div class="columns">
-      <h1> <%= @leave_request.title %> </h1>
-      <h5> Requested by: <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h5>
+      <h5>Leave Request</h5>
+      <h2> <%= @leave_request.title %> </h2>
+      <h6> Requested by: <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h6>
       <br />
 
     </div>
     <div class="columns medium-3 align-self-right text-right">
       <% if @leave_request.acceptance.nil? %>
-  			<% if @current_employment.present? && @current_employment.is_hr? || (@current_user = @user) %>
-  				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button large secondary" do  %>
+  			<% if @current_employment.present? && (@current_employment.is_hr? || @current_user == @user) %>
+  				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button secondary" do  %>
   					<%= fa_icon "edit" %>
   				<% end %>
           <div class="row">
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: true do |f| %>
-                <%= f.hidden_field :acceptance, value: true %>
-                <%= f.hidden_field :acceptor_id, value: @current_user.id %>
-                <%= f.submit "Accept", class: "button large success leave_request_button"%>
+              <% unless current_user == @user %>
+                <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: true do |f| %>
+                  <%= f.hidden_field :acceptance, value: true %>
+                  <%= f.hidden_field :acceptor_id, value: @current_user.id %>
+                  <%= f.submit "Accept", class: "button success leave_request_button"%>
+                <% end %>
               <% end %>
             </div>
             <div class="columns">
-              <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: false do |f| %>
-                <%= f.hidden_field :acceptance, value: false %>
-                <%= f.hidden_field :acceptor_id, value: @current_user.id %>
-                <%= f.submit "Reject", class: "button large alert small leave_request_button" %>
+              <% unless @current_user == @user %>
+                <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: false do |f| %>
+                  <%= f.hidden_field :acceptance, value: false %>
+                  <%= f.hidden_field :acceptor_id, value: @current_user.id %>
+                  <%= f.submit "Reject", class: "button alert leave_request_button" %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -33,23 +38,24 @@
     </div>
   </div>
 </div>
-<div class="space3"></div>
-<div class="row">
-  <div class="columns medium-1"></div>
-  <div class="columns medium-3 box-round-blue">
-    <h5>Amount of Leaves</h5>
-    <h1>
-      <%= @leave_request.show_amount%>
+<div class="section-blue-small" style="height: 100vh">
+  <div class="row section-blue-small">
+    <div class="columns medium-1"></div>
+    <div class="columns medium-3 box-round-yellow white-bg black-text">
+      <h1 class='text-center'>
+        <%= @leave_request.show_amount %>
+      </h1>
+      <h5 class='text-center'><strong>Amount of Leaves</strong></h5>
+      <div class="space2"></div>
+      <h5><strong>From:</strong></h5>
+      <p><strong></strong> <%= better_date(@leave_request.start_date) %> - <%= better_time(@leave_request.start_time) %></p>
+      <h5><strong>To:</strong></h5>
+      <p><strong></strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
+    </div>
+    <div class="columns medium-6 box-round-blue white-bg black-text">
+      <h5>Description</h5>
+      <p><%= @leave_request.description %></p>
+    </div>
 
-    </h1>
-    <h5>From:</h5>
-    <p><strong></strong> <%= better_date(@leave_request.start_date) %> - <%= better_time(@leave_request.start_time) %></p>
-    <h5>To:</h5>
-    <p><strong></strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
   </div>
-  <div class="columns medium-6 box-round-blue white-bg black-text">
-    <h5>Description</h5>
-    <p><%= @leave_request.description %></p>
-  </div>
-
 </div>

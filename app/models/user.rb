@@ -95,6 +95,8 @@ class User < ApplicationRecord
     place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
     if place3 > leave_amount_max
       place3 = leave_amount_max
+    elsif place3 < 0
+      place3 = 0
     end
     if Date.today > leave_start
       value = place3 -  segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]

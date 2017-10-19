@@ -101,6 +101,13 @@ section.dropdown-pane {
 	padding: 1.5rem;
 }
 
+.section-blue-small-notification {
+	background-color: #29a4e9;
+	color: white;
+	padding: 1.5rem;
+	min-height: 100vh;
+}
+
 .section-green-small {
 	background-color: #27c229;
 	color: white;
@@ -117,6 +124,17 @@ section.dropdown-pane {
 	background-color: #ffae00;
 	color: black;
 	padding: 1.5rem;
+}
+
+.section-white-small {
+	background-color: white;
+	color: black;
+	padding: 1.5rem 0rem 1.5rem 0rem;
+}
+
+.section-white-notification {
+	background-color: white;
+	color: black;
 }
 
 .box-round-blue {
@@ -206,8 +224,9 @@ $top-bar-min-height: 5%;
 }
 
 .notification-dropdown {
-	min-height: 40vh;
-	max-width: 30rem;
+	min-height: 0vh;
+	width: 40rem;
+	max-width: 40rem;
   margin-top: 10px;
   &div.notification-item {
 		min-height: 3rem;
@@ -232,6 +251,24 @@ $top-bar-min-height: 5%;
 	border-bottom: 0.1px solid gray;
 }
 
+.notification-row {
+	min-height: 3rem;
+	width: 100%;
+	display: block;
+	max-width: 100%;
+	padding: 1.5rem 1rem 1.5rem 1rem;
+	font-size: 0.9rem;
+	margin: 0;
+	border-bottom: 0.1px solid gray;
+}
+
+.callout.no-margin {
+	margin: 0;
+}
+
+span.inline-space {
+	width: 30rem;
+}
 // table styles
 
 .table-data {

@@ -14,9 +14,9 @@ class LeaveRequestsController < ApplicationController
 	def create
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @leave_request.save
-      create_notification_employee(@leave_request) if params[:leave_request_from_hr] == false
-      create_notification_hr(@leave_request) if params[:leave_request_from_hr] == true
-      flash[:success] = "Leave Request Created!"
+      create_notification_employee(@leave_request) if params[:leave_request_from_hr] = 'false'
+      create_notification_hr(@leave_request) if params[:leave_request_from_hr] == 'true'
+      # flash[:success] = "Leave Request Created!"
 	    redirect_to company_path( @employment.company_id )
 
 	  else
@@ -38,8 +38,8 @@ class LeaveRequestsController < ApplicationController
 
 	def update
 		if @leave_request.update_attributes(leave_request_params)
-      create_notification_accepted if accepted == true
-      create_notification_rejected if accepted == false
+      create_notification_accepted(@leave_request) if @leave_request.acceptance == true
+      create_notification_rejected(@leave_request) if @leave_request.acceptance == false
 	    flash[:success] = "Leave Request Updated!"
 	    if @leave_request.acceptance == true || @leave_request.acceptance == false
         # respond_to do |format|
@@ -57,12 +57,13 @@ class LeaveRequestsController < ApplicationController
 	end
 
 	def show
+    @current_user = current_user
     @leave_request = LeaveRequest.find(params[:id])
     @employment = @leave_request.employment
+    @current_employment = @current_user.employments.find_by(company_id: @employment.company_id)
 	end
 
   def leave_request_by_hr
-    @company_employment
     @companies_accepted = @company
 		@leave_request = @employment.leave_requests.build
   end
@@ -131,6 +132,9 @@ class LeaveRequestsController < ApplicationController
                           leave_request_id: leave_request.id,
                           notice_type: 'leave_request_from_employee_to_manager',
                           read: false)
+
+      # flash[:alert] = "script being run. leave_request_from hr:" + params[:leave_request_from_hr]
+
     end
 
     def create_notification_hr(leave_request)

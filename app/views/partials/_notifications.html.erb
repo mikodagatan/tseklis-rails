@@ -1,15 +1,17 @@
 <li>
-  <div class="dropdown notification-dropown">
-    <div class="button warning no-margin" data-toggle="notifications-dropdown">
-      <%= current_user.notifications.count %>
-      <%= fa_icon 'flag' %>
-    </div>
+  <div class="dropdown">
+    <a>
+      <div class="no-margin" data-toggle="notifications-dropdown">
+        <%= current_user.notifications.where(read: false).count %>
+        <%= fa_icon 'envelope-o' %>
+      </div>
+    </a>
   </div>
 </li>
 
 <section class="dropdown-pane no-padding notification-dropdown" id="notifications-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
   <div class="horizontal-max no-padding ">
-    <div class="button primary no-button-border horizontal-max no-margin text-center black-text">Notifications</div>
-    <%= render partial: 'partials/notification', collection: @current_user.notifications.reverse_order, as: 'notification' %>
+    <%= link_to 'Notifications', notifications_notification_index_url, class: "button primary no-button-border horizontal-max no-margin text-center black-text" %>
+    <%= render partial: 'partials/notification', collection: current_user.notifications.where(read: false).reverse_order, as: 'notification' %>
   </div>
 </section>

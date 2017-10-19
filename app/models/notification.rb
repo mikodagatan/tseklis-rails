@@ -6,7 +6,5 @@ class Notification < ApplicationRecord
 
   validates :user_id, :acting_user_id, :employment_id, :notice_type, presence: true
 
-  validates :identifier, required: false
-
 
 end

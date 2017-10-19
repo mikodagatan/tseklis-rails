@@ -17,6 +17,7 @@ class EmploymentsController < ApplicationController
     @user = User.find(params[:user_id])
   	@employment = @user.employments.build(employment_params)
   	if @employment.save
+			create_notification_join_accepted(@employment)
 	    flash[:success] = "Employment Created!"
 	    redirect_to user_path( params[:user_id] )
 	  else
@@ -84,6 +85,19 @@ class EmploymentsController < ApplicationController
 							]
 						)
   end
+
+	def create_notification_join_company(employment)
+		@hr_officers = employment.company.employments.where(role_id: 1)
+		Array.wrap(@hr_officers).each do |hr_officer|
+			Notification.create(
+				user_id: hr_officer.user.id,
+				acting_user_id: @current_user.id,
+				employment_id: employment.id,
+				leave_request_id: nil,
+				notice_type: 'join_company',
+				read: false)
+		end
+	end
 
   # def only_current_user
   #   @user = User.find( params[:user_id] )

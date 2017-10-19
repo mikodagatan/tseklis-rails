@@ -1,0 +1,17 @@
+<div class="section-blue-small-notification">
+  <div class="row section-blue-small-notification">
+    <div class="columns medium-offset-3 medium-6">
+      <div class="row">
+        <div class="columns text-center">
+          <h3>Notifications</h3>
+          <div class="space2"></div>
+        </div>
+      </div>
+      <div class="horizontal-max no-padding">
+        <div class="row section-white-notification">
+          <%= render partial: 'partials/notification', collection: current_user.notifications.reverse_order, as: 'notification' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

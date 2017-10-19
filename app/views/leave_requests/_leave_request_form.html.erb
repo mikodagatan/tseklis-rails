@@ -6,6 +6,8 @@
 
 			<%= show_error_message(@leave_request) %>
 
+      <%= hidden_field_tag 'leave_request_from_hr', 'false' %>
+
 			<div class="m-well align-middle">
 				<div class="field">
 					<%= f.label :title %>

@@ -77,8 +77,6 @@ $(document).ready(function(){
 	 	$(this).siblings(".show-edit-holiday").toggle();
 	 	$(this).toggle();
 	 });
-
-
 });
 
 $(document).on('click', 'li a', function() {

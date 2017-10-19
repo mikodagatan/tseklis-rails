@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/link_through'
+
   devise_for :admins
   devise_for :users, controllers: { registrations: 'users/registrations', confirmations: 'confirmations' }
 
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
 	end
 
   resources :users do
+
   	resource :profile
   	resources :employments do
       resources :leave_requests
@@ -21,6 +24,9 @@ Rails.application.routes.draw do
     get 'leave_requests' => 'companies#leave_requests_index'
     resources :invites
   end
+
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
+  get 'notifications/notification_index' => 'notifications#notification_index'    
 
 
 

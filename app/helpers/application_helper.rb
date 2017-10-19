@@ -31,6 +31,10 @@ module ApplicationHelper
     time.strftime("%I:%M%p")
   end
 
+  def better_datetime(datetime)
+    datetime.strftime('%b %d, %Y - %I:%M%p')
+  end
+
 
   def code_block( title = nil, lang = nil, &block )
     output = capture( &block ) # this is the answer to all your problems

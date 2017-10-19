@@ -1,12 +1,16 @@
 <div class="form-header">
   <div class="row text-center align-middle form-header">
     <div class="columns">
+      <%= @user.profile.first_name %><%= @user.profile.last_name %> <br />
+      <%= @leave_request.title %>
       <h2>Edit Leave Request</h2>
       <div class="space2"></div>
-      <h6><%= @leave_request.title %></h6>
     </div>
-
   </div>
+</div>
 
-  <%= render 'leave_request_form', url: user_employment_leave_request_url(@user, @employment, @leave_request), method: :patch %>
+<div class="row">
+  <div class="column medium-offset-3 medium-6">
+    <%= render 'leave_request_form', url: user_employment_leave_request_url(@user, @employment, @leave_request), method: :patch %>
+  </div>
 </div>

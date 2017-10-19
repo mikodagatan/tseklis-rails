@@ -1,6 +1,7 @@
 class LeaveRequest < ApplicationRecord
 	belongs_to :employment
 	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
+	has_many :notifications, dependent: :destroy
 	before_destroy :delete_amounts
 
 	validates_presence_of :title
