@@ -13,7 +13,8 @@
 								<th>End Date</th>
 								<!-- <th>Salary</th> -->
 								<th>Status</th>
-								<th>Role</th>
+								<th class='text-center'>Role</th>
+								<th class='text-center'>Manager</th>
 								<%= content_tag(:th) if @current_employment.present? && @current_employment.is_hr? %>
 							</tr>
 						</thead>
