@@ -38,7 +38,7 @@
 					</div>
 					<div class="space"></div>
           <% unless @employment.id.nil? || method == :post %>
-            <div class="row medium-up-3">
+            <div class="row medium-up-3 small-up-1">
               <%= render 'HR_Officer_options', url: url, method: method %>
               <%= render 'regularization_options', url: url, method: method %>
               <%= render 'Manager_options', url: url, method: method %>
