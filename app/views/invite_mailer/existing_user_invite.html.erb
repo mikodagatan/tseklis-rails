@@ -1,7 +1,6 @@
-<div style='background-color: #29a4e9; padding: 5rem;'>
-  <div style='font-family: "Arial"; background-color: #f7f7f9; padding: 2rem; border-radius: 1rem;'>
-    <h1>You've been invited to work with <%= @invite.company.name %>!</h1>
-    <br />
+<div style='background-color: #29a4e9; padding: 10px;'>
+  <div style='font-family: "Arial"; background-color: #f7f7f9; padding: 1rem; border-radius: 10px;'>
+    <h3>You've been invited to work with <%= @invite.company.name %>!</h3>
     <p>
       <%= @sender.profile.first_name %> <%= @sender.profile.last_name %> just sent you an invitation to join <strong><%= @invite.company.name %></strong> through Tseklis.com!
     </p>
