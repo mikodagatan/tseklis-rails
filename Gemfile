@@ -25,7 +25,7 @@ group :development, :test do
   gem 'flamegraph'
   gem 'stackprof'
   gem 'irbtools'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'mailcatcher'
   gem 'pry-rails'

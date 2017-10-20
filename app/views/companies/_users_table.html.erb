@@ -1,58 +1,61 @@
-<% if @company.employments.present? %>
-	<div class="row vertical-padding">
-		<div class="columns">
-			<div class="row">
-				<div class="columns">
-					<h4><%= link_to 'Employees', company_employees_url(@company) %></h4>
-				</div>
-				<div class="columns medium-3 align-self-right">
-					<%= search_form_for @q_employments, url: company_url(@company), as: :q_employments, id: "employments_search" do |f| %>
-						<div class="input-group">
-						  <%= f.search_field :employee_name_cont, class:'input-group-field', type: 'text', placeholder: 'search employee' %>
-						</div>
-					<% end %>
-				</div>
-			</div>
-			<div class="space"></div>
-			<div class="row" id="users">
-				<div class="columns">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Start Date</th>
-								<th>End Date</th>
-								<th class='text-center'>Regularization</th>
-								<%# content_tag(:th, 'Salary') if hr? && employed_here? %>
-								<th class='text-center'>Role</th>
-								<th class='text-center'>Manager</th>
-								<%= content_tag(:th) if @current_employment.present? && @current_employment.is_hr? %>
-							</tr>
-						</thead>
-						<tbody id="employments">
-							<%# render @users, join_request: false %>
-							<%= render partial: 'employments/company_employment', collection: @employments, as: 'employment', join_request: false %>
-							<%# @employments.each do |employment| %>
-								<%# render 'users/user',
-									employment: employment,
-									user: employment.user,
-									join_request: false
-								%>
-							<%# end %>
-						</tbody>
-					</table>
-					<div class="row align-center text-center">
-						<div class="column shrink">
-							<div id="employment_paginator_company">
-								<%= paginate @employments, remote: true, param_name: 'employments_page' %>
+
+	<% if @company.employments.present? %>
+		<div class="row vertical-padding">
+			<div class="columns">
+				<div class="row">
+					<div class="columns">
+						<h4><%= link_to 'Employees', company_employees_url(@company) %></h4>
+					</div>
+					<div class="columns medium-3 align-self-right">
+						<%= search_form_for @q_employments, url: company_url(@company), as: :q_employments, id: "employments_search" do |f| %>
+							<div class="input-group">
+							  <%= f.search_field :employee_name_cont, class:'input-group-field', type: 'text', placeholder: 'search employee' %>
 							</div>
-							<div class="small-font-size" id="employment_info">
-								<%= page_entries_info @employments %>
+						<% end %>
+					</div>
+				</div>
+				<div class="space"></div>
+				<div class="row" id="users">
+					<div class="columns">
+						<div class="table-scroll">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Start Date</th>
+										<th>End Date</th>
+										<th class='text-center'>Regularization</th>
+										<%# content_tag(:th, 'Salary') if hr? && employed_here? %>
+										<th class='text-center'>Role</th>
+										<th class='text-center'>Manager</th>
+										<%= content_tag(:th) if @current_employment.present? && @current_employment.is_hr? %>
+									</tr>
+								</thead>
+								<tbody id="employments">
+									<%# render @users, join_request: false %>
+									<%= render partial: 'employments/company_employment', collection: @employments, as: 'employment', join_request: false %>
+									<%# @employments.each do |employment| %>
+										<%# render 'users/user',
+											employment: employment,
+											user: employment.user,
+											join_request: false
+										%>
+									<%# end %>
+								</tbody>
+							</table>
+						</div>
+						<div class="row align-center text-center">
+							<div class="column shrink">
+								<div id="employment_paginator_company">
+									<%= paginate @employments, remote: true, param_name: 'employments_page' %>
+								</div>
+								<div class="small-font-size" id="employment_info">
+									<%= page_entries_info @employments %>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-<% end %>
+	<% end %>

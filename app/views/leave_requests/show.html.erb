@@ -1,16 +1,15 @@
 <div class="white-bg horizontal-max">
-  <div class="row show-header align-middle">
+  <div class="row show-header align-middle small-up-1">
     <div class="columns medium-8">
       <h5>Leave Request</h5>
       <h2> <%= @leave_request.title %> </h2>
       <h6> Requested by: <%= @user.profile.first_name %> <%= @user.profile.last_name %> </h6>
-      <br />
 
     </div>
-    <div class="columns medium-4 align-self-right text-right">
+    <div class="columns medium-4 align-self-right medium-text-right">
       <% if @leave_request.acceptance.nil? %>
   			<% if @current_employment.present? && (@current_employment.is_hr? || @current_user == @user) %>
-  				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button secondary" do  %>
+  				<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button secondary " do  %>
   					<%= fa_icon "edit" %>
   				<% end %>
           <div class="row">
@@ -48,10 +47,9 @@
     </div>
   </div>
 </div>
-<div class="section-blue-small" style="height: 100vh">
-  <div class="row section-blue-small">
-    <div class="columns medium-1"></div>
-    <div class="columns medium-3 box-round-yellow white-bg black-text">
+<div class="section-blue-small" style="min-height: 100vh">
+  <div class="row section-blue-small small-up-1">
+    <div class="columns medium-3 box-round-yellow white-bg black-text no-left-margin">
       <h1 class='text-center'>
         <%= @leave_request.show_amount %>
       </h1>
@@ -62,8 +60,8 @@
       <h5><strong>To:</strong></h5>
       <p><strong></strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
     </div>
-    <div class="columns medium-6 box-round-blue white-bg black-text">
-      <h5>Description</h5>
+    <div class="columns medium-6 box-round-blue white-bg black-text no-left-margin">
+      <h5><strong>Description</strong></h5>
       <p><%= @leave_request.description %></p>
     </div>
 

@@ -5,25 +5,27 @@
 			<div class="space"></div>
 			<div class="row" id="employments">
 				<div class="column">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Company</th>
-								<th>Start Date</th>
-								<th>End Date</th>
-								<!-- <th>Salary</th> -->
-								<th>Status</th>
-								<th class='text-center'>Role</th>
-								<th class='text-center'>Manager</th>
-								<%= content_tag(:th) if @current_employment.present? && @current_employment.is_hr? %>
-							</tr>
-						</thead>
-						<tbody>
-							<% @employments.reverse_order.each do |employment| %>
-								<%= render 'employments/employment', employment: employment, company: @company %>
-							<% end %>
-						</tbody>
-					</table>
+					<div class="table-scroll">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Company</th>
+									<th>Start Date</th>
+									<th>End Date</th>
+									<!-- <th>Salary</th> -->
+									<th>Status</th>
+									<th class='text-center'>Role</th>
+									<th class='text-center'>Manager</th>
+									<%= content_tag(:th) if @current_employment.present? && @current_employment.is_hr? %>
+								</tr>
+							</thead>
+							<tbody>
+								<% @employments.reverse_order.each do |employment| %>
+									<%= render 'employments/employment', employment: employment, company: @company %>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

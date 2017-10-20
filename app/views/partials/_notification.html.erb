@@ -1,6 +1,6 @@
 <div class="notification-item text-left no-margin">
   <div class="row no-padding no-margin collapse align-middle">
-    <div class="columns medium-10">
+    <div class="columns small-12 medium-10">
       <% if notification.notice_type == 'leave_request_from_employee_to_hr' %>
           <%= link_to link_through_url(notification) do %>
             <div class="callout secondary no-margin">
@@ -127,7 +127,8 @@
         <% end %>
       <% end %>
     </div>
-    <div class="columns medium-2 text-right">
+    <div class="columns small-12 medium-2 text-right">
+      <div class="space show-for-small-only"></div>
       <%= better_datetime(notification.created_at) %>
     </div>
   </div>

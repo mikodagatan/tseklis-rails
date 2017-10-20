@@ -240,6 +240,27 @@ $top-bar-min-height: 5%;
 	font-size: 0.9rem;
 }
 
+
+@media only screen and (max-width: 500px) {
+	.notification-dropdown {
+		min-height: 0vh;
+		width: 90%;
+		max-width: 40rem;
+	  margin-top: 10px;
+	  &div.notification-item {
+			min-height: 3rem;
+			width: 100%;
+			max-width: 100%;
+			padding: 1rem 1rem 0rem 1rem;
+			font-size: 0.9rem;
+			margin: 0;
+			border: 0.1rem red;
+	  }
+		font-size: 0.9rem;
+	}
+}
+
+
 .notification-item {
 	min-height: 3rem;
 	width: 100%;
@@ -260,7 +281,9 @@ $top-bar-min-height: 5%;
 	font-size: 0.9rem;
 	margin: 0;
 	border-bottom: 0.1px solid gray;
+	word-wrap: break-word;
 }
+
 
 .callout.no-margin {
 	margin: 0;

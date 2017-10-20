@@ -300,8 +300,6 @@ GEM
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
-    rack-mini-profiler (0.10.5)
-      rack (>= 1.2.0)
     rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
@@ -500,7 +498,6 @@ DEPENDENCIES
   premailer-rails
   pry-rails
   puma (~> 3.7)
-  rack-mini-profiler
   rails (~> 5.1.2)
   ransack
   responders

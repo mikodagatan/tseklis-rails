@@ -1,64 +1,66 @@
 <div id="manager-dashboard" class='hide'>
   <div class="section-blue-small no-padding">
-    <div class="row section-blue-small no-padding no-margin horizontal-max">
-      <div class="columns">
-        <div class="row medium-up-2">
-          <div class="columns section-blue-small-padding">
-            <h4>Subordinates</h4>
-            <% if @current_employment.subordinates.empty? %>
-              <div class="text-center">
-                <h3>No Data</h3>
-              </div>
-            <% else %>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Start Date</th>
-                    <th class='text-center'>Regularization</th>
-                    <th colspan="1"></th>
-                  </tr>
-                </thead>
-                <tbody id="manager_subordinates">
-                  <%= render partial: 'manager_subordinates', collection: @subordinates, as: 'employment' %>
-                </tbody>
-              </table>
-            <% end %>
-          </div>
-          <div class="columns section-yellow-small-padding">
-            <h4 class='white-text'>Leave Requests</h4>
-            <% if @current_employment.subordinates.empty? %>
-              <div class='text-center'>
-                <h3>No Data</h3>
-              </div>
-            <% else %>
-              <div class="column">
-      					<table class="table">
-      						<thead>
-      							<tr>
-      								<th>Employee</th>
-      								<th>Title</th>
-      								<th>Leave Type</th>
-      								<th class='text-center'>Status</th>
-      								<th class="text-center">Amount</th>
-      							</tr>
-      						</thead>
-      						<tbody id="lr_manager_dashboard">
-                    <%= render partial: "subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request" %>
-      						</tbody>
-      					</table>
-                <div class="row align-center text-center">
-                  <div class="column shrink">
-      							<div id="lr_paginator_manager_dashboard">
-      								<%= paginate @subordinate_leave_requests, param_name: 'lr_page_manager_dashboard', remote: true %>
-      							</div>
-      							<div class="small-font-size" id="leave_request_info_manager_dashboard">
-      								<%= page_entries_info @subordinate_leave_requests %>
-      							</div>
-      						</div>
+    <div class="table-scroll">
+      <div class="row section-blue-small no-padding no-margin horizontal-max">
+        <div class="columns">
+          <div class="row medium-up-2">
+            <div class="columns section-blue-small-padding">
+              <h4>Subordinates</h4>
+              <% if @current_employment.subordinates.empty? %>
+                <div class="text-center">
+                  <h3>No Data</h3>
                 </div>
-              </div>
-            <% end %>
+              <% else %>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th class='text-center'>Regularization</th>
+                      <th colspan="1"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="manager_subordinates">
+                    <%= render partial: 'manager_subordinates', collection: @subordinates, as: 'employment' %>
+                  </tbody>
+                </table>
+              <% end %>
+            </div>
+            <div class="columns section-yellow-small-padding">
+              <h4 class='white-text'>Leave Requests</h4>
+              <% if @current_employment.subordinates.empty? %>
+                <div class='text-center'>
+                  <h3>No Data</h3>
+                </div>
+              <% else %>
+                <div class="column">
+        					<table class="table">
+        						<thead>
+        							<tr>
+        								<th>Employee</th>
+        								<th>Title</th>
+        								<th>Leave Type</th>
+        								<th class='text-center'>Status</th>
+        								<th class="text-center">Amount</th>
+        							</tr>
+        						</thead>
+        						<tbody id="lr_manager_dashboard">
+                      <%= render partial: "subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request" %>
+        						</tbody>
+        					</table>
+                  <div class="row align-center text-center">
+                    <div class="column shrink">
+        							<div id="lr_paginator_manager_dashboard">
+        								<%= paginate @subordinate_leave_requests, param_name: 'lr_page_manager_dashboard', remote: true %>
+        							</div>
+        							<div class="small-font-size" id="leave_request_info_manager_dashboard">
+        								<%= page_entries_info @subordinate_leave_requests %>
+        							</div>
+        						</div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

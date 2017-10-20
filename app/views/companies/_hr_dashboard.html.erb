@@ -1,20 +1,22 @@
 <div id="hr-dashboard" class='hide'>
   <div class="section-green-small">
-    <div class="row section-green-small no-sidepadding no-margin horizontal-max">
-      <div class="columns medium-1">
-        <%= form_tag company_url(@company, leave_data_year: @year_search, month_used: params[:month_used]) + '#company-leaves-taken', method: :get do %>
-          <%= text_field_tag 'leave_data_year', @year_search, placeholder: 'Year Ref', class:'black-text no-margin' %>
-          <%= submit_tag 'Enter', class: 'button' %>
-        <% end %>
-        <% @months.each do |month| %>
-          <% month.each do |k, v| %>
-            <h6><%= link_to k, company_url(@company, month_used: v, leave_data_year: @year_search), class: 'white-text click-month', remote: true %></h6>
+    <div class="table-scroll">
+      <div class="row section-green-small no-sidepadding no-margin horizontal-max">
+        <div class="columns small-3 medium-1">
+          <%= form_tag company_url(@company, leave_data_year: @year_search, month_used: params[:month_used]) + '#company-leaves-taken', method: :get do %>
+            <%= text_field_tag 'leave_data_year', @year_search, placeholder: 'Year Ref', class:'black-text no-margin' %>
+            <%= submit_tag 'Enter', class: 'button' %>
           <% end %>
-        <% end %>
-      </div>
-      <div class="columns medium-11">
-        <%# render 'hr_dashboard_current_month' %>
-        <%= render 'hr_dashboard_monthly', locals: {leave_data_year: @year_search} %>
+          <% @months.each do |month| %>
+            <% month.each do |k, v| %>
+              <h6><%= link_to k, company_url(@company, month_used: v, leave_data_year: @year_search), class: 'white-text click-month', remote: true %></h6>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="columns medium-11">
+          <%# render 'hr_dashboard_current_month' %>
+          <%= render 'hr_dashboard_monthly', locals: {leave_data_year: @year_search} %>
+        </div>
       </div>
     </div>
   </div>

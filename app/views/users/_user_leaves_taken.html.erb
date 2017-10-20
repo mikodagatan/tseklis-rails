@@ -13,19 +13,20 @@
 			</div>
 			<div class="row">
 				<div class="columns small-12 medium-12">
-					<div class="row align-middle">
+					<div class="row align-middle small-up-1">
 						<div class="columns medium-3 text-center">
 						<h1 class="h-1"><%= @user.total_leaves(Date.today.all_month, company) %></h1>
 							<h5>Total Used</h5>
+							<div class="space2 show-for-small-only"></div>
 						</div>
 						<div class="columns">
-							<div class="row">
+							<div class="row small-up-1">
 								<div class="columns text-center">
 									<h4>Used</h4>
 									<hr>
 								</div>
 							</div>
-							<div class="row small-up-1 medium-up-3">
+							<div class="row small-up-2 medium-up-3">
 								<% @user.all_segmented_leaves(Date.today.all_month, company).each do |leave_type, values| %>
 									<div class="columns text-center">
 										<h1><%= values[:amount] %></h1>
@@ -34,13 +35,13 @@
 								<% end %>
 							</div>
 							<div class="space3"></div>
-							<div class="row">
+							<div class="row small-up-1">
 								<div class="columns text-center">
 									<h4>Available</h4>
 									<hr>
 								</div>
 							</div>
-							<div class="row small-up-1 medium-up-3">
+							<div class="row small-up-2 medium-up-3">
 								<% @user.all_available_leaves(company).each do |leave_type, values| %>
 									<div class="columns text-center">
 										<% if values[:name] == 'Non-paid' || values[:name] == 'Non-paid leave' || values[:name] ==  'Unpaid'%>

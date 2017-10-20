@@ -5,32 +5,35 @@
 			<div class="space"></div>
 			<div class="row">
 				<div class="column">
-					<table class="table">
-						<thead>
-							<tr>
-									<th>Title</th>
-									<th>Leave Type</th>
-									<th>Start</th>
-									<th>End</th>
-									<th class='text-center'>Status</th>
-									<th class='text-center'>Reviewer</th>
-									<th class="text-center">Amount</th>
-									<th colspan="1"></th>
-								</tr>
-						</thead>
-						<tbody id="leave_requests">
-							<%= render @leave_requests, at_company: false %>
-							<%# @leave_requests.each do |leave_request| %>
-								<%# render 'leave_requests/leave_request',
-											url: user_employment_leave_request_url(@user, leave_request.employment, leave_request),
-											leave_request: leave_request,
-											employment: leave_request.employment,
-											at_company: false,
-											method: :patch
-								%>
-							<%# end %>
-						</tbody>
-					</table>
+					<div class="table-scroll">
+						<table class="table">
+							<thead>
+								<tr>
+										<th>Title</th>
+										<th>Leave Type</th>
+										<th>Start</th>
+										<th>End</th>
+										<th class='text-center'>Status</th>
+										<th class='text-center'>Reviewer</th>
+										<th class="text-center">Amount</th>
+										<th colspan="1"></th>
+									</tr>
+							</thead>
+							<tbody id="leave_requests">
+								<%= render @leave_requests, at_company: false %>
+								<%# @leave_requests.each do |leave_request| %>
+									<%# render 'leave_requests/leave_request',
+												url: user_employment_leave_request_url(@user, leave_request.employment, leave_request),
+												leave_request: leave_request,
+												employment: leave_request.employment,
+												at_company: false,
+												method: :patch
+									%>
+								<%# end %>
+							</tbody>
+						</table>
+					</div>
+
           <div class="row align-center text-center">
             <div class="columns shrink">
 							<div id="leave_request_paginator_user">
