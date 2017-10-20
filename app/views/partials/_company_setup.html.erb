@@ -1,9 +1,10 @@
-<div class="row align-middle">
+<div class="row align-middle small-up-1">
   <div class="columns medium-4">
     <h4><%= link_to company.name, company_url(company) %></h4>
+    <div class="space show-only-for-small"></div>
   </div>
   <div class="columns medium-8">
-    <div class="row align-middle">
+    <div class="row align-middle small-up-1">
       <% if @current_user.employed? && @employment.role_id == @hr_officer.id %>
         <div class="columns">
           <%= render 'partials/company_edit', company: company %>

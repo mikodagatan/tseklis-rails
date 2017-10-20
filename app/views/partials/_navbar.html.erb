@@ -2,12 +2,12 @@
 <div class="z-top" data-sticky-container>
   <div class="sticky" data-sticky data-options="stickTo:top;stickyOn:small;marginTop:0;">
 
-    <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
-      <button class="menu-icon" type="button" data-toggle="responsive-menu" style="margin-right: 1rem;"></button>
+    <div class="title-bar" data-responsive-toggle="responsive-menu2" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle="responsive-menu2" style="margin-right: 1rem;"></button>
       <div class="title-bar-title">Tseklis -  <small>Leave Tracking Management System</small></div>
     </div>
 
-    <div class="top-bar" id='responsive-menu' data-topbar>
+    <div class="top-bar show-for-medium" id='responsive-menu' data-topbar>
       <div class="top-bar-left show-for-medium">
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="">
@@ -71,6 +71,8 @@
         </ul>
       </div>
     </div>
+
+    <%= render 'partials/small_navbar' %>
 
     <section class="dropdown-pane no-padding" id="companies-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
       <div class=" row horizontal-max no-padding collapse">
