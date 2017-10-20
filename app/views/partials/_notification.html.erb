@@ -12,6 +12,8 @@
               <p class='no-margin'>
                 Manager:  <%= notification.employment.manager.user.profile.first_name %> <%= notification.employment.manager.user.profile.last_name %>
               </p>
+              <br />
+              <p class="no-margin">Company: <%= notification.employment.company.name %></p>
             </div>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_from_employee_to_manager'%>
@@ -24,6 +26,8 @@
             <p class='no-margin'>
               Employee: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_from_hr_to_employee' %>
@@ -37,6 +41,8 @@
             <p class='no-margin'>
               HR Officer:<%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_from_hr_to_manager' %>
@@ -49,6 +55,8 @@
             <p class='no-margin'>
               HR Officer: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_from_hr_to_manager' %>
@@ -60,6 +68,8 @@
           <p class='no-margin'>
             HR Officer: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
           </p>
+          <br />
+          <p class="no-margin">Company: <%= notification.employment.company.name %></p>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_accepted' %>
         <%= link_to link_through_url(notification)do %>
@@ -80,6 +90,8 @@
             <p class='no-margin'>
               Amounts: <%= notification.leave_request.leave_amounts.sum(:amount) %>
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% elsif notification.notice_type == 'leave_request_rejected' %>
@@ -95,6 +107,8 @@
             <p class='no-margin'>
               You may need to contact your Manager regarding the leave's rejection rationale.
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% elsif notification.notice_type == 'join_company' %>
@@ -107,6 +121,8 @@
             <p class='no-margin'>
               Company: <%= notification.employment.company.name %>
             </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
       <% end %>

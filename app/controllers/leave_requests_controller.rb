@@ -147,7 +147,7 @@ class LeaveRequestsController < ApplicationController
                           read: false)
       Notification.create(user_id: leave_request.employment.manager_id,
                           acting_user_id: @current_user.id,
-                          employment_id: leave_4request.employment.id,
+                          employment_id: leave_request.employment.id,
                           leave_request_id: leave_request.id,
                           notice_type: 'leave_request_from_hr_to_manager',
                           read: false)
