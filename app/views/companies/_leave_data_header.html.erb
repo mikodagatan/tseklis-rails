@@ -1,5 +1,5 @@
 <h4>
-<% if params[:month_used].nil? && @year_search.nil? %>
+<% if params[:month_used].nil? %>
   <%= Date.today.strftime("%B %Y") %>
 <% elsif params[:month_used].to_s.to_i == 0 %>
   All Year <%= @year_search %>
