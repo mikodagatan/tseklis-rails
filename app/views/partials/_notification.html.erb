@@ -10,7 +10,9 @@
                 Employee: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
               </p>
               <p class='no-margin'>
+                <% if notification.employment.manager.present? %>
                 Manager:  <%= notification.employment.manager.user.profile.first_name %> <%= notification.employment.manager.user.profile.last_name %>
+                <% end %>
               </p>
               <br />
               <p class="no-margin">Company: <%= notification.employment.company.name %></p>
@@ -79,7 +81,9 @@
             </p>
             <br />
             <p class='no-margin'>
-              Accepted by Manager: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
+              <% if notification.employment.manager.present? %>
+                Accepted by Manager: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
+              <% end %>
             </p>
             <p class='no-margin'>
               Title: <%= notification.leave_request.title %>
