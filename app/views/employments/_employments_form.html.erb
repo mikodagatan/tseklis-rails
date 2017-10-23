@@ -39,10 +39,10 @@
 					<div class="space"></div>
           <% unless @employment.id.nil? || method == :post %>
             <div class="row medium-up-3 small-up-1">
-              <%= render 'HR_Officer_options', url: url, method: method %>
+              <%= render 'hr_officer_options', url: url, method: method %>
               <%= render 'regularization_options', url: url, method: method %>
-              <%= render 'Manager_options', url: url, method: method %>
-              <%= render 'Subordination_options', url: url, method: method %>
+              <%= render 'manager_options', url: url, method: method %>
+              <%= render 'subordination_options', url: url, method: method %>
             </div>
             <div class="space"></div>
             <div class="small-font-size">* Pressing these will not save the other inputs</div>
