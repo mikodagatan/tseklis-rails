@@ -48,7 +48,7 @@ class EmploymentsController < ApplicationController
 	end
 
   def show
-		@current_employment = @current_user.employments.where( company_id: @employment.company_id ).first
+		@current_employment = @current_user.employments.where( company_id: @employment.company_id ).last
   end
 
 	def leave_request_by_hr
@@ -61,7 +61,7 @@ class EmploymentsController < ApplicationController
   	@user = User.find(params[:user_id])
   	@employments = @user.employments
     @employment = @user.employments.find_by_id( params[:id] )
-    @current_employment = @current_user.employments.where( company_id: @employment.company_id ).first
+    @current_employment = @current_user.employments.where( company_id: @employment.company_id ).last
   end
 
   def employment_params
