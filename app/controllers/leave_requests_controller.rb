@@ -60,7 +60,7 @@ class LeaveRequestsController < ApplicationController
     @current_user = current_user
     @leave_request = LeaveRequest.find(params[:id])
     @employment = @leave_request.employment
-    @current_employment = @current_user.employments.find_by(company_id: @employment.company_id)
+    @current_employment = @current_user.employments.find_by(company_id: @employment.company_id, acceptance: true)
 	end
 
   def leave_request_by_hr
