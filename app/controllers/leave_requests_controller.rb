@@ -4,6 +4,7 @@ class LeaveRequestsController < ApplicationController
   before_action :redirect_not_company
 
   def index
+    
   end
 
 	def new
@@ -128,13 +129,14 @@ class LeaveRequestsController < ApplicationController
       # create notications to HR Officers as the leave request is created by the employee
       @hr_officers = leave_request.employment.company.employments.where(role_id: 1)
       Array.wrap(@hr_officers).each do |hr_officer|
-        Notification.create(user_id: hr_officer.user.id,
-                            acting_user_id: @current_user.id,
-                            employment_id: leave_request.employment.id,
-                            leave_request_id: leave_request.id,
-                            notice_type: 'leave_request_from_employee_to_hr',
-                            read: false)
-
+        unless hr_officer.user.id == @current_user.id
+          Notification.create(user_id: hr_officer.user.id,
+                              acting_user_id: @current_user.id,
+                              employment_id: leave_request.employment.id,
+                              leave_request_id: leave_request.id,
+                              notice_type: 'leave_request_from_employee_to_hr',
+                              read: false)
+        end
       end
       # Notify the corresponding Manager of the User
       Notification.create(user_id: leave_request.employment.manager_id,
@@ -176,13 +178,14 @@ class LeaveRequestsController < ApplicationController
 
       @hr_officers = leave_request.employment.company.employments.where(role_id: 1)
       Array.wrap(@hr_officers).each do |hr_officer|
-        Notification.create(user_id: hr_officer.user.id,
-                            acting_user_id: @current_user.id,
-                            employment_id: leave_request.employment.id,
-                            leave_request_id: leave_request.id,
-                            notice_type: 'leave_request_from_manager_to_hr',
-                            read: false)
-
+        unless hr_officer.user.id == @current_user.id
+          Notification.create(user_id: hr_officer.user.id,
+                              acting_user_id: @current_user.id,
+                              employment_id: leave_request.employment.id,
+                              leave_request_id: leave_request.id,
+                              notice_type: 'leave_request_from_manager_to_hr',
+                              read: false)
+        end
       end
     end
 

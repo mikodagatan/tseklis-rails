@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
 
+	before_action :restrict_index, only: [:index]
 	before_action :set_up, only: [ :edit, :update, :show, ]
 	after_action :destroy_leave_type_blank, only: [:update ]
 	before_action :redirect_not_company, only: [ :edit, :update, :show, :leave_requests_index]
@@ -212,5 +213,12 @@ class CompaniesController < ApplicationController
       redirect_to root_url
     end
   end
+
+	def restrict_index
+		authenticate_or_request_with_http_basic('Administration') do |username, password|
+		 ActiveSupport::SecurityUtils.secure_compare(username, "admin") &&
+		 ActiveSupport::SecurityUtils.secure_compare(password, "!tseklisadministratorpass")
+	 end
+	end
 
 end
