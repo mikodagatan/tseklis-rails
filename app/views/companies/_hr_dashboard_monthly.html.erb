@@ -11,10 +11,12 @@
       <thead>
         <tr>
           <th>Name</th>
-          <% @company.leave_types.each do |leave_type| %>
-            <th><%= leave_type.name %></th>
-          <% end %>
-          <th>Total</th>
+          <div class="text-center">
+            <% @company.leave_types.each do |leave_type| %>
+              <th><%= leave_type.name %></th>
+            <% end %>
+            <th>Total</th>
+          </div>
         </tr>
       </thead>
       <tbody id="leave_data">

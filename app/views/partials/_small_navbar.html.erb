@@ -11,21 +11,10 @@
           <%= fa_icon 'envelope-o' %>
         <% end %>
         <% unless current_user.employments.empty? %>
-          <li>
-            <%# link_to "Companies", companies_url %>
-            <a>Companies</a>
-            <ul class="menu vertical nested">
-              <% if user_signed_in? %>
-                <% if @current_user.employed? %>
-                  <% @current_user.employments.select(:company_id).distinct.each do |u| %>
-                    <li>
-                      <%= link_to u.company.name, company_url(u.company) %>
-                    </li>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </ul>
-          </li>
+            <li>
+              <%= link_to Company.find(current_user.employments.where(acceptance: true).first.company_id).name, company_url(current_user.employments.where(acceptance: true).first.company_id) %>
+              <!-- <a>Companies</a> -->
+            </li>
         <% end %>
         <% unless current_user.profile.nil? || current_user.profile.first_name.nil? || current_user.profile.last_name.nil? %>
           <li>
@@ -36,7 +25,6 @@
             </a>
             <ul class="menu vertical nested">
               <li><%= link_to "Your Profile", user_url(current_user) %></li>
-              <li><%= link_to "Create Company", new_company_url %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, class: 'button primary' %></li>
 
             </ul>
