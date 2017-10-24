@@ -121,6 +121,7 @@ class LeaveRequest < ApplicationRecord
   end
 
   def check_date_validity
+		condition = true
 		if start_date.nil?
 			errors.add(:start_date, "must not be empty")
 			condition = false
@@ -131,6 +132,7 @@ class LeaveRequest < ApplicationRecord
 			errors.add(:start_date, "can't be earlier than end date")
 			condition = false
     end
+		return condition
   end
 
 	def check_leaves_available
@@ -139,9 +141,9 @@ class LeaveRequest < ApplicationRecord
 	  		user = self.employment.user
 	  		company = self.employment.company
 	  		leave_type = LeaveType.find(self.leave_type_id)
-	  		available = user.available_leaves(company, leave_type)
+	  		available = user.available_leaves(company, leave_type, self.end_date)
 	  		if enter_amounts > available[:amount]
-	  			errors.add(:start_date, "You have #{available[:amount]} available leaves but consuming  #{enter_amounts} leaves for #{available[:name]}")
+	  			errors.add(:end_date, "- You have #{available[:amount]} available leaves by #{self.end_date.strftime("%B %d, %Y - %A")}, but you're consuming #{enter_amounts} leaves for #{available[:name]}")
 	  		end
 	    end
 		end
@@ -159,6 +161,7 @@ class LeaveRequest < ApplicationRecord
 			errors.add(:start_time, " can't be earlier than end time on the same date")
 			condition = false
 		end
+		return condition
 	end
 
 	def check_date_taken_validity

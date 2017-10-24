@@ -74,7 +74,7 @@ class User < ApplicationRecord
   end
 
 
-  def available_leaves(company, leave_type)
+  def available_leaves(company, leave_type, date = nil)
     # You may want to think that if the expiration is not > 12 months, we will not reach the maximum leave amounts.
     leave = {}
     leave_settings = company.company_leave_setting
@@ -87,11 +87,18 @@ class User < ApplicationRecord
     leave_end = self.employments
       .where(company_id: company.id)
       .last
-    moving_date = Date.today - expiration.months
+    if date.present?
+      moving_date = date - expiration.months
+      moving_date_end = date.years_since(5)
+    else
+      moving_date = Date.today - expiration.months
+      moving_date_end = Date.today.years_since(5)
+    end
+
     leave_start = start_d + start.months
     leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
-    place1 = leave_add_calculation(company, leave_type).round(2)
-    place2 = leave_expire(company, leave_type).round(2)
+    place1 = leave_add_calculation(company, leave_type, date).round(2)
+    place2 = leave_expire(company, leave_type, date).round(2)
     place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
     if place3 > leave_amount_max
       place3 = leave_amount_max
@@ -99,7 +106,7 @@ class User < ApplicationRecord
       place3 = 0
     end
     if Date.today > leave_start
-      value = place3 -  segmented_leaves(moving_date..Date.today.years_since(5), company, leave_type)[:amount]
+      value = place3 -  segmented_leaves(moving_date..moving_date_end, company, leave_type)[:amount]
     else
       value = 0.0
     end
@@ -115,7 +122,7 @@ class User < ApplicationRecord
       .sum(:amount)
   end
 
-  def prorate_accrual_calc(company, leave_type)
+  def prorate_accrual_calc(company, leave_type, date = nil)
     leave_settings = company.company_leave_setting
     start = leave_settings.leave_month_start
     leave_start = self.employments
@@ -133,7 +140,11 @@ class User < ApplicationRecord
     if leave_end.present?
       ending = leave_end
     else
-      ending = Date.today
+      if date.present?
+        ending = date
+      else
+        ending = Date.today
+      end
     end
     available = (ending.at_beginning_of_month - leave_start)
     # if available > leave_amount_max
@@ -153,16 +164,16 @@ class User < ApplicationRecord
     available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
   end
 
-  def leave_add_calculation(company, leave_type)
+  def leave_add_calculation(company, leave_type, date = nil)
     if company.company_leave_setting.prorate_accrual == true
-      prorate_accrual_calc(company, leave_type)
+      prorate_accrual_calc(company, leave_type, date)
     else
       # non_prorate_accrual_calc(company, leave_type)
-      prorate_accrual_calc(company, leave_type)
+      prorate_accrual_calc(company, leave_type, date)
     end
   end
 
-  def leave_expire(company, leave_type)
+  def leave_expire(company, leave_type, date = nil)
     leave_settings = company.company_leave_setting
     expiration = leave_settings.leave_month_expiration
     start = leave_settings.leave_month_start
@@ -176,11 +187,15 @@ class User < ApplicationRecord
       .last
       .end_date
     expiration_start = leave_start + expiration.months
-    if expiration_start < Date.today
-      if leave_end.present?
+    if date.present?
+      ending = date
+    else
+      ending = Date.today
+    end
+
+    if expiration_start < ending
+      unless leave_end.blank?
         ending = leave_end
-      else
-        ending = Date.today
       end
       expire = (ending.at_beginning_of_month - expiration_start)
     else

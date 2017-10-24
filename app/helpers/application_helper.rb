@@ -27,6 +27,10 @@ module ApplicationHelper
     date.strftime("%B %d, %Y") if date.present?
   end
 
+  def better_date2(date)
+    date.strftime("%B %d, %Y - %A") if date.present?
+  end
+
   def better_time(time)
     time.strftime("%I:%M%p")
   end

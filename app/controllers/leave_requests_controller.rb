@@ -97,6 +97,7 @@ class LeaveRequestsController < ApplicationController
       @companies = @user.companies
 	  	@leave_request = @employment.leave_requests.find_by_id( params[:id] )
 	  	@leave_types = @company.leave_types
+      @companies_accepted = @company
       if @employment.regularized?
         @available_leave_types = @company.leave_types
       else
