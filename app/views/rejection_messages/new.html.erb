@@ -1,0 +1,27 @@
+<div class="white-bg horizontal-max">
+	<div class="row show-header align-middle">
+		<div class="columns text-center">
+      <h3>Rejection Message</h3>
+      <p class="no-margin">
+        For: <%= @user.profile.first_name %> <%= @user.profile.last_name %>
+      </p>
+      <p class='no-margin'> Leave Request: <%= @leave_request.title %> </p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="columns medium-offset-3 medium-6">
+
+    <div class="m-well">
+      <%= form_for @rejection_message, url: user_employment_leave_request_rejection_message_url(params[:user_id], params[:employment_id], params[:leave_request_id]), method: :create do |f| %>
+        <%= f.label :description %>
+        <%= f.text_area :description, style: 'min-height: 8rem;' %>
+
+        <%= f.hidden_field :leave_request_id, value: params[:leave_request_id] %>
+
+        <%= f.submit 'Submit', class: 'button primary' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

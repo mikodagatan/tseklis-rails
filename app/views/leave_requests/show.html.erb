@@ -31,11 +31,7 @@
             </div>
             <div class="columns">
               <% unless @current_user == @user %>
-                <%= form_for @leave_request, url: user_employment_leave_request_url(@leave_request.employment.user, @leave_request.employment, @leave_request), method: :patch, accepted: false do |f| %>
-                  <%= f.hidden_field :acceptance, value: false %>
-                  <%= f.hidden_field :acceptor_id, value: @current_user.id %>
-                  <%= f.submit "Reject", class: "button alert leave_request_button" %>
-                <% end %>
+                <%= link_to "Reject", new_user_employment_leave_request_rejection_message_url(@user, @employment, @leave_request), class: 'button alert leave_request_button horizontal-max' %>
               <% end %>
             </div>
           </div>
@@ -55,8 +51,8 @@
   </div>
 </div>
 
-<div class="section-blue-small" style="min-height: 100vh">
-  <div class="row section-blue-small">
+<div class="section-blue-small" style="min-height: 50vh">
+  <div class="row section-blue-small align-center">
     <div class="columns small-12 medium-3 box-round-yellow white-bg black-text no-left-margin">
       <h1 class='text-center'>
         <%= @leave_request.show_amount %>
@@ -68,9 +64,15 @@
       <h5><strong>To:</strong></h5>
       <p><strong></strong> <%= better_date(@leave_request.end_date) %> - <%= better_time(@leave_request.end_time) %></p>
     </div>
-    <div class="columns small-12 medium-6 box-round-blue white-bg black-text no-left-margin">
+    <div class="columns small-12 medium-4 box-round-blue white-bg black-text no-left-margin">
       <h5><strong>Description</strong></h5>
       <p><%= @leave_request.description %></p>
     </div>
+    <% if @leave_request.rejection_message.present? %>
+      <div class="columns small-12 medium-4 box-round-blue white-bg black-text no-left-margin">
+        <h5><strong>Reason for Rejection</strong></h5>
+        <p><%= @leave_request.rejection_message.description %></p>
+      </div>
+    <% end %>
   </div>
 </div>

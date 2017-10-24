@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020065802) do
+ActiveRecord::Schema.define(version: 20171024143433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,6 +291,13 @@ ActiveRecord::Schema.define(version: 20171020065802) do
     t.string "contact_email"
     t.boolean "active", default: true
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rejection_messages", force: :cascade do |t|
+    t.text "description"
+    t.integer "leave_request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,6 +2,7 @@ class LeaveRequest < ApplicationRecord
 	belongs_to :employment
 	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
 	has_many :notifications, dependent: :destroy
+	has_one :rejection_message, dependent: :destroy
 	before_destroy :delete_amounts
 
 	validates_presence_of :title
@@ -23,6 +24,8 @@ class LeaveRequest < ApplicationRecord
 
 	before_commit :delete_amounts
 	after_commit :enter_amounts
+
+	accepts_nested_attributes_for :rejection_message
 
 	def delete_amounts
 		self.leave_amounts.delete_all

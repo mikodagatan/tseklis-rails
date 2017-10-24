@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   	resource :profile
   	resources :employments do
-      resources :leave_requests
+      resources :leave_requests do
+        resource :rejection_message
+      end
       get 'leave_request_by_hr' => 'leave_requests#leave_request_by_hr'
     end
   end
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
-  get 'notifications/notification_index' => 'notifications#notification_index'    
+  get 'notifications/notification_index' => 'notifications#notification_index'
 
 
 

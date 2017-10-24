@@ -6,19 +6,20 @@
   </div>
 </div>
 <div class="form-header no-margin">
-<div class="section-blue ">
-  <div class="row section-blue align-middle small-up-1 medium-up-2">
-    <div class="columns">
-      <h3>File your leaves the easy way</h3>
-      <h4>Enjoy Tseklis </h4>
-    </div>
-    <div class="columns">
-      <%= render 'leave_request_form',
-        url: user_employment_leave_requests_url(@user, @employment, leave_request_from_hr: false),
-        method: :post,
-        leave_request: @leave_request,
-        leave_request_from_hr: false
-      %>
+  <div class="section-blue">
+    <div class="row section-blue align-middle small-up-1 medium-up-2">
+      <div class="columns">
+        <h3>File your leaves the easy way</h3>
+        <h4>Enjoy Tseklis </h4>
+      </div>
+      <div class="columns">
+        <%= render 'leave_request_form',
+          url: user_employment_leave_requests_url(@user, @employment, leave_request_from_hr: false),
+          method: :post,
+          leave_request: @leave_request,
+          leave_request_from_hr: false
+        %>
+      </div>
     </div>
   </div>
 </div>

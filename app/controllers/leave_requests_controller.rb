@@ -4,7 +4,7 @@ class LeaveRequestsController < ApplicationController
   before_action :redirect_not_company
 
   def index
-    
+
   end
 
 	def new
@@ -122,7 +122,13 @@ class LeaveRequestsController < ApplicationController
 				:acceptor_id,
 				:allow_weekend_holiday_leave,
 				:leave_type_id,
-				:employment_id)
+				:employment_id,
+        rejection_message_attributes: [
+          :id,
+          :description,
+          :leave_request_id
+          ]
+        )
 		end
 
     def create_notification_employee(leave_request)
