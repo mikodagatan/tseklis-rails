@@ -1,5 +1,11 @@
-<%= render 'partials/welcome' %>
-<%= render 'partials/instructions' %>
+<% if @current_user.employed? %>
+  <%= render 'partials/welcome' %>
+  <%= render 'partials/instructions'%>
+  <%= render 'companies/hr_dashboard_button' if @current_employment.is_hr? %>
+  <%= render 'companies/hr_dashboard' if @current_employment.is_hr? %>
+  <%= render 'companies/manager_dashboard_button' if @current_employment.is_manager? %>
+<% end %>
+<%= render 'companies/manager_dashboard' if @current_employment.is_manager? %>
 <%# render 'partials/search' %>
 <%= render 'partials/no_company' unless @current_user.employed? %>
 <%= render 'partials/no_leave_types' unless @has_leave_types || @current_user.employed? == false %>

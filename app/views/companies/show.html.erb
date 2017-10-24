@@ -1,4 +1,12 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns small-font-size">
+			<%= link_to "Home", root_url, class: 'small-nav-link' %>  >  <%= @company.name %>
+		</div>
+	</div>
+</div>
 <div class="white-bg horizontal-max">
+
 	<div class="row show-header align-middle">
 		<div class="columns">
 			<h1><%= @company.name %></h1>
@@ -25,11 +33,11 @@
 											new_user_employment_leave_request_url(@current_user, @current_employment),
 											class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
-							<% end %>
-							<% if (@current_employment.present? && (@current_employment.is_hr?)) %>
 								<div class="columns no-padding">
 									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
+							<% end %>
+							<% if (@current_employment.present? && (@current_employment.is_hr?)) %>
 								<div class="columns no-padding">
 									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
@@ -46,6 +54,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 <% if @current_user.employments.find_by(company_id: @company.id).present? && @current_user.employments.where(company_id: @company.id).last.acceptance == true %>
 	<%= render "company_leaves_taken" %>

@@ -68,4 +68,14 @@ class UsersController < ApplicationController
 															]
 		)
 	end
+
+  def redirect_not_company
+    check = false
+    Array.wrap(@employments).each do |employment|
+      check = true unless @current_employments.where(company: employment.company).blank?
+    end
+    if check == false
+      redirect_to root_url
+    end
+  end
 end

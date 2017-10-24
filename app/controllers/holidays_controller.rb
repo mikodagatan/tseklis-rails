@@ -1,5 +1,6 @@
 class HolidaysController < ApplicationController
 	before_action :set_up
+	before_action :redirect_not_company
 
   def index
   	@holidays = @company.holidays
@@ -62,5 +63,11 @@ class HolidaysController < ApplicationController
 			:name,
 			:date,
 			)
+	end
+
+	def redirect_not_company
+		if current_user.employments.where(company: @company).blank?
+			redirect_to root_url
+		end
 	end
 end

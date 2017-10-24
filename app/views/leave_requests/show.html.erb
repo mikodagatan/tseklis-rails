@@ -1,3 +1,10 @@
+<div class="small-nav white-border-bottom">
+  <div class="row small-nav ">
+    <div class="columns small-font-size">
+      <%= link_to "Home", root_url, class: 'small-nav-link' %> > <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  >  Create Leave Request
+    </div>
+  </div>
+</div>
 <div class="white-bg horizontal-max">
   <div class="row show-header align-middle">
     <div class="columns small-12 medium-8">
@@ -47,6 +54,7 @@
     </div>
   </div>
 </div>
+
 <div class="section-blue-small" style="min-height: 100vh">
   <div class="row section-blue-small">
     <div class="columns small-12 medium-3 box-round-yellow white-bg black-text no-left-margin">
@@ -64,6 +72,5 @@
       <h5><strong>Description</strong></h5>
       <p><%= @leave_request.description %></p>
     </div>
-
   </div>
 </div>

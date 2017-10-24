@@ -1,16 +1,15 @@
-<div class="form-header no-margin">
-  <div class="row text-center align-middle form-header no-margin horizontal-max small-up-1">
-    <div class="columns">
-      <%= @current_user.profile.first_name %> <%= @current_user.profile.last_name %> <br />
-      <%= @company.name %>
-      <h2>Create Leave Request</h2>
+<div class="small-nav white-border-bottom">
+  <div class="row small-nav ">
+    <div class="columns small-font-size">
+      <%= link_to "Home", root_url, class: 'small-nav-link' %> > <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  >  Create Leave Request
     </div>
   </div>
 </div>
-<div class="section-blue">
+<div class="form-header no-margin">
+<div class="section-blue ">
   <div class="row section-blue align-middle small-up-1 medium-up-2">
     <div class="columns">
-      <h3>File your leaves the easy way.</h3>
+      <h3>File your leaves the easy way</h3>
       <h4>Enjoy Tseklis </h4>
     </div>
     <div class="columns">

@@ -42,10 +42,10 @@
           <% if current_user %>
             <%= render 'partials/notifications' %>
             <% unless current_user.employments.empty? %>
-              <div data-toggle="companies-dropdown">
+              <div>
                 <li>
-                  <%# link_to "Companies", companies_url %>
-                  <a>Companies</a>
+                  <%= link_to Company.find(current_user.employments.where(acceptance: true).first.company_id).name, company_url(current_user.employments.where(acceptance: true).first.company_id) %>
+                  <!-- <a>Companies</a> -->
                 </li>
               </div>
             <% end %>
@@ -74,25 +74,25 @@
 
     <%= render 'partials/small_navbar' %>
 
-    <section class="dropdown-pane no-padding" id="companies-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
+    <!-- <section class="dropdown-pane no-padding" id="companies-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
       <div class=" row horizontal-max no-padding collapse">
-        <% if user_signed_in? %>
-          <% if @current_user.employed? %>
-            <% @current_user.employments.select(:company_id).distinct.each do |u| %>
-              <%= link_to u.company.name, company_url(u.company),
+        <%# if user_signed_in? %>
+          <%# if @current_user.employed? %>
+            <%# @current_user.employments.select(:company_id).distinct.each do |u| %>
+              <%# link_to u.company.name, company_url(u.company),
                 class: "button white-c horizontal-max no-margin text-left"
               %>
-            <%end %>
-          <% end %>
-        <% end %>
+            <%# end %>
+          <%# end %>
+        <%# end %>
       </div>
-    </section>
+    </section> -->
 
     <section class="dropdown-pane no-padding" id="user-dropdown" data-dropdown data-hover="true" data-hover-pane="true" data-position="bottom" data-alignment="right">
       <div class=" row horizontal-max no-padding collapse">
         <% if user_signed_in? %>
           <%= link_to "Your Profile", user_url(current_user), class: 'button white-c horizontal-max no-margin text-left' %>
-          <%= link_to "Create Company", new_company_url, class: "button white-c horizontal-max no-margin text-left" %>
+          <%= link_to "Create Company", new_company_url, class: "button white-c horizontal-max no-margin text-left" unless current_user.employments.present? %>
           <%# link_to "Connect to a Company / Change Salary", new_user_employment_url(@current_user), class: "button white-c horizontal-max no-margin text-left" %>
           <%# link_to "Connect to a Company", new_user_employment_url(@current_user), class: "button white-c horizontal-max no-margin text-left" %>
         <% end %>

@@ -1,5 +1,7 @@
 class LeaveRequestsController < ApplicationController
   before_action :set_up
+  before_action :redirect_not_user, only: [:new]
+  before_action :redirect_not_company
 
   def index
   end
@@ -201,5 +203,17 @@ class LeaveRequestsController < ApplicationController
                           leave_request_id: leave_request.id,
                           notice_type: 'leave_request_rejected',
                           read: false)
+    end
+
+    def redirect_not_user
+      if current_user != @user
+        redirect_to root_url
+      end
+    end
+
+    def redirect_not_company
+      if current_user.employments.where(company: @company).blank?
+        redirect_to root_url
+      end
     end
 end

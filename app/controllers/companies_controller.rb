@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
 
 	before_action :set_up, only: [ :edit, :update, :show, ]
 	after_action :destroy_leave_type_blank, only: [:update ]
+	before_action :redirect_not_company, only: [ :edit, :update, :show, :leave_requests_index]
 
   helper ApplicationHelper
 
@@ -126,7 +127,7 @@ class CompaniesController < ApplicationController
 		@company = Company.find(params[:company_id])
 		@leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
-		@current_employment = @current_company.employments.where(user_id: @current_user, company_id: @company, acceptance: true)
+		@current_employment = @company.employments.where(user_id: @current_user, acceptance: true)
 	end
 
 	private
@@ -205,5 +206,11 @@ class CompaniesController < ApplicationController
 			.where('leave_requests.acceptance = ?', true)
 			.references(:leave_amounts)
 	end
+
+	def redirect_not_company
+    if current_user.employments.where(company: @company).blank?
+      redirect_to root_url
+    end
+  end
 
 end
