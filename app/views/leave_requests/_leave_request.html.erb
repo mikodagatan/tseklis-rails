@@ -56,6 +56,8 @@
 				<td>
 					<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
 				</td>
+				<td colspan='1'></td>
+				
 			<% else %>
 				<td colspan="1">
 						<%# link_to edit_user_employment_leave_request_url(
@@ -67,6 +69,8 @@
 						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
 					<% end %>
 				</td>
+				<td colspan='1'></td>
+
 			<% end %>
 		<% else %>
 			<td class="edit-column">

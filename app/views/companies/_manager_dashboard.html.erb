@@ -11,7 +11,7 @@
                   <h3>No Data</h3>
                 </div>
               <% else %>
-                <table class="table">
+                <table class="table"  style='min-width: 100%;'>
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -21,7 +21,7 @@
                     </tr>
                   </thead>
                   <tbody id="manager_subordinates">
-                    <%= render partial: 'manager_subordinates', collection: @subordinates, as: 'employment' %>
+                    <%= render partial: 'companies/manager_subordinates', collection: @subordinates, as: 'employment' %>
                   </tbody>
                 </table>
               <% end %>
@@ -34,7 +34,7 @@
                 </div>
               <% else %>
                 <div class="column">
-        					<table class="table">
+        					<table class="table"  style='min-width: 100%;'>
         						<thead>
         							<tr>
         								<th>Employee</th>
@@ -45,7 +45,7 @@
         							</tr>
         						</thead>
         						<tbody id="lr_manager_dashboard">
-                      <%= render partial: "subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request" %>
+                      <%= render partial: "companies/subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request" %>
         						</tbody>
         					</table>
                   <div class="row align-center text-center">

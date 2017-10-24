@@ -1,0 +1,3 @@
+$('#lr_manager_dashboard').html('<%= escape_javascript render(partial: "subordinate_leave_requests", collection: @subordinate_leave_requests, at_company: true, as: "leave_request") %>');
+$('#lr_paginator_manager_dashboard').html('<%= escape_javascript(paginate(@subordinate_leave_requests, remote: true, param_name: "lr_page_manager_dashboard").to_s) %>');
+$('#leave_request_info_manager_dashboard').html('<%= escape_javascript(page_entries_info(@subordinate_leave_requests)) %>');
