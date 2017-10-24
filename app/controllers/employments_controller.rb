@@ -52,7 +52,7 @@ class EmploymentsController < ApplicationController
   end
 
 	def leave_request_by_hr
-
+		@current_employment = @current_user.employments.where( company_id: @employment.company_id, acceptance: true).first
 	end
 
   private

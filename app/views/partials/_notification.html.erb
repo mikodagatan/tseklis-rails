@@ -34,8 +34,7 @@
         <% end %>
       <% elsif notification.notice_type == 'leave_request_from_hr_to_employee' %>
         <%= link_to link_through_url(notification) do %>
-        <div class="callout secondary no-margin">
-          <div class="callout primary no-margin">
+          <div class="callout secondary no-margin">
             <p class='no-margin'>
               <strong>HR Officer created a Leave Request for you</strong>
             </p>
@@ -51,7 +50,7 @@
         <%= link_to link_through_url(notification)do %>
           <div class="callout secondary no-margin">
             <p class='no-margin'>
-              <strong>HR Officer created a Leave Request for your Employee</strong>
+              <strong>An HR Officer created a Leave Request for your Employee</strong>
             </p>
             <br />
             <p class='no-margin'>
@@ -61,18 +60,37 @@
             <p class="no-margin">Company: <%= notification.employment.company.name %></p>
           </div>
         <% end %>
-      <% elsif notification.notice_type == 'leave_request_from_hr_to_manager' %>
+      <% elsif notification.notice_type == 'leave_request_from_manager_to_employee' %>
         <%= link_to link_through_url(notification)do %>
-          <p class='no-margin'>
-            <strong>HR Officer created a Leave Request for you</strong>
-          </p>
-          <br />
-          <p class='no-margin'>
-            HR Officer: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
-          </p>
-          <br />
-          <p class="no-margin">Company: <%= notification.employment.company.name %></p>
-        <% end %>
+          <div class="callout secondary no-margin">
+            <p class='no-margin'>
+              <strong>You Manager created a Leave Request for you</strong>
+            </p>
+            <br />
+            <p class='no-margin'>
+              Manager: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
+            </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
+          <% end %>
+          </div>
+      <% elsif notification.notice_type == 'leave_request_from_manager_to_hr' %>
+        <div class="callout secondary no-margin">
+          <%= link_to link_through_url(notification)do %>
+            <p class='no-margin'>
+              <strong>A Manager created a Leave Request for an Employee</strong>
+            </p>
+            <br />
+            <p class='no-margin'>
+              Manager: <%= notification.acting_user.profile.first_name %> <%= notification.acting_user.profile.last_name %>
+            </p>
+            <p class="no-margin">
+              Employee: <%= notification.employment.user.profile.first_name %> <%= notification.employment.user.profile.last_name %>
+            </p>
+            <br />
+            <p class="no-margin">Company: <%= notification.employment.company.name %></p>
+          <% end %>
+        </div>
       <% elsif notification.notice_type == 'leave_request_accepted' %>
         <%= link_to link_through_url(notification)do %>
           <div class="callout success no-margin">

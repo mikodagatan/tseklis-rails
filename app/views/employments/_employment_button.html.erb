@@ -9,7 +9,7 @@
           <div class="columns no-padding">
             <%= link_to 'Edit Employment', edit_user_employment_url(employment.user_id, employment), class: "button white-c horizontal-max no-margin text-left"  %>
           </div>
-          <% if @current_employment.is_hr? %>
+          <% if @current_employment.is_hr? || (@current_employment.id == employment.manager_id) %>
             <div class="columns no-padding">
               <%= link_to "Create Leave Request for Employee",
                   user_employment_leave_request_by_hr_url(employment.user_id, employment),

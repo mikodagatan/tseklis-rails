@@ -12,10 +12,17 @@ class LeaveRequestsController < ApplicationController
 	end
 
 	def create
+    @current_employment = @current_user.employments.where( company_id: @employment.company_id, acceptance: true).first
+
 		@leave_request = @employment.leave_requests.build(leave_request_params)
   	if @leave_request.save
-      create_notification_employee(@leave_request) if params[:leave_request_from_hr] = 'false'
-      create_notification_hr(@leave_request) if params[:leave_request_from_hr] == 'true'
+      create_notification_employee(@leave_request) if params[:leave_request_from_hr] =='false'
+      if params[:leave_request_from_hr] == 'true'
+        create_notification_manager(@leave_request) if @current_employment.role_id == @manager.id
+        create_notification_hr(@leave_request) if @current_employment.role_id == @hr_officer.id
+      end
+
+
       # flash[:success] = "Leave Request Created!"
 	    redirect_to company_path( @employment.company_id )
 
@@ -60,12 +67,13 @@ class LeaveRequestsController < ApplicationController
     @current_user = current_user
     @leave_request = LeaveRequest.find(params[:id])
     @employment = @leave_request.employment
-    @current_employment = @current_user.employments.find_by(company_id: @employment.company_id, acceptance: true)
+    @current_employment = @current_user.employments.where(company_id: @employment.company_id, acceptance: true).first
 	end
 
   def leave_request_by_hr
     @companies_accepted = @company
 		@leave_request = @employment.leave_requests.build
+    @current_employment = @current_user.employments.where( company_id: @employment.company_id, acceptance: true).first
   end
 
   def destroy
@@ -151,6 +159,28 @@ class LeaveRequestsController < ApplicationController
                           leave_request_id: leave_request.id,
                           notice_type: 'leave_request_from_hr_to_manager',
                           read: false)
+    end
+
+    def create_notification_manager(leave_request)
+      # create notifications to the Employee as the leave request is created by the HR Officer
+      Notification.create(user_id: @user.id,
+                          acting_user_id: @current_user.id,
+                          employment_id: leave_request.employment.id,
+                          leave_request_id: leave_request.id,
+                          notice_type: 'leave_request_from_manager_to_employee',
+                          read: false)
+                          @hr_officers = leave_request.employment.company.employments.where(role_id: 1)
+
+      @hr_officers = leave_request.employment.company.employments.where(role_id: 1)
+      Array.wrap(@hr_officers).each do |hr_officer|
+        Notification.create(user_id: hr_officer.user.id,
+                            acting_user_id: @current_user.id,
+                            employment_id: leave_request.employment.id,
+                            leave_request_id: leave_request.id,
+                            notice_type: 'leave_request_from_manager_to_hr',
+                            read: false)
+
+      end
     end
 
     def create_notification_accepted(leave_request)
