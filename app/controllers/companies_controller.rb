@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
 
 	before_action :restrict_index, only: [:index]
-	before_action :set_up, only: [ :edit, :update, :show, ]
+	before_action :set_up, only: [ :edit, :update, :show ]
 	after_action :destroy_leave_type_blank, only: [:update ]
 	before_action :redirect_not_company, only: [ :edit, :update, :show, :leave_requests_index]
 
@@ -129,6 +129,15 @@ class CompaniesController < ApplicationController
 		@leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
 		@current_employment = @company.employments.where(user_id: @current_user, acceptance: true)
+	end
+
+	def import_page
+		@company = Company.find(params[:company_id])
+	end
+
+	def import_leave_requests
+		LeaveRequest.import(params[:file])
+		flash[:success] = "Leave Requests Imported"
 	end
 
 	private

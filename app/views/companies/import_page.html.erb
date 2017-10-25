@@ -1,0 +1,23 @@
+<div class="small-nav white-border-bottom">
+  <div class="row small-nav ">
+    <div class="columns small-font-size">
+      <%= link_to "Home", root_url, class: 'small-nav-link' %> > <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  >  Import Leave Requests
+    </div>
+  </div>
+</div>
+<div class="form-header no-margin">
+  <div class="row form-header align-middle">
+    <div class="columns small-12 medium-6">
+      <h3>Import Leave Requests</h3>
+      <h5>CSV / Excel</h5>
+    </div>
+    <div class="columns small-12 medium-offset-1 medium-4 align-self-middle">
+      <div class="m-well">
+        <%= form_tag company_import_leave_requests_path(@company), multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import", class: 'button primary add-button-border'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

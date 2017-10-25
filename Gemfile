@@ -78,5 +78,8 @@ gem 'capistrano-yarn'
 gem 'therubyracer'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'roo'
+gem 'spreadsheet', '~> 1.1', '>= 1.1.4'
+gem "iconv", "~> 1.0.3"
 
 ruby '2.4.0'

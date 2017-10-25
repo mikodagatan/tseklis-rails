@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get 'employees' => 'companies#employees_index'
     get 'leave_requests' => 'companies#leave_requests_index'
     resources :invites
+    get 'import_page' => 'companies#import_page'
+    post :import_leave_requests
   end
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through

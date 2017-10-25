@@ -41,6 +41,9 @@
 								<div class="columns no-padding">
 									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
+								<div class="columns no-padding">
+									<%= link_to "Import Leave Requests", company_import_page_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
+								</div>
 							<% end %>
 							<% if (@current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?)) %>
 								<div class="columns no-padding">
