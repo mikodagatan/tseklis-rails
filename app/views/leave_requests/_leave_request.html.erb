@@ -12,7 +12,7 @@
 			<%= link_to leave_request.title, user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request) %>
 		</td>
 		<td>
-			<%= LeaveType.find(leave_request.leave_type_id).name %>
+			<%= LeaveType.find_by_id(leave_request.leave_type_id).name %>
 		</td>
 		<td><%= better_date(leave_request.start_date) %> - <%= leave_request.start_time.strftime("%I:%M%p") %>
 		</td>
@@ -57,7 +57,7 @@
 					<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
 				</td>
 				<td colspan='1'></td>
-				
+
 			<% else %>
 				<td colspan="1">
 						<%# link_to edit_user_employment_leave_request_url(

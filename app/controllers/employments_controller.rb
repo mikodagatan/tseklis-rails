@@ -27,6 +27,7 @@ class EmploymentsController < ApplicationController
   end
 
 	def edit
+		@managers = @current_employment.company.employments.where(role_id: @manager.id)
 		@current_role_id = @current_employment.role_id
 		@employment.company.leave_types.each do |leave_type|
 			@employment.leave_reductions.build(leave_type_id: leave_type.id)

@@ -6,6 +6,7 @@
 			<%= show_error_message(@employment) %>
 
 		  	<div class="m-well align-middle">
+          <div class="space"></div>
           <% if method == :post %>
   					<div class="field">
   					<%= f.label :company_id, "Company" %>
@@ -36,13 +37,22 @@
 						<%# f.label :salary %>
 						<%# f.text_field :salary %>
 					</div>
+
 					<div class="space"></div>
-          <% unless @employment.id.nil? || method == :post %>
+
+          <% unless @employment.id.nil? || method == :post || @current_employment.is_employee? %>
+            <% if @current_employment.is_hr? %>
+              <div class="field">
+                <%= f.label :manager_id %>
+                <%= f.collection_select(:manager_id, @managers, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>
+                <div class="space2"></div>
+              </div>
+            <% end %>
             <div class="row medium-up-2 small-up-1">
               <%= render 'hr_officer_options_new', url: url, method: method %>
               <%= render 'regularization_options', url: url, method: method %>
               <%= render 'manager_options_new', url: url, method: method %>
-              <%= render 'subordination_options_new', url: url, method: method %>
+              <%# render 'subordination_options_new', url: url, method: method %>
             </div>
             <div class="space"></div>
             <div class="small-font-size">* Pressing these will not save the other inputs</div>

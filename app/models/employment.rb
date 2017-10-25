@@ -63,4 +63,8 @@ class Employment < ApplicationRecord
 	def current_employment(user_given, company_given)
 		Employment.find_by(user_id: user_given.id, company_id: company_given.id)
 	end
+
+	def manager_names
+		"#{user.profile.first_name} #{user.profile.last_name}"
+	end
 end

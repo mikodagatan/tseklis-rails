@@ -27,7 +27,6 @@ class LeaveRequest < ApplicationRecord
 
 	accepts_nested_attributes_for :rejection_message
 
-	attr_accessible :title, :description, :start_date, :start_time, :end_date, :end_time, :acceptance, :acceptor_id, :leave_type_id, :employment_id
 
 	require 'roo'
 
