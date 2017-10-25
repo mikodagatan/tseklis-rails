@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :invites
     get 'import_page' => 'companies#import_page'
     post :import_leave_requests
+    post :delete_leave_requests
   end
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through

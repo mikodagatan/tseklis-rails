@@ -36,7 +36,7 @@
 		<td class='text-center'>
 			<%= leave_request.acceptance.nil? ?
         nil :
-				"#{User.find(leave_request.acceptor_id).profile.first_name} #{User.find(leave_request.acceptor_id).profile.last_name}" %>
+				"#{User.find_by_id(leave_request.acceptor_id).profile.first_name} #{User.find_by_id(leave_request.acceptor_id).profile.last_name}" %>
 		</td>
 		<td class="text-center">
 			<%= leave_request.show_amount %>

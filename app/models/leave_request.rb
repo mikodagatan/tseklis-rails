@@ -1,5 +1,6 @@
 class LeaveRequest < ApplicationRecord
 	belongs_to :employment
+	belongs_to :leave_type
 	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
 	has_many :notifications, dependent: :destroy
 	has_one :rejection_message, dependent: :destroy
@@ -216,20 +217,47 @@ class LeaveRequest < ApplicationRecord
 		end
 	end
 
-	def self.import(file)
+	def self.import(file, company, user)
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
 	  (2..spreadsheet.last_row).each do |i|
 	    row = Hash[[header, spreadsheet.row(i)].transpose]
-	    product = find_by_id(row["id"]) || new
-	    product.attributes = row.to_hash.slice(*accessible_attributes)
-	    product.save!
+	    leave_request = find_by_id(row["id"]) || new
+	    leave_request.employment_id = Employment.find_by(user_id: Profile.where(first_name: row['first_name'], last_name: row['last_name']).first.user.id, company_id: company.id).id
+			leave_request.title = row['title']
+			leave_request.description = row['description']
+			leave_request.start_date = Date.parse(row['start_date']).strftime("%Y/%m/%d")
+			leave_request.end_date = Date.parse(row['end_date']).strftime("%Y/%m/%d")
+			leave_request.start_time = Time.parse(row['start_time'].to_s).strftime("%H:%M")
+			leave_request.end_time = Time.parse(row['end_time'].to_s).strftime("%H:%M")
+			leave_request.leave_type = LeaveType.find_by(company_id: company.id, name: row['leave_type'])
+			leave_request.acceptance = true
+			leave_request.acceptor_id = user.id
+			leave_request.save!
 		end
   end
 
+	def self.mass_delete(file, company, user)
+		spreadsheet = open_spreadsheet(file)
+		header = spreadsheet.row(1)
+		(2..spreadsheet.last_row).each do |i|
+			row = Hash[[header, spreadsheet.row(i)].transpose]
+			self.find_by(
+				employment_id: Employment.find_by(user_id: Profile.where(first_name: row['first_name'], last_name: row['last_name']).first.user.id, company_id: company.id).id,
+				title: row['title'],
+				description: row['description'],
+				start_date: Date.parse(row['start_date']).strftime("%Y/%m/%d"),
+				end_date: Date.parse(row['end_date']).strftime("%Y/%m/%d"),
+				start_time: Time.parse(row['start_time'].to_s).strftime("%H:%M"),
+				end_time: Time.parse(row['end_time'].to_s).strftime("%H:%M"),
+				leave_type: LeaveType.find_by(company_id: company.id, name: row['leave_type'])
+			).delete
+		end
+	end
+
 		def self.open_spreadsheet(file)
 		  case File.extname(file.original_filename)
-		  when ".csv" then Roo::CSV.new(file.path, nil, file_warning: :ignore)
+		  when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
 		  when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
 		  when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
 		  else raise "Unknown file type: #{file.original_filename}"

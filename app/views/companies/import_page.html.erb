@@ -13,11 +13,31 @@
     </div>
     <div class="columns small-12 medium-offset-1 medium-4 align-self-middle">
       <div class="m-well">
+        <div class="space"></div>
         <%= form_tag company_import_leave_requests_path(@company), multipart: true do %>
           <%= file_field_tag :file %>
+          <div class="space"></div>
           <%= submit_tag "Import", class: 'button primary add-button-border'%>
         <% end %>
       </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="columns small-12 medium-4">
+    <h4>Download Sample Import File</h4>
+    File to be included
+  </div>
+  <div class="columns small-12 medium-4">
+    <h4>Delete Import Data</h4>
+    <p>Delete Imported Data in one go by uploading the same file here.</p>
+    <div class="m-well">
+      <div class="space"></div>
+      <%= form_tag company_delete_leave_requests_path(@company), multipart: true do %>
+        <%= file_field_tag :file %>
+        <div class="space"></div>
+        <%= submit_tag "Delete", class: 'button primary add-button-border'%>
+      <% end %>
     </div>
   </div>
 </div>

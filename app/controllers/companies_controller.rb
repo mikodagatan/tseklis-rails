@@ -136,8 +136,17 @@ class CompaniesController < ApplicationController
 	end
 
 	def import_leave_requests
-		LeaveRequest.import(params[:file])
+		@company = Company.find(params[:company_id])
+		LeaveRequest.import(params[:file], @company, @current_user)
 		flash[:success] = "Leave Requests Imported"
+		redirect_to company_import_page_url(@company)
+	end
+
+	def delete_leave_requests
+		@company = Company.find(params[:company_id])
+		LeaveRequest.mass_delete(params[:file], @company, @current_user)
+		flash[:success] = "Delete submitted data."
+		redirect_to company_import_page_url(@company)
 	end
 
 	private
