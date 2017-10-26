@@ -2,7 +2,7 @@
 	<div class="show-leave">
 		<div class="row vertical-padding">
 			<div class="columns">
-				<h2><%= Date.today.strftime("%B %Y")%> <small>User leaves</small></h2>
+				<h2><%= Date.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h2>
 			</div>
 		</div>
 		<% Array.wrap(@companies_accepted).each do |company| %>

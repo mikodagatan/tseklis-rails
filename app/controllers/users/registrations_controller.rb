@@ -26,8 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 												start_date: @start_date,
 												acceptance: true,
 												acceptor_id: @invite.sender_id
-											)
+											).save
 				if @employment.save
+					create_notification_join_company(@employment)
 					flash[:success] = "Created Account for " + @user.profile.first_name + " " + @user.profile.last_name + ". Please login with your credentials."
 					redirect_to new_user_session_url
 				else
@@ -85,5 +86,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 			:last_name,
 			:start_date
 		)
+	end
+
+	def create_notification_join_company(employment)
+		@hr_officers = employment.company.employments.where(role_id: 1)
+		Array.wrap(@hr_officers).each do |hr_officer|
+			Notification.create(
+				user_id: hr_officer.user.id,
+				acting_user_id: @user.id,
+				employment_id: employment.id,
+				leave_request_id: nil,
+				notice_type: 'join_company',
+				read: false)
+		end
 	end
 end

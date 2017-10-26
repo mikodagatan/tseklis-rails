@@ -3,8 +3,8 @@ class NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     @notification.update read: true
 
-    if params[:join_company] == true
-      redirect_to company_url(@notification.employment.company)
+    if params[:join_company] == 'true'
+      redirect_to company_url(@notification.employment.company) + "#user-table-anchor"
     else
       redirect_to user_employment_leave_request_url(@notification.employment.user, @notification.employment, @notification.leave_request)
     end

@@ -259,3 +259,10 @@ select {
 .button-margin {
 	margin: 0.2rem;
 }
+
+a.user-table-anchor {
+    display: block;
+    position: relative;
+    top: -130px;
+    visibility: hidden;
+}

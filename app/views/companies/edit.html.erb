@@ -1,11 +1,10 @@
 <div class="small-nav white-border-bottom">
-  <div class="row small-nav ">
-    <div class="columns small-font-size">
-      <%= link_to "Home", root_url, class: 'small-nav-link' %> > <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  >  Company Edit
-    </div>
-  </div>
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Company Settings
+		</div>
+	</div>
 </div>
-
 <%= form_for @company, url: company_path(@company.id), method: :patch do |f| %>
 
   <div class="form-header">

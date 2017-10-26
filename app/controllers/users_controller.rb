@@ -46,6 +46,7 @@ class UsersController < ApplicationController
     @leave_requests = @user.leave_requests
     @current_employments = @current_user.employments
     @current_employment = @current_employments.where(company_id: params[:company], acceptance: true).first
+    @company = Company.find_by_id(@user.employments.where(acceptance: true).first.company)
   end
 
   def user_params

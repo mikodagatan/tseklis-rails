@@ -1,12 +1,9 @@
-<div class="form-header">
-  <div class="row text-center align-middle form-header">
-    <div class="columns">
-      <%= @user.profile.first_name %><%= @user.profile.last_name %> <br />
-      <%= @leave_request.title %>
-      <h2>Edit Leave Request</h2>
-      <div class="space2"></div>
-    </div>
-  </div>
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Edit Leave Request
+		</div>
+	</div>
 </div>
 
 <div class="row">

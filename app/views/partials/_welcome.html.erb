@@ -1,12 +1,12 @@
 <div class="welcome">
-  <div class="row small-up-1 medium-up-1 welcome align-middle collapse">
-    <div class="columns text-center">
+  <div class="row welcome">
+    <div class="columns small-12 medium-4">
       <h3>Welcome, <%= @current_user.profile.first_name %> <%= @current_user.profile.last_name %> </h3>
+      <%= link_to "File a Leave", new_user_employment_leave_request_url(current_user, @current_employment), class: 'button primary add-button-border' %>
+      <%= link_to "Holidays", company_holidays_url(@company), class: 'button primary add-button-border' %>
     </div>
-    <div class="columns text-center">
-      <div id="show_instructions" class="button primary add-button-border no-margin">
-        Start
-      </div>
+    <div class="columns small-12 medium-8 text-center">
+
     </div>
   </div>
 </div>

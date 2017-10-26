@@ -1,9 +1,9 @@
 <div class="small-nav white-border-bottom">
-  <div class="row small-nav">
-    <div class="columns small-font-size">
-      <%= link_to "Home", root_url, class: 'small-nav-link' %> > <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  >  Holidays
-    </div>
-  </div>
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Holidays
+		</div>
+	</div>
 </div>
 <div class="show-header">
 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="columns small-3 medium-2 ">
-      <%= link_to "Create Holiday", new_company_holiday_url, class: "button primary" if hr? %>
+      <%= link_to "Create Holiday", new_company_holiday_url, class: "button primary add-button-border" if hr? %>
     </div>
   </div>
 </div>

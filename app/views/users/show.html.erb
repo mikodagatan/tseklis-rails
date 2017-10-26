@@ -1,7 +1,12 @@
 <div class="small-nav white-border-bottom">
   <div class="row small-nav ">
-    <div class="columns small-font-size">
-      <%= link_to "Home", root_url, class: 'small-nav-link' %> > User Profile
+    <div class="columns">
+       <%= link_to 'Back', url_for(:back), class: 'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; 	&nbsp; <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp;
+       <% if @user == @current_user %>
+        > &nbsp; Your Profile
+       <% else %>
+        > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Company Edit
+       <% end %>
     </div>
   </div>
 </div>
@@ -18,7 +23,7 @@
 		</div>
 	</div>
 </div>
-<%= render 'user_leaves_taken', leave_request_form: false %>
+<%= render 'user_leaves_taken', leave_request_form: false, homepage: false %>
 <div class="space"></div>
 <%= render 'employments_table' %>
 <%= render 'user_leave_requests_table' %>
