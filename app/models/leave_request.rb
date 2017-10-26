@@ -210,7 +210,7 @@ class LeaveRequest < ApplicationRecord
 	def check_regularized
 		if leave_type_id.nil?
 			errors.add(:leave_type_id, "can't be blank")
-		elsif self.leave_type_id != 1 &&
+		elsif LeaveType.find_by_id(leave_type_id).name != 'Unpaid' &&
 			self.employment.regularized == false &&
 			self.employment.company.company_leave_setting.regularized_employees_only == true
 			errors.add(:leave_type_id, "can't be used by non-regularized employees")

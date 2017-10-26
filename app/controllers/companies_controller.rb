@@ -98,10 +98,12 @@ class CompaniesController < ApplicationController
 		@months = [{Year: 0}, {January: 1}, {February: 2}, {March: 3}, {April: 4}, {May: 5}, {June: 6}, {July: 7}, {August: 8}, {September: 9}, {October: 10}, {November: 11 }, {December: 12 }]
 
 		# manager subordinates
-		@subordinates = @current_employment.subordinates
-			.where(end_date: nil, acceptance: true)
-		@subordinate_leave_requests = LeaveRequest.where(employment_id: @subordinates.ids).reverse_order
-		@subordinate_leave_requests = Kaminari.paginate_array(@subordinate_leave_requests).page(params[:lr_page_manager_dashboard]).per(@per_show)
+		if user_signed_in? && @current_employment.present?
+			@subordinates = @current_employment.subordinates
+				.where(end_date: nil, acceptance: true)
+			@subordinate_leave_requests = LeaveRequest.where(employment_id: @subordinates.ids).reverse_order
+			@subordinate_leave_requests = Kaminari.paginate_array(@subordinate_leave_requests).page(params[:lr_page_manager_dashboard]).per(@per_show)
+		end
 
 
 		respond_to do |format|
