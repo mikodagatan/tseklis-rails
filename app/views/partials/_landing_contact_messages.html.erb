@@ -1,10 +1,10 @@
 <div class="landing-contact_messages">
-  <div class="row landing-contact_messages align-middle align-justify small-up-1 medium-up-2">
-    <div class="columns white-text">
+  <div class="row landing-contact_messages align-middle align-justify">
+    <div class="columns small-12 medium-7 white-text">
       <h2><%= @landing_page_settings.contact_messages_header %></h2>
       <p><%= @landing_page_settings.contact_messages_description %></p>
     </div>
-    <div class="columns white-text align-self-right">
+    <div class="columns small-12 medium-4 white-text align-self-right">
       <%= simple_form_for :contact_messages do |f| %>
         <%= f.label :first_name, class: 'white-text' %>
         <%= f.input_field :first_name, class: 'contact-field'  %>
