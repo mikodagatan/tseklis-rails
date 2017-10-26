@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     Array.wrap(@employments).each do |employment|
       check = true unless @current_employments.where(company: employment.company).blank?
     end
-    if check == false
+    unless !user_signed_in? && check == true
       redirect_to root_url
     end
   end

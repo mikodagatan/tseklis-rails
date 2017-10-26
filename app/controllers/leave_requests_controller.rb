@@ -222,7 +222,7 @@ class LeaveRequestsController < ApplicationController
   end
 
   def redirect_not_company
-    if current_user.employments.where(company: @company).blank?
+    unless user_signed_in? && current_user.employments.where(company: @company).present?
       redirect_to root_url
     end
   end
