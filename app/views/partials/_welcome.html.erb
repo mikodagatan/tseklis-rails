@@ -3,7 +3,7 @@
     <div class="columns small-12 medium-4">
       <h3>Welcome, <%= @current_user.profile.first_name %> <%= @current_user.profile.last_name %> </h3>
       <%= link_to "File a Leave", new_user_employment_leave_request_url(current_user, @current_employment), class: 'button primary add-button-border' %>
-      <%= link_to "Holidays", company_holidays_url(@company), class: 'button primary add-button-border' %>
+      <%= link_to "See Holidays", company_holidays_url(@company), class: 'button primary add-button-border' %>
     </div>
     <div class="columns small-12 medium-8 text-center">
 
