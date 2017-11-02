@@ -6,7 +6,7 @@
    <div class="space"></div>
 </div>
 <div class="columns">
-  <% if @company.leave_amounts.where(date: Date.today.all_month).sum(:amount) > 0 %>
+  <% if @company.leave_amounts.sum(:amount) > 0 %>
     <table class="table"  style='min-width: 100%;'>
       <thead>
         <tr>
