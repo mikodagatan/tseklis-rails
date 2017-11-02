@@ -1,0 +1,66 @@
+<% if employed? && @user.employments.where(acceptance: true).first.company.leave_types.count > 1 # &&  (@has_leave_requests || :at_leave_request == true) %>
+	<div class="show-leave">
+		<div class="row vertical-padding">
+			<div class="columns">
+				<h2><%= Date.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h2>
+			</div>
+		</div>
+		<% Array.wrap(@companies_accepted).each do |company| %>
+			<% if current_user.companies.count > 1 %>
+				<div class="row vertical-padding2">
+					<div class="columns">
+						<h4><%= link_to company.name, company_url(company), class: "white-text" %></h4>
+					</div>
+				</div>
+			<% end %>
+			<div class="row">
+				<div class="columns small-12 medium-12">
+					<div class="row align-middle">
+						<div class="columns small-12 medium-3 text-center">
+						<h1 class="h-1"><%= @user.total_leaves(Date.today.all_month, company) %></h1>
+							<h5>Total Used</h5>
+							<div class="space2 show-for-small-only"></div>
+						</div>
+						<div class="columns small-12 medium-9">
+							<div class="row small-up-1">
+								<div class="columns text-center">
+									<h4>Used</h4>
+									<hr>
+								</div>
+							</div>
+							<div class="row small-up-2 medium-up-3">
+								<% @user.all_segmented_leaves(Date.today.all_month, company).each do |leave_type, values| %>
+									<div class="columns text-center">
+										<h1><%= values[:amount] %></h1>
+										<p><%= values[:name] %></p>
+									</div>
+								<% end %>
+							</div>
+							<div class="space3"></div>
+							<div class="row small-up-1">
+								<div class="columns text-center">
+									<h4>Available</h4>
+									<hr>
+								</div>
+							</div>
+							<div class="row small-up-2 medium-up-3">
+								<% @user.all_available_leaves(company).each do |leave_type, values| %>
+									<div class="columns text-center">
+										<% if values[:name] == 'Non-paid' || values[:name] == 'Non-paid leave' || values[:name] ==  'Unpaid'%>
+											<h1>-</h1>
+										<% else %>
+											<h1><%= values[:amount] %></h1>
+										<% end %>
+										<p><%= values[:name] %></p>
+									</div>
+								<% end %>
+							</div>
+							<div class="space"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="space2"></div>
+		<% end %>
+	</div>
+<% end %>
