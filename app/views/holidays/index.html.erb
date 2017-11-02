@@ -24,7 +24,7 @@
 
 
 <div class="row small-up-1 medium-up-3">
-	<% @holidays.each do |holiday|  %>
+	<% @holidays.reverse_order.each do |holiday|  %>
 		<%= render 'holiday',
 			url: company_holiday_url(
 				@company,
