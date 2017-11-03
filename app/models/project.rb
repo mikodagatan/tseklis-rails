@@ -4,6 +4,4 @@ class Project < ApplicationRecord
   has_many :employments, through: :onboardings
   has_many :users, through: :employments
   has_many :project_times
-
-  belongs_to :project_manager, class: 'Employment',   foreign_key :project_manager_id, required: false
 end
