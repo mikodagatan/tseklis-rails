@@ -1,7 +1,7 @@
 <div class="small-nav white-border-bottom">
 	<div class="row small-nav">
 		<div class="columns">
-			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Employment Edit
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@employment.company_id), class: 'small-nav-link' %>  &nbsp; > &nbsp; Employment Edit
 		</div>
 	</div>
 </div>
