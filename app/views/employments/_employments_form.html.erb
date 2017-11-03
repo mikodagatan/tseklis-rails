@@ -49,13 +49,11 @@
               </div>
             <% end %>
             <div class="row medium-up-2 small-up-1">
-              <%= render 'hr_officer_options_new', url: url, method: method %>
-              <%= render 'regularization_options', url: url, method: method %>
-              <%= render 'manager_options_new', url: url, method: method %>
+              <%= render 'hr_officer_options_new', url: url, method: method, f: f %>
+              <%= render 'regularization_options', url: url, method: method, f: f %>
+              <%= render 'manager_options_new', url: url, method: method, f: f %>
               <%# render 'subordination_options_new', url: url, method: method %>
             </div>
-            <div class="space"></div>
-            <div class="small-font-size">* Pressing these will not save the other inputs</div>
             <div class="space2"></div>
 					<% else%>
 						<%= f.hidden_field :role_id, value: @employee.id %>

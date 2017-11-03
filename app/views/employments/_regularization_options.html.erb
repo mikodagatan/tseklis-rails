@@ -1,16 +1,10 @@
 <% if @current_employment.is_hr? && @employment.regularized == false %>
   <div class="columns">
-    <%= form_for @employment, url: url, method: method do |t| %>
-      <%= t.hidden_field :regularized, value: true %>
-      <%= t.submit 'Regularize', class: "button success " %>
-    <% end %>
+    <%= f.submit 'Regularize', name: 'regularize', class: "button success add-button-border " %>
   </div>
 <% end %>
 <% if @current_employment.is_hr? && @employment.regularized == true %>
   <div class="columns">
-    <%= form_for @employment, url: url, method: method do |t| %>
-      <%= t.hidden_field :regularized, value: false %>
-      <%= t.submit 'Make Non-Regular', class: "button alert add-button-border" %>
-    <% end %>
+    <%= f.submit 'Make Non-Regular', name: 'make_non_regular', class: "button alert add-button-border" %>
   </div>
 <% end %>

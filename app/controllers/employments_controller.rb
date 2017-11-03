@@ -35,6 +35,19 @@ class EmploymentsController < ApplicationController
 	end
 
 	def update
+		if params[:make_hr]
+			@employment.update(role_id: @hr_officer.id)
+		elsif params[:make_non_hr]
+			@employment.update(role_id: @employee.id)
+		elsif params[:regularize]
+			@employment.update(regularized: true)
+		elsif params[:make_non_regular]
+			@employment.update(regularized: false)
+		elsif params[:make_manager]
+			@employment.update(role_id: @manager.id)
+		elsif params[:make_employee]
+			@employment.update(role_id: @employee.id)
+		end
 		if @employment.update_attributes(employment_params)
 	    flash[:success] = "Employment Updated!"
       redirect_to edit_user_employment_url(@employment.user_id, @employment.id)
