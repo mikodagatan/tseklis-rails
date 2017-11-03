@@ -7,6 +7,10 @@ class Company < ApplicationRecord
 	has_many :leave_requests, through: :employments
 	has_many :leave_amounts, through: :leave_requests
 	has_many :holidays
+	has_many :departments
+	has_many :projects, through: :categories
+	has_many :projects, through: :employments
+	has_many :project_times, through: :projects
 	has_one	 :address
 
 	has_one  :company_leave_setting

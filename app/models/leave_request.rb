@@ -1,6 +1,7 @@
 class LeaveRequest < ApplicationRecord
 	belongs_to :employment
 	belongs_to :leave_type
+	has_one :company, through: :employment
 	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
 	has_many :notifications, dependent: :destroy
 	has_one :rejection_message, dependent: :destroy

@@ -6,6 +6,10 @@ class Employment < ApplicationRecord
 	has_many :leave_amounts, through: :leave_requests
 	has_many :leave_reductions
 	has_many :notifications, dependent: :destroy
+	has_many :onboardings
+	has_many :projects, through: :onboardings
+	has_many :project_times
+	has_many :departments, through: :projects
 
 	# Add Manager
 	has_many :subordinates, class_name: 'Employment',
@@ -67,7 +71,7 @@ class Employment < ApplicationRecord
 	def manager_names
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
-	
+
 	def employment_names
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
