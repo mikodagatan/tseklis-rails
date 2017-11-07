@@ -111,7 +111,7 @@ class CompaniesController < ApplicationController
 	    format.js # ajax will call this format not html or json
 	    # format.json { render json: @portefeuillemodeles }
 		end
-		
+
  	end
 
 	def month_change
@@ -199,7 +199,11 @@ class CompaniesController < ApplicationController
 		  		:name,
 		  		:date,
 		  		:company_id
-		  	]
+		  	],
+				departments_attributes: [
+					:id,
+					:name
+				]
 		  )
 	end
 

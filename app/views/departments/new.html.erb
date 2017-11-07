@@ -1,0 +1,39 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Departments", company_departments_url(@company), class: 'small-nav-link' %>  &nbsp; > Create Department
+		</div>
+	</div>
+</div>
+
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
+    <div class="columns">
+      <h2>Create a Department</h2> <br />
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="columns medium-offset-3 medium-6">
+    <div class="m-well">
+      <%= form_for @department, url: company_departments_url(@company) do |f| %>
+        <%= show_error_message(@department) %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+          <%= f.fields_for :dep_head_onboardings do
+          |t| %>
+            <%= t.label :employment_id, 'Department Head' %>
+            <%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>
+            <div class="space"></div>
+            <%= t.label :start_date %>
+            <%= t.text_field :start_date, class:"datepickerstart" %>
+            <%# t.label :end_date %>
+            <%# t.text_field :end_date, class:"datepickerstart" %>
+          <% end %>
+        <%= f.submit 'Create Department', class: 'button primary no-margin' %>
+      <% end %>
+    </div>
+  </div>
+</div>

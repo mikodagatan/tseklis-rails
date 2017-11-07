@@ -1,0 +1,29 @@
+<h5>Departments</h5> <br />
+
+<%= input.nested_fields_for :departments do |department| %>
+
+	<div class="row">
+		<div class="columns" style="padding-right: 0.25rem;">
+		 	<%= department.label :name %>
+	  	<%= department.text_field :name,  placeholder: "Enter Department" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="columns">
+		  <%# department.remove_nested_fields_link 'Delete', class: "small-font-size"%>
+	  	<%# department.check_box :_destroy %>
+	  	<%# department.label :_destroy, "Remove", class: "small-font-size" %>
+		</div>
+	</div>
+
+  <div class="space"></div>
+<% end %>
+
+<div class="space"></div>
+<div class="row">
+	<div class="columns text-center">
+		<%= input.add_nested_fields_link :departments, "Add Department", class: "button warning"%>
+	</div>
+
+</div>

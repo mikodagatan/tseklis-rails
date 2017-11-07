@@ -9,60 +9,68 @@
 
   <div class="form-header">
     <div class="row text-center align-middle form-header">
-
       <div class="columns">
         <h3>Edit</h3> <br />
         <h2><%= @company.name %></h2>
       </div>
-
     </div>
+	</div>
 
     <%= show_error_message(@company) %>
 
 
-    <div class="row">
-      <div class="small-12 medium-offset-3 medium-6">
-        <div class="m-well align-middle">
+  <div class="row">
+    <div class="columns small-12 medium-offset-3 medium-6">
+      <div class="m-well align-middle">
 
 
-          <div class="field">
-            <%= f.label :name, "Company Name" %>
-            <%= f.text_field :name %>
-          </div>
-
-          <div class="row">
-            <div class="columns" style= "padding-right:0.25rem;">
-              <div id="show-address-settings" class="button warning horizontal-max">Address Settings </div>
-            </div>
-            <div class="columns" style= "padding-left:0.25rem;">
-              <div id="show-leave-type-settings" class="button warning horizontal-max">Leave Type Settings </div>
-            </div>
-          </div>
-          <div id="show-company-leave-settings" class="button success horizontal-max">Company Leave Settings</div>
-
-          <div class="space"></div>
-
-
-          <div id="address-edit-form" class="hide">
-            <%= render 'address_fields', input: f %>
-            <br />
-          </div>
-
-          <div id="leave-type-edit-form" class="hide">
-            <%= render 'leave_type_fields', input: f %>
-            <br />
-          </div>
-
-          <div id="company-leave-settings-edit-form" class="hide">
-            <%= render 'company_leave_settings_fields', input: f %> <br />
-          </div>
-
-          <div class="actions">
-            <%= f.submit "Update", class: 'button primary' %>
-          </div>
+        <div class="field">
+          <%= f.label :name, "Company Name" %>
+          <%= f.text_field :name %>
         </div>
 
+        <div class="row small-up-2 medium-up-2">
+          <div class="columns">
+            <div id="show-address-settings" class="button warning horizontal-max">Address Settings </div>
+          </div>
+          <div class="columns">
+            <div id="show-leave-type-settings" class="button warning horizontal-max">Leave Type Settings </div>
+          </div>
+					<div class="columns">
+						<div id="show-company-leave-settings" class="button success horizontal-max">Company Leave Settings</div>
+					</div>
+					<!-- <div class="columns">
+						<div id="show-department-settings" class="button warning horizontal-max">Department Settings</div>
+					</div> -->
+        </div>
+
+        <div class="space"></div>
+
+
+        <div id="address-edit-form" class="hide">
+          <%= render 'address_fields', input: f %>
+          <br />
+        </div>
+
+        <div id="leave-type-edit-form" class="hide">
+          <%= render 'leave_type_fields', input: f %>
+          <br />
+        </div>
+
+        <div id="company-leave-settings-edit-form" class="hide">
+          <%= render 'company_leave_settings_fields', input: f %> <br />
+        </div>
+
+				<!-- <div id="departments-edit-form" class="hide">
+          <%= render 'department_fields', input: f %> <br />
+        </div> -->
+
+        <div class="actions">
+          <%= f.submit "Update", class: 'button primary' %>
+        </div>
       </div>
+
     </div>
-  </div>
+	</div>
+
 <% end %>

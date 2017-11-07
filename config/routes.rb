@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :companies do
     resources :leave_types
     resources :holidays
+    resources :departments
     get 'employees' => 'companies#employees_index'
     get 'leave_requests' => 'companies#leave_requests_index'
     resources :invites

@@ -61,6 +61,15 @@ $(document).ready(function(){
     $('#address-edit-form').hide();
    });
 
+	 // Department leave settings form
+
+ 	$('#departments-edit-form').hide().removeClass('hide');
+ 	$('#show-department-settings').click(function() {
+  	$('#departments-edit-form').slideToggle();
+   	$('#leave-type-edit-form').hide();
+   	$('#address-edit-form').hide();
+  });
+
 	// Holiday settings
 
 	$('.edit-holiday-form').hide().removeClass('hide');

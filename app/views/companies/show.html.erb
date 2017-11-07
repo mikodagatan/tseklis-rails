@@ -36,6 +36,9 @@
 								<div class="columns no-padding">
 									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
+								<div class="columns no-padding">
+									<%= link_to "Departments", company_departments_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
+								</div>
 							<% end %>
 							<% if (@current_employment.present? && (@current_employment.is_hr?)) %>
 								<div class="columns no-padding">

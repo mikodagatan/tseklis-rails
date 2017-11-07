@@ -23,6 +23,7 @@ class Company < ApplicationRecord
 		:leave_types,
 		:company_leave_setting,
 		:holidays,
+		:departments,
 		allow_destroy: true
 
 
