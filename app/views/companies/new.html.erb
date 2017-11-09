@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<%= form_for @company, method: :post do |f| %>
+<%= simple_form_for @company, method: :post do |f| %>
 
 <div class="form-header">
   <div class="row text-center align-middle form-header">
@@ -23,17 +23,13 @@
   <div class="row">
     <div class="small-12 medium-offset-3 medium-6">
       <div class="m-well align-middle">
-
-
-          <div class="field">
             <%= f.label :name, "Company Name" %>
             <%= f.text_field :name %>
-          </div>
 
           <%= f.fields_for :employments, @employment do |employment| %>
 
             <div class="field">
-              <%= employment.label :start_date, "Start Date in the Company" %>
+              <%= employment.label :start_date, "Your Start Date in the Company" %>
               <%= employment.date_field :start_date, class: "datepickerstart", placeholder: "Click Here"%>
             </div>
 
@@ -66,17 +62,15 @@
 
             <div class="field">
               <%= address.label :city_town, "City/Town" %>
-              <%= address.text_field :city_town %>
+              <%= address.input_field :city_town %>
             </div>
 
             <div class="field">
-              <%= address.label :province %>
-              <%= address.text_field :province %>
+              <%= address.input :province %>
             </div>
 
             <div class="field">
-              <%= address.label :country %>
-              <%= address.text_field :country %>
+              <%= address.input :country %>
             </div>
 
             <div class="field">

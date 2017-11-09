@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :roles
   before_action :current_user_set
+  around_action :user_time_zone, if: :user_signed_in
 
   helper ApplicationHelper
 
@@ -29,6 +30,17 @@ class ApplicationController < ActionController::Base
   def hr?
     @current_employment.is_hr?
   end
+
+  def user_signed_in
+    user_signed_in?
+  end
+
+
+
+  def user_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
+  end
+
 
   protected
 
