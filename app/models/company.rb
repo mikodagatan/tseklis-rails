@@ -8,8 +8,7 @@ class Company < ApplicationRecord
 	has_many :leave_amounts, through: :leave_requests
 	has_many :holidays
 	has_many :departments
-	has_many :projects, through: :categories
-	has_many :projects, through: :employments
+	has_many :projects, through: :departments
 	has_many :project_times, through: :projects
 	has_one	 :address
 

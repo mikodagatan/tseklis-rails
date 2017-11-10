@@ -86,8 +86,19 @@ $(document).ready(function(){
 	 	$(this).siblings(".show-edit-holiday").toggle();
 	 	$(this).toggle();
 	 });
+
+
 });
 
 $(document).on('click', 'li a', function() {
 	console.log($(this));
 });
+
+$(document).on('click', function(event){
+		// this field was just inserted into your form
+		 $('.datepickerstart').pickadate({
+		 format: 'yyyy/mm/dd',
+		 selectMonths: true,
+		 selectYears: 60,
+		 });
+	});

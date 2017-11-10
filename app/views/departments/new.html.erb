@@ -9,7 +9,7 @@
 <div class="form-header">
   <div class="row text-center align-middle form-header">
     <div class="columns">
-      <h2>Create a Department</h2> <br />
+      <h2>Edit Department</h2> <br />
     </div>
   </div>
 </div>
@@ -18,10 +18,11 @@
 <div class="row">
   <div class="columns medium-offset-3 medium-6">
     <div class="m-well">
-      <%= form_for @department, url: company_departments_url(@company) do |f| %>
+      <%= form_for @department, url: company_departments_url(@company), method: :patch do |f| %>
         <%= show_error_message(@department) %>
         <%= f.label :name %>
         <%= f.text_field :name %>
+
           <%= f.fields_for :dep_head_onboardings do
           |t| %>
             <%= t.label :employment_id, 'Department Head' %>
@@ -32,7 +33,7 @@
             <%# t.label :end_date %>
             <%# t.text_field :end_date, class:"datepickerstart" %>
           <% end %>
-        <%= f.submit 'Create Department', class: 'button primary no-margin' %>
+        <%= f.submit 'Edit Department', class: 'button primary no-margin' %>
       <% end %>
     </div>
   </div>

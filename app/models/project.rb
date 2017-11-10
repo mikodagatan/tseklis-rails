@@ -4,4 +4,7 @@ class Project < ApplicationRecord
   has_many :employments, through: :onboardings
   has_many :users, through: :employments
   has_many :project_times
+  has_many :project_head_onboardings
+
+  accepts_nested_attributes_for :project_head_onboardings, allow_destroy: true, reject_if: proc { |attributes| attributes['employment_id'].blank? }
 end

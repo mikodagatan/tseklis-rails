@@ -1,0 +1,57 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Projects", company_projects_url(@company), class: 'small-nav-link' %>  &nbsp; >  &nbsp; Edit Project
+		</div>
+	</div>
+</div>
+
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
+    <div class="columns">
+      <h2>Edit a Department</h2> <br />
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="columns medium-offset-3 medium-6">
+    <div class="m-well">
+      <%= form_for @project, url: company_project_url(@company, @project), method: :patch do |f| %>
+        <%= show_error_message(@project) %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :department_id %>
+        <%= f.collection_select(:department_id, Department.where(company_id: params[:company_id]), :id, :name, {prompt: true}, {class: "select-select horizontal-max"})  %>
+
+          <%= f.nested_fields_for :project_head_onboardings, @project.project_head_onboardings.ordered_project_head do
+          |t| %>
+          <hr />
+            <%= t.label :employment_id, 'Project Head' %>
+            <%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>
+            <div class="space"></div>
+            <%= t.label :start_date %>
+            <%= t.text_field :start_date, class:"datepickerstart" %>
+            <%= t.label :end_date %>
+            <%= t.text_field :end_date, class:"datepickerstart" %>
+
+						<div class="row">
+							<div class="columns">
+							  <%# t.remove_nested_fields_link 'Delete', class: "small-font-size"%>
+						  	<%= t.check_box :_destroy %>
+						  	<%= t.label :_destroy, "Remove", class: "small-font-size" %>
+							</div>
+						</div>
+          <% end %>
+          <div class="space"></div>
+          <div class="row">
+          	<div class="columns text-center">
+          		<%= f.add_nested_fields_link :project_head_onboardings, "New Department Head", class: "button warning" %>
+          	</div>
+          </div>
+        <%= f.submit 'Update Department', class: 'button primary no-margin' %>
+      <% end %>
+    </div>
+  </div>
+</div>
