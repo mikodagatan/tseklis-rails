@@ -91,8 +91,8 @@ class User < ApplicationRecord
       moving_date = date - expiration.months
       moving_date_end = date.years_since(5)
     else
-      moving_date = Date.today - expiration.months
-      moving_date_end = Date.today.years_since(5)
+      moving_date = Time.zone.today - expiration.months
+      moving_date_end = Time.zone.today.years_since(5)
     end
 
     leave_start = start_d + start.months
@@ -105,7 +105,7 @@ class User < ApplicationRecord
     elsif place3 < 0
       place3 = 0
     end
-    if Date.today > leave_start
+    if Time.zone.today > leave_start
       value = place3 -  segmented_leaves(moving_date..moving_date_end, company, leave_type)[:amount]
     else
       value = 0.0
@@ -143,7 +143,7 @@ class User < ApplicationRecord
       if date.present?
         ending = date
       else
-        ending = Date.today
+        ending = Time.zone.today
       end
     end
     available = (ending.at_beginning_of_month - leave_start)
@@ -161,7 +161,7 @@ class User < ApplicationRecord
       .first
       .start_date
       + start.months
-    available = ((Date.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
+    available = ((Time.zone.today - leave_start) / Time.days_in_year * assigned_leave_type_amount(company, leave_type)).to_f
   end
 
   def leave_add_calculation(company, leave_type, date = nil)
@@ -190,7 +190,7 @@ class User < ApplicationRecord
     if date.present?
       ending = date
     else
-      ending = Date.today
+      ending = Time.zone.today
     end
 
     if expiration_start < ending
@@ -217,7 +217,7 @@ class User < ApplicationRecord
       .first
       .leave_reductions
       .where(leave_type_id: leave_type.id)
-    if Date.today - (leave_reduction.date + expiration.months) < 0
+    if Time.zone.today - (leave_reduction.date + expiration.months) < 0
       return leave_reduction.amount
     else
       return 0

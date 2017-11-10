@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_up, only: [:show, :edit, :update]
@@ -54,6 +55,7 @@ class UsersController < ApplicationController
 			:id,
 			:name,
       :email,
+      :time_zone,
       :password,
       :password_confirmation,
       :current_password,

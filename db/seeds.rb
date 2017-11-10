@@ -91,7 +91,7 @@ end
       # 3.times do
       #   start_d = Faker::Date.backward((employments.start_date -
       #     company.company_leave_settings.leave_month_start).days)
-      #   end_d = Faker::Date((start_d - Date.today).days)
+      #   end_d = Faker::Date((start_d - Time.zone.today).days)
       #   start_t = Faker::Time.backward(1, :all)
       #   employments.leave_requests.build(
       #     start_date: start_d

@@ -35,8 +35,6 @@ class ApplicationController < ActionController::Base
     user_signed_in?
   end
 
-
-
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
   end
@@ -47,6 +45,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     attrs = [:name,
             :email,
+            :time_zone,
             :password,
             :password_confirmation,
             :current_password,

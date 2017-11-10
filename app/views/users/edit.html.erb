@@ -1,4 +1,4 @@
-<%= form_for(@user, url: user_path, method: :patch) do |f| %>
+<%= simple_form_for(@user, url: user_path, method: :patch) do |f| %>
 
 
   <div class="form-header">
@@ -32,6 +32,10 @@
         <div class="field">
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.input :time_zone %>
         </div>
 
         <div class="actions">

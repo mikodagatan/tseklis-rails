@@ -31,11 +31,11 @@ class PagesController < ApplicationController
 		if user_signed_in? && @user.employments.present?
 
 			@year_search = params[:leave_data_year].to_s.to_i
-			@year_search = Date.today.strftime('%Y').to_i if @year_search == 0
+			@year_search = Time.zone.today.strftime('%Y').to_i if @year_search == 0
 
 			if params[:month_used].nil?
 				@leave_data = @company.employments.includes(:leave_amounts)
-					.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
+					.where('leave_amounts.date between ? and ?', Time.zone.today.at_beginning_of_month, Time.zone.today.at_end_of_month)
 					.where('leave_requests.acceptance = ?', true)
 					.references(:leave_amounts)
 			elsif params[:month_used].to_s.to_i == 0

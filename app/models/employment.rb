@@ -48,7 +48,7 @@ class Employment < ApplicationRecord
 			no_end_dates = same_employment.where(end_date: nil)
 			no_end_dates
 				.where.not(id: self.id)
-				.update_all(end_date: Date.today)
+				.update_all(end_date: Time.zone.today)
 			end
 		end
 	end

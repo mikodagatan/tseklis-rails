@@ -2,7 +2,7 @@
 	<div class="show-leave">
 		<div class="row vertical-padding">
 			<div class="columns">
-				<h2><%= Date.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h2>
+				<h2><%= Time.zone.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h2>
 			</div>
 		</div>
 		<% Array.wrap(@companies_accepted).each do |company| %>
@@ -17,7 +17,7 @@
 				<div class="columns small-12 medium-12">
 					<div class="row align-middle">
 						<div class="columns small-12 medium-3 text-center">
-						<h1 class="h-1"><%= @user.total_leaves(Date.today.all_month, company) %></h1>
+						<h1 class="h-1"><%= @user.total_leaves(Time.zone.today.all_month, company) %></h1>
 							<h5>Total Used</h5>
 							<div class="space2 show-for-small-only"></div>
 						</div>
@@ -29,7 +29,7 @@
 								</div>
 							</div>
 							<div class="row small-up-2 medium-up-3">
-								<% @user.all_segmented_leaves(Date.today.all_month, company).each do |leave_type, values| %>
+								<% @user.all_segmented_leaves(Time.zone.today.all_month, company).each do |leave_type, values| %>
 									<div class="columns text-center">
 										<h1><%= values[:amount] %></h1>
 										<p><%= values[:name] %></p>

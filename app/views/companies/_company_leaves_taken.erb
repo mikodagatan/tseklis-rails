@@ -3,7 +3,7 @@
 		<div class="row vertical-padding">
 			<div class="columns">
 				<% if @company.leave_requests.present? %>
-					<h2><%= Date.today.strftime("%B %Y") %> <small>Company leaves</small></h2>
+					<h2><%= Time.zone.today.strftime("%B %Y") %> <small>Company leaves</small></h2>
 					<div class="row align-middle vertical-padding2">
 						<div class="columns small-12 medium-12 text-center">
 							<div class="row align-middle">

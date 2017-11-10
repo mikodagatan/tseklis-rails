@@ -53,8 +53,8 @@ class CompaniesController < ApplicationController
 		@user = current_user
 		@sum = 0
 		@leaves = []
-		@month_segmented_leaves = @company.segmented_leaves(Date.today.all_month)
-		@month_total_leaves = @company.total_leaves(Date.today.all_month)
+		@month_segmented_leaves = @company.segmented_leaves(Time.zone.today.all_month)
+		@month_total_leaves = @company.total_leaves(Time.zone.today.all_month)
 		@current_employment = Employment.where(user_id: @user, company_id: @company, acceptance: true).first
 
 		# Search
@@ -65,7 +65,7 @@ class CompaniesController < ApplicationController
 		@employments = @q_employments.result(distinct: true).page(params[:employments_page]).per(@per_show)
 
 		@year_search = params[:leave_data_year].to_s.to_i
-		@year_search = Date.today.strftime('%Y').to_i if @year_search == 0
+		@year_search = Time.zone.today.strftime('%Y').to_i if @year_search == 0
 
 		# Kaminari
     @leave_requests = @company.leave_requests.reverse_order
@@ -79,7 +79,7 @@ class CompaniesController < ApplicationController
 		# leave_data
 		if params[:month_used].nil?
 			@leave_data = @company.employments.includes(:leave_amounts)
-				.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
+				.where('leave_amounts.date between ? and ?', Time.zone.today.at_beginning_of_month, Time.zone.today.at_end_of_month)
 				.where('leave_requests.acceptance = ?', true)
 				.references(:leave_amounts)
 		elsif params[:month_used].to_s.to_i == 0
@@ -227,7 +227,7 @@ class CompaniesController < ApplicationController
 
 	def leave_data
 		return @company.employments.includes(:leave_amounts)
-			.where('leave_amounts.date between ? and ?', Date.today.at_beginning_of_month, Date.today.at_end_of_month)
+			.where('leave_amounts.date between ? and ?', Time.zone.today.at_beginning_of_month, Time.zone.today.at_end_of_month)
 			.where('leave_requests.acceptance = ?', true)
 			.references(:leave_amounts)
 	end

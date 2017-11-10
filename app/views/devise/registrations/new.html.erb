@@ -1,5 +1,5 @@
 <div class="form-header">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name, invite_token: @token, start_date: @start_date, first_name: @first_name, last_name: @last_name, email: @email   ), method: :post, invite_token: params[:invite_token], start_date: params[:start_date]) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name, invite_token: @token, start_date: @start_date, first_name: @first_name, last_name: @last_name, email: @email   ), method: :post, invite_token: params[:invite_token], start_date: params[:start_date]) do |f| %>
 
   <div class="row form-header align-middle text-center">
     <div class="columns">
@@ -43,6 +43,10 @@
           <% else %>
             <%= f.email_field :email, autofocus: true %>
           <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.input :time_zone %>
         </div>
 
         <div class="field">

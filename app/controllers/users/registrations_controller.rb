@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 												start_date: @start_date,
 												acceptance: true,
 												acceptor_id: @invite.sender_id
-											).save
+											)
 				if @employment.save
 					create_notification_join_company(@employment)
 					flash[:success] = "Created Account for " + @user.profile.first_name + " " + @user.profile.last_name + ". Please login with your credentials."
@@ -63,6 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 			:id,
 			:name,
       :email,
+			:time_zone,
       :password,
       :password_confirmation,
       :current_password,
