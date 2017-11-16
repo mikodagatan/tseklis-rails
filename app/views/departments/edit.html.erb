@@ -30,7 +30,7 @@
             <%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>
             <div class="space"></div>
             <%= t.label :start_date %>
-            <%= t.text_field :start_date, class:"datepickerstart" %>
+            <%= t.text_field :start_date, class:"datepickerstart", value: Time.zone.today %>
             <%= t.label :end_date %>
             <%= t.text_field :end_date, class:"datepickerstart" %>
 

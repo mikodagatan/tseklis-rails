@@ -4,7 +4,18 @@ $(document).ready(function(){
 		format: 'yyyy/mm/dd',
 		selectMonths: true,
 		selectYears: 60,
-		});
+		// onSelect: function() {
+		//
+	  //   // Remove the delimiters
+	  //   var reformattedDate = this.getDate().replace( /-/g, '' )
+		//
+	  //   // Set the input value
+	  //   this.$node.val( reformattedDate )
+		//
+	  //   // Set the hidden input value
+	  //   this.$node.siblings( 'input[type=hidden]' ).val( reformattedDate )
+		// }
+	});
 
 	$('.datepickerend').pickadate({
 		format: 'yyyy/mm/dd',
@@ -94,11 +105,12 @@ $(document).on('click', 'li a', function() {
 	console.log($(this));
 });
 
-$(document).on('click', function(event){
+$(document).on('fields_added.nested_form_fields', function(event){
 		// this field was just inserted into your form
 		 $('.datepickerstart').pickadate({
 		 format: 'yyyy/mm/dd',
 		 selectMonths: true,
 		 selectYears: 60,
 		 });
+		 $('.select-select').select2();
 	});

@@ -26,6 +26,8 @@ class ProjectsController < ApplicationController
   def edit
     @company = Company.find(params[:company_id])
     @project = Project.find(params[:id])
+    @proj_head = @project.project_head_onboardings.build
+    @proj_employee = @project.onboardings.build
   end
 
   def update
@@ -50,6 +52,13 @@ class ProjectsController < ApplicationController
         :id,
         :employment_id,
         :department_id,
+        :project_id,
+        :start_date,
+        :end_date
+      ],
+      onboardings_attributes: [
+        :id,
+        :employment_id,
         :project_id,
         :start_date,
         :end_date
