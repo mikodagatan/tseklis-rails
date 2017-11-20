@@ -1,0 +1,19 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to 'Projects', company_projects_url(@company), class: 'small-nav-link' %> &nbsp; > &nbsp; Reports
+		</div>
+	</div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <div class="space2"></div>
+    <h3>
+      Reports
+    </h3>
+    <div class="space"></div>
+  </div>
+</div>
+
+<%= render "reports_table" %>

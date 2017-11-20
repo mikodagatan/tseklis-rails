@@ -8,7 +8,7 @@ class Employment < ApplicationRecord
 	has_many :notifications, dependent: :destroy
 	has_many :onboardings
 	has_many :projects, through: :onboardings
-	has_many :project_times
+	has_many :project_times, through: :onboardings
 	has_many :departments, through: :projects
 
 	# Add Manager

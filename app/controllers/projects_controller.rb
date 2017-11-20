@@ -67,6 +67,12 @@ class ProjectsController < ApplicationController
         employment_id: @current_employment,
         end_date: nil
         )
+    # @employees = Employment.where(company_id: @current_company)
+    # @projects = Project
+      # .where("departments.company.id == ?", @current_company)
+    @report_onboarding = @current_company.onboardings
+    @start_date = Time.zone.today.beginning_of_month
+    @end_date = Time.zone.today.end_of_month
   end
 
   private

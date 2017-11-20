@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :department
+  belongs_to :client
   has_one :company, through: :department
   has_many :employments, through: :onboardings
   has_many :users, through: :employments

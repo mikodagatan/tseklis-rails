@@ -84,6 +84,7 @@ class ApplicationController < ActionController::Base
         @current_employment = @current_employments.where(company_id: params[:id], user_id: @current_user.id, acceptance: true).first if @current_employment.blank?
         @current_companies = @current_user.companies
         @current_company = @current_companies.find_by_id(params[:id]) || @current_companies.find_by_id(params[:company_id]) if params[:controller] == 'companies' && (params[:action] != 'new' && params[:action] != 'create')
+        @current_company = Company.find_by_id(params[:company_id]) if @current_company.nil?
       end
     end
   end
