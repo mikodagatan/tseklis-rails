@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171120085356) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
+    t.integer "company_id"
   end
 
   create_table "companies", force: :cascade do |t|

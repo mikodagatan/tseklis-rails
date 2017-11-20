@@ -5,15 +5,108 @@
 		</div>
 	</div>
 </div>
+<div class="space2"></div>
 
-<div class="row">
-  <div class="columns">
-    <div class="space2"></div>
-    <h3>
+<div class="row align-middle">
+  <div class="columns medium-10">
+
+    <h3 class='no-margin'>
       Reports
     </h3>
-    <div class="space"></div>
+		<% if @type == "Client Consolidated" %>
+			<h5>Client Consolidated</h5>
+			<h6><%= @report_clients2.name if @report_clients.present? %></h6>
+		<% elsif @type == "Employee Consolidated" %>
+			<h5>Employee Consolidated</h5>
+		<% elsif @type == "Employee Timesheet" %>
+			<h5>Employee Timesheet</h5>
+			<h6><%= @report_employee.manager_names if @report_employee.present?%></h6>
+		<% end %>
+		<h6>
+			<%= better_date(@start_date.to_date) %> - <%= better_date(@end_date.to_date) %>
+		</h6>
+		<div class="space"></div>
   </div>
+	<div class="columns medium-2 text-right">
+		<div class="button warning" data-toggle="report-dropdown">
+			Report Type
+		</div>
+		<div class="dropdown-pane no-padding" id="report-dropdown" data-dropdown data-hover="true" data-hover-pane="true" >
+			<%= link_to "Employee Timesheet", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_month, end_date: Time.zone.today.at_end_of_month, type: "Employee Timesheet", timesheet_employee: {employment_id: @current_employment}), class: 'button white-c horizontal-max no-margin text-left' %>
+			<%= link_to "Employee Consolidated", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_month, end_date: Time.zone.today.at_end_of_month, type: "Employee Consolidated"), class: 'button white-c horizontal-max no-margin text-left' %>
+			<%= link_to "Client Consolidated", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_month, end_date: Time.zone.today.at_end_of_month, type: "Client Consolidated", report_clients: {client_id: @current_company.clients.last}), class: 'button white-c horizontal-max no-margin text-left' %>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+	<div class="columns medium-8">
+		<%= link_to "This Month", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_month, end_date: Time.zone.today.at_end_of_month, type: @type, timesheet_employee: {employment_id: @timesheet_employee}, report_clients: {client_id: @report_clients}), class: 'button primary small add-button-border' %>
+		<%= link_to "Last Month", reports_company_projects_url(@company, start_date: (Time.zone.today - 1.month).at_beginning_of_month, end_date: (Time.zone.today - 1.month).at_end_of_month, type: @type , timesheet_employee: {employment_id: @timesheet_employee}, report_clients: {client_id: @report_clients}), class: 'button primary small add-button-border' %>
+		<%= link_to "This Year", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_year, end_date: Time.zone.today.at_end_of_year, type: @type, timesheet_employee: {employment_id: @timesheet_employee}, report_clients: {client_id: @report_clients}), class: 'button primary small add-button-border' %>
+		<div class="button success small add-button-border" data-open="report-custom-options">Customize</div>
+		<div class="space"></div>
+		<div class="reveal" id="report-custom-options" data-reveal>
+			<h4 class='text-center'>
+				Customize Report
+			</h4>
+			<%= form_tag reports_company_projects_url(@company, form_date: true), method: :get do %>
+				<%= label_tag :start_date %>
+				<%= text_field_tag :start_date, better_date2(Date.today), class: "datepickerstart" %>
+				<%= label_tag :end_date %>
+				<%= text_field_tag :end_date, better_date2(Date.today), class: "datepickerstart" %>
+				<%# select_date Time.zone.today, {order: [:month, :year], discard_day: true}, class: "month_report" %>
+				<%= hidden_field_tag :form_date, true %>
+				<%= hidden_field_tag :type, params[:type] %>
+				<%= hidden_field_tag "timesheet_employee[employment_id]", @timesheet_employee %>
+				<%= hidden_field_tag "report_clients[client_id]", @report_clients %>
+				<div class="space"></div>
+				<div class="horizontal-max text-center">
+					<%= submit_tag "submit", class: "button small add-button-border text-center", style: 'width:30%;' %>
+
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+	<% if params[:type] == "Employee Timesheet" %>
+		<div class="columns medium-4">
+			<%= form_tag reports_company_projects_url(@company, start_date: params[:start_date], end_date: params[:end_date]), method: :get do %>
+			<div class="row">
+				<div class="columns medium-9">
+					<%= collection_select :timesheet_employee, :employment_id, @current_company.employments, :id, :manager_names, {selected: @current_employment.id}, class: 'select-select horizontal-max' %>
+					<%= hidden_field_tag :start_date, params[:start_date] %>
+					<%= hidden_field_tag :end_date, params[:end_date] %>
+					<%= hidden_field_tag :type, params[:type] %>
+				</div>
+				<div class="columns medium-3">
+					<%= submit_tag "Select", class: "button small add-button-border"%>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	<% elsif @type == "Client Consolidated" %>
+	<div class="columns medium-4">
+		<%= form_tag reports_company_projects_url(@company, start_date: params[:start_date], end_date: params[:end_date]), method: :get do %>
+		<div class="row">
+			<div class="columns medium-9">
+				<%= collection_select :report_clients, :client_id, @company.clients, :id, :name, {selected: @company.clients.last}, class: 'select-select horizontal-max' %>
+				<%= hidden_field_tag :start_date, params[:start_date] %>
+				<%= hidden_field_tag :end_date, params[:end_date] %>
+				<%= hidden_field_tag :type, params[:type] %>
+			</div>
+			<div class="columns medium-3">
+				<%= submit_tag "Select", class: "button small add-button-border"%>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+
+
 </div>
 
-<%= render "reports_table" %>
+
+<%= render "employee_consolidated_reports_table" if @type == "Employee Consolidated" %>
+<%= render "client_consolidated_reports_table" if @type == "Client Consolidated" %>
+<%= render "employee_timesheet" if @type == "Employee Timesheet"%>

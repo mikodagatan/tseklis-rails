@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'enter_time', on: :collection
       post 'entered_time', on: :collection
       get 'reports', on: :collection
+      post 'create_client', on: :collection
     end
     resources :project_times, only: [:update, :create]
     get 'employees' => 'companies#employees_index'

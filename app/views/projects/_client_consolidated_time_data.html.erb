@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= employee.user.profile.first_name %> <%= employee.user.profile.last_name %>
+  </td>
+  <% @client_projects.each do |proj| %>
+    <td class='text-center'>
+      <%= employee.project_times.where(project: proj).for_date(@start_date, @end_date).sum(:duration)%>
+    </td>
+  <% end %>
+  <td class='text-center'>
+    <%=  employee.project_times.for_date(@start_date, @end_date).for_client(@report_clients2).sum(:duration) %>
+  </td>
+
+</tr>

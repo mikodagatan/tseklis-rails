@@ -8,7 +8,6 @@
 
 <div class="space2"></div>
 
-<div class="row align-middle">
   <div class="columns">
     <h2>Edit Project</h2> <br />
   </div>
@@ -23,6 +22,10 @@
 	      <%= f.text_field :name %>
 	      <%= f.label :department_id %>
 	      <%= f.collection_select(:department_id, Department.where(company_id: params[:company_id]), :id, :name, {prompt: true}, {class: "select-select horizontal-max"})  %>
+				<div class="space"></div>
+				<%= f.label :client_id %>
+				<%= f.collection_select(:client_id, Client.where(company_id: @current_company), :id, :name, {prompt: true}, {class: "select-select horizontal-max"})  %>
+				<div class="space"></div>
 
 				<div class="space2"></div>
 			<%= f.submit 'Update Project', class: 'button primary no-margin' %>

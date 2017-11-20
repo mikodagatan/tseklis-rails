@@ -3,18 +3,7 @@ $(document).ready(function(){
 	$('.datepickerstart').pickadate({
 		format: 'mmmm dd, yyyy - dddd',
 		selectMonths: true,
-		selectYears: 60,
-		// onSelect: function() {
-		//
-	  //   // Remove the delimiters
-	  //   var reformattedDate = this.getDate().replace( /-/g, '' )
-		//
-	  //   // Set the input value
-	  //   this.$node.val( reformattedDate )
-		//
-	  //   // Set the hidden input value
-	  //   this.$node.siblings( 'input[type=hidden]' ).val( reformattedDate )
-		// }
+		selectYears: 200,
 	});
 
 	$('.datepickerend').pickadate({

@@ -10,6 +10,7 @@ class Company < ApplicationRecord
 	has_many :departments
 	has_many :projects, through: :departments
 	has_many :project_times, through: :projects
+	has_many :clients, through: :projects
 	has_many :onboardings, through: :projects
 	has_one	 :address
 

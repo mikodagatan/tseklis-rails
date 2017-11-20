@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :department
-  belongs_to :client
+  belongs_to :client, required: false
   has_one :company, through: :department
   has_many :employments, through: :onboardings
   has_many :users, through: :employments

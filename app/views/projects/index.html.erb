@@ -12,9 +12,10 @@
       <h2>Projects</h2>
     </div>
     <div class="columns small-6 medium-2">
-      <%= link_to "Create Project", new_company_project_url(@company), class: "button primary add-button-border" if hr? || manager? %>
-			<%= link_to "Enter Project Times", enter_time_company_projects_url(@company, @project), class: "button success add-button-border" %>
-			<%= link_to "Reports", reports_company_projects_url(@company), class: "button warning add-button-border" %>
+
+      <%= link_to "Create Project", new_company_project_url(@company), class: "button primary 'add-button-border small-margin" if hr? || manager? %>
+			<%= link_to "Enter Project Times", enter_time_company_projects_url(@company, @project), class: "button success add-button-border small-margin " %>
+			<%= link_to "Reports", reports_company_projects_url(@company, start_date: Time.zone.today.at_beginning_of_month, end_date: Time.zone.today.at_end_of_month, type: "Employee Consolidated"), class: "button warning add-button-border small-margin" %>
     </div>
   </div>
 </div>

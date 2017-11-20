@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <%= employee.employment.user.profile.first_name %> <%= employee.employment.user.profile.last_name %>
+  </td>
+  <td>
+    <%= employee.project.name %>
+  </td>
+  <td>
+    <%= employee.project.client.name %>
+  </td>
+  <td class='text-center'>
+    <%= time_for_project = employee.project_times.for_date(@start_date, @end_date).sum(:duration) %>
+  </td>
+  <td class='text-center'>
+    <%= nan_to_0((time_for_project / employee.employment.project_times.for_date(@start_date, @end_date).sum(:duration) * 100)).round(2) %> %
+  </td>
+  <td class='text-center'>
+    <%=  nan_to_0((employee.employment.project_times.for_date(@start_date, @end_date).for_client(employee.project.client).sum(:duration) / employee.employment.project_times.sum(:duration) * 100)).round(2) %> %
+  </td>
+</tr>

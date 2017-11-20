@@ -1,5 +1,6 @@
-table.reports_table {
+table.reports_table, table.reports_table_timesheet {
   font-size: 12px;
+  table-layout: fixed;
   &tbody{
     &tr {
       height: 1.25rem;
@@ -9,4 +10,24 @@ table.reports_table {
       }
     }
   }
+}
+
+
+select.month_report {
+  max-height: 2rem;
+  margin: 0.5rem;
+  font-size: 14px;
+}
+
+a.button.small.small-margin {
+  margin: 0.15rem;
+}
+
+a.button.small-margin {
+  margin: 0.15rem;
+}
+
+
+table.reports_table_timesheet thead.sticky tr th , table.reports_table_timesheet td{
+    width: 18% !important;//fixed width
 }

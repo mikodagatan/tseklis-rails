@@ -43,6 +43,13 @@ module ApplicationHelper
     datetime.strftime('%b %d, %Y - %I:%M%p')
   end
 
+  def nan_to_0(number)
+    number.nan? ? 0 : number
+  end
+
+  def zero_to_non(number)
+    number == 0 ? "" : number
+  end
 
   def code_block( title = nil, lang = nil, &block )
     output = capture( &block ) # this is the answer to all your problems

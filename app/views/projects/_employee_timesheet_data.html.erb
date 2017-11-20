@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <%= better_date2(day.to_date) %>
+  </td>
+  <% @company_projects.each do |proj| %>
+    <td class='text-center'>
+      <%= zero_to_non(@report_employee.project_times.where(project: proj, date: day).sum(:duration)) %>
+    </td>
+  <% end %>
+  <td class='text-center'>
+    <%= zero_to_non(@report_employee.project_times.where(date: day).sum(:duration)) %>
+  </td>
+</tr>

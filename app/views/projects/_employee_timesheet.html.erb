@@ -1,0 +1,22 @@
+<div id="top-anchor2"></div>
+<div class="row" >
+  <div class="columns" >
+    <table class="reports_table_timesheet horizontal-max">
+        <div data-sticky-container>
+          <thead class="sticky horizontal-max" data-top-anchor="top-anchor2:top" data-margin-top="5" style="max-width: 100%" stickyOn="small">
+            <tr>
+              <th style='width:16%;'>Date</th>
+              <% @onboardings.distinct.each do |t| %>
+                <th class='text-center' style='width:16%'><%= t.project.name %></th>
+              <% end %>
+              <th class='text-center' style='width:16%'>Total</th>
+
+          </thead>
+        </div>
+
+      <tbody id="reports">
+        <%= render partial: "employee_timesheet_data", collection: @dates, as: 'day' %>
+      </tbody>
+    </table>
+  </div>
+</div>

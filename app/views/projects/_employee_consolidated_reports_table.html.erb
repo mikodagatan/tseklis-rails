@@ -4,15 +4,15 @@
       <thead>
         <tr>
           <th>Employee</th>
-          <th>Client</th>
           <th>Project</th>
+          <th>Client</th>
           <th class='text-center'>Hours</th>
-          <th class='text-center'>Project % hours</th>
-          <th class='text-center'>Client % hours</th>
+          <th class='text-center'>% Time for Project</th>
+          <th class='text-center'>% Time for Client</th>
 
       </thead>
       <tbody id="reports">
-        <%= render partial: "employee_time_data", collection: @report_onboarding, as: 'employee' %>
+        <%= render partial: "employee_consolidated_time_data", collection: @report_onboarding, as: 'employee' %>
       </tbody>
     </table>
   </div>

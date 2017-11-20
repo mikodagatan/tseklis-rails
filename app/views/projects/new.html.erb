@@ -1,7 +1,7 @@
 <div class="small-nav white-border-bottom">
 	<div class="row small-nav">
 		<div class="columns">
-			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Projects", company_projects_url(@company), class: 'small-nav-link' %>  &nbsp; > Create Project
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Projects", company_projects_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Create Project
 		</div>
 	</div>
 </div>
@@ -9,14 +9,16 @@
 <div class="form-header">
   <div class="row text-center align-middle form-header">
     <div class="columns">
-      <h2>Create a Project</h2> <br />
+      <h2>Project Creation</h2> <br />
     </div>
   </div>
 </div>
 
 
-<div class="row">
-  <div class="columns medium-offset-3 medium-6">
+
+<div class="row align-middle">
+	<div class="column medium-6">
+
     <div class="m-well">
       <%= form_for @project, url: company_projects_url(@company), method: :post do |f| %>
         <%= show_error_message(@project) %>
@@ -24,6 +26,9 @@
         <%= f.text_field :name %>
         <%= f.label :department_id %>
         <%= f.collection_select(:department_id, Department.where(company_id: params[:company_id]), :id, :name, {prompt: true}, {class: "select-select horizontal-max"})  %>
+				<div class="space"></div>
+				<%= f.label :client_id %>
+				<%= f.collection_select(:client_id, Client.where(company_id: @current_company), :id, :name, {prompt: true}, {class: "select-select horizontal-max"})  %>
         <div class="space"></div>
 
           <%= f.fields_for :project_head_onboardings do
@@ -42,4 +47,16 @@
       <% end %>
     </div>
   </div>
+	<div class="columns medium-offset-1 medium-4">
+		<h6 class="text-center">Can't find your client? Create one here!</h6>
+    <div class="m-well">
+      <%= form_for @client, url: create_client_company_projects_url(@company), method: :post do |f| %>
+        <%= show_error_message(@client) %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+				<%= f.hidden_field :company_id, value: @current_company.id %>
+        <%= f.submit 'Create Client', class: 'button primary no-margin' %>
+      <% end %>
+    </div>
+	</div>
 </div>

@@ -43,6 +43,8 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_user.time_zone, &block)
   end
 
+  
+
 
   protected
 
