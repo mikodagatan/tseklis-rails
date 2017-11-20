@@ -13,6 +13,7 @@ class HolidaysController < ApplicationController
   def create
   	@holidays = @company.holidays
   	@holiday = @company.holidays.build(holiday_params)
+		# @holiday.date = default_date(@holiday_date)
   	if @holiday.save
   		flash[:success] = "Holiday Created!"
   		redirect_to company_holidays_url(@company, @holidays)

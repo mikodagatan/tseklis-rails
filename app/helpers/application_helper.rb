@@ -31,6 +31,10 @@ module ApplicationHelper
     date.strftime("%B %d, %Y - %A") if date.present?
   end
 
+  def default_date(date)
+    date.strftime("%Y-%m-%d") if date.present?
+  end
+
   def better_time(time)
     time.strftime("%I:%M%p")
   end

@@ -18,6 +18,8 @@ class LeaveRequestsController < ApplicationController
     @current_employment = @current_user.employments.where( company_id: @employment.company_id, acceptance: true).first
 
 		@leave_request = @employment.leave_requests.build(leave_request_params)
+    # @leave_request.start_date = default_date(@leave_request.start_date)
+    # @leave_request.end_date = default_date(@leave_request.end_date)
   	if @leave_request.save
       create_notification_employee(@leave_request) if params[:leave_request_from_hr] =='false'
       if params[:leave_request_from_hr] == 'true'

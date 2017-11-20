@@ -1,3 +1,7 @@
 <div class="columns">
-  <%= link_to project.name, edit_company_project_url(@company, project) %>
+  <div class="m-well2">
+    <h3><%= project.name %></h3>
+    <h4><%= project.project_times.sum(:duration) %>  <span class="h3smaller">hrs.</span></h4>
+    <%= link_to "Edit", edit_company_project_url(@company, project) %>
+  </div>
 </div>

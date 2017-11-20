@@ -15,7 +15,7 @@
 
 				<div class="field">
 					<%= f.label :date, "Date" %>
-					<%= f.text_field :date, class: "datepickerend" %>
+					<%= f.text_field :date, class: "datepickerstart", value: better_date(Time.zone.today) %>
 				</div>
 				<div class="space"></div>
 

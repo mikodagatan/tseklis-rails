@@ -17,6 +17,11 @@ input {
 	width: 100%;
 }
 
+input.button.not-expanded {
+	width: auto;
+}
+
+
 select {
 	width: 100%;
 }
@@ -215,6 +220,16 @@ select {
 	margin: 0.5rem;
 }
 
+.m-well3 {
+	width: inherit;
+	background-color: #eee;
+	border-radius: 0.5rem;
+	padding: 1rem;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+
  // callout
 
 .callout {
@@ -272,4 +287,8 @@ a.user-table-anchor {
     position: relative;
     top: -130px;
     visibility: hidden;
+}
+
+span.h3smaller {
+	font-size: 1.5rem;
 }

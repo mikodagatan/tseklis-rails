@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     @current_employment.is_hr?
   end
 
+  def manager?
+    @current_employment.is_manager?
+  end
+
   def user_signed_in
     user_signed_in?
   end

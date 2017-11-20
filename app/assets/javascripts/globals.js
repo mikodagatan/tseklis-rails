@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$('.datepickerstart').pickadate({
-		format: 'yyyy/mm/dd',
+		format: 'mmmm dd, yyyy - dddd',
 		selectMonths: true,
 		selectYears: 60,
 		// onSelect: function() {

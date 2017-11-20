@@ -41,6 +41,34 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def enter_time
+    @company = Company.find(params[:company_id])
+    @onboardings = Onboarding
+      .where(
+        employment_id: @current_employment,
+        end_date: nil
+        )
+  end
+
+  def entered_time
+    @company = Company.find(params[:company_id])
+    @onboardings = Onboarding
+      .where(
+        employment_id: @current_employment,
+        end_date: nil
+        )
+
+  end
+
+  def reports
+    @company = Company.find(params[:company_id])
+    @onboardings = Onboarding
+      .where(
+        employment_id: @current_employment,
+        end_date: nil
+        )
+  end
+
   private
 
   def project_params

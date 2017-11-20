@@ -10,4 +10,6 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_head_onboardings, allow_destroy: true, reject_if: proc { |attributes| attributes['employment_id'].blank? }
 
   accepts_nested_attributes_for :onboardings, allow_destroy: true, reject_if: proc { |attributes| attributes['employment_id'].blank? }
+
+  accepts_nested_attributes_for :project_times, allow_destroy: true, reject_if: proc { |attributes| attributes['employment_id'].blank? }
 end
