@@ -88,7 +88,8 @@
 
       				<div class="space2"></div>
 
-              <%= f.hidden_field :acceptance, value: true %>
+              <%= f.checkbox :acceptance, value: true %>
+              <%= f.label :acceptance, "Approved Leave Request" %>
               <%= f.hidden_field :acceptor_id, value: @current_user.id %>
 
       				<%= f.submit 'Update', class: "button primary" %>
