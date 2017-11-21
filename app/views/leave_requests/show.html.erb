@@ -16,11 +16,13 @@
     <div class="columns small-12 medium-4 align-self-right medium-text-right">
 			<div class="row">
 				<div class="columns">
-					<% if @leave_request.acceptance.nil? || ( @leave_request.acceptance.present? && (@current_employment.is_hr? || @employment.manager_id == @current_employment.id )) %>
+					<% if @leave_request.acceptance.nil? || ( (@current_employment.is_hr? || @employment.manager_id == @current_employment.id )) %>
 						<%= link_to edit_user_employment_leave_request_path(@user, @leave_request.employment, @leave_request), class: "button secondary " do  %>
 							<%= fa_icon "edit" %>
 						<% end %>
 					<% end %>
+				</div>
+			</div>
 
 		      <% if @leave_request.acceptance.nil? %>
 		  			<% if @current_employment.present? && (@current_employment.is_hr? || @current_user == @user || @employment.manager_id == @current_employment.id) %>

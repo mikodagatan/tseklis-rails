@@ -21,19 +21,26 @@ class LeaveRequestsController < ApplicationController
     # @leave_request.start_date = default_date(@leave_request.start_date)
     # @leave_request.end_date = default_date(@leave_request.end_date)
   	if @leave_request.save
-      create_notification_employee(@leave_request) if params[:leave_request_from_hr] =='false'
-      if params[:leave_request_from_hr] == 'true'
+      if params[:leave_request_from_hr] == 'false' || params[:leave_request_from_hr].nil?
+        create_notification_employee(@leave_request)
+        redirect_to company_path( @employment.company_id )
+      else
         create_notification_manager(@leave_request) if @current_employment.role_id == @manager.id
         create_notification_hr(@leave_request) if @current_employment.role_id == @hr_officer.id
+        if @leave_request.acceptance == false
+          redirect_to new_user_employment_leave_request_rejection_message_url(@user, @employment, @leave_request)
+        else
+          redirect_to company_path( @employment.company_id )
+        end
       end
-
-
       # flash[:success] = "Leave Request Created!"
-	    redirect_to company_path( @employment.company_id )
-
 	  else
 	  	# flash[:alert] = "Cannot create Leave Request!"
-	    render action: :new
+      if params[:leave_request_from_hr] == 'false'
+	       render action: :new
+      else
+         render action: :leave_request_by_hr
+      end
 	  end
 	end
 
@@ -147,12 +154,12 @@ class LeaveRequestsController < ApplicationController
       end
     end
     # Notify the corresponding Manager of the User
-    Notification.create(user_id: leave_request.employment.manager_id,
+    Notification.create(user_id: leave_request.employment.manager.user_id,
                         acting_user_id: @current_user.id,
                         employment_id: leave_request.employment.id,
                         leave_request_id: leave_request.id,
                         notice_type: 'leave_request_from_employee_to_manager',
-                        read: false)
+                        read: false) if leave_request.employment.manager.present?
 
     # flash[:alert] = "script being run. leave_request_from hr:" + params[:leave_request_from_hr]
 
@@ -166,12 +173,12 @@ class LeaveRequestsController < ApplicationController
                         leave_request_id: leave_request.id,
                         notice_type: 'leave_request_from_hr_to_employee',
                         read: false)
-    Notification.create(user_id: leave_request.employment.manager_id,
+    Notification.create(user_id: leave_request.employment.manager.user_id,
                         acting_user_id: @current_user.id,
                         employment_id: leave_request.employment.id,
                         leave_request_id: leave_request.id,
                         notice_type: 'leave_request_from_hr_to_manager',
-                        read: false)
+                        read: false) if leave_request.employment.manager.present?
   end
 
   def create_notification_manager(leave_request)
