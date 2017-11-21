@@ -18,7 +18,7 @@
 <div class="row">
   <div class="columns medium-offset-3 medium-6">
     <div class="m-well">
-      <%= form_for @department, url: company_departments_url(@company), method: :patch do |f| %>
+      <%= form_for @department, url: company_departments_url(@company), method: :post do |f| %>
         <%= show_error_message(@department) %>
         <%= f.label :name %>
         <%= f.text_field :name %>
