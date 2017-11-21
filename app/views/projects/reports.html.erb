@@ -90,7 +90,7 @@
 		<%= form_tag reports_company_projects_url(@company, start_date: params[:start_date], end_date: params[:end_date]), method: :get do %>
 		<div class="row">
 			<div class="columns medium-9">
-				<%= collection_select :report_clients, :client_id, @company.clients, :id, :name, {selected: @company.clients.last}, class: 'select-select horizontal-max' %>
+				<%= collection_select :report_clients, :client_id, @company.clients, :id, :name, class: 'select-select horizontal-max' %>
 				<%= hidden_field_tag :start_date, params[:start_date] %>
 				<%= hidden_field_tag :end_date, params[:end_date] %>
 				<%= hidden_field_tag :type, params[:type] %>
