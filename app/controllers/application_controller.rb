@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  helper_method :employed_here?, :employed?, :hr?, :accepted?
+  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?
 
   def employed_here?
     @current_company.present?
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_user.time_zone, &block)
   end
 
-  
+
 
 
   protected
