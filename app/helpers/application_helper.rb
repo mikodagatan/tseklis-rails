@@ -47,6 +47,10 @@ module ApplicationHelper
     number.nan? ? 0 : number
   end
 
+  def this_month
+    Time.zone.today.strftime("%B")
+  end
+
   def zero_to_non(number)
     number == 0 ? "" : number
   end
