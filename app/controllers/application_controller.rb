@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?
+  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?, :user_signed_in, :user_time_zone, :project_manager?, :department_manager?
 
   def employed_here?
     @current_company.present?
@@ -43,7 +43,13 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_user.time_zone, &block)
   end
 
+  def project_manager?
+    ProjectHeadOnboarding.find_by(employment_id: @employment).present?
+  end
 
+  def department_manager?
+    DepHeadOnboarding.find_by(employment_id: @employment).present?
+  end
 
 
   protected
