@@ -19,7 +19,7 @@ class ProjectTime < ApplicationRecord
   }
 
   scope :for_date, -> (start_date, end_date) {
-      where("project_times.date between ? and ?", start_date, end_date)
+      where("project_times.date between ? and ?", default_date(start_date), default_date(end_date))
     }
 
 
