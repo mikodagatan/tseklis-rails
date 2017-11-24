@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="m-well2">
-    <h3><%= link_to department.name, edit_company_department_url(@company, department.id) %></h3>
+    <h3><%= department.name %></h3>
     <h6><%= department.project_times.this_month.sum(:duration) %> hrs. for <%= this_month %></h6>
     <% if department.current_department_manager.present? %>
       <h6>
@@ -11,7 +11,7 @@
         No Department Head
       </h6>
     <% end %>
-
+      <%= link_to "Edit", edit_company_department_url(@company, department.id) if hr? || this_department_manager %>
   </div>
 
 </div>

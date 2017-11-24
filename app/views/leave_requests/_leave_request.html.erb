@@ -54,9 +54,10 @@
 						<%# f.submit "Reject", class: "button small expanded alert small" %>
 					<%# end %>
 				<td colspan='1'></td>
+				<td colspan='1'></td>
 
 			<% else %>
-				<td colspan="1">
+
 						<%# link_to edit_user_employment_leave_request_url(
 							leave_request.employment.user, leave_request.employment, leave_request), at_company: true,
 							class: 'button small secondary no-margin' do  %>
@@ -64,6 +65,8 @@
 						<%# end %>
 					<% if !@current_employment.blank? && ((hr? || manager?) || (Time.zone.today.at_beginning_of_day < leave_request.start_date && @current_user == @user && @current_employment == @employment)) %>
 						<%= link_to 'Delete', user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :delete, data: { confirm: "Are you sure?" }, class: 'button small alert no-margin'  %>
+					<% else %>
+						<td colspan="1"> </td>
 					<% end %>
 				</td>
 				<td colspan='1'></td>

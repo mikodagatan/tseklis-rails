@@ -84,7 +84,7 @@
 			<div class="m-well2">
 				<%= t.label :employment_id, 'Employee' %>
 				<%= t.text_field :employment_id, value: t.object.employment.user.profile.first_name + " " + t.object.employment.user.profile.last_name, disabled: true if t.object.employment.present? %>
-				<%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments.where.not(id: @onboarded), :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) if t.object.employment.nil? %>
+				<%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) if t.object.employment.nil? %>
 				<div class="space"></div>
 				<div class="row">
 					<div class="columns">

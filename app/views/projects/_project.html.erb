@@ -1,10 +1,10 @@
 <div class="columns">
   <div class="m-well2">
     <h4><%= project.name %></h4>
-    <h6 class="no-margin"><%= project.project_times.this_month.sum(:duration) %>  hrs. for <%= this_month %></h6>
-    <h6 class="no-margin"><%= project.current_project_manager.user.profile.first_name %> <%= project.current_project_manager.user.profile.last_name %></h6>
-    <h6><%= project.department.name %></h6>
-    <h6><%= project.client.name if project.client.present? %></h6>
+    <h6 class="6"><%= project.project_times.this_month.sum(:duration) %>  hrs. for <%= this_month %></h6>
+    <p class="no-margin"><%= project.current_project_manager.user.profile.first_name %> <%= project.current_project_manager.user.profile.last_name %></p>
+    <p class="no-margin"><%= project.department.name %></p>
+    <p><%= project.client.name if project.client.present? %></p>
     <%= link_to "Edit", edit_company_project_url(@company, project) if hr? || project.this_project_manager? %>
   </div>
 </div>

@@ -59,6 +59,9 @@ class ApplicationController < ActionController::Base
     self.current_project_manager == @employment
   end
 
+  def this_department_manager?
+    self.current_department_manager == @employment
+  end
   protected
 
   def configure_permitted_parameters
