@@ -1,3 +1,15 @@
 <div class="columns">
-  <%= link_to department.name, edit_company_department_url(@company, department.id) %>  
+  <div class="m-well2">
+    <h3><%= link_to department.name, edit_company_department_url(@company, department.id) %></h3>
+    <% if department.current_department_manager.present? %>
+      <h6>
+        <%= department.current_department_manager.user.profile.first_name %> <%= department.current_department_manager.user.profile.last_name %>
+      </h6>
+    <% else %>
+      <h6>
+        No Department Head
+      </h6>
+    <% end %>
+  </div>
+
 </div>

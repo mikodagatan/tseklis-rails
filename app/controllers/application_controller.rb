@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?, :user_signed_in, :user_time_zone, :project_manager?, :department_manager?
+  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?, :user_signed_in, :user_time_zone, :project_manager?, :department_manager?, :current_department_manager
 
   def employed_here?
     @current_company.present?
@@ -49,6 +49,10 @@ class ApplicationController < ActionController::Base
 
   def department_manager?
     DepHeadOnboarding.find_by(employment_id: @employment).present?
+  end
+
+  def current_department_manager
+    self.dep_head_onboardings.where(end_date: nil).last.employment
   end
 
 

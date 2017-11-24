@@ -8,4 +8,9 @@ class Department < ApplicationRecord
 
   accepts_nested_attributes_for :dep_head_onboardings, allow_destroy: true, reject_if: proc { |attributes| attributes['employment_id'].blank? }
 
+
+  def current_department_manager
+    self.dep_head_onboardings.where(end_date: nil).last.employment if self.dep_head_onboardings.present?
+  end
+
 end
