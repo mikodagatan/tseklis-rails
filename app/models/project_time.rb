@@ -27,6 +27,10 @@ class ProjectTime < ApplicationRecord
       Time.zone.now.at_end_of_month)
   }
 
+  scope :no_end, -> {
+    where("projects.end_date = ?", nil)
+  }
+
   def duration_input
     if duration <= 0
       errors.add(:duration, "duration bad")

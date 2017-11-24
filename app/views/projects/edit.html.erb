@@ -8,6 +8,7 @@
 
 <div class="space2"></div>
 
+<div class="row" >
   <div class="columns">
     <h2>Edit Project</h2> <br />
   </div>
@@ -82,7 +83,8 @@
 			<%= f.nested_fields_for :onboardings, @project.onboardings do |t| %>
 			<div class="m-well2">
 				<%= t.label :employment_id, 'Employee' %>
-				<%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>
+				<%= t.text_field :employment_id, value: t.object.employment.user.profile.first_name + " " + t.object.employment.user.profile.last_name, disabled: true if t.object.employment.present? %>
+				<%= t.collection_select(:employment_id, Company.find(params[:company_id]).employments.where.not(id: @onboarded), :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) if t.object.employment.nil? %>
 				<div class="space"></div>
 				<div class="row">
 					<div class="columns">
@@ -95,8 +97,8 @@
 					</div>
 				</div>
 				<%# t.remove_nested_fields_link 'Delete', class: "small-font-size"%>
-				<%# t.check_box :_destroy %>
-				<%# t.label :_destroy, "Remove", class: "small-font-size" %>
+				<%= t.check_box :_destroy %>
+				<%= t.label :_destroy, "Remove", class: "small-font-size" %>
 			</div>
 			<% end %>
 		</div>

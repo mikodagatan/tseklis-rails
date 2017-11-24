@@ -8,6 +8,7 @@
             <th class="text-center"><%= proj.name %></th>
           <% end %>
           <th class='text-center'>Total</th>
+          <th class="text-center">% of Total work</th>
       </thead>
       <tbody id="reports">
         <%= render partial: "client_consolidated_time_data", collection: @report_onboarding_client, as: 'employee' %>

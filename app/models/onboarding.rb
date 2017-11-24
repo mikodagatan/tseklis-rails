@@ -8,4 +8,6 @@ class Onboarding < ApplicationRecord
   validates_presence_of :start_date
 
   accepts_nested_attributes_for :project_times
+
+
 end

@@ -139,14 +139,16 @@ class ProjectsController < ApplicationController
         :department_id,
         :project_id,
         :start_date,
-        :end_date
+        :end_date,
+        :_destroy
       ],
       onboardings_attributes: [
         :id,
         :employment_id,
         :project_id,
         :start_date,
-        :end_date
+        :end_date,
+        :_destroy
       ]
     )
   end
