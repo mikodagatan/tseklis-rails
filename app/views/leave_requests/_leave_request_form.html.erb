@@ -30,7 +30,7 @@
 
 						<div class="field">
 							<%= f.label :start_date %>
-							<%= f.text_field :start_date, class: "datepickerstart", value: better_date(Time.zone.today) %>
+							<%= f.text_field :start_date, class: "datepickerstart", value: f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date)%>
 						</div>
 
 					</div>
@@ -38,7 +38,7 @@
 					<div class="columns" style= "padding-left: 0.25rem;">
 						<div class="field">
 							<%= f.label :start_time %>
-							<%= f.text_field :start_time, class: "timepickerstart" %>
+							<%= f.text_field :start_time, class: "timepickerstart", value: f.object.start_time.blank? ? better_time(Time.new(2017,1,1,9,0,0)) : better_time(f.object.start_time) %>
 						</div>
 					</div>
 
@@ -48,13 +48,13 @@
 					<div class="columns" style= "padding-right: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_date %>
-							<%= f.text_field :end_date, class: "datepickerstart", value: better_date2(Time.zone.today)%>
+							<%= f.text_field :end_date, class: "datepickerstart", value: f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date) %>
 						</div>
 					</div>
 					<div class="columns" style= "padding-left: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_time %>
-							<%= f.text_field :end_time, class: "timepickerstart", id: 'leave-request-end-time'%>
+							<%= f.text_field :end_time, class: "timepickerstart", id: 'leave-request-end-time', value: f.object.end_time.blank? ? better_time(Time.new(2017,1,1,18,0,0)) : better_time(f.object.end_time) %>
 						</div>
 					</div>
 				</div>

@@ -58,8 +58,8 @@
 				<%# select_date Time.zone.today, {order: [:month, :year], discard_day: true}, class: "month_report" %>
 				<%= hidden_field_tag :form_date, true %>
 				<%= hidden_field_tag :type, params[:type] %>
-				<%= hidden_field_tag "timesheet_employee[employment_id]", @timesheet_employee %>
-				<%= hidden_field_tag "report_clients[client_id]", @report_clients %>
+				<%= hidden_field_tag "timesheet_employee[employment_id]", @timesheet_employee.to_i %>
+				<%= hidden_field_tag "report_clients[client_id]", @report_clients.to_i %>
 				<div class="space"></div>
 				<div class="horizontal-max text-center">
 					<%= submit_tag "submit", class: "button small add-button-border text-center", style: 'width:30%;' %>
@@ -69,12 +69,12 @@
 		</div>
 
 	</div>
-	<% if params[:type] == "Employee Timesheet" %>
+	<% if @type == "Employee Timesheet" %>
 		<div class="columns medium-4">
 			<%= form_tag reports_company_projects_url(@company, start_date: params[:start_date], end_date: params[:end_date]), method: :get do %>
 			<div class="row">
 				<div class="columns medium-9">
-					<%= collection_select :timesheet_employee, :employment_id, @current_company.employments, :id, :manager_names, {selected: @current_employment.id}, class: 'select-select horizontal-max' %>
+					<%= collection_select :timesheet_employee, :employment_id, @current_company.employments, :id, :manager_names, {selected: @report_employee.id}, class: 'select-select horizontal-max' %>
 					<%= hidden_field_tag :start_date, params[:start_date] %>
 					<%= hidden_field_tag :end_date, params[:end_date] %>
 					<%= hidden_field_tag :type, params[:type] %>
@@ -90,7 +90,7 @@
 		<%= form_tag reports_company_projects_url(@company, start_date: params[:start_date], end_date: params[:end_date]), method: :get do %>
 		<div class="row">
 			<div class="columns medium-9">
-				<%= collection_select :report_clients, :client_id, @company.clients, :id, :name, class: 'select-select horizontal-max' %>
+				<%= collection_select :report_clients, :client_id, @company.clients, :id, :name, {selected: @report_clients2.id}, class: 'select-select horizontal-max' %>
 				<%= hidden_field_tag :start_date, params[:start_date] %>
 				<%= hidden_field_tag :end_date, params[:end_date] %>
 				<%= hidden_field_tag :type, params[:type] %>

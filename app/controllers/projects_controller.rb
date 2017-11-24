@@ -109,10 +109,12 @@ class ProjectsController < ApplicationController
     @report_employee = Employment.find_by_id(params[:timesheet_employee][:employment_id]) unless params[:timesheet_employee].blank?
 
     @report_clients = params[:report_clients][:client_id] unless params[:report_clients].blank?
-    @report_clients2 = Client.find_by_id(@report_clients) unless params[:report_clients].blank?
+    @report_clients2 = Client.find_by_id(params[:report_clients][:client_id]) unless params[:report_clients].blank?
     @client_projects = @report_clients2.projects.order(created_at: :asc) unless @report_clients.blank?
 
     @report_onboarding_client = @report_clients2.employments.distinct unless @report_clients.blank?
+
+    @report_onboarding_time_entry = params[:project_time_entry][:project_id] unless params[:project_time_entry].blank?
 
 
   end
