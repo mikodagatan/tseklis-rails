@@ -24,7 +24,7 @@
   					</div>
 
 					<% unless @employment.id.nil? %>
-						<% if (@current_employment.role_id == @hr_officer.id) && (@current_company_id == @employment.company_id)%>
+						<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == @employment.company_id)%>
 							<div class="field">
 								<%= f.label :end_date, "End Date" %>
 								<%= f.text_field :end_date, class: "datepickerstart" %>
@@ -42,6 +42,7 @@
 
           <% unless @employment.id.nil? || method == :post || @current_employment.is_employee? %>
             <% if @current_employment.is_hr? %>
+
               <div class="field">
                 <%= f.label :manager_id %>
                 <%= f.collection_select(:manager_id, @managers, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"}) %>

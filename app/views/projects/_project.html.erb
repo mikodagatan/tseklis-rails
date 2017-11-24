@@ -1,8 +1,9 @@
 <div class="columns">
   <div class="m-well2">
-    <h3><%= project.name %></h3>
-    <h4><%= project.project_times.this_month.sum(:duration) %>  <span class="h3smaller">hrs. for <%= this_month %></span></h4>
+    <h4><%= project.name %></h4>
+    <h6 class="no-margin"><%= project.project_times.this_month.sum(:duration) %>  hrs. for <%= this_month %></h6>
+    <h6 class="no-margin"><%= project.current_project_manager.user.profile.first_name %> <%= project.current_project_manager.user.profile.last_name %></h6>
     <h6><%= project.department.name %></h6>
-    <%= link_to "Edit", edit_company_project_url(@company, project) if hr? %>
+    <%= link_to "Edit", edit_company_project_url(@company, project) if hr? || project.this_project_manager? %>
   </div>
 </div>

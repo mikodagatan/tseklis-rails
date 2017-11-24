@@ -55,6 +55,9 @@ class ApplicationController < ActionController::Base
     self.dep_head_onboardings.where(end_date: nil).last.employment
   end
 
+  def this_project_manager?
+    self.current_project_manager == @employment
+  end
 
   protected
 
