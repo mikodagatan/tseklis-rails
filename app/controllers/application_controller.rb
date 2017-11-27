@@ -79,7 +79,8 @@ class ApplicationController < ActionController::Base
                                     :end_date,
                                     :company_id,
                                     :user_id,
-                                    :role_id]
+                                    :role_id,
+                                    :salary]
                                   ]
     devise_parameter_sanitizer.permit :sign_up, keys: attrs
     devise_parameter_sanitizer.permit :account_update, keys: attrs

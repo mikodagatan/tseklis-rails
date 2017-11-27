@@ -23,7 +23,8 @@ class InvitesController < ApplicationController
   												role_id: @employee.id,
   												start_date: @invite.start_date,
   												acceptance: true,
-  												acceptor_id: @invite.sender_id
+  												acceptor_id: @invite.sender_id,
+                          salary: @salary
   											).save!
           flash[:success] = "Invitation sent to " + @invite.email
           render action: :new
@@ -33,7 +34,7 @@ class InvitesController < ApplicationController
         end
       else
         InviteMailer.new_user_invite(@invite,
-          new_user_registration_path(invite_token: @invite.token, email: @invite.email, start_date: @invite.start_date, first_name: @invite.first_name, last_name: @invite.last_name)).deliver_now
+          new_user_registration_path(invite_token: @invite.token, email: @invite.email, start_date: @invite.start_date, first_name: @invite.first_name, last_name: @invite.last_name, salary: @invite.salary)).deliver_now
         flash[:success] = "Invitation sent to " + @invite.email
         render action: :new
       end
@@ -62,7 +63,8 @@ class InvitesController < ApplicationController
       :token,
       :first_name,
       :last_name,
-      :start_date
+      :start_date,
+      :salary
   		)
   end
 end

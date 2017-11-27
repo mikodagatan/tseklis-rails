@@ -24,7 +24,7 @@
   					</div>
 
 					<% unless @employment.id.nil? %>
-						<% if (@current_employment.role_id == @hr_officer.id) && (@current_company.id == @employment.company_id)%>
+						<% if (@current_employment.role_id == @hr_officer.id) && (@current_employment.company_id == @employment.company_id)%>
 							<div class="field">
 								<%= f.label :end_date, "End Date" %>
 								<%= f.text_field :end_date, class: "datepickerstart" %>
@@ -33,10 +33,12 @@
 						<% end %>
 					<% end %>
 
-					<div class="field">
-						<%# f.label :salary %>
-						<%# f.text_field :salary %>
-					</div>
+          <% if hr? || manager? %>
+  					<div class="field">
+  						<%= f.label :salary %>
+  						<%= f.text_field :salary %>
+  					</div>
+          <% end %>
 
 					<div class="space"></div>
 

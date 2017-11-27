@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		@start_date = params[:start_date]
 		@first_name = params[:first_name]
 		@last_name = params[:last_name]
+		@salary = params[:salary]
 		@user = User.new
 		@profile = @user.build_profile
 	end
@@ -14,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		@user = User.new(user_params)
 		@token = params[:invite_token]
 		@start_date = params[:start_date]
+		@salary = params[:salary]
 		@user.skip_confirmation! if @token.present?
 		if @user.save
 			if @token.present?
@@ -25,7 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 												role_id: @employee.id,
 												start_date: @start_date,
 												acceptance: true,
-												acceptor_id: @invite.sender_id
+												acceptor_id: @invite.sender_id,
+												salary: @salary
 											)
 				if @employment.save
 					create_notification_join_company(@employment)
@@ -75,7 +78,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
                               :end_date,
                               :company_id,
                               :user_id,
-															:role_id
+															:role_id,
+															:salary
 															]
 		)
 	end
@@ -85,7 +89,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 			:invite_token,
 			:first_name,
 			:last_name,
-			:start_date
+			:start_date,
+			:salary
 		)
 	end
 
