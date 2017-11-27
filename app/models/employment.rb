@@ -11,6 +11,7 @@ class Employment < ApplicationRecord
 	has_many :onboardings
 	has_many :project_times, through: :onboardings
 	has_many :departments, through: :projects
+	has_many :costs
 
 	# Add Manager
 	has_many :subordinates, class_name: 'Employment',

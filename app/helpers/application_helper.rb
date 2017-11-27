@@ -55,6 +55,7 @@ module ApplicationHelper
     number == 0 ? "" : number
   end
 
+
   def code_block( title = nil, lang = nil, &block )
     output = capture( &block ) # this is the answer to all your problems
     output = output.unindent   # optional, escape it as you want, too

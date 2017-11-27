@@ -49,9 +49,14 @@
 									<%= link_to "Import Leave Requests", company_import_page_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 							<% end %>
-							<% if (@current_employment.present? && (@current_employment.is_hr? || @current_employment.is_manager?)) %>
+							<% if (@current_employment.present? && (hr? || manager?)) %>
 								<div class="columns no-padding">
 									<%= link_to "Invite Employee", new_company_invite_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
+								</div>
+							<% end %>
+							<% if present_employment? && hr? %>
+								<div class="columns no-padding">
+									<%= link_to "Company Costs", company_costs_url(@company), class: 'button white-c horizontal-max no-margin text-left' %>
 								</div>
 							<% end %>
 						</div>

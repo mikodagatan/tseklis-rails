@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?, :user_signed_in, :user_time_zone, :project_manager?, :department_manager?, :current_department_manager
+  helper_method :employed_here?, :employed?, :hr?, :accepted?, :manager?, :user_signed_in, :user_time_zone, :project_manager?, :department_manager?, :current_department_manager, :present_employment?
 
   def employed_here?
     @current_company.present?
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
 
   def manager?
     @current_employment.is_manager?
+  end
+
+  def present_employment?
+    @current_employment.present?
   end
 
   def user_signed_in

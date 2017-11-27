@@ -1,0 +1,22 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Company Costs
+		</div>
+	</div>
+</div>
+<div class="show-header">
+  <div class="row align-middle show-header">
+    <div class="columns small-12 medium-10">
+      <h4><%= @company.name %></h4>
+      <h2>Company Costs</h2>
+    </div>
+    <div class="columns small-6 medium-2">
+      <%= link_to "Add Costs", new_company_cost_url(@company), class: "button primary add-button-border" if hr? %>
+    </div>
+  </div>
+</div>
+<div class="space"></div>
+<div class="row medium-up-1">
+	<%= render partial: 'costs/cost', collection: @costs, as: 'cost' %>
+</div>
