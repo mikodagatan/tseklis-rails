@@ -11,7 +11,7 @@
     <%=  employee.project_times.for_date(@start_date, @end_date).for_client(@report_clients2).sum(:duration) %>
   </td>
   <td class="text-enter">
-    <%= (employee.project_times.for(@start_date, @end_date).for_cient(@report_clients2).sum(:duration) / @report_clients2.project_times.sum(:duration) * 100).round(2) %>
+    <%= (employee.project_times.for(@start_date, @end_date).for_client(@report_clients2).sum(:duration) / @report_clients2.project_times.sum(:duration) * 100).round(2) %>
   </td>
 
 </tr>
