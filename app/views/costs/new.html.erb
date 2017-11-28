@@ -1,1 +1,38 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Company Costs", company_costs_url(@company), class: 'small-nav-link' %> &nbsp; > &nbsp; Create Costs
+		</div>
+	</div>
+</div>
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
+    <div class="columns">
+      <h2>Create Costs</h2> <br />
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="columns medium-offset-3 medium-6">
+    <div class="m-well">
+      <%= form_for @cost, url: company_costs_url(@company), method: :post do |f| %>
+        <%= show_error_message(@cost) %>
+        <%= f.label :employment_id, "Employee" %>
+        <%= f.collection_select :employment_id, @company.employments, :id, :manager_names, {prompt: true}, {class: "select-select horizontal-max"} %>
+        <div class="space"></div>
+        <%= f.label :salary, "Fully Loaded Salary"%>
+        <%= f.number_field :salary %>
+        <%= f.label :overhead %>
+        <%= f.number_field :overhead %>
+        <%= f.label :start_date, "Cost Start Date" %>
+        <%= f.text_field :start_date, class: 'datepickerstart', value: (better_date2(Time.zone.today.at_beginning_of_month) if f.object.start_date.blank?)%>
+        <%= f.label :end_date, "Cost End Date" %>
+        <%= f.text_field :end_date, class: 'datepickerstart', value: (better_date2(Time.zone.today.at_end_of_month) if f.object.start_date.nil?) %>
+        <%= f.hidden_field :company_id, value: @company.id %>
+
+        <%= f.submit 'Submit', class:'button primary horizontal-max add-button-border' %>
+      <% end %>
+    </div>
+  </div>
+</div>

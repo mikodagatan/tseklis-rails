@@ -1,17 +1,20 @@
-<div class="columns">
-  <%= cost.profile.first_name %> <%= cost.profile.last_name %>
-  <div class="row">
-    <div class="columns shrink">
-      Fully loaded Salary: <%= cost.salary %>
-    </div>
-    <div class="columns shrink">
-      Overhead: <%= cost.overhead %>
-    </div>
-    <div class='columns shrink'>
-      From: <%= better_date(cost.start_date) %>
-    </div>
-    <div class='columns shrink'>
-      To: <%= better_date(cost.end_date) %>
-    </div>
-  </div>
-</div>
+<tr>
+  <td>
+    <%= cost.profile.first_name %> <%= cost.profile.last_name %>
+  </td>
+  <td class="text-center">
+    <%= bignum(cost.salary)%>
+  </td>
+  <td class="text-center">
+    <%= bignum(cost.overhead) %>
+  </td>
+  <td class="text-center">
+    <%= bignum(cost.overhead + cost.salary) %>
+  </td>
+  <td class="text-center">
+    <%= better_date(cost.start_date) %>
+  </td>
+  <td class="text-center">
+    <%= better_date(cost.end_date) %>
+  </td>
+</tr>

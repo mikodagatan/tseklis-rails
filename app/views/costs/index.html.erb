@@ -17,6 +17,28 @@
   </div>
 </div>
 <div class="space"></div>
-<div class="row medium-up-1">
-	<%= render partial: 'costs/cost', collection: @costs, as: 'cost' %>
+<div class="row">
+  <div class="columns">
+    <h3>Last Month</h3>
+    <%= cost
+  </div>
+</div>
+<div class="row">
+  <div class="columns">
+    <table class="costs_table">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th class='text-center'>Fully Loaded Salary</th>
+          <th class="text-center">Overhead</th>
+          <th class="text-center">Total</th>
+          <th class="text-center">Start Date</th>
+          <th class="text-center">End Date</th>
+        </tr>
+      </thead>
+      <tbody id="reports">
+        <%= render partial: "cost", collection: @costs, as: 'cost' %>
+      </tbody>
+    </table>
+  </div>
 </div>

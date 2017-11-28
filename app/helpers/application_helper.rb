@@ -55,6 +55,10 @@ module ApplicationHelper
     number == 0 ? "" : number
   end
 
+  def bignum(number)
+    number_with_precision(number, :precision => 2, :delimiter => ',')
+  end
+
 
   def code_block( title = nil, lang = nil, &block )
     output = capture( &block ) # this is the answer to all your problems
