@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
 	def new
-		@token = params[:invite_token]
+		@token2 = params[:invite_token]
 		@email = params[:email]
 		@start_date = params[:start_date]
 		@first_name = params[:first_name]
@@ -13,13 +13,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 	def create
 		@user = User.new(user_params)
-		@token = params[:invite_token]
+		@token2 = params[:invite_token]
 		@start_date = params[:start_date]
 		@salary = params[:salary]
-		@user.skip_confirmation! if @token.present?
+		@user.skip_confirmation! if @token2.present?
 		if @user.save
-			if @token.present?
-				@invite = Invite.find_by_token(@token)
+			if @token2.present?
+				@invite = Invite.find_by_token(@token2)
 				org =  @invite.company
 				@employment = Employment.new(
 												company: org,
