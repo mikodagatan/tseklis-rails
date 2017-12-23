@@ -1,31 +1,33 @@
 <% if employed? && @user.employments.where(acceptance: true).first.company.leave_types.count > 1 # &&  (@has_leave_requests || :at_leave_request == true) %>
-	<div class="show-leave">
-		<div class="row vertical-padding">
-			<div class="columns">
-				<h3><%= Time.zone.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h3>
+	<% if @user == current_user || @current_employment.role_id == @manager.id || @current_employment.role_id == @hr_officer.id %>
+		<div class="show-leave">
+			<div class="row vertical-padding">
+				<div class="columns">
+					<h3><%= Time.zone.today.strftime("%B %Y")%> <small><%= @user == @current_user ? 'Your' : @user.profile.first_name + "'s" %> leaves</small></h3>
+				</div>
 			</div>
-		</div>
-		<% Array.wrap(@companies_accepted).each do |company| %>
-			<% if current_user.companies.count > 1 %>
-				<div class="row vertical-padding2">
-					<div class="columns">
-						<h4><%= link_to company.name, company_url(company), class: "white-text" %></h4>
+			<% Array.wrap(@companies_accepted).each do |company| %>
+				<% if current_user.companies.count > 1 %>
+					<div class="row vertical-padding2">
+						<div class="columns">
+							<h4><%= link_to company.name, company_url(company), class: "white-text" %></h4>
+						</div>
+					</div>
+				<% end %>
+				<div class="row">
+					<div class="columns small-12 medium-12">
+						<div class="row small-up-2 medium-up-3">
+							<% @user.all_segmented_leaves(Time.zone.today.all_month, company).each do |leave_type, values| %>
+								<div class="columns text-center">
+									<h2><%= values[:amount] %> <%= values[:name] == 'Unpaid' ? '' : '-' %> <a style='color:#90EE90;'><%= values[:name] == 'Unpaid' ? '' :  @user.available_leaves(company, LeaveType.find_by(company: company, name: leave_type))[:amount].to_s %></a></h2>
+									<p><%= values[:name] %></p>
+								</div>
+							<% end %>
+						</div>
 					</div>
 				</div>
+				<div class="space2"></div>
 			<% end %>
-			<div class="row">
-				<div class="columns small-12 medium-12">
-					<div class="row small-up-2 medium-up-3">
-						<% @user.all_segmented_leaves(Time.zone.today.all_month, company).each do |leave_type, values| %>
-							<div class="columns text-center">
-								<h2><%= values[:amount] %> <%= values[:name] == 'Unpaid' ? '' : '-' %> <a style='color:#90EE90;'><%= values[:name] == 'Unpaid' ? '' :  @user.available_leaves(company, LeaveType.find_by(company: company, name: leave_type))[:amount].to_s %></a></h2>
-								<p><%= values[:name] %></p>
-							</div>
-						<% end %>
-					</div>
-				</div>
-			</div>
-			<div class="space2"></div>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 <% end %>
