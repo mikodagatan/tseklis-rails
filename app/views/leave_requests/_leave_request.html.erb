@@ -2,7 +2,7 @@
 	<tr class="table-data">
 		<% unless at_company == false %>
 			<td>
-				<%= link_to user_url(leave_request.employment.user) do %>
+				<%= link_to user_url(leave_request.employment.user, company: @company.id) do %>
 					<%= leave_request.employment.user.profile.first_name%>
 					<%= leave_request.employment.user.profile.last_name %>
 				<% end %>
