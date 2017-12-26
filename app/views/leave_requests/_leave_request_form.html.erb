@@ -30,7 +30,7 @@
 
 						<div class="field">
 							<%= f.label :start_date %>
-							<%= f.text_field :start_date, class: "datepickerstart", value: f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date)%>
+							<%= f.text_field :start_date, class: "datepickerstart", value: nil, "data-value": f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date)%>
 						</div>
 
 					</div>
@@ -48,7 +48,7 @@
 					<div class="columns" style= "padding-right: 0.25rem;">
 						<div class="field">
 							<%= f.label :end_date %>
-							<%= f.text_field :end_date, class: "datepickerstart", value: f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date) %>
+							<%= f.text_field :end_date, class: "datepickerstart", value: nil, "data-value": f.object.start_date.blank? ? better_date2(Time.zone.today) : better_date2(f.object.start_date) %>
 						</div>
 					</div>
 					<div class="columns" style= "padding-left: 0.25rem;">

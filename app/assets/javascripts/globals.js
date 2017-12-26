@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('.datepickerstart').pickadate({
 		format: 'mmmm dd, yyyy - dddd',
 		selectMonths: true,
-		selectYears: true,
+		selectYears: 300,
 	});
 
 	$('.datepickerend').pickadate({

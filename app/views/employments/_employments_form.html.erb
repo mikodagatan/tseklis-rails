@@ -20,14 +20,14 @@
 
   					<div class="field">
   						<%= f.label :start_date, "Start Date" %>
-  						<%= f.text_field :start_date, class: "datepickerstart" %>
+  						<%= f.text_field :start_date, class: "datepickerstart", value: nil, "data-value": better_date2(@employment.start_date) %>
   					</div>
 
 					<% unless @employment.id.nil? %>
 						<% if (@current_employment.role_id == @hr_officer.id) && (@current_employment.company_id == @employment.company_id)%>
 							<div class="field">
 								<%= f.label :end_date, "End Date" %>
-								<%= f.text_field :end_date, class: "datepickerstart" %>
+								<%= f.text_field :end_date, class: "datepickerstart", value: nil, "data-value": better_date2(@employment.end_date) %>
                 <p class="small-font-size">* Enter if the user has left the company</p>
 							</div>
 						<% end %>
