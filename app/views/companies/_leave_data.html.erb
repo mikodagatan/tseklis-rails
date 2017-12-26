@@ -1,6 +1,6 @@
 <tr class="black-text">
   <td>
-    <%= link_to "#{leave_data.user.profile.first_name} #{leave_data.user.profile.last_name}", user_url(employment.user_id, company: @company.id) %>
+    <%= link_to "#{leave_data.user.profile.first_name} #{leave_data.user.profile.last_name}", user_url(leave_data.user_id, company: @company.id) %>
   </td>
   <% sumtotal = 0 %>
   <% @company.leave_types.each do |leave_type| %>
