@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127110033) do
+ActiveRecord::Schema.define(version: 20171228122911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "add_leaves", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "leave_type_id"
+    t.integer "employment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.string "first_line"

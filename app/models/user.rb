@@ -87,6 +87,7 @@ class User < ApplicationRecord
     leave_end = self.employments
       .where(company_id: company.id)
       .last
+      .end_date
     if date.present?
       moving_date = date - expiration.months
       moving_date_end = date.years_since(5)
@@ -97,11 +98,17 @@ class User < ApplicationRecord
 
     leave_start = start_d + start.months
     leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
+    add_leaves = self.employments
+      .where(company_id: company.id)
+      .last
+      .add_leaves
+      .where(leave_type_id: leave_type.id)
+      .sum(:amount)
     place1 = leave_add_calculation(company, leave_type, date).round(2)
     place2 = leave_expire(company, leave_type, date).round(2)
-    place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2)
-    if place3 > leave_amount_max
-      place3 = leave_amount_max
+    place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2) + add_leaves
+    if place3 > leave_amount_max + add_leaves
+      place3 = leave_amount_max + add_leaves
     elsif place3 < 0
       place3 = 0
     end

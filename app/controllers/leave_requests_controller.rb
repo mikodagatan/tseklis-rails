@@ -140,6 +140,15 @@ class LeaveRequestsController < ApplicationController
       )
 	end
 
+  def add_leave_params
+    params.require(:add_leave).permit(
+      :id,
+      :amount,
+      :leave_type_id,
+      :employment_id
+    )
+  end
+
   def create_notification_employee(leave_request)
     # create notications to HR Officers as the leave request is created by the employee
     @hr_officers = leave_request.employment.company.employments.where(role_id: 1)

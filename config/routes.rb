@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         resource :rejection_message
       end
       get 'leave_request_by_hr' => 'leave_requests#leave_request_by_hr'
+      resources :add_leaves, only: [:new, :create]
     end
   end
 

@@ -1,0 +1,16 @@
+<div class="space3"></div>
+<div class="row">
+  <div class="small-12 text-center">
+    <h4>Add Leaves for <%= @employment.user.profile.first_name %> <%= @employment.user.profile.last_name %></h4>
+  </div>
+</div>
+<div class="space"></div>
+<div class="row">
+  <div class="medium-offset-3 medium-6 small-12">
+    <%= simple_form_for @add_leave, url: user_employment_add_leaves_url(@employment.user.id, @employment.id), method: :post do |f| %>
+      <%= f.input :leave_type_id, collection: @leave_types, label_method: :name, value_method: :id %>
+      <%= f.input :amount %>
+      <%= f.submit "Add Leave", class: 'button button-primary add-button-border' %>
+    <% end %>
+  </div>
+</div>

@@ -6,6 +6,7 @@ class Employment < ApplicationRecord
 	has_many :leave_amounts, through: :leave_requests
 	has_many :leave_reductions
 	has_many :notifications, dependent: :destroy
+	has_many :add_leaves
 
 	has_many :projects, through: :onboardings
 	has_many :onboardings
