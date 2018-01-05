@@ -40,11 +40,11 @@ module ApplicationHelper
   end
 
   def better_time(time)
-    time.strftime("%I:%M%p")
+    time.strftime("%I:%M %p")
   end
 
   def better_datetime(datetime)
-    datetime.strftime('%b %d, %Y - %I:%M%p')
+    datetime.strftime('%b %d, %Y - %I:%M %p')
   end
 
   def nan_to_0(number)

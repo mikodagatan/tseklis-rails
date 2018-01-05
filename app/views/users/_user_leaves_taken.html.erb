@@ -19,7 +19,7 @@
 						<div class="row small-up-2 medium-up-3">
 							<% @user.all_segmented_leaves(Time.zone.today.all_month, company).each do |leave_type, values| %>
 								<div class="columns text-center">
-									<h2><%= values[:amount] %> <%= values[:name] == 'Unpaid' ? '' : '-' %> <a style='color:#90EE90;'><%= values[:name] == 'Unpaid' ? '' :  number_with_precision(@user.available_leaves(company, LeaveType.find_by(company: company, name: leave_type))[:amount], precision: 2) %></a></h2>
+									<h2><%= values[:amount] %> <%= values[:name] == 'Unpaid' ? '' : '|' %> <a style='color:#90EE90;'><%= values[:name] == 'Unpaid' ? '' :  number_with_precision(@user.available_leaves(company, LeaveType.find_by(company: company, name: leave_type))[:amount], precision: 2) %></a></h2>
 									<p><%= values[:name] %></p>
 								</div>
 							<% end %>

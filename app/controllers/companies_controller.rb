@@ -128,9 +128,14 @@ class CompaniesController < ApplicationController
 
 	def leave_requests_index
 		@company = Company.find(params[:company_id])
+		@current_employment = @company.employments.where(user_id: @current_user, acceptance: true).last
 		@leave_requests = @company.leave_requests.reverse_order
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(50)
-		@current_employment = @company.employments.where(user_id: @current_user, acceptance: true)
+		respond_to do |format|
+			format.html
+			format.xlsx
+		end
+
 	end
 
 	def import_page
@@ -233,6 +238,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def redirect_not_company
+		@company = Company.find(params[:company_id]) if params[:action] == 'leave_requests_index'
     unless user_signed_in? && current_user.employments.where(company: @company).present?
       redirect_to root_url
     end

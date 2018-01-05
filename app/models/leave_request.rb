@@ -5,6 +5,7 @@ class LeaveRequest < ApplicationRecord
 	has_many :leave_amounts, foreign_key: :leave_request_id, dependent: :destroy
 	has_many :notifications, dependent: :destroy
 	has_one :rejection_message, dependent: :destroy
+	belongs_to :acceptor, class_name: "Employment", foreign_key: "acceptor_id", optional: true
 	before_destroy :delete_amounts
 
 	validates_presence_of :title
@@ -63,6 +64,24 @@ class LeaveRequest < ApplicationRecord
 			focus_date = focus_date.next_day
 		end
 		amount.sum
+	end
+
+	def status
+		if self.acceptance.nil?
+				"Waiting"
+		elsif self.acceptance == true
+				"Approved"
+		else
+				'Rejected'
+		end
+	end
+
+	def acceptor_name
+		if self.acceptor.nil?
+			nil
+		else
+			self.acceptor.user.profile.full_name
+		end
 	end
 
 	protected
@@ -256,13 +275,13 @@ class LeaveRequest < ApplicationRecord
 		end
 	end
 
-		def self.open_spreadsheet(file)
-		  case File.extname(file.original_filename)
-		  when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
-		  when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
-		  when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
-		  else raise "Unknown file type: #{file.original_filename}"
-		  end
-		end
+	def self.open_spreadsheet(file)
+	  case File.extname(file.original_filename)
+	  when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
+	  when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
+	  when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
+	  else raise "Unknown file type: #{file.original_filename}"
+	  end
+	end
 
 end

@@ -81,5 +81,10 @@ gem 'premailer-rails'
 gem 'roo'
 gem 'spreadsheet', '~> 1.1', '>= 1.1.4'
 gem "iconv", "~> 1.0.3"
+gem 'axlsx', '~> 2.1.0.pre'
+gem 'axlsx_rails'
+gem 'rubyzip', '1.1.7'
 
 ruby '2.4.0'
+
+gem 'rake', '12.3.0'

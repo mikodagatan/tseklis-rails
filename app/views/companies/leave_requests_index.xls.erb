@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+		<Table>
+			<Row>
+					<Cell>
+            <Data ss:Type="String">Employee</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Title</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Leave Type</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Start Date</Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String">Start Time</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">End Date</Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String">End Time</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Status</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Reviewer</Data>
+          </Cell>
+					<Cell>
+            <Data ss:Type="String">Amount</Data>
+          </Cell>
+			</Row>
+      <% @leave_requests.each do |lr| %>
+        <Row>
+          <Cell>
+            <Data ss:Type="String"><%= lr.employment.user.profile.full_name %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.title %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.leave_type.name %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.start_date.strftime("%m/%d/%Y") %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= better_time(lr.start_time) %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.end_date.strftime("%m/%d/%Y") %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= better_time(lr.end_time) %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.status %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= User.find(lr.acceptor_id).profile.full_name if lr.acceptor_id.present? %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= lr.show_amount %></Data>
+          </Cell>
+        </Row>
+      <% end %>
+		</Table>
+  </Worksheet>
+</Workbook>

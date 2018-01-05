@@ -17,4 +17,8 @@ class Profile < ApplicationRecord
   pg_search_scope :search_for, against: %i(first_name last_name)
   multisearchable against: %i(first_name last_name)
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

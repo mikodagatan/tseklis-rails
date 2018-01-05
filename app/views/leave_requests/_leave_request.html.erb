@@ -42,7 +42,7 @@
 			<%= leave_request.show_amount %>
 		</td>
 		<% unless at_company == false %>
-			<% if !@current_employment.blank? && @current_employment.is_hr? %>
+			<% if !@current_employment.blank? && hr? %>
 					<%# form_for leave_request, url: user_employment_leave_request_url(leave_request.employment.user, leave_request.employment, leave_request), method: :patch, at_company: true do |f| %>
 						<%# f.hidden_field :acceptance, value: true %>
 						<%# f.hidden_field :acceptor_id, value: @current_user.id %>

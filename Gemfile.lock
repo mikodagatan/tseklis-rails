@@ -52,6 +52,13 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
     ast (2.3.0)
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.1.7)
+    axlsx_rails (0.1.5)
+      axlsx
+      rails (>= 3.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -246,7 +253,7 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_mime (0.1.4)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.3)
     money (6.9.0)
       i18n (>= 0.6.4, < 0.9)
@@ -261,8 +268,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     nio4r (2.1.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     ori (0.1.0)
     orm_adapter (0.5.0)
     os (1.0.0)
@@ -330,7 +337,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.0.0)
+    rake (12.3.0)
     ransack (1.8.3)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -377,7 +384,7 @@ GEM
     ruby_engine (1.0.1)
     ruby_info (1.0.1)
     ruby_version (1.0.1)
-    rubyzip (1.2.1)
+    rubyzip (1.1.7)
     sass (3.4.25)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -469,6 +476,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx (~> 2.1.0.pre)
+  axlsx_rails
   byebug
   capistrano (~> 3.7, >= 3.7.1)
   capistrano-passenger (~> 0.2.0)
@@ -507,11 +516,13 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.2)
+  rake (= 12.3.0)
   ransack
   responders
   roo
   rspec-rails
   rubocop
+  rubyzip (= 1.1.7)
   sass-rails (~> 5.0.6)
   select2-rails (~> 4.0, >= 4.0.3)
   selenium-webdriver
@@ -530,4 +541,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.0.pre.3

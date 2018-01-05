@@ -78,4 +78,19 @@ class Employment < ApplicationRecord
 	def employment_names
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
+
+	def is_hr?
+		@hr_officer = Role.find(1)
+		self.blank? ? false : self.role_id == @hr_officer.id
+	end
+
+	def is_employee?
+		@employee = Role.find(2)
+		self.blank? ? false : self.role_id == @employee.id
+	end
+
+	def is_manager?
+		@manager = Role.find(3)
+		self.blank? ? false : self.role_id == @manager.id
+	end
 end
