@@ -42,7 +42,7 @@ class LeaveRequest < ApplicationRecord
 		amount = []
 		focus_date = start_date
 		duration_date.times do |date|
-			if focus_date == end_date
+			if focus_date == end_date && (duration_date == 1)
 				if (end_time - start_time <= 1.hours)
 					amount_plus = 0
 				elsif (end_time - start_time <= 2.hours)
@@ -109,7 +109,7 @@ class LeaveRequest < ApplicationRecord
 			leave_amount = LeaveAmount.new do |att|
 				att.date = focus_date
 				att.leave_request_id = id
-				if focus_date == end_date
+				if focus_date == end_date && (duration_date == 1)
 					if (end_time - start_time <= 1.hours)
 						att.amount = 0
 					elsif (end_time - start_time <= 2.hours)
