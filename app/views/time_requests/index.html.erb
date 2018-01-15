@@ -1,0 +1,40 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Time Requests
+		</div>
+	</div>
+</div>
+
+<div class="space"></div>
+
+<div class="row">
+  <div class="column">
+    <div class="row">
+      <div class="column">
+        <h3>Time Requests <small>Biometric Attendance</small></h3>
+      </div>
+      <div class="column medium-6 text-right">
+        <%= link_to 'Create Time Request', new_company_time_request_url(@company), class: 'button button-primary add-button-border' %>
+        <%= link_to 'Export to .xlsx', excel_export_company_time_requests_url(@company, year: @year, month: @month, format: 'xlsx'), class: 'button button-primary add-button-border' %>
+      </div>
+    </div>
+    <div class="horizontal-max">
+      <%= render 'filter_form' %>
+    </div>
+    <table class="table horizontal-max" style='min-width: 100%;'>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Title</th>
+          <th>In/Out</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'time_request', collection: @time_requests, as: 'tr' %>
+      </tbody>
+    </table>
+  </div>
+</div>

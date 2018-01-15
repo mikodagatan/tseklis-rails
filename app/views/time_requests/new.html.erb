@@ -1,0 +1,26 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to 'Time Requests', company_time_requests_url(@company), class: 'small-nav-link' %> &nbsp; > &nbsp; New Time Request
+		</div>
+	</div>
+</div>
+
+<div class="space"></div>
+
+<div class="form-header">
+  <div class="row text-center align-middle form-header">
+
+    <div class="columns">
+
+      <h2>New Time Request</h2>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns">
+      <%= render 'time_request_form', url: company_time_requests_url(@company), method: :post %>
+    </div>
+  </div>
+</div>

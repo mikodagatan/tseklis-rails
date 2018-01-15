@@ -29,16 +29,21 @@
 						<div class="columns small-up-1 medium-up-1">
 							<% if @current_employment.present? && @has_leave_types %>
 								<div class="columns no-padding">
-								<%= link_to "Create a Leave Request",
+									<%= link_to "Create a Leave Request",
 											new_user_employment_leave_request_url(@current_user, @current_employment),
+											class: "button white-c horizontal-max no-margin text-left" %>
+								</div>
+								<div class="columns no-padding">
+									<%= link_to "Time Requests",
+											company_time_requests_url(@company),
 											class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 								<div class="columns no-padding">
 									<%= link_to "Holidays", company_holidays_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
 								<div class="columns no-padding">
-									<%= link_to "Departments", company_departments_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
-									<%= link_to "Projects", company_projects_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
+									<%= link_to "Departments", company_departments_url(@company.id), class: "button white-c horizontal-max no-margin text-left" if @company.offshore? %>
+									<%= link_to "Projects", company_projects_url(@company.id), class: "button white-c horizontal-max no-margin text-left" if @company.offshore? %>
 								</div>
 							<% end %>
 							<% if (@current_employment.present? && (@current_employment.is_hr?)) %>

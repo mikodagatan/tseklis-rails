@@ -1,0 +1,16 @@
+<%= form_tag company_time_requests_url(@company), method: :get %>
+<div class="row align-middle">
+  <div class="column medium-2">
+    <h4><%= @date_string %></h4>
+  </div>
+  <div class="column medium-6"></div>
+  <div class="column medium-1">
+    <%= select_year(Time.zone.now) %>
+  </div>
+  <div class="column medium-2">
+    <%= select_month(Time.zone.now) %>
+  </div>
+  <div class="column medium-1">
+    <%= submit_tag 'Submit', class: 'button button-primary add-button-border'%>
+  </div>
+</div>

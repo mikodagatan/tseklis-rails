@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       get 'reports', on: :collection
       post 'create_client', on: :collection
     end
+    resources :time_requests do
+      get 'excel_export', on: :collection
+    end
     resources :project_times, only: [:update, :create]
     get 'employees' => 'companies#employees_index'
     get 'leave_requests' => 'companies#leave_requests_index'

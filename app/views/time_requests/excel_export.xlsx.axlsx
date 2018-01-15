@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Time Requests") do |sheet|
+    sheet.add_row ['Employee', 'Title', 'In/Out', 'Date (dd/mm/yyyy)', 'Time']
+  @time_requests.each do |tr|
+    sheet.add_row [
+      tr.employment.employment_names,
+      tr.title,
+      tr.in_out,
+      tr.date.strftime('%d/%m/%Y'),
+      better_time(tr.time)
+      ]
+  end
+end

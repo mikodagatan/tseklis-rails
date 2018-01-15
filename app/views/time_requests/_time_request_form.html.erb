@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="small-12 medium-offset-3 medium-6">
+    <%= simple_form_for @time_request, url: url, method: method do |f|%>
+      <%= f.input :title %>
+      <%= f.input :in_out, label: 'Time In / Time Out', collection: ['Time In', 'Time Out'] %>
+      <%= f.label :date %>
+      <%= f.text_field :date, class: 'datepickerstart' %>
+      <%= f.label :time %>
+      <%= f.text_field :time, class: 'timepickerstart' %>
+      <%= f.submit class: 'button button-primary add-button-border' %>
+     <% end %>
+  </div>
+</div>
