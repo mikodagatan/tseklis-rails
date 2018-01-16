@@ -227,9 +227,11 @@ $top-bar-min-height: 5%;
 
 .notification-dropdown {
 	min-height: 0vh;
+	max-height: 50vh;
 	width: 40rem;
 	max-width: 40rem;
   margin-top: 10px;
+	box-shadow: 0 0 15px rgba(0,0,0,0.15);
   &div.notification-item {
 		min-height: 3rem;
 		width: 100%;
@@ -242,6 +244,9 @@ $top-bar-min-height: 5%;
 	font-size: 0.9rem;
 }
 
+.dropdown-pane {
+	box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
 
 @media only screen and (max-width: 500px) {
 	.notification-dropdown {
@@ -286,6 +291,9 @@ $top-bar-min-height: 5%;
 	word-wrap: break-word;
 }
 
+.notification-scroll {
+	overflow-y: scroll;
+}
 
 .callout.no-margin {
 	margin: 0;
