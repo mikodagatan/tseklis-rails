@@ -1,5 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+	before_action :restrict_signup, only: [:new]
+
 	def new
 		@token2 = params[:invite_token]
 		@email = params[:email]
@@ -105,5 +107,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 				notice_type: 'join_company',
 				read: false)
 		end
+	end
+
+	def restrict_signup
+		authenticate_or_request_with_http_basic('Administration') do |username, password|
+		 ActiveSupport::SecurityUtils.secure_compare(username, "admin") &&
+		 ActiveSupport::SecurityUtils.secure_compare(password, "!tseklissignuppass65fb35f526")
+	 end
 	end
 end
