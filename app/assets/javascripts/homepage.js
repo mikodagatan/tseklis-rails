@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
 
   $('#instructions').hide().removeClass("hide");
   $('#show_instructions').click(function(){

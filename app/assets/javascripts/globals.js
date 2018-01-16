@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
 
 	$('.datepickerstart').pickadate({
 		format: 'mmmm dd, yyyy - dddd',

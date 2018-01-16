@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $('#hr-dashboard').hide().removeClass("hide");
   $('#show-hr-dashboard').click(function(){
     $('#hr-dashboard').slideToggle();
