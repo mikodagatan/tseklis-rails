@@ -15,6 +15,7 @@
 //= require jquery
 //= require rails-ujs
 //= require cable
+//= require turbolinks
 //= require foundation
 //= require_tree .
 
@@ -28,3 +29,10 @@
 
 //= require globals
 //= require homepage
+//= require datepicker
+//= require holiday
+//= require company_settings
+
+$(document).on('turbolinks:load', function() {
+	$(document).foundation();
+});
