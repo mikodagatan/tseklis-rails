@@ -138,3 +138,11 @@
 	height: 40px;
 	width: 40px;
 }
+
+.front-page-card {
+	padding: 4rem;
+}
+
+.front-page-card:hover {
+	box-shadow: 0 0 30px rgba(0,0,0,0.15);
+}

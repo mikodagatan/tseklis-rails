@@ -11,7 +11,7 @@
       </div>
       <div class="row small-up-1 medium-up-3">
         <% @features.each do |feature| %>
-        <div class="columns">
+        <div class="columns front-page-card">
           <%= image_tag feature.photo.url(:medium), class:'feature-icon' %>
           <div class="space3"></div>
           <h4 class="white-text"><%= feature.name %></h4>
