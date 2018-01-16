@@ -50,9 +50,6 @@
 								<div class="columns no-padding">
 									<%= link_to "Company Settings", edit_company_url(@company.id), class: "button white-c horizontal-max no-margin text-left" %>
 								</div>
-								<div class="columns no-padding">
-									<%= link_to "Import Leave Requests", company_import_page_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
-								</div>
 							<% end %>
 							<% if (@current_employment.present? && (hr? || manager?)) %>
 								<div class="columns no-padding">
@@ -61,9 +58,15 @@
 							<% end %>
 							<% if present_employment? && hr? %>
 								<div class="columns no-padding">
-									<%= link_to "Company Costs", company_costs_url(@company), class: 'button white-c horizontal-max no-margin text-left' %>
+									<%= link_to "Company Costs", company_costs_url(@company), class: 'button white-c horizontal-max no-margin text-left' if @company.offshore? %>
 								</div>
 							<% end %>
+							<div class="columns no-padding">
+								<%= link_to "Import Leave Requests", company_import_page_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
+							</div>
+							<div class="columns no-padding">
+								<%= link_to "Import Employees", company_employee_import_page_url(@company), class: "button white-c horizontal-max no-margin text-left" %>
+							</div>
 						</div>
 			    </div>
 				</section>

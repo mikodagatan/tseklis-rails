@@ -1,0 +1,12 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Leave Requests") do |sheet|
+    sheet.add_row ['First Name', 'Last Name', 'Email', 'Password']
+  @company.user_import_passwords.reverse_order.each do |pw|
+    sheet.add_row [
+      pw.user.profile.first_name,
+      pw.user.profile.last_name,
+      pw.user.email,
+      pw.password.to_s
+      ]
+  end
+end

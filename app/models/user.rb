@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-	has_one  :profile
+	has_one  :profile, dependent: :destroy
+  has_one :user_import_password, dependent: :destroy
 	has_many :role, through: :employments
-	has_many :employments
+	has_many :employments, dependent: :destroy
 	has_many :companies, through: :employments
 	has_many :leave_requests, through: :employments
 	has_many :leave_types, through: :companies
@@ -18,6 +19,9 @@ class User < ApplicationRecord
 
   ransack_alias :employee_name, :profile_first_name_or_profile_last_name
 
+  def full_name
+    "#{profile.first_name} #{profile.last_name}"
+  end
 	def employed?(company=nil)
 		if company.nil?
 			employments.present?
@@ -241,5 +245,70 @@ class User < ApplicationRecord
     end
   end
 
+  def self.import(file, company, user)
+    require 'securerandom'
+	  spreadsheet = open_spreadsheet(file)
+	  header = spreadsheet.row(1)
+	  (2..spreadsheet.last_row).each do |i|
 
+      upassword = SecureRandom.hex(4).to_s
+	    row = Hash[[header, spreadsheet.row(i)].transpose]
+
+      profile_check = Profile.find_by(first_name: row["First Name"], last_name: row["Last Name"])
+      user = find_by_id(profile_check.user_id) unless profile_check.nil?
+      user = new if profile_check.nil?
+      user.time_zone = "Singapore"
+      user.email = row["Email"]
+      user.password = upassword if user.password.nil?
+      user.skip_confirmation!
+      user.save!
+      user.confirm
+
+      if profile_check.nil?
+        profile = user.build_profile
+  	    profile.first_name = row["First Name"] if profile.first_name.nil?
+        profile.last_name = row["Last Name"] if profile.last_name.nil?
+        profile.save!
+      end
+
+			employment = user.employments.build
+			employment.start_date = Date.parse(row['Start Date'].to_s).strftime("%Y/%m/%d")
+      employment.company_id = company.id
+      employment.regularized = true if row["Regularized?"] == true
+      employment.acceptance = true
+      employment.acceptor_id = user.employments.last.id
+      employment.role_id = 2
+			employment.save!
+
+      password = UserImportPassword.new
+      password.user_id = user.id
+      password.password = upassword
+      password.save!
+		end
+  end
+
+  def self.mass_delete(file, company, user)
+		spreadsheet = open_spreadsheet(file)
+		header = spreadsheet.row(1)
+		(2..spreadsheet.last_row).each do |i|
+			row = Hash[[header, spreadsheet.row(i)].transpose]
+      employment = Employment.where(user_id: Profile.where(first_name: row['First Name'], last_name: row['Last Name']).first.user_id, company_id: company.id).last
+			self.find_by(
+				id: employment.user_id
+			).destroy
+		end
+	end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
+    when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
+  def confirmation_required?
+    false
+  end
 end

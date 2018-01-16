@@ -1,0 +1,51 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Import Employees
+		</div>
+	</div>
+</div>
+<div class="form-header no-margin">
+  <div class="row form-header align-middle">
+    <div class="columns small-12 medium-6">
+      <h3>Import Employees</h3>
+      <h5>CSV / Excel</h5>
+    </div>
+    <div class="columns small-12 medium-offset-1 medium-4 align-self-middle">
+      <div class="m-well">
+        <div class="space"></div>
+        <%= form_tag company_import_employees_path(@company), multipart: true do %>
+          <%= file_field_tag :file %>
+          <div class="space"></div>
+          <%= submit_tag "Import", class: 'button primary add-button-border'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="overflow: hidden; ">
+  <div class="columns small-12 medium-4">
+    <h4>Download Sample Import File</h4>
+    <%= link_to 'Download Link', '/employee_imports/Employee-Import-Example.xlsx' %>
+  </div>
+  <div class="columns small-12 medium-4">
+    <h4>Delete Import Data</h4>
+    <p>Delete Imported Data in one go by uploading the same file here.</p>
+    <div class="m-well">
+      <div class="space"></div>
+      <%= form_tag company_delete_employees_path(@company), multipart: true do %>
+        <%= file_field_tag :file %>
+        <div class="space"></div>
+        <%= submit_tag "Delete", class: 'button primary add-button-border'%>
+      <% end %>
+    </div>
+  </div>
+	<div class="columns small-12 medium-4" style="max-height: 18rem; overflow-y: hidden;">
+		<h4>Passwords</h4> <%= link_to 'Export', company_employee_import_page_url(@company, format: :xlsx), class: 'button button-primary add-button-border' %>
+		<div style="max-height: 10rem; overflow-y: scroll;">
+			<% @company.user_import_passwords.reverse_order.each do |pw| %>
+				<%= "#{pw.user.full_name}: #{pw.password}" %> <br>
+			<% end %>
+		</div>
+	</div>
+</div>

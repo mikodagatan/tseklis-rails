@@ -11,7 +11,7 @@
       You can confirm your account email through the link below:
     </p>
 
-    <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+    <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
     <p>
       If the email specified above is not yours, please kindly disregard this email.

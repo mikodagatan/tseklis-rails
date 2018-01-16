@@ -13,6 +13,7 @@ class Company < ApplicationRecord
 	has_many :clients, through: :projects
 	has_many :onboardings, through: :projects
 	has_one	 :address
+	has_many :user_import_passwords, through: :users
 
 	has_one  :company_leave_setting
 	has_many :leave_types, dependent: :destroy

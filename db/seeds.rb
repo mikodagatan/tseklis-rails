@@ -8,7 +8,7 @@
 
 require 'faker'
 
-['HR Officer', 'Employee'].each do |n|
+['HR Officer', 'Employee', 'Manager'].each do |n|
   Role.find_or_create_by(
     name: n
   )

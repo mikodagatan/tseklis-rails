@@ -142,6 +142,14 @@ class CompaniesController < ApplicationController
 		@company = Company.find(params[:company_id])
 	end
 
+	def employee_import_page
+		@company = Company.find(params[:company_id])
+		respond_to do |format|
+			format.html
+			format.xlsx
+		end
+	end
+
 	def import_leave_requests
 		@company = Company.find(params[:company_id])
 		LeaveRequest.import(params[:file], @company, @current_user)
@@ -149,11 +157,25 @@ class CompaniesController < ApplicationController
 		redirect_to company_import_page_url(@company)
 	end
 
+	def import_employees
+		@company = Company.find(params[:company_id])
+		User.import(params[:file], @company, @current_user)
+		flash[:success] = "Employees Imported"
+		redirect_to company_employee_import_page_url(@company)
+	end
+
 	def delete_leave_requests
 		@company = Company.find(params[:company_id])
 		LeaveRequest.mass_delete(params[:file], @company, @current_user)
-		flash[:success] = "Delete submitted data."
+		flash[:success] = "Deleted submitted Leave Request data."
 		redirect_to company_import_page_url(@company)
+	end
+
+	def delete_employees
+		@company = Company.find(params[:company_id])
+		User.mass_delete(params[:file], @company, @current_user)
+		flash[:success] = "Deleted submitted Employee data."
+		redirect_to company_employee_import_page_url(@company)
 	end
 
 	private

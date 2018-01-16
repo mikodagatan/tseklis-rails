@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 					render action: :new
 				end
 		  else
-				flash[:success] = "Created Account for " + @user.profile.first_name + " " + @user.profile.last_name + ". Please check your email for confirmation instructions."
+				flash[:success] = "Created Account for " + @user.profile.first_name + " " + @user.profile.last_name + ". Please login with your credentials."
 				redirect_to new_user_session_url
 	  	end
 		else
