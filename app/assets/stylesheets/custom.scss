@@ -6,6 +6,7 @@ body {
 	// figure out the problem and properly solve it.
 	// problem is with forms.
 	overflow-x: hidden;
+	letter-spacing: 0.1px;
 }
 
 a {
@@ -299,8 +300,4 @@ span.h3smaller {
 
 .red-text {
 	color: #f22613;
-}
-
-a:hover {
-	color: #afb1b8;
 }
