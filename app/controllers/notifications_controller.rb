@@ -10,6 +10,12 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def read_all
+    @notifications = current_user.notifications
+    @notifications.update_all(read: true)
+    redirect_back(fallback_location: request.referrer)
+  end
+
   def notificiation_index
   end
 end

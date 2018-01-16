@@ -232,6 +232,7 @@ $top-bar-min-height: 5%;
 	max-width: 40rem;
   margin-top: 10px;
 	box-shadow: 0 0 15px rgba(0,0,0,0.15);
+	overflow-y: hide;
   &div.notification-item {
 		min-height: 3rem;
 		width: 100%;
@@ -293,6 +294,7 @@ $top-bar-min-height: 5%;
 
 .notification-scroll {
 	overflow-y: scroll;
+	height: 40vh;
 }
 
 .callout.no-margin {

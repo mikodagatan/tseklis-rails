@@ -41,7 +41,7 @@
     </div>
   </div>
 	<div class="columns small-12 medium-4" style="max-height: 18rem; overflow-y: hidden;">
-		<h4>Passwords</h4> <%= link_to 'Export', company_employee_import_page_url(@company, format: :xlsx), class: 'button button-primary add-button-border' %>
+		<h4>Initial Passwords</h4> <%= link_to 'Export', company_employee_import_page_url(@company, format: :xlsx), class: 'button button-primary add-button-border' %>
 		<div style="max-height: 10rem; overflow-y: scroll;">
 			<% @company.user_import_passwords.reverse_order.each do |pw| %>
 				<%= "#{pw.user.full_name}: #{pw.password}" %> <br>

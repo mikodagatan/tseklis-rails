@@ -11,7 +11,15 @@
 
 <section class="dropdown-pane no-padding notification-dropdown" id="notifications-dropdown" data-dropdown data-position="bottom" data-alignment="right">
   <div class="horizontal-max no-padding ">
-    <%= link_to 'Notifications', notifications_notification_index_url, class: "button primary no-button-border horizontal-max no-margin text-center black-text" %>
+    <div class="row collapse expanded">
+      <div class="column">
+        <%= link_to 'Notifications', notifications_notification_index_url, class: "button primary no-button-border no-margin text-center black-text" %>
+      </div>
+      <div class="column">
+        <%= link_to 'Read All', notifications_read_all_url, class: "button warning no-button-border no-margin text-center black-text" %>
+      </div>
+    </div>
+
     <div class="notification-scroll">
       <% if current_user.notifications.where(read: false).reverse_order.blank? %>
         <div class="space"></div>

@@ -3,6 +3,9 @@ class LeaveRequestsController < ApplicationController
   before_action :redirect_not_user, only: [:new]
   before_action :redirect_not_company
 
+  include ApplicationHelper
+  include ActionView::Helpers::NumberHelper
+
   def index
 
   end
@@ -33,7 +36,7 @@ class LeaveRequestsController < ApplicationController
           redirect_to company_path( @employment.company_id )
         end
       end
-      # flash[:success] = "Leave Request Created!"
+      flash[:success] = "Leave Request Created! Title: #{@leave_request.title} | Leave Type: #{@leave_request.leave_type.name} leave | Amount: #{bignum(@leave_request.show_amount)} #{ @leave_request.show_amount == 1 ? 'leave' : 'leaves'}"
 	  else
 	  	# flash[:alert] = "Cannot create Leave Request!"
       if params[:leave_request_from_hr] == 'false'

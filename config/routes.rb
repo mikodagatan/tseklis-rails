@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications/notification_index' => 'notifications#notification_index'
-
+  get 'notifications/read_all', to: 'notifications#read_all'
 
 
   namespace :dashboard do

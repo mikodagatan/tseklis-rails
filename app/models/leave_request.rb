@@ -169,7 +169,7 @@ class LeaveRequest < ApplicationRecord
 	  		company = self.employment.company
 	  		leave_type = LeaveType.find(self.leave_type_id)
 	  		available = user.available_leaves(company, leave_type, self.end_date)
-	  		if enter_amounts > available[:amount]
+	  		if enter_amounts > available[:amount] && leave_type.name != "Unpaid"
 	  			errors.add(:end_date, "- You have #{available[:amount]} available leaves by #{self.end_date.strftime("%B %d, %Y - %A")}, but you're consuming #{enter_amounts} leaves for #{available[:name]}")
 	  		end
 	    end
