@@ -45,3 +45,7 @@ require 'capistrano/passenger'
 require 'capistrano/rbenv'
 set :rbenv_type, :user
 set :rbenv_ruby, '2.4.0'
+
+require 'capistrano/bundler' # Rails needs Bundler, right?
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
