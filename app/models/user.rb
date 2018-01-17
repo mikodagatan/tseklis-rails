@@ -249,7 +249,12 @@ class User < ApplicationRecord
     require 'securerandom'
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
-	  (2..spreadsheet.last_row).each do |i|
+    last_row = spreadsheet.last_row
+    # CSV not working with last_row fix
+    if File.extname(file.original_filename) == '.csv'
+      last_row = last_row - 1
+    end
+	  (2..last_row).each do |i|
 
       upassword = SecureRandom.hex(4).to_s
 	    row = Hash[[header, spreadsheet.row(i)].transpose]
@@ -290,7 +295,12 @@ class User < ApplicationRecord
   def self.mass_delete(file, company, user)
 		spreadsheet = open_spreadsheet(file)
 		header = spreadsheet.row(1)
-		(2..spreadsheet.last_row).each do |i|
+    last_row = spreadsheet.last_row
+    # CSV not working with last_row fix
+    if File.extname(file.original_filename) == '.csv'
+      last_row = last_row - 1
+    end
+		(2..last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
       employment = Employment.where(user_id: Profile.where(first_name: row['First Name'], last_name: row['Last Name']).first.user_id, company_id: company.id).last
 			self.find_by(

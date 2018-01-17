@@ -36,7 +36,7 @@
                 <% end %>
               <% end %>
               <% unless @current_user == @user %>
-                <%= link_to "Reject", new_user_employment_leave_request_rejection_message_url(@user, @employment, @leave_request), class: 'button alert leave_request_button horizontal-max' %>
+                <%= link_to "Reject", new_user_employment_leave_request_rejection_message_url(@user, @employment, @leave_request), class: 'button alert leave_request_button horizontal-max add-button-border' %>
               <% end %>
             </div>
           </div>

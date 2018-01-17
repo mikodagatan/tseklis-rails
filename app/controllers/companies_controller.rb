@@ -147,6 +147,7 @@ class CompaniesController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.xlsx
+			format.csv
 		end
 	end
 

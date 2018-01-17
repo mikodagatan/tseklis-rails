@@ -240,7 +240,12 @@ class LeaveRequest < ApplicationRecord
 	def self.import(file, company, user)
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
-	  (2..spreadsheet.last_row).each do |i|
+		last_row = spreadsheet.last_row
+		# CSV not working with last_row fix
+		if File.extname(file.original_filename) == '.csv'
+			last_row = last_row - 1
+		end
+	  (2..last_row).each do |i|
 	    row = Hash[[header, spreadsheet.row(i)].transpose]
 	    leave_request = find_by_id(row["id"]) || new
 	    leave_request.employment_id = Employment.find_by(user_id: Profile.where(first_name: row['first_name'], last_name: row['last_name']).first.user.id, company_id: company.id).id
@@ -260,7 +265,12 @@ class LeaveRequest < ApplicationRecord
 	def self.mass_delete(file, company, user)
 		spreadsheet = open_spreadsheet(file)
 		header = spreadsheet.row(1)
-		(2..spreadsheet.last_row).each do |i|
+		last_row = spreadsheet.last_row
+		# CSV not working with last_row fix
+		if File.extname(file.original_filename) == '.csv'
+			last_row = last_row - 1
+		end
+		(2..last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			self.find_by(
 				employment_id: Employment.find_by(user_id: Profile.where(first_name: row['first_name'], last_name: row['last_name']).first.user.id, company_id: company.id).id,
