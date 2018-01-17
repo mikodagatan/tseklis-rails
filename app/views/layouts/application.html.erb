@@ -27,21 +27,21 @@
   <body>
 
     <%= render 'partials/navbar' %>
+      <div class="yield-container">
+      <% unless no_flash_pages %>
+        <% flash.each do |key, value| %>
 
-    <% unless no_flash_pages %>
-      <% flash.each do |key, value| %>
-
-        <div class="callout <%= key %>" data-closable>
-          <%= value %>
-          <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          <div class="callout <%= key %>" data-closable>
+            <%= value %>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
 
-		<%= yield %>
-
+  		<%= yield %>
+    </div>
     <%# render 'layouts/google_analytics' %>
 
   </body>

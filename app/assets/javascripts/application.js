@@ -11,12 +11,11 @@
 // about supported directives.
 //
 
-
 //= require jquery
 //= require rails-ujs
 //= require cable
-//= require turbolinks
 //= require foundation
+//= require turbolinks
 //= require_tree .
 
 //= require pickadate/picker
@@ -33,6 +32,8 @@
 //= require holiday
 //= require company_settings
 
+
 $(document).on('turbolinks:load', function() {
-	$(document).foundation();
+	$(function(){ $(document).foundation(); });
+	console.log("Turbolinks: Loaded")
 });
