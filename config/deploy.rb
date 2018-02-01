@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.9.1"
+lock "3.10.1"
 
 set :application, "tseklis"
 set :repo_url, "git@bitbucket.org:kimonoso/tseklis-rails.git"
@@ -56,5 +56,5 @@ namespace :rails do
 
 
   set :rbenv_ruby, '2.4.0'
-  
+
 end
