@@ -24,6 +24,7 @@ class LeaveRequestsController < ApplicationController
     # @leave_request.start_date = default_date(@leave_request.start_date)
     # @leave_request.end_date = default_date(@leave_request.end_date)
   	if @leave_request.save
+      LeaveRequestMailer.lr_created(@leave_request, @current_user, @current_employment.manager.user, @current_employment).deliver unless @current_employment.manager.nil?
       if params[:leave_request_from_hr] == 'false' || params[:leave_request_from_hr].nil?
         create_notification_employee(@leave_request)
         redirect_to company_path( @employment.company_id )

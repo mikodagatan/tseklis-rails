@@ -110,9 +110,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	end
 
 	def restrict_signup
-		authenticate_or_request_with_http_basic('Administration') do |username, password|
-		 ActiveSupport::SecurityUtils.secure_compare(username, "admin") &&
-		 ActiveSupport::SecurityUtils.secure_compare(password, "!tseklissignuppass65fb35f526")
-	 end
+		if params[:invite_token].nil?
+			authenticate_or_request_with_http_basic('Administration') do |username, password|
+			 ActiveSupport::SecurityUtils.secure_compare(username, "admin") &&
+			 ActiveSupport::SecurityUtils.secure_compare(password, "!tseklissignuppass65fb35f526")
+			end
+		end
 	end
 end

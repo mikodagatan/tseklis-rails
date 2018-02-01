@@ -12,6 +12,5 @@ class InviteMailer < ApplicationMailer
     @sender = User.find(invite.sender_id)
     mail(to: @invite.email, subject: @sender.profile.first_name + " " + @sender.profile.last_name + " invites you to join " + @invite.company.name )
   end
-
-
+  
 end

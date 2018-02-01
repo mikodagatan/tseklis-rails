@@ -1,0 +1,43 @@
+<div style='background-color: #29a4e9; padding: 10px;'>
+  <div style='font-family: "Arial"; background-color: #f7f7f9; padding: 1rem; border-radius: 10px;'>
+    <h3>Leave Request Pending</h3>
+    <p>
+      <%= @sender.full_name %> just created a Leave Request for your approval!
+    </p>
+
+    <a href='<%= user_employment_leave_request_url(@sender, @employment, @leave_request)%>'>
+      Review Leave Request
+    </a>
+
+    <p>
+      <strong>Title:</strong> <%= @leave_request.title %>
+    </p>
+
+    <p>
+      <strong>Amount of Leaves:</strong> <%= @leave_request.leave_amounts.sum(:amount) %>
+    </p>
+
+    <p>
+      <strong>Start:</strong> <%= @leave_request.start_date.strftime("%B %d, %Y - %A") %>
+    </p>
+
+    <p>
+      <strong>End:</strong> <%= @leave_request.end_date.strftime("%B %d, %Y - %A") %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+    </p>
+
+    <p>
+      <%= @leave_request.description %>
+    </p>
+
+
+
+    <br />
+    <br />
+    <p>Thank you,</p>
+    <p>Tseklis Team</p>
+  </div>
+</div>

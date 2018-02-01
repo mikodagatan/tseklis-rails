@@ -159,9 +159,12 @@ class CompaniesController < ApplicationController
 	end
 
 	def import_employees
+		time1 = Time.zone.now
 		@company = Company.find(params[:company_id])
 		User.import(params[:file], @company, @current_user)
-		flash[:success] = "Employees Imported"
+		time2 = Time.zone.now
+		duration = time2 - time1
+		flash[:success] = "Employees Imported. #{duration} seconds."
 		redirect_to company_employee_import_page_url(@company)
 	end
 
