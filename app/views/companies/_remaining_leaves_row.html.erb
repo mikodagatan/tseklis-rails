@@ -1,0 +1,18 @@
+<tr class="black-text">
+  <td>
+    <%= resource.full_name %>
+  </td>
+  <% @sum = 0 %>
+  <% @company.leave_types.each do |u| %>
+    <% if u.name == "Unpaid" %>
+    <% else %>
+      <td>
+        <%= to_add = resource.available_leaves(@company, u)[:amount] %>
+        <% @sum += to_add %>
+      </td>
+    <% end %>
+  <% end %>
+  <td>
+    <%= @sum %>
+  </td>
+</tr>

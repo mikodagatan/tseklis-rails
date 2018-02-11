@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <th>Name</th>
+    <% @company.leave_types.each do |u| %>
+      <% if u.name == "Unpaid" %>
+      <% else %>
+        <th><%= u.name %></th>
+      <% end %>
+    <% end %>
+    <th>Total</th>
+  </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'companies/remaining_leaves_row', collection: @remaining, as: 'resource' %>
+  </tbody>
+</table>
