@@ -7,7 +7,8 @@
     <% if u.name == "Unpaid" %>
     <% else %>
       <td>
-        <%= to_add = resource.available_leaves(@company, u)[:amount] %>
+        <% to_add = resource.available_leaves(@company, u)[:amount] %>
+        <%= bignum(to_add) %>
         <% @sum += to_add %>
       </td>
     <% end %>
