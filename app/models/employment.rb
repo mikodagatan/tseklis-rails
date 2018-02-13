@@ -72,10 +72,12 @@ class Employment < ApplicationRecord
 	end
 
 	def manager_names
+		return if nil
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
 
 	def employment_names
+		return if nil
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
 
