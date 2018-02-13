@@ -94,10 +94,10 @@ class User < ApplicationRecord
       .end_date
     if date.present?
       moving_date = date - expiration.months
-      moving_date_end = date.years_since(5)
+      moving_date_end = date
     else
       moving_date = Time.zone.today - expiration.months
-      moving_date_end = Time.zone.today.years_since(5)
+      moving_date_end = Time.zone.today
     end
 
     leave_start = start_d + start.months
@@ -203,6 +203,7 @@ class User < ApplicationRecord
     else
       ending = Time.zone.today
     end
+
 
     if expiration_start < ending
       unless leave_end.blank?

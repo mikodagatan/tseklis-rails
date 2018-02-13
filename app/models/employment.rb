@@ -80,13 +80,19 @@ class Employment < ApplicationRecord
 	end
 
 	def employment_names
-		return if nil
-		"#{user.profile.first_name} #{user.profile.last_name}"
+		if user.nil?
+			"NO USER"
+		else
+			"#{user.profile.first_name} #{user.profile.last_name}"
+		end
 	end
 
 	def full_name
-		return if nil
-		"#{user.profile.first_name} #{user.profile.last_name}"
+		if user.nil?
+			"NO USER"
+		else
+			"#{user.profile.first_name} #{user.profile.last_name}"
+		end
 	end
 
 	def is_hr?
