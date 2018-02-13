@@ -1,0 +1,24 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Remaining Leaves") do |sheet|
+  @row = []
+  @row << 'Employee'
+  @company.leave_types.each do |lt|
+    @row << lt.name if lt.name != "Unpaid"
+  end
+  @row << 'Total'
+  sheet.add_row @row
+  @remaining.each do |r|
+    @row = []
+    @row << r.full_name
+    @company.leave_types.each do |lt|
+      @sum = 0
+      if lt.name != "Unpaid"
+        to_add = r.remaining_leaves(@company, lt, @r_date2)[:amount]
+        @sum += to_add
+        @row << bignum(to_add)
+      end
+    end
+    @row << @sum
+    sheet.add_row @row
+  end
+end
