@@ -5,7 +5,7 @@
        <% if @user == @current_user %>
         > &nbsp; Your Profile
        <% else %>
-        > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; Company Edit
+        > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; User Profile
        <% end %>
     </div>
   </div>
