@@ -77,7 +77,7 @@ class User < ApplicationRecord
     return leaves
   end
 
-  def remaining_leaves(copany, leave_type, date = nil)
+  def remaining_leaves(company, leave_type, date = nil)
     leave = {}
     leave_settings = company.company_leave_setting
     expiration = leave_settings.leave_month_expiration
