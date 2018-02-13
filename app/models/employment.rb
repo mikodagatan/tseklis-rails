@@ -74,9 +74,10 @@ class Employment < ApplicationRecord
 	def manager_names
 		if user.nil?
 			"NO USER"
+		else
+			"#{user.profile.first_name} #{user.profile.last_name}"
 		end
 		return if nil
-		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
 
 	def employment_names
