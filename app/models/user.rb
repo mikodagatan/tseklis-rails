@@ -77,9 +77,7 @@ class User < ApplicationRecord
     return leaves
   end
 
-
-  def available_leaves(company, leave_type, date = nil)
-    # You may want to think that if the expiration is not > 12 months, we will not reach the maximum leave amounts.
+  def remaining_leaves(copany, leave_type, date = nil)
     leave = {}
     leave_settings = company.company_leave_setting
     expiration = leave_settings.leave_month_expiration
@@ -98,6 +96,53 @@ class User < ApplicationRecord
     else
       moving_date = Time.zone.today - expiration.months
       moving_date_end = Time.zone.today
+    end
+    leave_start = start_d + start.months
+    leave_amount_max = (leave_settings.leave_month_expiration / 12 * assigned_leave_type_amount(company,leave_type).to_f)
+    add_leaves = self.employments
+      .where(company_id: company.id)
+      .last
+      .add_leaves
+      .where(leave_type_id: leave_type.id)
+      .sum(:amount)
+    place1 = leave_add_calculation(company, leave_type, date).round(2)
+    place2 = leave_expire(company, leave_type, date).round(2)
+    place3 = ((place1 - place2) / 365 * assigned_leave_type_amount(company,leave_type)).round(2) + add_leaves
+    if place3 > leave_amount_max + add_leaves
+      place3 = leave_amount_max + add_leaves
+    elsif place3 < 0
+      place3 = 0
+    end
+    if Time.zone.today > leave_start
+      value = place3 -  segmented_leaves(moving_date..moving_date_end, company, leave_type)[:amount]
+    else
+      value = 0.0
+    end
+    leave[:name] = leave_type.name
+    leave[:amount] = value
+    return leave
+  end
+
+  def available_leaves(company, leave_type, date = nil)
+    # You may want to think that if the expiration is not > 12 months, we will not reach the maximum leave amounts.
+    leave = {}
+    leave_settings = company.company_leave_setting
+    expiration = leave_settings.leave_month_expiration
+    start = leave_settings.leave_month_start
+    start_d = self.employments
+      .where(company_id: company.id)
+      .first
+      .start_date
+    leave_end = self.employments
+      .where(company_id: company.id)
+      .last
+      .end_date
+    if date.present?
+      moving_date = date - expiration.months
+      moving_date_end = date.years_since(5)
+    else
+      moving_date = Time.zone.today - expiration.months
+      moving_date_end = Time.zone.today.years_since(5)
     end
 
     leave_start = start_d + start.months
@@ -157,7 +202,7 @@ class User < ApplicationRecord
         ending = Time.zone.today
       end
     end
-    available = (ending.at_beginning_of_month - leave_start)
+    available = ((ending - 1.month).at_end_of_month - leave_start)
     # if available > leave_amount_max
     #   available = leave_amount_max
     # end
@@ -209,7 +254,7 @@ class User < ApplicationRecord
       unless leave_end.blank?
         ending = leave_end
       end
-      expire = (ending.at_beginning_of_month - expiration_start)
+      expire = ((ending - 1.month).at_end_of_month - expiration_start)
     else
       expire = 0
     end
