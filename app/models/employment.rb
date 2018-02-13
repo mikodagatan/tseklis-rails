@@ -77,7 +77,6 @@ class Employment < ApplicationRecord
 		else
 			"#{user.profile.first_name} #{user.profile.last_name}"
 		end
-		return if nil
 	end
 
 	def employment_names
