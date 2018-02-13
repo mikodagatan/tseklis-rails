@@ -1,0 +1,21 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; > &nbsp; <%= link_to "Reports", company_reports_url(@company), class: 'small-nav-link' %> &nbsp; > &nbsp; Remaining Leaves
+		</div>
+	</div>
+</div>
+<div class="space2"></div>
+<div class="row">
+  <div class="columns medium-6">
+    <h4>Remaining Leaves <small><%= 'as of ' + better_date(@r_date) unless @r_date.blank? %></small></h4>
+  </div>
+  <div class="columns medium-6">
+    <%= render 'reports/remaining_leaves/remaining_date' %>
+  </div>
+</div>
+<div class="row">
+  <div class="columns">
+    <%= render 'reports/remaining_leaves/remaining_leaves_table' %>
+  </div>
+</div>

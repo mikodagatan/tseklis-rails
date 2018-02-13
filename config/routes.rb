@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     resources :holidays
     resources :departments
     resources :costs
+    resources :reports, only: [:index] do
+      collection do
+        get :remaining_leaves
+      end
+    end
     resources :projects do
       get 'enter_time', on: :collection
       post 'entered_time', on: :collection

@@ -81,6 +81,11 @@ class Employment < ApplicationRecord
 		"#{user.profile.first_name} #{user.profile.last_name}"
 	end
 
+	def full_name
+		return if nil
+		"#{user.profile.first_name} #{user.profile.last_name}"
+	end
+
 	def is_hr?
 		@hr_officer = Role.find(1)
 		self.blank? ? false : self.role_id == @hr_officer.id

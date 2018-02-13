@@ -1,0 +1,16 @@
+<div class="small-nav white-border-bottom">
+	<div class="row small-nav">
+		<div class="columns">
+			<%= link_to 'Back', url_for(:back), class:  'small-nav-link' %> 	&nbsp; 	&nbsp; | 	&nbsp; &nbsp;  <%= link_to "Home", root_url, class: 'small-nav-link' %> &nbsp; > &nbsp; <%= link_to @company.name, company_url(@company), class: 'small-nav-link' %>  &nbsp; >  &nbsp; Reports
+		</div>
+	</div>
+</div>
+<div class="space2"></div>
+<div class="row text-center">
+  <div class="column">
+    <h2>Reports</h2>
+    <h5>
+      <%= link_to "Remaining Leaves", remaining_leaves_company_reports_url(@company)%>
+    </h5>
+  </div>
+</div>

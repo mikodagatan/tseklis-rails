@@ -1,0 +1,17 @@
+<%= simple_form_for :re, url: request.original_url, method: :get do |f| %>
+<div class="row align-middle collapse">
+  <div class="columns medium-2">
+
+  </div>
+  <div class="columns medium-2">
+    <%= f.label "Date as of", style: 'margin-bottom: 1rem;' %>
+  </div>
+  <div class="columns medium-6">
+    <%= f.input_field :date_as_of, as: :date, html5: true, style: 'border-radius: 5px 0 0 5px' %>
+  </div>
+  <div class="columns medium-2">
+    <%= f.submit "Submit", class: 'button primary', style: 'border-radius: 0 5px 5px 0' %>
+
+  </div>
+</div>
+<% end %>
