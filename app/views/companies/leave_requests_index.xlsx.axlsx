@@ -2,18 +2,21 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: "Leave Requests") do |sheet|
     sheet.add_row ['Employee', 'Title', 'Leave Type', 'Start Date', 'Start Time', 'End Date', 'End Time', 'Status', 'Reviewer', 'Amount']
   @leave_requests.each do |lr|
-    sheet.add_row [
-      lr.employment.user.profile.full_name,
-      lr.title,
-      lr.leave_type.name,
-      lr.start_date.strftime("%m/%d/%Y"),
-      better_time(lr.start_time),
-      lr.end_date.strftime("%m/%d/%Y"),
-      better_time(lr.end_time),
-      lr.status,
-      lr.acceptor_id,
-      lr.show_amount
-      ]
-      a 1
+    @row = []
+    @row << lr.employment.user.profile.full_name
+    @row << lr.title
+    @row << lr.leave_type.name
+    @row << lr.start_date.strftime("%m/%d/%Y")
+    @row << better_time(lr.start_time)
+    @row << lr.end_date.strftime("%m/%d/%Y")
+    @row << better_time(lr.end_time)
+    @row << lr.status
+    if lr.acceptor_id.present?
+      @row << User.find_by(lr.acceptor_id).full_name
+    else
+      @row << ''
+    end
+    @row << lr.show_amount
+    sheet.add_row @row
   end
 end
