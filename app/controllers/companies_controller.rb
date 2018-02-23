@@ -69,7 +69,9 @@ class CompaniesController < ApplicationController
 
 		# Kaminari
     @leave_requests = @company.leave_requests.reverse_order
+		@leave_requests_excel = @leave_requests
     @leave_requests = Kaminari.paginate_array(@leave_requests).page(params[:leave_requests_page]).per(@per_show)
+
 		# @employments = @company.employments.where('employments.acceptance = true').reverse_order
 		# @employments = Kaminari.paginate_array(@employments).page(params[:employments_page]).per(@per_show)
     @has_leave_types = @company.leave_types.present? ? true : false
