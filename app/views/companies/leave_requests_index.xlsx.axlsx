@@ -12,7 +12,7 @@ wb.add_worksheet(name: "Leave Requests") do |sheet|
     @row << better_time(lr.end_time)
     @row << lr.status
     if lr.acceptor_id.present?
-      @row << User.find_by(lr.acceptor_id).full_name
+      @row << User.find_by_id(lr.acceptor_id).full_name
     else
       @row << ''
     end
