@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get 'employees' => 'companies#employees_index'
     get 'leave_requests' => 'companies#leave_requests_index'
     resources :invites
-    get 'import_page' => 'companies#import_page'
+  get 'import_page' => 'companies#import_page'
     get 'employee_import_page' => 'companies#employee_import_page'
     post :import_employees
     post :delete_employees

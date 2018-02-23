@@ -11,8 +11,9 @@ wb.add_worksheet(name: "Leave Requests") do |sheet|
       lr.end_date.strftime("%m/%d/%Y"),
       better_time(lr.end_time),
       lr.status,
-      lr.acceptor_name,
+      lr.acceptor_id,
       lr.show_amount
       ]
+      a 1
   end
 end
