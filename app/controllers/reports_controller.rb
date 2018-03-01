@@ -7,7 +7,11 @@ class ReportsController < ApplicationController
 
   def remaining_leaves
     @r_date = re_params unless params[:re].blank?
-    @r_date2 = @r_date[:date_as_of].to_date
+    if @r_date.nil?
+      @r_date2 = nil
+    else
+      @r_date2 = @r_date[:date_as_of].to_date
+    end
     @remaining = User.joins(:employments).where(employments: {company: @company, end_date: nil})
     unless @r_date2.blank?
       @remaining = User.joins(:employments).where(employments: {company: @company}).where('employments.end_date > ? or employments.end_date is ?', @r_date2, nil)
