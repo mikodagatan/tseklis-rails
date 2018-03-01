@@ -3,8 +3,11 @@
     <%= tr.employment.employment_names %>
   </td>
   <td>
+    <% if tr.employment.user == current_user %>
       <%= link_to tr.title, edit_company_time_request_url(@company, tr.id) %>
+    <% else %>
       <%= tr.title %>
+    <% end %>
   </td>
   <td>
     <%= tr.in_out %>
